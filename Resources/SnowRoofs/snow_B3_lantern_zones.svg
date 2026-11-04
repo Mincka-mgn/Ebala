@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="75mm" height="30mm" viewBox="0 0 750 300" role="img"
+     aria-labelledby="title desc">
+  <title id="title">Снеговая нагрузка. Схема Б.3. Зоны у продольных фонарей</title>
+  <desc id="desc">Схематический план кровли с двумя продольными фонарями и зонами C, A, B. Ширина зоны A составляет 1,5 метра. Изображение условное, не в масштабе.</desc>
+  <defs>
+    <style>
+      .outline { fill: none; stroke: #202831; stroke-width: 3.1; stroke-linejoin: round; stroke-linecap: round; }
+      .dash { fill: none; stroke: #4b5563; stroke-width: 2.3; stroke-dasharray: 16 11; }
+      .dimension { fill: none; stroke: #202831; stroke-width: 2.0; }
+      .txt { font-family: 'DejaVu Sans', 'Arial', sans-serif; font-size: 36px; fill: #202831; }
+      .lantern { font-family: 'DejaVu Sans', 'Arial', sans-serif; font-size: 35px; font-weight: 500; fill: #202831; }
+    </style>
+    <marker id="dimArrow" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto-start-reverse">
+      <path d="M0 0 L7 3.5 L0 7 Z" fill="#202831"/>
+    </marker>
+  </defs>
+  <!-- Areas shown schematically, not to scale. -->
+  <rect x="135" y="24" width="353" height="68" fill="#dbeafe"/>
+  <rect x="135" y="92" width="353" height="43" fill="#ffedd5"/>
+  <rect x="135" y="135" width="353" height="91" fill="#dcfce7"/>
+  <rect x="135" y="226" width="353" height="46" fill="#f8fafc"/>
+  <!-- Roof boundary and zonal boundaries. -->
+  <path class="outline" d="M135 24 V272 M488 24 V272 M135 24 H236 M404 24 H488 M135 272 H236 M404 272 H488"/>
+  <path class="dash" d="M135 92 H488 M135 135 H488 M135 226 H488"/>
+  <!-- Longitudinal lantern symbols, shown as interruptions of upper/lower boundary. -->
+  <rect x="236" y="24" width="168" height="52" fill="#ffffff" stroke="#202831" stroke-width="2.8"/>
+  <rect x="236" y="220" width="168" height="52" fill="#ffffff" stroke="#202831" stroke-width="2.8"/>
+  <text class="lantern" x="320" y="61" text-anchor="middle">Фонарь</text>
+  <text class="lantern" x="320" y="257" text-anchor="middle">Фонарь</text>
+  <!-- Continuation break marks in both longitudinal lanterns. -->
+  <path d="M306 17 L315 7 L315 33 L330 17" fill="#ffffff" stroke="#202831" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M306 280 L315 290 L315 264 L330 280" fill="#ffffff" stroke="#202831" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Dimension of zone A: 1.5 m -->
+  <path class="dimension" d="M104 92 H128 M104 135 H128"/>
+  <path class="dimension" d="M106 94 V133" marker-start="url(#dimArrow)" marker-end="url(#dimArrow)"/>
+  <text class="txt" x="58" y="116" text-anchor="middle" transform="rotate(-90 58 116)">1,5 м</text>
+  <!-- Braces and labels of simultaneous zones. -->
+  <path class="outline" d="M507 25 C520 25 523 33 523 42 V48 Q523 57 535 58 Q523 59 523 68 V76 C523 84 520 91 507 91"/>
+  <path class="outline" d="M507 93 C520 93 523 98 523 104 V107 Q523 113 535 114 Q523 115 523 121 V123 C523 130 520 134 507 134"/>
+  <path class="outline" d="M507 136 C520 136 523 143 523 153 V166 Q523 177 535 180 Q523 183 523 194 V210 C523 220 520 225 507 225"/>
+  <text class="txt" x="548" y="71">Зона C</text>
+  <text class="txt" x="548" y="128">Зона A</text>
+  <text class="txt" x="548" y="193">Зона B</text>
+</svg>

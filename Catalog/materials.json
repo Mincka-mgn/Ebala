@@ -1,0 +1,2213 @@
+{
+  "schema_version": 1,
+  "categories": [
+    {
+      "id": "c6",
+      "group": "Бетоны и растворы",
+      "name": "Лёгкие бетоны"
+    },
+    {
+      "id": "c7",
+      "group": "Бетоны и растворы",
+      "name": "Ячеистые и поризованные бетоны"
+    },
+    {
+      "id": "c9",
+      "group": "Бетоны и растворы",
+      "name": "Тяжёлые бетоны, растворы и стяжки"
+    },
+    {
+      "id": "c24",
+      "group": "Покрытия и кровли",
+      "name": "Кровельные материалы"
+    },
+    {
+      "id": "c17",
+      "group": "Покрытия и кровли",
+      "name": "Плиты перекрытий и покрытий"
+    },
+    {
+      "id": "c19",
+      "group": "Покрытия и кровли",
+      "name": "Профилированные стальные настилы"
+    },
+    {
+      "id": "c20",
+      "group": "Покрытия и кровли",
+      "name": "Стропила, обрешётка и дощатый настил"
+    },
+    {
+      "id": "c21",
+      "group": "Покрытия и кровли",
+      "name": "Фермы и прогоны"
+    },
+    {
+      "id": "c23",
+      "group": "Покрытия и кровли",
+      "name": "Кровельные системы и элементы"
+    },
+    {
+      "id": "c8",
+      "group": "Кладка, стены и перегородки",
+      "name": "Кирпичная и блочная кладка"
+    },
+    {
+      "id": "c18",
+      "group": "Кладка, стены и перегородки",
+      "name": "Стеновые панели"
+    },
+    {
+      "id": "c31",
+      "group": "Кладка, стены и перегородки",
+      "name": "Перегородки"
+    },
+    {
+      "id": "c30",
+      "group": "Кладка, стены и перегородки",
+      "name": "Ригели, балки, колонны и каркасы"
+    },
+    {
+      "id": "c10",
+      "group": "Отделка и древесина",
+      "name": "Древесина и пиломатериалы"
+    },
+    {
+      "id": "c11",
+      "group": "Отделка и древесина",
+      "name": "Фанера, ДВП, ДСП и древесные плиты"
+    },
+    {
+      "id": "c14",
+      "group": "Отделка и древесина",
+      "name": "Полы и напольные покрытия"
+    },
+    {
+      "id": "c28",
+      "group": "Отделка и древесина",
+      "name": "Штукатурки и отделочные растворы"
+    },
+    {
+      "id": "c29",
+      "group": "Отделка и древесина",
+      "name": "Потолки, облицовка и фасады"
+    },
+    {
+      "id": "c1",
+      "group": "Теплоизоляция и засыпки",
+      "name": "Пенополистиролы и полимерные"
+    },
+    {
+      "id": "c2",
+      "group": "Теплоизоляция и засыпки",
+      "name": "Минеральная вата"
+    },
+    {
+      "id": "c3",
+      "group": "Теплоизоляция и засыпки",
+      "name": "Другие утеплители и теплоизоляционные плиты"
+    },
+    {
+      "id": "c4",
+      "group": "Теплоизоляция и засыпки",
+      "name": "Керамзит, шлак и лёгкие засыпки"
+    },
+    {
+      "id": "c5",
+      "group": "Теплоизоляция и засыпки",
+      "name": "Песок, гравий и минеральные засыпки"
+    },
+    {
+      "id": "c13",
+      "group": "Паро- и гидроизоляция",
+      "name": "Рулонная гидроизоляция и мембраны"
+    },
+    {
+      "id": "c26",
+      "group": "Паро- и гидроизоляция",
+      "name": "Пароизоляция"
+    },
+    {
+      "id": "c22",
+      "group": "Паро- и гидроизоляция",
+      "name": "Обмазки, мастики и асфальтобетон"
+    },
+    {
+      "id": "c12",
+      "group": "Другое",
+      "name": "Природный и бутовый камень"
+    },
+    {
+      "id": "c15",
+      "group": "Другое",
+      "name": "Металлы"
+    },
+    {
+      "id": "c16",
+      "group": "Другое",
+      "name": "Стекло и пеностекло"
+    },
+    {
+      "id": "c33",
+      "group": "Другое",
+      "name": "Минеральное сырьё"
+    },
+    {
+      "id": "c27",
+      "group": "Другое",
+      "name": "Прочие материалы"
+    }
+  ],
+  "items": [
+    {
+      "id": "m_1",
+      "category_id": "c1",
+      "name": "Плиты из пенополистирола",
+      "kind": "layer",
+      "density_min": 25.0,
+      "density_max": 35.0,
+      "default_thickness_mm": 100,
+      "default_gamma": 1.3
+    },
+    {
+      "id": "m_7",
+      "category_id": "c1",
+      "name": "Экструзионный пенополистирол (XPS)",
+      "kind": "layer",
+      "density_min": 35.0,
+      "density_max": 40.0,
+      "default_thickness_mm": 100,
+      "default_gamma": 1.3
+    },
+    {
+      "id": "m_23",
+      "category_id": "c2",
+      "name": "Минераловатные изделия из каменного волокна",
+      "kind": "layer",
+      "density_min": 40.0,
+      "density_max": 180.0,
+      "default_thickness_mm": 100,
+      "default_gamma": 1.3
+    },
+    {
+      "id": "m_38",
+      "category_id": "c11",
+      "name": "Древесно-волокнистые и древесно-стружечные плиты",
+      "kind": "layer",
+      "density_min": 200.0,
+      "density_max": 1000.0,
+      "default_thickness_mm": 12,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c3",
+        "c14"
+      ]
+    },
+    {
+      "id": "m_51",
+      "category_id": "c8",
+      "name": "Гипсовые пазогребневые плиты",
+      "kind": "layer",
+      "density_min": 1350.0,
+      "density_max": 1350.0,
+      "default_thickness_mm": 80,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c31",
+        "c28"
+      ]
+    },
+    {
+      "id": "m_64",
+      "category_id": "c4",
+      "name": "Гравий керамзитовый",
+      "kind": "layer",
+      "density_min": 300.0,
+      "density_max": 600.0,
+      "default_thickness_mm": 100,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c5"
+      ]
+    },
+    {
+      "id": "m_88",
+      "category_id": "c4",
+      "name": "Пеностекольный щебень",
+      "kind": "layer",
+      "density_min": 120.0,
+      "density_max": 120.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c3"
+      ]
+    },
+    {
+      "id": "m_95",
+      "category_id": "c4",
+      "name": "Щебень и песок из вспученного перлита",
+      "kind": "layer",
+      "density_min": 300.0,
+      "density_max": 300.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c5"
+      ]
+    },
+    {
+      "id": "m_99",
+      "category_id": "c5",
+      "name": "Песок для строительных работ",
+      "kind": "layer",
+      "density_min": 1600.0,
+      "density_max": 1600.0,
+      "default_thickness_mm": 50,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c4"
+      ]
+    },
+    {
+      "id": "m_100",
+      "category_id": "c6",
+      "name": "Туфобетон",
+      "kind": "layer",
+      "density_min": 1800.0,
+      "density_max": 1800.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.3
+    },
+    {
+      "id": "m_116",
+      "category_id": "c6",
+      "name": "Керамзитобетон на керамзитовом песке",
+      "kind": "layer",
+      "density_min": 1400.0,
+      "density_max": 1400.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.3
+    },
+    {
+      "id": "m_165",
+      "category_id": "c7",
+      "name": "Полистиролбетон на портландцементе",
+      "kind": "layer",
+      "density_min": 600.0,
+      "density_max": 600.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.3
+    },
+    {
+      "id": "m_189",
+      "category_id": "c7",
+      "name": "Ячеистый бетон автоклавного твердения",
+      "kind": "layer",
+      "density_min": 800.0,
+      "density_max": 800.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.3
+    },
+    {
+      "id": "m_197",
+      "category_id": "c8",
+      "name": "Кладка из керамического полнотелого кирпича на цементно-песчаном растворе",
+      "kind": "layer",
+      "density_min": 1800.0,
+      "density_max": 1800.0,
+      "default_thickness_mm": 120,
+      "default_gamma": 1.1
+    },
+    {
+      "id": "m_204",
+      "category_id": "c8",
+      "name": "Кладка из керамического пустотного кирпича на цементно-песчаном растворе",
+      "kind": "layer",
+      "density_min": 1600.0,
+      "density_max": 1600.0,
+      "default_thickness_mm": 120,
+      "default_gamma": 1.1
+    },
+    {
+      "id": "m_216",
+      "category_id": "c9",
+      "name": "Железобетон",
+      "kind": "layer",
+      "density_min": 2500.0,
+      "density_max": 2500.0,
+      "default_thickness_mm": 200,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c17",
+        "c30"
+      ]
+    },
+    {
+      "id": "m_218",
+      "category_id": "c9",
+      "name": "Раствор цементно-песчаный",
+      "kind": "layer",
+      "density_min": 1800.0,
+      "density_max": 1800.0,
+      "default_thickness_mm": 40,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c28",
+        "c22"
+      ]
+    },
+    {
+      "id": "m_209",
+      "category_id": "c10",
+      "name": "Сосна и ель поперёк волокон",
+      "kind": "layer",
+      "density_min": 500.0,
+      "density_max": 500.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c20"
+      ]
+    },
+    {
+      "id": "m_211",
+      "category_id": "c10",
+      "name": "Дуб поперёк волокон",
+      "kind": "layer",
+      "density_min": 700.0,
+      "density_max": 700.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c20"
+      ]
+    },
+    {
+      "id": "m_213",
+      "category_id": "c11",
+      "name": "Фанера клеёная",
+      "kind": "layer",
+      "density_min": 600.0,
+      "density_max": 700.0,
+      "default_thickness_mm": 12,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c14",
+        "c29"
+      ]
+    },
+    {
+      "id": "m_221",
+      "category_id": "c12",
+      "name": "Гранит, гнейс, базальт",
+      "kind": "layer",
+      "density_min": 2800.0,
+      "density_max": 2800.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c14"
+      ]
+    },
+    {
+      "id": "m_222",
+      "category_id": "c12",
+      "name": "Мрамор",
+      "kind": "layer",
+      "density_min": 2800.0,
+      "density_max": 2800.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c14"
+      ]
+    },
+    {
+      "id": "m_235",
+      "category_id": "c22",
+      "name": "Битум нефтяной строительный и кровельный",
+      "kind": "layer",
+      "density_min": 1200.0,
+      "density_max": 1400.0,
+      "default_thickness_mm": 5,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c27"
+      ]
+    },
+    {
+      "id": "m_239",
+      "category_id": "c13",
+      "name": "Рубероид, пергамин, толь",
+      "kind": "layer",
+      "density_min": 600.0,
+      "density_max": 600.0,
+      "default_thickness_mm": 4,
+      "default_gamma": 1.3
+    },
+    {
+      "id": "m_238",
+      "category_id": "c22",
+      "name": "Асфальтобетон",
+      "kind": "layer",
+      "density_min": 2100.0,
+      "density_max": 2100.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c27",
+        "c14"
+      ]
+    },
+    {
+      "id": "m_240",
+      "category_id": "c14",
+      "name": "Линолеум ПВХ на теплоизолирующей подоснове",
+      "kind": "layer",
+      "density_min": 1800.0,
+      "density_max": 1800.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.3
+    },
+    {
+      "id": "m_245",
+      "category_id": "c15",
+      "name": "Сталь арматурная",
+      "kind": "layer",
+      "density_min": 7850.0,
+      "density_max": 7850.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "m_247",
+      "category_id": "c15",
+      "name": "Алюминий",
+      "kind": "layer",
+      "density_min": 2600.0,
+      "density_max": 2600.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "m_249",
+      "category_id": "c16",
+      "name": "Стекло оконное",
+      "kind": "layer",
+      "density_min": 2500.0,
+      "density_max": 2500.0,
+      "default_thickness_mm": 4,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c29"
+      ]
+    },
+    {
+      "id": "m_250",
+      "category_id": "c3",
+      "name": "Плиты из пеностекла",
+      "kind": "layer",
+      "density_min": 80.0,
+      "density_max": 100.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c16"
+      ]
+    },
+    {
+      "id": "scad-001",
+      "category_id": "c24",
+      "name": "Кровельный щит из досок в два слоя",
+      "kind": "direct",
+      "g_norm": 40.0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c20"
+      ]
+    },
+    {
+      "id": "scad-002",
+      "category_id": "c24",
+      "name": "Асбоцементные плоские плитки (одиночное покрытие)",
+      "kind": "direct",
+      "g_norm": 12.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-003",
+      "category_id": "c24",
+      "name": "Асбоцементные плоские плитки (двойное покрытие)",
+      "kind": "direct",
+      "g_norm": 20.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-004",
+      "category_id": "c24",
+      "name": "Кровельная сталь оцинкованная",
+      "kind": "direct",
+      "g_norm": 8.0,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c19"
+      ]
+    },
+    {
+      "id": "scad-005",
+      "category_id": "c24",
+      "name": "Асбоцементные волнистые листы усиленного профиля",
+      "kind": "direct",
+      "g_norm": 17.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-006",
+      "category_id": "c24",
+      "name": "Асбоцементные волнистые листы обыкновенного профиля",
+      "kind": "direct",
+      "g_norm": 12.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-007",
+      "category_id": "c24",
+      "name": "Асбоцементные полуволнистые листы с постоянной толщиной",
+      "kind": "direct",
+      "g_norm": 20.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-008",
+      "category_id": "c24",
+      "name": "Черепица штампованная пазовая",
+      "kind": "direct",
+      "g_norm": 42.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-009",
+      "category_id": "c24",
+      "name": "Черепица ленточная пазовая",
+      "kind": "direct",
+      "g_norm": 42.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-010",
+      "category_id": "c24",
+      "name": "Черепица ленточная плоская",
+      "kind": "direct",
+      "g_norm": 51.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-011",
+      "category_id": "c24",
+      "name": "Черепица коньковая штампованная",
+      "kind": "direct",
+      "g_norm": 8.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-012",
+      "category_id": "c14",
+      "name": "Террасная доска",
+      "kind": "direct",
+      "g_norm": 18.0,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c24",
+        "c20"
+      ]
+    },
+    {
+      "id": "scad-013",
+      "category_id": "c13",
+      "name": "Рубероид с мелкой минеральной посыпкой",
+      "kind": "direct",
+      "g_norm": 1.8,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c24"
+      ]
+    },
+    {
+      "id": "scad-014",
+      "category_id": "c13",
+      "name": "Рубероид с крупнозернистой посыпкой",
+      "kind": "direct",
+      "g_norm": 3.0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c24"
+      ]
+    },
+    {
+      "id": "scad-015",
+      "category_id": "c13",
+      "name": "Стеклорубероид кровельный с крупнозернистой посыпкой",
+      "kind": "direct",
+      "g_norm": 3.2,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c24"
+      ]
+    },
+    {
+      "id": "scad-016",
+      "category_id": "c13",
+      "name": "Стеклорубероид гидроизоляционный",
+      "kind": "direct",
+      "g_norm": 2.3,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-017",
+      "category_id": "c13",
+      "name": "Рубероид подкладочный",
+      "kind": "direct",
+      "g_norm": 1.1,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-018",
+      "category_id": "c13",
+      "name": "Толь кровельный с крупнозернистой посыпкой",
+      "kind": "direct",
+      "g_norm": 2.0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c24"
+      ]
+    },
+    {
+      "id": "scad-019",
+      "category_id": "c13",
+      "name": "Толь кровельный с песочной посыпкой",
+      "kind": "direct",
+      "g_norm": 1.2,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c24"
+      ]
+    },
+    {
+      "id": "scad-020",
+      "category_id": "c13",
+      "name": "Изол",
+      "kind": "direct",
+      "g_norm": 1.1,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-021",
+      "category_id": "c13",
+      "name": "Гидроизол",
+      "kind": "direct",
+      "g_norm": 1.3,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-022",
+      "category_id": "c13",
+      "name": "Рулонная гидроизоляция",
+      "kind": "direct",
+      "g_norm": 4.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-023",
+      "category_id": "c13",
+      "name": "ПВХ-мембрана Logicroof V-RP, 1,2 мм",
+      "kind": "direct",
+      "g_norm": 1.5,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c24",
+        "c23"
+      ]
+    },
+    {
+      "id": "scad-024",
+      "category_id": "c13",
+      "name": "Кровельная мембрана Пластфоил, 1,2 мм",
+      "kind": "direct",
+      "g_norm": 1.6,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c24",
+        "c23"
+      ]
+    },
+    {
+      "id": "scad-025",
+      "category_id": "c13",
+      "name": "Геотекстиль ТЭТ (мембранный слой)",
+      "kind": "direct",
+      "g_norm": 0.3,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c26"
+      ]
+    },
+    {
+      "id": "scad-026",
+      "category_id": "c26",
+      "name": "Пергамин кровельный в один слой",
+      "kind": "direct",
+      "g_norm": 1.3,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c13"
+      ]
+    },
+    {
+      "id": "scad-028",
+      "category_id": "c26",
+      "name": "Полиэтиленовая плёнка толщиной 0,2 мм",
+      "kind": "direct",
+      "g_norm": 0.1,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-029",
+      "category_id": "c26",
+      "name": "Битумный праймер (пароизоляционный слой)",
+      "kind": "direct",
+      "g_norm": 0.3,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c22"
+      ]
+    },
+    {
+      "id": "scad-030",
+      "category_id": "c26",
+      "name": "Пароизоляция Технониколь, 0,12 мм",
+      "kind": "direct",
+      "g_norm": 0.15,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c13"
+      ]
+    },
+    {
+      "id": "scad-031",
+      "category_id": "c22",
+      "name": "Окраска горячим битумом (2 прохода)",
+      "kind": "layer",
+      "default_gamma": 1.2,
+      "density_min": 1200,
+      "density_max": 1200,
+      "default_thickness_mm": 4
+    },
+    {
+      "id": "scad-032",
+      "category_id": "c22",
+      "name": "Обмазка битумно-эмульсионной пастой (2 прохода)",
+      "kind": "layer",
+      "default_gamma": 1.3,
+      "density_min": 1200,
+      "density_max": 1200,
+      "default_thickness_mm": 2
+    },
+    {
+      "id": "scad-033",
+      "category_id": "c22",
+      "name": "Обмазка битумно-каучуковой мастикой",
+      "kind": "layer",
+      "default_gamma": 1.3,
+      "density_min": 1200,
+      "density_max": 1200,
+      "default_thickness_mm": 1
+    },
+    {
+      "id": "scad-036",
+      "category_id": "c22",
+      "name": "Жидкое стекло с уплотняющей добавкой",
+      "kind": "layer",
+      "default_gamma": 1.3,
+      "density_min": 1600,
+      "density_max": 1600,
+      "default_thickness_mm": 10
+    },
+    {
+      "id": "scad-037",
+      "category_id": "c22",
+      "name": "Обмазка на основе синтетических смол (релакстоп)",
+      "kind": "layer",
+      "default_gamma": 1.3,
+      "density_min": 750,
+      "density_max": 750,
+      "default_thickness_mm": 4
+    },
+    {
+      "id": "scad-038",
+      "category_id": "c22",
+      "name": "Рубероид, наклеенный на горячий битум и покрытый сверху слоем битума",
+      "kind": "direct",
+      "g_norm": 2.4,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c13",
+        "c24"
+      ]
+    },
+    {
+      "id": "scad-039",
+      "category_id": "c22",
+      "name": "Рубероид, наклеенный на горячий битум",
+      "kind": "direct",
+      "g_norm": 2.0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c13",
+        "c24"
+      ]
+    },
+    {
+      "id": "scad-040",
+      "category_id": "c22",
+      "name": "Гидроизоляция усиленная",
+      "kind": "direct",
+      "g_norm": 9.0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c13"
+      ]
+    },
+    {
+      "id": "scad-041",
+      "category_id": "c22",
+      "name": "4 слоя рубероида на битумной мастике",
+      "kind": "direct",
+      "g_norm": 12.0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c13",
+        "c24"
+      ]
+    },
+    {
+      "id": "scad-042",
+      "category_id": "c22",
+      "name": "Металлоизол из алюминиевой фольги, покрытой битумом",
+      "kind": "direct",
+      "g_norm": 2.0,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c13",
+        "c26"
+      ]
+    },
+    {
+      "id": "scad-043",
+      "category_id": "c2",
+      "name": "Минераловатные плиты на битумном связующем",
+      "kind": "layer",
+      "default_gamma": 1.2,
+      "density_min": 300.0,
+      "density_max": 400,
+      "default_thickness_mm": 70,
+      "category_ids": [
+        "c3"
+      ]
+    },
+    {
+      "id": "scad-045",
+      "category_id": "c2",
+      "name": "Минераловатные плиты (расчётный ориентир)",
+      "kind": "layer",
+      "default_gamma": 1.2,
+      "density_min": 200,
+      "density_max": 200,
+      "default_thickness_mm": 80,
+      "category_ids": [
+        "c3"
+      ]
+    },
+    {
+      "id": "scad-049",
+      "category_id": "c2",
+      "name": "Утеплитель фасадный ТЕХНОВЕНТ",
+      "kind": "layer",
+      "default_gamma": 1.2,
+      "density_min": 80,
+      "density_max": 80,
+      "default_thickness_mm": 100,
+      "category_ids": [
+        "c29"
+      ]
+    },
+    {
+      "id": "scad-050",
+      "category_id": "c1",
+      "name": "Плиты ПЕНОПЛЭКС 35",
+      "kind": "layer",
+      "default_gamma": 1.2,
+      "density_min": 37.5,
+      "density_max": 37.5,
+      "default_thickness_mm": 80,
+      "category_ids": [
+        "c3"
+      ]
+    },
+    {
+      "id": "scad-051",
+      "category_id": "c2",
+      "name": "Плиты ТЕХНОРУФ Н",
+      "kind": "layer",
+      "default_gamma": 1.2,
+      "density_min": 120,
+      "density_max": 120,
+      "default_thickness_mm": 50,
+      "category_ids": [
+        "c23"
+      ]
+    },
+    {
+      "id": "scad-053",
+      "category_id": "c4",
+      "name": "Шлак топливный",
+      "kind": "layer",
+      "density_min": 700.0,
+      "density_max": 1000.0,
+      "default_thickness_mm": 120.0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c5"
+      ]
+    },
+    {
+      "id": "scad-055",
+      "category_id": "c4",
+      "name": "Шлак доменный гранулированный",
+      "kind": "layer",
+      "density_min": 500.0,
+      "density_max": 900.0,
+      "default_thickness_mm": 120.0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c5"
+      ]
+    },
+    {
+      "id": "scad-059",
+      "category_id": "c4",
+      "name": "Пемза, туф",
+      "kind": "layer",
+      "density_min": 600.0,
+      "density_max": 600.0,
+      "default_thickness_mm": 120.0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c5"
+      ]
+    },
+    {
+      "id": "scad-063",
+      "category_id": "c9",
+      "name": "Тяжёлый бетон на гравии или щебне",
+      "kind": "layer",
+      "density_min": 2400.0,
+      "density_max": 2400.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c17"
+      ]
+    },
+    {
+      "id": "scad-065",
+      "category_id": "c9",
+      "name": "Цементно-шлаковый раствор",
+      "kind": "layer",
+      "density_min": 1200.0,
+      "density_max": 1200.0,
+      "default_thickness_mm": 40.0,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c28"
+      ]
+    },
+    {
+      "id": "scad-066",
+      "category_id": "c9",
+      "name": "Цементно-перлитовый раствор",
+      "kind": "layer",
+      "density_min": 800.0,
+      "density_max": 800.0,
+      "default_thickness_mm": 40.0,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c28"
+      ]
+    },
+    {
+      "id": "scad-067",
+      "category_id": "c9",
+      "name": "Глиняно-песчаный раствор",
+      "kind": "layer",
+      "density_min": 1500.0,
+      "density_max": 1500.0,
+      "default_thickness_mm": 40.0,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c28"
+      ]
+    },
+    {
+      "id": "scad-068",
+      "category_id": "c9",
+      "name": "Известково-песчаный раствор",
+      "kind": "layer",
+      "density_min": 1300.0,
+      "density_max": 1300.0,
+      "default_thickness_mm": 40.0,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c28"
+      ]
+    },
+    {
+      "id": "scad-069",
+      "category_id": "c9",
+      "name": "Армированная цементно-песчаная стяжка",
+      "kind": "layer",
+      "density_min": 1900,
+      "density_max": 1900,
+      "default_thickness_mm": 40,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c14"
+      ]
+    },
+    {
+      "id": "scad-070",
+      "category_id": "c9",
+      "name": "Плита железобетонная (сплошная)",
+      "kind": "layer",
+      "density_min": 2500.0,
+      "density_max": 2500.0,
+      "default_thickness_mm": 200,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c17"
+      ]
+    },
+    {
+      "id": "scad-071",
+      "category_id": "c28",
+      "name": "Штукатурка гипсовая",
+      "kind": "layer",
+      "density_min": 900.0,
+      "density_max": 900.0,
+      "default_thickness_mm": 10.0,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c9",
+        "c29"
+      ]
+    },
+    {
+      "id": "scad-072",
+      "category_id": "c6",
+      "name": "Лёгкий бетон марки по средней плотности D800",
+      "kind": "layer",
+      "density_min": 800.0,
+      "density_max": 800.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-073",
+      "category_id": "c6",
+      "name": "Лёгкий бетон марки по средней плотности D900",
+      "kind": "layer",
+      "density_min": 900.0,
+      "density_max": 900.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-074",
+      "category_id": "c6",
+      "name": "Лёгкий бетон марки по средней плотности D1000",
+      "kind": "layer",
+      "density_min": 1000.0,
+      "density_max": 1000.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-075",
+      "category_id": "c6",
+      "name": "Лёгкий бетон марки по средней плотности D1100",
+      "kind": "layer",
+      "density_min": 1100.0,
+      "density_max": 1100.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-076",
+      "category_id": "c6",
+      "name": "Лёгкий бетон марки по средней плотности D1200",
+      "kind": "layer",
+      "density_min": 1200.0,
+      "density_max": 1200.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-077",
+      "category_id": "c6",
+      "name": "Лёгкий бетон марки по средней плотности D1300",
+      "kind": "layer",
+      "density_min": 1300.0,
+      "density_max": 1300.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-078",
+      "category_id": "c6",
+      "name": "Лёгкий бетон марки по средней плотности D1400",
+      "kind": "layer",
+      "density_min": 1400.0,
+      "density_max": 1400.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-079",
+      "category_id": "c6",
+      "name": "Лёгкий бетон марки по средней плотности D1500",
+      "kind": "layer",
+      "density_min": 1500.0,
+      "density_max": 1500.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-080",
+      "category_id": "c6",
+      "name": "Лёгкий бетон марки по средней плотности D1700",
+      "kind": "layer",
+      "density_min": 1700.0,
+      "density_max": 1700.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-081",
+      "category_id": "c6",
+      "name": "Лёгкий бетон марки по средней плотности D1800",
+      "kind": "layer",
+      "density_min": 1800.0,
+      "density_max": 1800.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.1
+    },
+    {
+      "id": "scad-082",
+      "category_id": "c6",
+      "name": "Лёгкий бетон марки по средней плотности D1900",
+      "kind": "layer",
+      "density_min": 1900.0,
+      "density_max": 1900.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.1
+    },
+    {
+      "id": "scad-083",
+      "category_id": "c6",
+      "name": "Лёгкий бетон марки по средней плотности D2000",
+      "kind": "layer",
+      "density_min": 2000.0,
+      "density_max": 2000.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.1
+    },
+    {
+      "id": "scad-084",
+      "category_id": "c7",
+      "name": "Ячеистый бетон марки по средней плотности D500",
+      "kind": "layer",
+      "density_min": 500.0,
+      "density_max": 500.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-085",
+      "category_id": "c7",
+      "name": "Ячеистый бетон марки по средней плотности D600",
+      "kind": "layer",
+      "density_min": 600.0,
+      "density_max": 600.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-086",
+      "category_id": "c7",
+      "name": "Ячеистый бетон марки по средней плотности D700",
+      "kind": "layer",
+      "density_min": 700.0,
+      "density_max": 700.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-087",
+      "category_id": "c7",
+      "name": "Ячеистый бетон марки по средней плотности D800",
+      "kind": "layer",
+      "density_min": 800.0,
+      "density_max": 800.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-088",
+      "category_id": "c7",
+      "name": "Ячеистый бетон марки по средней плотности D900",
+      "kind": "layer",
+      "density_min": 900.0,
+      "density_max": 900.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-089",
+      "category_id": "c7",
+      "name": "Ячеистый бетон марки по средней плотности D1000",
+      "kind": "layer",
+      "density_min": 1000.0,
+      "density_max": 1000.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-090",
+      "category_id": "c7",
+      "name": "Ячеистый бетон марки по средней плотности D1100",
+      "kind": "layer",
+      "density_min": 1100.0,
+      "density_max": 1100.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-091",
+      "category_id": "c7",
+      "name": "Ячеистый бетон марки по средней плотности D1200",
+      "kind": "layer",
+      "density_min": 1200.0,
+      "density_max": 1200.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-092",
+      "category_id": "c7",
+      "name": "Поризованный бетон марки по средней плотности D800",
+      "kind": "layer",
+      "density_min": 800.0,
+      "density_max": 800.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-093",
+      "category_id": "c7",
+      "name": "Поризованный бетон марки по средней плотности D900",
+      "kind": "layer",
+      "density_min": 900.0,
+      "density_max": 900.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-094",
+      "category_id": "c7",
+      "name": "Поризованный бетон марки по средней плотности D1000",
+      "kind": "layer",
+      "density_min": 1000.0,
+      "density_max": 1000.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-095",
+      "category_id": "c7",
+      "name": "Поризованный бетон марки по средней плотности D1100",
+      "kind": "layer",
+      "density_min": 1100.0,
+      "density_max": 1100.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-096",
+      "category_id": "c7",
+      "name": "Поризованный бетон марки по средней плотности D1200",
+      "kind": "layer",
+      "density_min": 1200.0,
+      "density_max": 1200.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-097",
+      "category_id": "c7",
+      "name": "Поризованный бетон марки по средней плотности D1300",
+      "kind": "layer",
+      "density_min": 1300.0,
+      "density_max": 1300.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-098",
+      "category_id": "c7",
+      "name": "Поризованный бетон марки по средней плотности D1400",
+      "kind": "layer",
+      "density_min": 1400.0,
+      "density_max": 1400.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.2
+    },
+    {
+      "id": "scad-099",
+      "category_id": "c7",
+      "name": "Газо- и пенобетон",
+      "kind": "layer",
+      "density_min": 400.0,
+      "density_max": 400.0,
+      "default_thickness_mm": 100.0,
+      "default_gamma": 1.3
+    },
+    {
+      "id": "scad-100",
+      "category_id": "c11",
+      "name": "ДВП",
+      "kind": "layer",
+      "density_min": 820.0,
+      "density_max": 820.0,
+      "default_thickness_mm": 10.0,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c3",
+        "c14",
+        "c28"
+      ]
+    },
+    {
+      "id": "scad-101",
+      "category_id": "c17",
+      "name": "Плиты покрытия многопустотные 6×1,5×0,22 м",
+      "kind": "direct",
+      "g_norm": 296.0,
+      "default_gamma": 1.1
+    },
+    {
+      "id": "scad-102",
+      "category_id": "c17",
+      "name": "Плиты покрытия ребристые 1,5×6 м по серии 1.465-7, в.3",
+      "kind": "direct",
+      "g_norm": 172.0,
+      "default_gamma": 1.1
+    },
+    {
+      "id": "scad-103",
+      "category_id": "c17",
+      "name": "Плиты подземных переходов по серии 3.507-1",
+      "kind": "direct",
+      "g_norm": 612.5,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c30"
+      ]
+    },
+    {
+      "id": "scad-104",
+      "category_id": "c14",
+      "name": "Плитка тротуарная",
+      "kind": "direct",
+      "g_norm": 65.0,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c17"
+      ]
+    },
+    {
+      "id": "scad-105",
+      "category_id": "c17",
+      "name": "Плиты 6×1,5×0,4 по серии 1.442.1-1",
+      "kind": "direct",
+      "g_norm": 245.0,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c30"
+      ]
+    },
+    {
+      "id": "scad-106",
+      "category_id": "c18",
+      "name": "Панели стеновые ПС60.18.2 по серии 1.030.1-1",
+      "kind": "direct",
+      "g_norm": 308.0,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c30"
+      ]
+    },
+    {
+      "id": "scad-107",
+      "category_id": "c24",
+      "name": "Плиты асбоцементные толщиной 12 мм",
+      "kind": "direct",
+      "g_norm": 22.0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c29"
+      ]
+    },
+    {
+      "id": "scad-108",
+      "category_id": "c18",
+      "name": "Сэндвич-панель с минеральной ватой",
+      "kind": "direct",
+      "g_norm": 39.0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c23"
+      ]
+    },
+    {
+      "id": "scad-109",
+      "category_id": "c18",
+      "name": "Сэндвич-панель МП ТСП-S Secret Fix 100 мм",
+      "kind": "direct",
+      "g_norm": 18.7,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c23"
+      ]
+    },
+    {
+      "id": "scad-110",
+      "category_id": "c20",
+      "name": "Кровельный щит из досок в один слой",
+      "kind": "direct",
+      "g_norm": 20.0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c24"
+      ]
+    },
+    {
+      "id": "scad-111",
+      "category_id": "c20",
+      "name": "Стропильная система металлическая",
+      "kind": "direct",
+      "g_norm": 22.0,
+      "default_gamma": 1.05,
+      "category_ids": [
+        "c21",
+        "c30"
+      ]
+    },
+    {
+      "id": "scad-112",
+      "category_id": "c20",
+      "name": "Стропильная система деревянная",
+      "kind": "direct",
+      "g_norm": 46.0,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c21",
+        "c10"
+      ]
+    },
+    {
+      "id": "scad-113",
+      "category_id": "c21",
+      "name": "Система стальных прогонов",
+      "kind": "direct",
+      "g_norm": 27.0,
+      "default_gamma": 1.05,
+      "category_ids": [
+        "c20",
+        "c30"
+      ]
+    },
+    {
+      "id": "scad-114",
+      "category_id": "c20",
+      "name": "Решётка стропильная из труб профильных 80×80 с шагом 4,5 м",
+      "kind": "direct",
+      "g_norm": 12.0,
+      "default_gamma": 1.05,
+      "category_ids": [
+        "c21"
+      ]
+    },
+    {
+      "id": "scad-115",
+      "category_id": "c30",
+      "name": "Сетка колонн стальных из труб профильных 80×80",
+      "kind": "direct",
+      "g_norm": 7.0,
+      "default_gamma": 1.05,
+      "category_ids": [
+        "c20"
+      ]
+    },
+    {
+      "id": "scad-116",
+      "category_id": "c21",
+      "name": "Фермы стропильные стальные облегчённые",
+      "kind": "direct",
+      "g_norm": 3.0,
+      "default_gamma": 1.05,
+      "category_ids": [
+        "c30"
+      ]
+    },
+    {
+      "id": "scad-117",
+      "category_id": "c30",
+      "name": "Система ригелей железобетонных",
+      "kind": "direct",
+      "g_norm": 178.0,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c21",
+        "c17"
+      ]
+    },
+    {
+      "id": "scad-118",
+      "category_id": "c31",
+      "name": "Система перегородок 3 м",
+      "kind": "direct",
+      "g_norm": 100.0,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c30"
+      ]
+    },
+    {
+      "id": "scad-119",
+      "category_id": "c29",
+      "name": "Асбоцементные плоские листы толщиной 10 мм",
+      "kind": "direct",
+      "g_norm": 30.0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c24",
+        "c14"
+      ]
+    },
+    {
+      "id": "scad-120",
+      "category_id": "c11",
+      "name": "ДСП (плита)",
+      "kind": "layer",
+      "default_gamma": 1.1,
+      "density_min": 780,
+      "density_max": 780,
+      "default_thickness_mm": 18,
+      "category_ids": [
+        "c14",
+        "c29"
+      ]
+    },
+    {
+      "id": "scad-121",
+      "category_id": "c14",
+      "name": "Ламинат",
+      "kind": "direct",
+      "g_norm": 13.2,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c11"
+      ]
+    },
+    {
+      "id": "scad-122",
+      "category_id": "c29",
+      "name": "Потолок подвесной типа Армстронг",
+      "kind": "direct",
+      "g_norm": 7.0,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c14"
+      ]
+    },
+    {
+      "id": "scad-123",
+      "category_id": "c14",
+      "name": "Напольная керамическая плитка на клеевом растворе",
+      "kind": "direct",
+      "g_norm": 30.0,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c29"
+      ]
+    },
+    {
+      "id": "scad-124",
+      "category_id": "c29",
+      "name": "Фасадная система с полимерным покрытием",
+      "kind": "direct",
+      "g_norm": 8.0,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c23"
+      ]
+    },
+    {
+      "id": "scad-125",
+      "category_id": "c29",
+      "name": "Остекление одинарное в алюминиевых рамах",
+      "kind": "direct",
+      "g_norm": 28.0,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c16"
+      ]
+    },
+    {
+      "id": "scad-126",
+      "category_id": "c19",
+      "name": "Н57-750-0.7",
+      "kind": "direct",
+      "g_norm": 8.7,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-127",
+      "category_id": "c19",
+      "name": "Н57-750-0.8",
+      "kind": "direct",
+      "g_norm": 9.8,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-128",
+      "category_id": "c19",
+      "name": "Н60-845-0.7",
+      "kind": "direct",
+      "g_norm": 8.8,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-129",
+      "category_id": "c19",
+      "name": "Н60-845-0.8",
+      "kind": "direct",
+      "g_norm": 9.9,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-130",
+      "category_id": "c19",
+      "name": "Н60-845-0.9",
+      "kind": "direct",
+      "g_norm": 11.1,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-131",
+      "category_id": "c19",
+      "name": "Н75-750-0.8",
+      "kind": "direct",
+      "g_norm": 11.2,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-132",
+      "category_id": "c19",
+      "name": "Н75-750-0.9",
+      "kind": "direct",
+      "g_norm": 12.5,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-133",
+      "category_id": "c19",
+      "name": "Н114-600-0.8",
+      "kind": "direct",
+      "g_norm": 14.0,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-134",
+      "category_id": "c19",
+      "name": "Н114-600-0.9",
+      "kind": "direct",
+      "g_norm": 15.6,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-135",
+      "category_id": "c19",
+      "name": "Н114-600-1",
+      "kind": "direct",
+      "g_norm": 17.2,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-136",
+      "category_id": "c19",
+      "name": "Н114-750-0.8",
+      "kind": "direct",
+      "g_norm": 12.5,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-137",
+      "category_id": "c19",
+      "name": "Н114-750-0.9",
+      "kind": "direct",
+      "g_norm": 14.0,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-138",
+      "category_id": "c19",
+      "name": "Н114-750-1",
+      "kind": "direct",
+      "g_norm": 15.4,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-139",
+      "category_id": "c19",
+      "name": "С10-899-0.6",
+      "kind": "direct",
+      "g_norm": 5.7,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-140",
+      "category_id": "c19",
+      "name": "С10-899-0.7",
+      "kind": "direct",
+      "g_norm": 6.6,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-141",
+      "category_id": "c19",
+      "name": "С10-1000-0.6",
+      "kind": "direct",
+      "g_norm": 5.6,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-142",
+      "category_id": "c19",
+      "name": "С10-1000-0.7",
+      "kind": "direct",
+      "g_norm": 6.5,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-143",
+      "category_id": "c19",
+      "name": "С18-1000-0.6",
+      "kind": "direct",
+      "g_norm": 6.4,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-144",
+      "category_id": "c19",
+      "name": "С18-1000-0.7",
+      "kind": "direct",
+      "g_norm": 7.4,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-145",
+      "category_id": "c19",
+      "name": "С44-1000-0.7",
+      "kind": "direct",
+      "g_norm": 7.4,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-146",
+      "category_id": "c19",
+      "name": "С44-1000-0.8",
+      "kind": "direct",
+      "g_norm": 8.4,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-147",
+      "category_id": "c19",
+      "name": "НС40-800-0.6",
+      "kind": "direct",
+      "g_norm": 7.1,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-148",
+      "category_id": "c19",
+      "name": "НС40-800-0.7",
+      "kind": "direct",
+      "g_norm": 8.1,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-149",
+      "category_id": "c19",
+      "name": "НС44-1000-0.7",
+      "kind": "direct",
+      "g_norm": 8.3,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-150",
+      "category_id": "c33",
+      "name": "Гипс строительный",
+      "kind": "layer",
+      "density_min": 1530.0,
+      "density_max": 1530.0,
+      "default_thickness_mm": 10.0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c28"
+      ]
+    },
+    {
+      "id": "scad-151",
+      "category_id": "c12",
+      "name": "Булыжный камень",
+      "kind": "layer",
+      "density_min": 1800.0,
+      "density_max": 1800.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c5"
+      ]
+    },
+    {
+      "id": "scad-152",
+      "category_id": "c33",
+      "name": "Глина огнеупорная",
+      "kind": "layer",
+      "density_min": 1700.0,
+      "density_max": 1700.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c12"
+      ]
+    },
+    {
+      "id": "scad-153",
+      "category_id": "c5",
+      "name": "Гравий",
+      "kind": "layer",
+      "density_min": 1800.0,
+      "density_max": 1800.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c12"
+      ]
+    },
+    {
+      "id": "scad-154",
+      "category_id": "c33",
+      "name": "Диатомит молотый",
+      "kind": "layer",
+      "density_min": 600.0,
+      "density_max": 600.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c4"
+      ]
+    },
+    {
+      "id": "scad-155",
+      "category_id": "c12",
+      "name": "Известняк обыкновенный",
+      "kind": "layer",
+      "density_min": 2400.0,
+      "density_max": 2400.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c33"
+      ]
+    },
+    {
+      "id": "scad-156",
+      "category_id": "c12",
+      "name": "Известняк плотный",
+      "kind": "layer",
+      "density_min": 2600.0,
+      "density_max": 2600.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c33"
+      ]
+    },
+    {
+      "id": "scad-157",
+      "category_id": "c9",
+      "name": "Известковое тесто",
+      "kind": "layer",
+      "density_min": 1400.0,
+      "density_max": 1400.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c28",
+        "c33"
+      ]
+    },
+    {
+      "id": "scad-158",
+      "category_id": "c12",
+      "name": "Камень бутовый",
+      "kind": "layer",
+      "density_min": 1600.0,
+      "density_max": 1600.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c5"
+      ]
+    },
+    {
+      "id": "scad-159",
+      "category_id": "c10",
+      "name": "Лес круглый хвойный сырой",
+      "kind": "layer",
+      "density_min": 850.0,
+      "density_max": 850.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c20"
+      ]
+    },
+    {
+      "id": "scad-160",
+      "category_id": "c10",
+      "name": "Лес круглый хвойный сухой",
+      "kind": "layer",
+      "density_min": 500.0,
+      "density_max": 500.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c20"
+      ]
+    },
+    {
+      "id": "scad-161",
+      "category_id": "c10",
+      "name": "Лес круглый дубовый сырой",
+      "kind": "layer",
+      "density_min": 1000.0,
+      "density_max": 1000.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c20"
+      ]
+    },
+    {
+      "id": "scad-162",
+      "category_id": "c10",
+      "name": "Лес круглый дубовый сухой",
+      "kind": "layer",
+      "density_min": 750.0,
+      "density_max": 750.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c20"
+      ]
+    },
+    {
+      "id": "scad-163",
+      "category_id": "c33",
+      "name": "Мел молотый",
+      "kind": "layer",
+      "density_min": 1200.0,
+      "density_max": 1200.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c28"
+      ]
+    },
+    {
+      "id": "scad-164",
+      "category_id": "c27",
+      "name": "Мусор строительный",
+      "kind": "layer",
+      "density_min": 1200.0,
+      "density_max": 1200.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.3
+    },
+    {
+      "id": "scad-165",
+      "category_id": "c10",
+      "name": "Опилки древесные",
+      "kind": "layer",
+      "density_min": 200.0,
+      "density_max": 200.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c4",
+        "c3"
+      ]
+    },
+    {
+      "id": "scad-167",
+      "category_id": "c5",
+      "name": "Песок шлаковый",
+      "kind": "layer",
+      "density_min": 800.0,
+      "density_max": 800.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.3,
+      "category_ids": [
+        "c4"
+      ]
+    },
+    {
+      "id": "scad-168",
+      "category_id": "c22",
+      "name": "Пек кусковой",
+      "kind": "layer",
+      "density_min": 1250.0,
+      "density_max": 1250.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c33"
+      ]
+    },
+    {
+      "id": "scad-169",
+      "category_id": "c28",
+      "name": "Гипсовая сухая штукатурка (лист)",
+      "kind": "layer",
+      "density_min": 1000.0,
+      "density_max": 1000.0,
+      "default_thickness_mm": 10.0,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c29"
+      ]
+    },
+    {
+      "id": "scad-170",
+      "category_id": "c28",
+      "name": "Древесно-волокнистая сухая штукатурка (лист)",
+      "kind": "layer",
+      "density_min": 600.0,
+      "density_max": 600.0,
+      "default_thickness_mm": 10.0,
+      "default_gamma": 1.1,
+      "category_ids": [
+        "c11",
+        "c29"
+      ]
+    },
+    {
+      "id": "scad-173",
+      "category_id": "c3",
+      "name": "Пакля",
+      "kind": "layer",
+      "density_min": 150.0,
+      "density_max": 150.0,
+      "default_thickness_mm": 0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c10"
+      ]
+    },
+    {
+      "id": "scad-176",
+      "category_id": "c8",
+      "name": "Силикатный кирпич сплошной на цементно-песчаном растворе",
+      "kind": "layer",
+      "density_min": 1800.0,
+      "density_max": 1800.0,
+      "default_thickness_mm": 120.0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c31"
+      ]
+    },
+    {
+      "id": "scad-177",
+      "category_id": "c8",
+      "name": "Силикатный пустотный кирпич на цементно-песчаном растворе",
+      "kind": "layer",
+      "density_min": 1500.0,
+      "density_max": 1500.0,
+      "default_thickness_mm": 120.0,
+      "default_gamma": 1.2,
+      "category_ids": [
+        "c31"
+      ]
+    },
+    {
+      "id": "scad-179",
+      "category_id": "c15",
+      "name": "Чугун",
+      "kind": "layer",
+      "density_min": 7200.0,
+      "density_max": 7200.0,
+      "default_thickness_mm": 10.0,
+      "default_gamma": 1.05
+    },
+    {
+      "id": "scad-181",
+      "category_id": "c15",
+      "name": "Медь",
+      "kind": "layer",
+      "density_min": 8500.0,
+      "density_max": 8500.0,
+      "default_thickness_mm": 10.0,
+      "default_gamma": 1.05,
+      "category_ids": [
+        "c33"
+      ]
+    },
+    {
+      "id": "scad-182",
+      "category_id": "c15",
+      "name": "Сталь",
+      "kind": "layer",
+      "density_min": 7850.0,
+      "density_max": 7850.0,
+      "default_thickness_mm": 10.0,
+      "default_gamma": 1.05,
+      "category_ids": [
+        "c30"
+      ]
+    }
+  ]
+}

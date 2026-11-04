@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="105mm" height="38mm" viewBox="0 0 900 325" role="img" aria-label="Шедовое покрытие: сплошное основание, разрыв слева, размер H с ограниченными стрелками, каллиграфические обозначения пролётов ℓ">
+ <rect width="900" height="325" fill="#ffffff"/>
+ <!-- Три повторяющихся шедовых ската; контуры и стенки. -->
+ <path d="M72 160 L230 57 L230 167 L510 57 L510 167 L790 57 L790 226" fill="none" stroke="#111" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter"/>
+ <!-- Левый вертикальный контур с разрывом: покрытие продолжается влево. -->
+ <path d="M72 160 L72 181 L85 189 L59 199 L72 207 L72 226" fill="none" stroke="#111" stroke-width="4.2" stroke-linejoin="miter" stroke-linecap="square"/>
+ <!-- Непрерывная линия земли / основания. Без разрывов. -->
+ <path d="M42 226 H814" stroke="#111" stroke-width="4" fill="none"/>
+ <!-- Выносные линии и линии размеров. -->
+ <g stroke="#111" fill="none" stroke-width="2.15">
+  <path d="M230 178 V299 M510 178 V299 M790 235 V299"/>
+  <path d="M230 277 H510 M510 277 H790"/>
+  <!-- Размер высоты конька, верхняя и нижняя стрелки направлены наружу. -->
+  <path d="M790 57 H854 M790 226 H854 M837 57 V226"/>
+ </g>
+ <!-- Стрелки размеров l: строго направлены к своим концам. -->
+ <g fill="#111">
+  <path d="M230 277 L244 271 L244 283 Z M510 277 L496 271 L496 283 Z"/>
+  <path d="M510 277 L524 271 L524 283 Z M790 277 L776 271 L776 283 Z"/>
+  <!-- H: наконечники ограничены верхней и нижней выносными линиями. -->
+  <path d="M837 57 L829 75 L845 75 Z"/>
+  <path d="M837 226 L829 208 L845 208 Z"/>
+ </g>
+ <g font-family="Cambria Math, STIX Two Math, FreeSerif, serif" font-style="italic" fill="#111" font-size="40">
+  <text x="370" y="264" text-anchor="middle">ℓ</text>
+  <text x="650" y="264" text-anchor="middle">ℓ</text>
+  <text x="859" y="157" font-style="normal">H</text>
+ </g>
+</svg>

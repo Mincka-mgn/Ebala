@@ -1,0 +1,3308 @@
+[
+  {
+    "region": "Алтайский край",
+    "locality": "Алейск",
+    "t_january_c": -15.7,
+    "v_cold_period_m_s": 3.3
+  },
+  {
+    "region": "Алтайский край",
+    "locality": "Барнаул",
+    "t_january_c": -16.0,
+    "v_cold_period_m_s": 2.7
+  },
+  {
+    "region": "Алтайский край",
+    "locality": "Бийск",
+    "t_january_c": -16.1,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Алтайский край",
+    "locality": "Змеиногорск",
+    "t_january_c": -14.1,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Алтайский край",
+    "locality": "Родино",
+    "t_january_c": -16.0,
+    "v_cold_period_m_s": 4.4
+  },
+  {
+    "region": "Алтайский край",
+    "locality": "Рубцовск",
+    "t_january_c": -15.9,
+    "v_cold_period_m_s": 4.9
+  },
+  {
+    "region": "Алтайский край",
+    "locality": "Славгород",
+    "t_january_c": -17.3,
+    "v_cold_period_m_s": 4.0
+  },
+  {
+    "region": "Алтайский край",
+    "locality": "Солонешное",
+    "t_january_c": -15.9,
+    "v_cold_period_m_s": 1.2
+  },
+  {
+    "region": "Алтайский край",
+    "locality": "Тогул",
+    "t_january_c": -14.7,
+    "v_cold_period_m_s": 3.1
+  },
+  {
+    "region": "Алтайский край",
+    "locality": "Хабары",
+    "t_january_c": -17.9,
+    "v_cold_period_m_s": 3.5
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Архара",
+    "t_january_c": -25.7,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Белогорск",
+    "t_january_c": -24.0,
+    "v_cold_period_m_s": 2.1
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Береговой",
+    "t_january_c": -25.6,
+    "v_cold_period_m_s": 1.7
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Благовещенск",
+    "t_january_c": -21.8,
+    "v_cold_period_m_s": 2.1
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Бомнак",
+    "t_january_c": -29.7,
+    "v_cold_period_m_s": 1.2
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Братолюбовка",
+    "t_january_c": -25.7,
+    "v_cold_period_m_s": 2.1
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Бысса (Февральск)",
+    "t_january_c": -29.0,
+    "v_cold_period_m_s": 0.8
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Дугда",
+    "t_january_c": -30.0,
+    "v_cold_period_m_s": 1.0
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Ерофей Павлович",
+    "t_january_c": -25.6,
+    "v_cold_period_m_s": 1.3
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Завитая",
+    "t_january_c": -24.3,
+    "v_cold_period_m_s": 1.9
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Зея",
+    "t_january_c": -24.6,
+    "v_cold_period_m_s": 1.4
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Норск",
+    "t_january_c": -29.5,
+    "v_cold_period_m_s": 1.0
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Поярково",
+    "t_january_c": -24.9,
+    "v_cold_period_m_s": 2.0
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Свободный",
+    "t_january_c": -25.3,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Сковородино",
+    "t_january_c": -27.2,
+    "v_cold_period_m_s": 2.1
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Тында",
+    "t_january_c": -28.6,
+    "v_cold_period_m_s": 1.8
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Усть-Нюкжа",
+    "t_january_c": -30.9,
+    "v_cold_period_m_s": 0.6
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Черняево",
+    "t_january_c": -26.2,
+    "v_cold_period_m_s": 1.9
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Шимановск",
+    "t_january_c": -25.0,
+    "v_cold_period_m_s": 2.0
+  },
+  {
+    "region": "Амурская область",
+    "locality": "Экимчан",
+    "t_january_c": -30.4,
+    "v_cold_period_m_s": 1.3
+  },
+  {
+    "region": "Архангельская область",
+    "locality": "Архангельск",
+    "t_january_c": -12.6,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Архангельская область",
+    "locality": "Емецк",
+    "t_january_c": -13.1,
+    "v_cold_period_m_s": 3.6
+  },
+  {
+    "region": "Архангельская область",
+    "locality": "Каргополь",
+    "t_january_c": -11.5,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Архангельская область",
+    "locality": "Койнас",
+    "t_january_c": -16.3,
+    "v_cold_period_m_s": 2.1
+  },
+  {
+    "region": "Архангельская область",
+    "locality": "Котлас",
+    "t_january_c": -12.8,
+    "v_cold_period_m_s": 3.4
+  },
+  {
+    "region": "Архангельская область",
+    "locality": "Мезень",
+    "t_january_c": -14.0,
+    "v_cold_period_m_s": 4.1
+  },
+  {
+    "region": "Архангельская область",
+    "locality": "Онега",
+    "t_january_c": -11.2,
+    "v_cold_period_m_s": 2.7
+  },
+  {
+    "region": "Архангельская область",
+    "locality": "Сура",
+    "t_january_c": -14.7,
+    "v_cold_period_m_s": 3.1
+  },
+  {
+    "region": "Архангельская область",
+    "locality": "Шенкурск",
+    "t_january_c": -12.5,
+    "v_cold_period_m_s": 3.2
+  },
+  {
+    "region": "Астраханская область",
+    "locality": "Астрахань",
+    "t_january_c": -4.2,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Астраханская область",
+    "locality": "Верхний Баскунчак",
+    "t_january_c": -6.8,
+    "v_cold_period_m_s": 3.4
+  },
+  {
+    "region": "Астраханская область",
+    "locality": "Досанг",
+    "t_january_c": -5.4,
+    "v_cold_period_m_s": 3.3
+  },
+  {
+    "region": "Белгородская область",
+    "locality": "Белгород",
+    "t_january_c": -5.9,
+    "v_cold_period_m_s": 4.1
+  },
+  {
+    "region": "Белгородская область",
+    "locality": "Валуйки",
+    "t_january_c": -5.8,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Брянская область",
+    "locality": "Брянск",
+    "t_january_c": -6.6,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Брянская область",
+    "locality": "Унеча",
+    "t_january_c": -6.1,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Владимирская область",
+    "locality": "Владимир",
+    "t_january_c": -8.9,
+    "v_cold_period_m_s": 3.3
+  },
+  {
+    "region": "Владимирская область",
+    "locality": "Муром",
+    "t_january_c": -9.0,
+    "v_cold_period_m_s": 3.2
+  },
+  {
+    "region": "Волгоградская область",
+    "locality": "Волгоград",
+    "t_january_c": -6.3,
+    "v_cold_period_m_s": 3.3
+  },
+  {
+    "region": "Волгоградская область",
+    "locality": "Камышин",
+    "t_january_c": -8.1,
+    "v_cold_period_m_s": 4.9
+  },
+  {
+    "region": "Волгоградская область",
+    "locality": "Котельниково",
+    "t_january_c": -4.7,
+    "v_cold_period_m_s": 3.6
+  },
+  {
+    "region": "Волгоградская область",
+    "locality": "Новоанненский",
+    "t_january_c": -7.2,
+    "v_cold_period_m_s": 3.3
+  },
+  {
+    "region": "Волгоградская область",
+    "locality": "Фролово",
+    "t_january_c": -7.2,
+    "v_cold_period_m_s": 2.5
+  },
+  {
+    "region": "Волгоградская область",
+    "locality": "Эльтон",
+    "t_january_c": -7.6,
+    "v_cold_period_m_s": 4.6
+  },
+  {
+    "region": "Вологодская область",
+    "locality": "Бабаево",
+    "t_january_c": -9.5,
+    "v_cold_period_m_s": 2.5
+  },
+  {
+    "region": "Вологодская область",
+    "locality": "Вологда",
+    "t_january_c": -10.7,
+    "v_cold_period_m_s": 3.2
+  },
+  {
+    "region": "Вологодская область",
+    "locality": "Вытегра",
+    "t_january_c": -9.8,
+    "v_cold_period_m_s": 2.8
+  },
+  {
+    "region": "Вологодская область",
+    "locality": "Никольск",
+    "t_january_c": -12.3,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Вологодская область",
+    "locality": "Нюксеница",
+    "t_january_c": -12.3,
+    "v_cold_period_m_s": 3.2
+  },
+  {
+    "region": "Вологодская область",
+    "locality": "Тотьма",
+    "t_january_c": -11.7,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Воронежская область",
+    "locality": "Воронеж",
+    "t_january_c": -6.8,
+    "v_cold_period_m_s": 3.2
+  },
+  {
+    "region": "Воронежская область",
+    "locality": "Каменная степь",
+    "t_january_c": -7.4,
+    "v_cold_period_m_s": 4.0
+  },
+  {
+    "region": "Донецкая Народная Республика",
+    "locality": "Дебальцево",
+    "t_january_c": -4.5,
+    "v_cold_period_m_s": 3.7
+  },
+  {
+    "region": "Донецкая Народная Республика",
+    "locality": "Донецк",
+    "t_january_c": -5.8,
+    "v_cold_period_m_s": 4.7
+  },
+  {
+    "region": "Донецкая Народная Республика",
+    "locality": "Мариуполь",
+    "t_january_c": -2.9,
+    "v_cold_period_m_s": 5.2
+  },
+  {
+    "region": "Еврейская автономная область",
+    "locality": "Биробиджан",
+    "t_january_c": -22.1,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Еврейская автономная область",
+    "locality": "Екатерино-Никольское",
+    "t_january_c": -19.5,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Еврейская автономная область",
+    "locality": "Облучье",
+    "t_january_c": -25.3,
+    "v_cold_period_m_s": 1.4
+  },
+  {
+    "region": "Забайкальский край",
+    "locality": "Агинское",
+    "t_january_c": -22.6,
+    "v_cold_period_m_s": 2.8
+  },
+  {
+    "region": "Забайкальский край",
+    "locality": "Акша",
+    "t_january_c": -22.3,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Забайкальский край",
+    "locality": "Александровский завод",
+    "t_january_c": -25.7,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Забайкальский край",
+    "locality": "Борзя",
+    "t_january_c": -26.2,
+    "v_cold_period_m_s": 2.7
+  },
+  {
+    "region": "Забайкальский край",
+    "locality": "Букукун",
+    "t_january_c": -20.7,
+    "v_cold_period_m_s": 2.5
+  },
+  {
+    "region": "Забайкальский край",
+    "locality": "Дарасун",
+    "t_january_c": -21.6,
+    "v_cold_period_m_s": 1.7
+  },
+  {
+    "region": "Забайкальский край",
+    "locality": "Кайластуй",
+    "t_january_c": -25.0,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Забайкальский край",
+    "locality": "Красный Чикой",
+    "t_january_c": -25.3,
+    "v_cold_period_m_s": 1.1
+  },
+  {
+    "region": "Забайкальский край",
+    "locality": "Могоча",
+    "t_january_c": -28.1,
+    "v_cold_period_m_s": 1.5
+  },
+  {
+    "region": "Забайкальский край",
+    "locality": "Нерчинск",
+    "t_january_c": -29.5,
+    "v_cold_period_m_s": 1.6
+  },
+  {
+    "region": "Забайкальский край",
+    "locality": "Нерчинский Завод",
+    "t_january_c": -26.6,
+    "v_cold_period_m_s": 1.0
+  },
+  {
+    "region": "Забайкальский край",
+    "locality": "Средняя Олекма",
+    "t_january_c": -33.3,
+    "v_cold_period_m_s": 0.5
+  },
+  {
+    "region": "Забайкальский край",
+    "locality": "Тункогочен",
+    "t_january_c": -30.0,
+    "v_cold_period_m_s": 1.3
+  },
+  {
+    "region": "Забайкальский край",
+    "locality": "Тупик",
+    "t_january_c": -31.1,
+    "v_cold_period_m_s": 1.7
+  },
+  {
+    "region": "Забайкальский край",
+    "locality": "Хилок",
+    "t_january_c": -24.9,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Забайкальский край",
+    "locality": "Чара",
+    "t_january_c": -32.5,
+    "v_cold_period_m_s": 1.3
+  },
+  {
+    "region": "Забайкальский край",
+    "locality": "Чита",
+    "t_january_c": -25.1,
+    "v_cold_period_m_s": 1.9
+  },
+  {
+    "region": "Запорожская область",
+    "locality": "Запорожье",
+    "t_january_c": -3.4,
+    "v_cold_period_m_s": 4.5
+  },
+  {
+    "region": "Запорожская область",
+    "locality": "Кирилловка",
+    "t_january_c": -3.8,
+    "v_cold_period_m_s": 3.7
+  },
+  {
+    "region": "Ивановская область",
+    "locality": "Иваново",
+    "t_january_c": -9.5,
+    "v_cold_period_m_s": 3.7
+  },
+  {
+    "region": "Ивановская область",
+    "locality": "Кинешма",
+    "t_january_c": -9.7,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Алыгджер",
+    "t_january_c": -15.6,
+    "v_cold_period_m_s": 2.3
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Байкальск",
+    "t_january_c": -14.7,
+    "v_cold_period_m_s": 1.6
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Братск",
+    "t_january_c": -19.8,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Верхнемарково",
+    "t_january_c": -26.8,
+    "v_cold_period_m_s": 1.6
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Верхняя Гутара",
+    "t_january_c": -18.7,
+    "v_cold_period_m_s": 0.8
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Ербогачен",
+    "t_january_c": -30.2,
+    "v_cold_period_m_s": 1.5
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Ершово",
+    "t_january_c": -21.7,
+    "v_cold_period_m_s": 1.7
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Жигалово",
+    "t_january_c": -26.9,
+    "v_cold_period_m_s": 1.0
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Зима",
+    "t_january_c": -21.1,
+    "v_cold_period_m_s": 1.3
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Ика",
+    "t_january_c": -28.6,
+    "v_cold_period_m_s": 1.5
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Иркутск",
+    "t_january_c": -17.9,
+    "v_cold_period_m_s": 2.1
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Качуг",
+    "t_january_c": -28.5,
+    "v_cold_period_m_s": 1.3
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Киренск",
+    "t_january_c": -26.5,
+    "v_cold_period_m_s": 1.8
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Мама",
+    "t_january_c": -27.5,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Наканно",
+    "t_january_c": -34.0,
+    "v_cold_period_m_s": 1.3
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Непа",
+    "t_january_c": -27.6,
+    "v_cold_period_m_s": 1.2
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Орлинга",
+    "t_january_c": -26.0,
+    "v_cold_period_m_s": 1.1
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Перевоз",
+    "t_january_c": -25.9,
+    "v_cold_period_m_s": 1.6
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Преображенка",
+    "t_january_c": -28.0,
+    "v_cold_period_m_s": 2.1
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Сарма",
+    "t_january_c": -17.3,
+    "v_cold_period_m_s": 3.5
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Тайшет",
+    "t_january_c": -18.4,
+    "v_cold_period_m_s": 2.3
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Тулун",
+    "t_january_c": -19.6,
+    "v_cold_period_m_s": 1.7
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Усть-Ордынский",
+    "t_january_c": -22.9,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Иркутская область",
+    "locality": "Чечуйск",
+    "t_january_c": -26.0,
+    "v_cold_period_m_s": 2.7
+  },
+  {
+    "region": "Кабардино-Балкарская Республика",
+    "locality": "Нальчик",
+    "t_january_c": -2.5,
+    "v_cold_period_m_s": 1.6
+  },
+  {
+    "region": "Кабардино-Балкарская Республика",
+    "locality": "Прохладный",
+    "t_january_c": -2.5,
+    "v_cold_period_m_s": 1.5
+  },
+  {
+    "region": "Калининградская область",
+    "locality": "Калининград",
+    "t_january_c": -1.7,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Калужская область",
+    "locality": "Калуга",
+    "t_january_c": -7.4,
+    "v_cold_period_m_s": 3.4
+  },
+  {
+    "region": "Калужская область",
+    "locality": "Сухиничи",
+    "t_january_c": -7.4,
+    "v_cold_period_m_s": 3.1
+  },
+  {
+    "region": "Камчатский край",
+    "locality": "Апука",
+    "t_january_c": -12.8,
+    "v_cold_period_m_s": 5.9
+  },
+  {
+    "region": "Камчатский край",
+    "locality": "Большерецк",
+    "t_january_c": -11.3,
+    "v_cold_period_m_s": 4.4
+  },
+  {
+    "region": "Камчатский край",
+    "locality": "Верхне-Пенжино",
+    "t_january_c": -29.3,
+    "v_cold_period_m_s": 1.7
+  },
+  {
+    "region": "Камчатский край",
+    "locality": "Ича",
+    "t_january_c": -11.8,
+    "v_cold_period_m_s": 4.8
+  },
+  {
+    "region": "Камчатский край",
+    "locality": "Ключи",
+    "t_january_c": -16.0,
+    "v_cold_period_m_s": 3.5
+  },
+  {
+    "region": "Камчатский край",
+    "locality": "Козыревск",
+    "t_january_c": -17.9,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Камчатский край",
+    "locality": "Лопатка, мыс",
+    "t_january_c": -4.5,
+    "v_cold_period_m_s": 9.4
+  },
+  {
+    "region": "Камчатский край",
+    "locality": "Мильково",
+    "t_january_c": -19.0,
+    "v_cold_period_m_s": 1.7
+  },
+  {
+    "region": "Камчатский край",
+    "locality": "Начики",
+    "t_january_c": -18.3,
+    "v_cold_period_m_s": 2.0
+  },
+  {
+    "region": "Камчатский край",
+    "locality": "о.Беринга (Никольское)",
+    "t_january_c": -3.1,
+    "v_cold_period_m_s": 7.2
+  },
+  {
+    "region": "Камчатский край",
+    "locality": "Оссора",
+    "t_january_c": -14.4,
+    "v_cold_period_m_s": 3.5
+  },
+  {
+    "region": "Камчатский край",
+    "locality": "Петропавловск-Камчатский",
+    "t_january_c": -6.7,
+    "v_cold_period_m_s": 4.6
+  },
+  {
+    "region": "Камчатский край",
+    "locality": "Семлячик",
+    "t_january_c": -6.1,
+    "v_cold_period_m_s": 5.7
+  },
+  {
+    "region": "Камчатский край",
+    "locality": "Соболево",
+    "t_january_c": -13.2,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Камчатский край",
+    "locality": "Усть-Воямполка",
+    "t_january_c": -17.5,
+    "v_cold_period_m_s": 4.4
+  },
+  {
+    "region": "Камчатский край",
+    "locality": "Усть-Камчатск",
+    "t_january_c": -11.8,
+    "v_cold_period_m_s": 4.3
+  },
+  {
+    "region": "Камчатский край",
+    "locality": "Усть-Хайрюзово",
+    "t_january_c": -13.6,
+    "v_cold_period_m_s": 4.2
+  },
+  {
+    "region": "Карачаево-Черкесская Республика",
+    "locality": "Теберда",
+    "t_january_c": -2.7,
+    "v_cold_period_m_s": 1.5
+  },
+  {
+    "region": "Карачаево-Черкесская Республика",
+    "locality": "Черкесск",
+    "t_january_c": -2.7,
+    "v_cold_period_m_s": 2.0
+  },
+  {
+    "region": "Кемеровская область",
+    "locality": "Кемерово",
+    "t_january_c": -17.4,
+    "v_cold_period_m_s": 2.7
+  },
+  {
+    "region": "Кемеровская область",
+    "locality": "Киселевск",
+    "t_january_c": -15.4,
+    "v_cold_period_m_s": 3.1
+  },
+  {
+    "region": "Кемеровская область",
+    "locality": "Кондома",
+    "t_january_c": -17.1,
+    "v_cold_period_m_s": 0.9
+  },
+  {
+    "region": "Кемеровская область",
+    "locality": "Мариинск",
+    "t_january_c": -16.7,
+    "v_cold_period_m_s": 3.4
+  },
+  {
+    "region": "Кемеровская область",
+    "locality": "Междуреченск",
+    "t_january_c": -17.3,
+    "v_cold_period_m_s": 1.3
+  },
+  {
+    "region": "Кемеровская область",
+    "locality": "Тайга",
+    "t_january_c": -17.7,
+    "v_cold_period_m_s": 3.6
+  },
+  {
+    "region": "Кемеровская область",
+    "locality": "Тисуль",
+    "t_january_c": -16.2,
+    "v_cold_period_m_s": 3.6
+  },
+  {
+    "region": "Кемеровская область",
+    "locality": "Топки",
+    "t_january_c": -16.6,
+    "v_cold_period_m_s": 3.4
+  },
+  {
+    "region": "Кемеровская область",
+    "locality": "Усть-Кабырза",
+    "t_january_c": -19.6,
+    "v_cold_period_m_s": 0.8
+  },
+  {
+    "region": "Кемеровская область",
+    "locality": "Центральный рудник",
+    "t_january_c": -14.6,
+    "v_cold_period_m_s": 3.5
+  },
+  {
+    "region": "Кировская область",
+    "locality": "Кильмезь",
+    "t_january_c": -12.0,
+    "v_cold_period_m_s": 3.9
+  },
+  {
+    "region": "Кировская область",
+    "locality": "Киров",
+    "t_january_c": -12.2,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Кировская область",
+    "locality": "Котельнич",
+    "t_january_c": -12.2,
+    "v_cold_period_m_s": 3.4
+  },
+  {
+    "region": "Кировская область",
+    "locality": "Нагорское",
+    "t_january_c": -13.3,
+    "v_cold_period_m_s": 3.3
+  },
+  {
+    "region": "Кировская область",
+    "locality": "Опарино",
+    "t_january_c": -13.0,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Костромская область",
+    "locality": "Вохма",
+    "t_january_c": -12.3,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Костромская область",
+    "locality": "Кострома",
+    "t_january_c": -9.7,
+    "v_cold_period_m_s": 3.5
+  },
+  {
+    "region": "Костромская область",
+    "locality": "Чухлома",
+    "t_january_c": -11.1,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Костромская область",
+    "locality": "Шарья",
+    "t_january_c": -11.5,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Краснодарский край",
+    "locality": "Армавир",
+    "t_january_c": -1.3,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Краснодарский край",
+    "locality": "Красная Поляна",
+    "t_january_c": 0.8,
+    "v_cold_period_m_s": 1.1
+  },
+  {
+    "region": "Краснодарский край",
+    "locality": "Краснодар",
+    "t_january_c": 0.1,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Краснодарский край",
+    "locality": "Кущевская",
+    "t_january_c": -2.4,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Краснодарский край",
+    "locality": "Новороссийск",
+    "t_january_c": 3.8,
+    "v_cold_period_m_s": 5.1
+  },
+  {
+    "region": "Краснодарский край",
+    "locality": "Приморско-Ахтарск",
+    "t_january_c": -1.1,
+    "v_cold_period_m_s": 3.2
+  },
+  {
+    "region": "Краснодарский край",
+    "locality": "Сочи",
+    "t_january_c": 6.1,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Краснодарский край",
+    "locality": "Тихорецк",
+    "t_january_c": -1.8,
+    "v_cold_period_m_s": 3.3
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Агата",
+    "t_january_c": -33.9,
+    "v_cold_period_m_s": 1.5
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Ачинск",
+    "t_january_c": -15.5,
+    "v_cold_period_m_s": 3.8
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Байкит",
+    "t_january_c": -30.0,
+    "v_cold_period_m_s": 1.2
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Боготол",
+    "t_january_c": -16.5,
+    "v_cold_period_m_s": 3.3
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Богучаны",
+    "t_january_c": -23.2,
+    "v_cold_period_m_s": 1.8
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Ванавара",
+    "t_january_c": -28.8,
+    "v_cold_period_m_s": 1.5
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Вельмо",
+    "t_january_c": -26.9,
+    "v_cold_period_m_s": 1.5
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Верхнеимбатск",
+    "t_january_c": -24.3,
+    "v_cold_period_m_s": 2.5
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Волочанка",
+    "t_january_c": -30.3,
+    "v_cold_period_m_s": 3.8
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Диксон, остров",
+    "t_january_c": -24.8,
+    "v_cold_period_m_s": 6.5
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Енисейск",
+    "t_january_c": -20.7,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Игарка",
+    "t_january_c": -27.8,
+    "v_cold_period_m_s": 3.4
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Ирбейское",
+    "t_january_c": -20.6,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Канск",
+    "t_january_c": -20.1,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Кислокан",
+    "t_january_c": -35.9,
+    "v_cold_period_m_s": 1.2
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Красноярск",
+    "t_january_c": -15.7,
+    "v_cold_period_m_s": 2.5
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Минусинск",
+    "t_january_c": -18.0,
+    "v_cold_period_m_s": 1.5
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Норильск",
+    "t_january_c": -25.2,
+    "v_cold_period_m_s": 4.8
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Советская Речка",
+    "t_january_c": -28.6,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Тура",
+    "t_january_c": -35.2,
+    "v_cold_period_m_s": 1.6
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Туруханск",
+    "t_january_c": -26.0,
+    "v_cold_period_m_s": 3.4
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Тутончаны",
+    "t_january_c": -31.9,
+    "v_cold_period_m_s": 1.7
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Хатанга",
+    "t_january_c": -31.8,
+    "v_cold_period_m_s": 4.4
+  },
+  {
+    "region": "Красноярский край",
+    "locality": "Ярцево",
+    "t_january_c": -22.6,
+    "v_cold_period_m_s": 3.4
+  },
+  {
+    "region": "Курганская область",
+    "locality": "Курган",
+    "t_january_c": -16.0,
+    "v_cold_period_m_s": 3.8
+  },
+  {
+    "region": "Курганская область",
+    "locality": "Шатрово",
+    "t_january_c": -15.9,
+    "v_cold_period_m_s": 3.1
+  },
+  {
+    "region": "Курганская область",
+    "locality": "Шумиха",
+    "t_january_c": -14.9,
+    "v_cold_period_m_s": 3.1
+  },
+  {
+    "region": "Курская область",
+    "locality": "Курск",
+    "t_january_c": -6.7,
+    "v_cold_period_m_s": 3.1
+  },
+  {
+    "region": "Курская область",
+    "locality": "Рыльск",
+    "t_january_c": -6.1,
+    "v_cold_period_m_s": 3.5
+  },
+  {
+    "region": "Ленинградская область",
+    "locality": "Винницы",
+    "t_january_c": -9.6,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Ленинградская область",
+    "locality": "Выборг",
+    "t_january_c": -6.8,
+    "v_cold_period_m_s": 3.7
+  },
+  {
+    "region": "Ленинградская область",
+    "locality": "Николаевское",
+    "t_january_c": -6.3,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Ленинградская область",
+    "locality": "Новая Ладога",
+    "t_january_c": -7.2,
+    "v_cold_period_m_s": 3.4
+  },
+  {
+    "region": "Ленинградская область",
+    "locality": "Санкт-Петербург",
+    "t_january_c": -5.6,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Ленинградская область",
+    "locality": "Тихвин",
+    "t_january_c": -8.3,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Липецкая область",
+    "locality": "Елец",
+    "t_january_c": -7.4,
+    "v_cold_period_m_s": 2.8
+  },
+  {
+    "region": "Липецкая область",
+    "locality": "Липецк",
+    "t_january_c": -7.9,
+    "v_cold_period_m_s": 4.1
+  },
+  {
+    "region": "Луганская Народная Республика",
+    "locality": "Луганск",
+    "t_january_c": -4.6,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Магаданская область",
+    "locality": "Брохово",
+    "t_january_c": -19.1,
+    "v_cold_period_m_s": 5.2
+  },
+  {
+    "region": "Магаданская область",
+    "locality": "Кегали",
+    "t_january_c": -35.5,
+    "v_cold_period_m_s": 1.9
+  },
+  {
+    "region": "Магаданская область",
+    "locality": "Коркодон",
+    "t_january_c": -37.1,
+    "v_cold_period_m_s": 1.7
+  },
+  {
+    "region": "Магаданская область",
+    "locality": "Магадан",
+    "t_january_c": -16.2,
+    "v_cold_period_m_s": 3.7
+  },
+  {
+    "region": "Магаданская область",
+    "locality": "Омсукчан",
+    "t_january_c": -33.6,
+    "v_cold_period_m_s": 2.1
+  },
+  {
+    "region": "Магаданская область",
+    "locality": "Палатка",
+    "t_january_c": -21.3,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Магаданская область",
+    "locality": "Среднекан",
+    "t_january_c": -35.8,
+    "v_cold_period_m_s": 1.2
+  },
+  {
+    "region": "Магаданская область",
+    "locality": "Сусуман",
+    "t_january_c": -37.3,
+    "v_cold_period_m_s": 1.6
+  },
+  {
+    "region": "Магаданская область",
+    "locality": "Усть-Омчуг",
+    "t_january_c": -33.5,
+    "v_cold_period_m_s": 2.1
+  },
+  {
+    "region": "Московская область",
+    "locality": "Дмитров",
+    "t_january_c": -8.1,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Московская область",
+    "locality": "Кашира",
+    "t_january_c": -8.3,
+    "v_cold_period_m_s": 3.5
+  },
+  {
+    "region": "Московская область",
+    "locality": "Можайск",
+    "t_january_c": -7.7,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Московская область",
+    "locality": "Москва",
+    "t_january_c": -7.0,
+    "v_cold_period_m_s": 1.7
+  },
+  {
+    "region": "Московская область",
+    "locality": "Наро-Фоминск",
+    "t_january_c": -7.8,
+    "v_cold_period_m_s": 3.1
+  },
+  {
+    "region": "Московская область",
+    "locality": "Павловский Посад",
+    "t_january_c": -8.1,
+    "v_cold_period_m_s": 2.5
+  },
+  {
+    "region": "Московская область",
+    "locality": "Подмосковная",
+    "t_january_c": -7.7,
+    "v_cold_period_m_s": 2.5
+  },
+  {
+    "region": "Московская область",
+    "locality": "Черусти",
+    "t_january_c": -8.6,
+    "v_cold_period_m_s": 2.5
+  },
+  {
+    "region": "Мурманская область",
+    "locality": "Вайда-Губа",
+    "t_january_c": -5.0,
+    "v_cold_period_m_s": 6.8
+  },
+  {
+    "region": "Мурманская область",
+    "locality": "Кандалакша",
+    "t_january_c": -12.2,
+    "v_cold_period_m_s": 2.5
+  },
+  {
+    "region": "Мурманская область",
+    "locality": "Каневка",
+    "t_january_c": -14.4,
+    "v_cold_period_m_s": 2.1
+  },
+  {
+    "region": "Мурманская область",
+    "locality": "Ковдор",
+    "t_january_c": -12.2,
+    "v_cold_period_m_s": 2.0
+  },
+  {
+    "region": "Мурманская область",
+    "locality": "Краснощелье",
+    "t_january_c": -13.4,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Мурманская область",
+    "locality": "Ловозеро",
+    "t_january_c": -13.5,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Мурманская область",
+    "locality": "Мончегорск",
+    "t_january_c": -12.1,
+    "v_cold_period_m_s": 3.7
+  },
+  {
+    "region": "Мурманская область",
+    "locality": "Мурманск",
+    "t_january_c": -10.3,
+    "v_cold_period_m_s": 4.7
+  },
+  {
+    "region": "Мурманская область",
+    "locality": "Пялица",
+    "t_january_c": -9.9,
+    "v_cold_period_m_s": 6.1
+  },
+  {
+    "region": "Мурманская область",
+    "locality": "Святой Нос",
+    "t_january_c": -6.6,
+    "v_cold_period_m_s": 7.8
+  },
+  {
+    "region": "Мурманская область",
+    "locality": "Сосновец, остров",
+    "t_january_c": -9.0,
+    "v_cold_period_m_s": 6.7
+  },
+  {
+    "region": "Мурманская область",
+    "locality": "Териберка",
+    "t_january_c": -7.5,
+    "v_cold_period_m_s": 7.6
+  },
+  {
+    "region": "Мурманская область",
+    "locality": "Умба",
+    "t_january_c": -11.0,
+    "v_cold_period_m_s": 3.7
+  },
+  {
+    "region": "Ненецкий автономный округ",
+    "locality": "Варандей",
+    "t_january_c": -17.6,
+    "v_cold_period_m_s": 6.7
+  },
+  {
+    "region": "Ненецкий автономный округ",
+    "locality": "Индига",
+    "t_january_c": -14.5,
+    "v_cold_period_m_s": 6.7
+  },
+  {
+    "region": "Ненецкий автономный округ",
+    "locality": "Канин Нос",
+    "t_january_c": -8.3,
+    "v_cold_period_m_s": 7.8
+  },
+  {
+    "region": "Ненецкий автономный округ",
+    "locality": "Коткино",
+    "t_january_c": -17.5,
+    "v_cold_period_m_s": 3.2
+  },
+  {
+    "region": "Ненецкий автономный округ",
+    "locality": "Нарьян-Мар",
+    "t_january_c": -17.5,
+    "v_cold_period_m_s": 3.7
+  },
+  {
+    "region": "Ненецкий автономный округ",
+    "locality": "Ходовариха",
+    "t_january_c": -15.9,
+    "v_cold_period_m_s": 6.8
+  },
+  {
+    "region": "Ненецкий автономный округ",
+    "locality": "Хорей-Вер",
+    "t_january_c": -19.3,
+    "v_cold_period_m_s": 4.6
+  },
+  {
+    "region": "Нижегородская область",
+    "locality": "Арзамас",
+    "t_january_c": -9.6,
+    "v_cold_period_m_s": 3.7
+  },
+  {
+    "region": "Нижегородская область",
+    "locality": "Выкса",
+    "t_january_c": -8.8,
+    "v_cold_period_m_s": 3.5
+  },
+  {
+    "region": "Нижегородская область",
+    "locality": "Нижний Новгород",
+    "t_january_c": -9.4,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Нижегородская область",
+    "locality": "Шахунья",
+    "t_january_c": -11.5,
+    "v_cold_period_m_s": 4.2
+  },
+  {
+    "region": "Новгородская область",
+    "locality": "Боровичи",
+    "t_january_c": -7.8,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Новгородская область",
+    "locality": "Великий Новгород",
+    "t_january_c": -6.5,
+    "v_cold_period_m_s": 4.1
+  },
+  {
+    "region": "Новгородская область",
+    "locality": "Демянск",
+    "t_january_c": -6.7,
+    "v_cold_period_m_s": 2.3
+  },
+  {
+    "region": "Новосибирская область",
+    "locality": "Барабинск",
+    "t_january_c": -18.2,
+    "v_cold_period_m_s": 3.6
+  },
+  {
+    "region": "Новосибирская область",
+    "locality": "Болотное",
+    "t_january_c": -17.1,
+    "v_cold_period_m_s": 2.5
+  },
+  {
+    "region": "Новосибирская область",
+    "locality": "Карасук",
+    "t_january_c": -17.6,
+    "v_cold_period_m_s": 4.2
+  },
+  {
+    "region": "Новосибирская область",
+    "locality": "Кочки",
+    "t_january_c": -17.8,
+    "v_cold_period_m_s": 4.0
+  },
+  {
+    "region": "Новосибирская область",
+    "locality": "Купино",
+    "t_january_c": -17.7,
+    "v_cold_period_m_s": 4.6
+  },
+  {
+    "region": "Новосибирская область",
+    "locality": "Кыштовка",
+    "t_january_c": -18.7,
+    "v_cold_period_m_s": 3.3
+  },
+  {
+    "region": "Новосибирская область",
+    "locality": "Маслянино",
+    "t_january_c": -18.3,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Новосибирская область",
+    "locality": "Новосибирск",
+    "t_january_c": -17.1,
+    "v_cold_period_m_s": 3.5
+  },
+  {
+    "region": "Новосибирская область",
+    "locality": "Татарск",
+    "t_january_c": -17.7,
+    "v_cold_period_m_s": 3.1
+  },
+  {
+    "region": "Новосибирская область",
+    "locality": "Чулым",
+    "t_january_c": -17.8,
+    "v_cold_period_m_s": 4.1
+  },
+  {
+    "region": "Омская область",
+    "locality": "Исилькуль",
+    "t_january_c": -17.1,
+    "v_cold_period_m_s": 3.7
+  },
+  {
+    "region": "Омская область",
+    "locality": "Омск",
+    "t_january_c": -16.9,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Омская область",
+    "locality": "Тара",
+    "t_january_c": -18.0,
+    "v_cold_period_m_s": 2.7
+  },
+  {
+    "region": "Омская область",
+    "locality": "Тюкалинск",
+    "t_january_c": -17.2,
+    "v_cold_period_m_s": 3.3
+  },
+  {
+    "region": "Омская область",
+    "locality": "Черлак",
+    "t_january_c": -17.3,
+    "v_cold_period_m_s": 3.1
+  },
+  {
+    "region": "Оренбургская область",
+    "locality": "Бугуруслан",
+    "t_january_c": -12.1,
+    "v_cold_period_m_s": 3.3
+  },
+  {
+    "region": "Оренбургская область",
+    "locality": "Домбаровский",
+    "t_january_c": -14.7,
+    "v_cold_period_m_s": 3.2
+  },
+  {
+    "region": "Оренбургская область",
+    "locality": "Кувандык",
+    "t_january_c": -13.8,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Оренбургская область",
+    "locality": "Оренбург",
+    "t_january_c": -12.5,
+    "v_cold_period_m_s": 4.1
+  },
+  {
+    "region": "Оренбургская область",
+    "locality": "Сорочинск",
+    "t_january_c": -12.0,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Орловская область",
+    "locality": "Ливны",
+    "t_january_c": -7.3,
+    "v_cold_period_m_s": 3.4
+  },
+  {
+    "region": "Орловская область",
+    "locality": "Орел",
+    "t_january_c": -7.1,
+    "v_cold_period_m_s": 3.8
+  },
+  {
+    "region": "Пензенская область",
+    "locality": "Белинский",
+    "t_january_c": -9.2,
+    "v_cold_period_m_s": 3.2
+  },
+  {
+    "region": "Пензенская область",
+    "locality": "Земетчино",
+    "t_january_c": -8.8,
+    "v_cold_period_m_s": 3.1
+  },
+  {
+    "region": "Пензенская область",
+    "locality": "Пенза",
+    "t_january_c": -9.3,
+    "v_cold_period_m_s": 3.2
+  },
+  {
+    "region": "Пермский край",
+    "locality": "Березники",
+    "t_january_c": -14.2,
+    "v_cold_period_m_s": 3.5
+  },
+  {
+    "region": "Пермский край",
+    "locality": "Бисер",
+    "t_january_c": -16.1,
+    "v_cold_period_m_s": 2.8
+  },
+  {
+    "region": "Пермский край",
+    "locality": "Кунгур",
+    "t_january_c": -13.9,
+    "v_cold_period_m_s": 2.7
+  },
+  {
+    "region": "Пермский край",
+    "locality": "Ножовка",
+    "t_january_c": -12.8,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Пермский край",
+    "locality": "Пермь",
+    "t_january_c": -13.0,
+    "v_cold_period_m_s": 2.7
+  },
+  {
+    "region": "Пермский край",
+    "locality": "Чердынь",
+    "t_january_c": -15.3,
+    "v_cold_period_m_s": 3.3
+  },
+  {
+    "region": "Приморский край",
+    "locality": "Агзу",
+    "t_january_c": -19.1,
+    "v_cold_period_m_s": 1.3
+  },
+  {
+    "region": "Приморский край",
+    "locality": "Анучино",
+    "t_january_c": -18.9,
+    "v_cold_period_m_s": 2.0
+  },
+  {
+    "region": "Приморский край",
+    "locality": "Астраханка",
+    "t_january_c": -16.2,
+    "v_cold_period_m_s": 3.2
+  },
+  {
+    "region": "Приморский край",
+    "locality": "Богополь",
+    "t_january_c": -12.2,
+    "v_cold_period_m_s": 3.9
+  },
+  {
+    "region": "Приморский край",
+    "locality": "Владивосток",
+    "t_january_c": -12.3,
+    "v_cold_period_m_s": 6.4
+  },
+  {
+    "region": "Приморский край",
+    "locality": "Дальнереченск",
+    "t_january_c": -18.9,
+    "v_cold_period_m_s": 2.8
+  },
+  {
+    "region": "Приморский край",
+    "locality": "Кировский",
+    "t_january_c": -19.2,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Приморский край",
+    "locality": "Красный Яр",
+    "t_january_c": -22.3,
+    "v_cold_period_m_s": 1.2
+  },
+  {
+    "region": "Приморский край",
+    "locality": "Мельничное",
+    "t_january_c": -21.6,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Приморский край",
+    "locality": "Партизанск",
+    "t_january_c": -12.1,
+    "v_cold_period_m_s": 3.8
+  },
+  {
+    "region": "Приморский край",
+    "locality": "Посьет",
+    "t_january_c": -9.3,
+    "v_cold_period_m_s": 4.4
+  },
+  {
+    "region": "Приморский край",
+    "locality": "Преображение",
+    "t_january_c": -7.6,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Приморский край",
+    "locality": "Рудная пристань",
+    "t_january_c": -10.6,
+    "v_cold_period_m_s": 3.3
+  },
+  {
+    "region": "Приморский край",
+    "locality": "Сосуново",
+    "t_january_c": -12.2,
+    "v_cold_period_m_s": 5.1
+  },
+  {
+    "region": "Приморский край",
+    "locality": "Тимирязевский",
+    "t_january_c": -17.3,
+    "v_cold_period_m_s": 2.8
+  },
+  {
+    "region": "Приморский край",
+    "locality": "Чугуевка",
+    "t_january_c": -20.1,
+    "v_cold_period_m_s": 1.3
+  },
+  {
+    "region": "Псковская область",
+    "locality": "Великие Луки",
+    "t_january_c": -6.0,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Псковская область",
+    "locality": "Псков",
+    "t_january_c": -5.4,
+    "v_cold_period_m_s": 2.7
+  },
+  {
+    "region": "Республика Адыгея (Адыгея)",
+    "locality": "Майкоп",
+    "t_january_c": 0.0,
+    "v_cold_period_m_s": 3.1
+  },
+  {
+    "region": "Республика Алтай",
+    "locality": "Катанда",
+    "t_january_c": -21.0,
+    "v_cold_period_m_s": 0.7
+  },
+  {
+    "region": "Республика Алтай",
+    "locality": "Кош-Агач",
+    "t_january_c": -27.3,
+    "v_cold_period_m_s": 1.6
+  },
+  {
+    "region": "Республика Алтай",
+    "locality": "Кызыл-Озек",
+    "t_january_c": -14.1,
+    "v_cold_period_m_s": 1.3
+  },
+  {
+    "region": "Республика Алтай",
+    "locality": "Онгудай",
+    "t_january_c": -19.1,
+    "v_cold_period_m_s": 0.5
+  },
+  {
+    "region": "Республика Алтай",
+    "locality": "Яйлю",
+    "t_january_c": -7.9,
+    "v_cold_period_m_s": 2.1
+  },
+  {
+    "region": "Республика Башкортостан",
+    "locality": "Белорецк",
+    "t_january_c": -14.4,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Республика Башкортостан",
+    "locality": "Дуван",
+    "t_january_c": -13.6,
+    "v_cold_period_m_s": 2.8
+  },
+  {
+    "region": "Республика Башкортостан",
+    "locality": "Зилаир",
+    "t_january_c": -13.6,
+    "v_cold_period_m_s": 2.3
+  },
+  {
+    "region": "Республика Башкортостан",
+    "locality": "Мелеуз",
+    "t_january_c": -13.4,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Республика Башкортостан",
+    "locality": "Раевский",
+    "t_january_c": -12.6,
+    "v_cold_period_m_s": 2.1
+  },
+  {
+    "region": "Республика Башкортостан",
+    "locality": "Уфа",
+    "t_january_c": -12.9,
+    "v_cold_period_m_s": 2.8
+  },
+  {
+    "region": "Республика Башкортостан",
+    "locality": "Учалы",
+    "t_january_c": -14.3,
+    "v_cold_period_m_s": 2.5
+  },
+  {
+    "region": "Республика Башкортостан",
+    "locality": "Янаул",
+    "t_january_c": -13.3,
+    "v_cold_period_m_s": 3.7
+  },
+  {
+    "region": "Республика Бурятия",
+    "locality": "Бабушкин",
+    "t_january_c": -14.9,
+    "v_cold_period_m_s": 3.5
+  },
+  {
+    "region": "Республика Бурятия",
+    "locality": "Багдарин",
+    "t_january_c": -28.4,
+    "v_cold_period_m_s": 1.2
+  },
+  {
+    "region": "Республика Бурятия",
+    "locality": "Баргузин",
+    "t_january_c": -27.0,
+    "v_cold_period_m_s": 1.4
+  },
+  {
+    "region": "Республика Бурятия",
+    "locality": "Кяхта",
+    "t_january_c": -20.2,
+    "v_cold_period_m_s": 1.4
+  },
+  {
+    "region": "Республика Бурятия",
+    "locality": "Монды",
+    "t_january_c": -19.3,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Республика Бурятия",
+    "locality": "Нижнеангарск",
+    "t_january_c": -21.5,
+    "v_cold_period_m_s": 1.7
+  },
+  {
+    "region": "Республика Бурятия",
+    "locality": "Орлик",
+    "t_january_c": -24.2,
+    "v_cold_period_m_s": 1.2
+  },
+  {
+    "region": "Республика Бурятия",
+    "locality": "Сосново-Озерское",
+    "t_january_c": -23.7,
+    "v_cold_period_m_s": 3.4
+  },
+  {
+    "region": "Республика Бурятия",
+    "locality": "Таксимо",
+    "t_january_c": -31.1,
+    "v_cold_period_m_s": 1.5
+  },
+  {
+    "region": "Республика Бурятия",
+    "locality": "Уакит",
+    "t_january_c": -27.9,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Республика Бурятия",
+    "locality": "Улан-Удэ",
+    "t_january_c": -23.3,
+    "v_cold_period_m_s": 1.9
+  },
+  {
+    "region": "Республика Бурятия",
+    "locality": "Хоринск",
+    "t_january_c": -25.7,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Республика Дагестан",
+    "locality": "Ахты",
+    "t_january_c": -1.0,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Республика Дагестан",
+    "locality": "Дербент",
+    "t_january_c": 2.7,
+    "v_cold_period_m_s": 2.1
+  },
+  {
+    "region": "Республика Дагестан",
+    "locality": "Кизляр",
+    "t_january_c": -0.5,
+    "v_cold_period_m_s": 3.9
+  },
+  {
+    "region": "Республика Дагестан",
+    "locality": "Махачкала",
+    "t_january_c": 0.8,
+    "v_cold_period_m_s": 3.7
+  },
+  {
+    "region": "Республика Дагестан",
+    "locality": "Терекли-Мектеб",
+    "t_january_c": -1.4,
+    "v_cold_period_m_s": 2.7
+  },
+  {
+    "region": "Республика Ингушетия",
+    "locality": "Магас (Назрань)",
+    "t_january_c": -1.9,
+    "v_cold_period_m_s": 1.2
+  },
+  {
+    "region": "Республика Калмыкия",
+    "locality": "Городовиковск",
+    "t_january_c": -2.7,
+    "v_cold_period_m_s": 3.5
+  },
+  {
+    "region": "Республика Калмыкия",
+    "locality": "Комсомольский",
+    "t_january_c": -2.7,
+    "v_cold_period_m_s": 2.8
+  },
+  {
+    "region": "Республика Калмыкия",
+    "locality": "Элиста",
+    "t_january_c": -4.6,
+    "v_cold_period_m_s": 5.9
+  },
+  {
+    "region": "Республика Калмыкия",
+    "locality": "Юста",
+    "t_january_c": -5.4,
+    "v_cold_period_m_s": 3.9
+  },
+  {
+    "region": "Республика Карелия",
+    "locality": "Зашеек",
+    "t_january_c": -11.7,
+    "v_cold_period_m_s": 3.2
+  },
+  {
+    "region": "Республика Карелия",
+    "locality": "Калевала",
+    "t_january_c": -11.9,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Республика Карелия",
+    "locality": "Кемь",
+    "t_january_c": -10.0,
+    "v_cold_period_m_s": 4.2
+  },
+  {
+    "region": "Республика Карелия",
+    "locality": "Олонец",
+    "t_january_c": -8.8,
+    "v_cold_period_m_s": 3.5
+  },
+  {
+    "region": "Республика Карелия",
+    "locality": "Паданы",
+    "t_january_c": -10.3,
+    "v_cold_period_m_s": 3.5
+  },
+  {
+    "region": "Республика Карелия",
+    "locality": "Петрозаводск",
+    "t_january_c": -9.3,
+    "v_cold_period_m_s": 3.1
+  },
+  {
+    "region": "Республика Карелия",
+    "locality": "Реболы",
+    "t_january_c": -10.9,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Республика Карелия",
+    "locality": "Сортавала",
+    "t_january_c": -8.1,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Республика Коми",
+    "locality": "Вендинга",
+    "t_january_c": -15.5,
+    "v_cold_period_m_s": 3.8
+  },
+  {
+    "region": "Республика Коми",
+    "locality": "Весляна",
+    "t_january_c": -16.1,
+    "v_cold_period_m_s": 3.3
+  },
+  {
+    "region": "Республика Коми",
+    "locality": "Воркута",
+    "t_january_c": -20.0,
+    "v_cold_period_m_s": 5.3
+  },
+  {
+    "region": "Республика Коми",
+    "locality": "Объячево",
+    "t_january_c": -13.3,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Республика Коми",
+    "locality": "Петрунь",
+    "t_january_c": -19.8,
+    "v_cold_period_m_s": 3.8
+  },
+  {
+    "region": "Республика Коми",
+    "locality": "Печора",
+    "t_january_c": -18.7,
+    "v_cold_period_m_s": 3.2
+  },
+  {
+    "region": "Республика Коми",
+    "locality": "Сыктывкар",
+    "t_january_c": -14.3,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Республика Коми",
+    "locality": "Троицко-Печорское",
+    "t_january_c": -17.2,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Республика Коми",
+    "locality": "Усть-Уса",
+    "t_january_c": -18.5,
+    "v_cold_period_m_s": 3.8
+  },
+  {
+    "region": "Республика Коми",
+    "locality": "Усть-Цильма",
+    "t_january_c": -17.0,
+    "v_cold_period_m_s": 3.7
+  },
+  {
+    "region": "Республика Коми",
+    "locality": "Усть-Щугор",
+    "t_january_c": -19.3,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Республика Коми",
+    "locality": "Ухта",
+    "t_january_c": -16.6,
+    "v_cold_period_m_s": 3.5
+  },
+  {
+    "region": "Республика Крым",
+    "locality": "Ай-Петри",
+    "t_january_c": -2.7,
+    "v_cold_period_m_s": 4.5
+  },
+  {
+    "region": "Республика Крым",
+    "locality": "Керчь",
+    "t_january_c": 0.3,
+    "v_cold_period_m_s": 5.0
+  },
+  {
+    "region": "Республика Крым",
+    "locality": "Клепинино",
+    "t_january_c": 0.2,
+    "v_cold_period_m_s": 3.2
+  },
+  {
+    "region": "Республика Крым",
+    "locality": "Севастополь",
+    "t_january_c": 3.8,
+    "v_cold_period_m_s": 4.2
+  },
+  {
+    "region": "Республика Крым",
+    "locality": "Симферополь",
+    "t_january_c": 0.2,
+    "v_cold_period_m_s": 4.9
+  },
+  {
+    "region": "Республика Крым",
+    "locality": "Феодосия",
+    "t_january_c": 1.6,
+    "v_cold_period_m_s": 3.4
+  },
+  {
+    "region": "Республика Крым",
+    "locality": "Ялта",
+    "t_january_c": 4.8,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Республика Марий Эл",
+    "locality": "Йошкар-Ола",
+    "t_january_c": -11.1,
+    "v_cold_period_m_s": 3.9
+  },
+  {
+    "region": "Республика Марий Эл",
+    "locality": "Морки",
+    "t_january_c": -11.5,
+    "v_cold_period_m_s": 3.1
+  },
+  {
+    "region": "Республика Мордовия",
+    "locality": "Саранск",
+    "t_january_c": -9.6,
+    "v_cold_period_m_s": 5.2
+  },
+  {
+    "region": "Республика Мордовия",
+    "locality": "Темников",
+    "t_january_c": -9.1,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Алдан",
+    "t_january_c": -26.4,
+    "v_cold_period_m_s": 1.8
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Амга",
+    "t_january_c": -40.6,
+    "v_cold_period_m_s": 1.5
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Батамай",
+    "t_january_c": -40.8,
+    "v_cold_period_m_s": 1.9
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Бердигестях",
+    "t_january_c": -37.8,
+    "v_cold_period_m_s": 0.9
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Буяга",
+    "t_january_c": -36.0,
+    "v_cold_period_m_s": 0.6
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Верхоянск",
+    "t_january_c": -45.5,
+    "v_cold_period_m_s": 1.1
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Вилюйск",
+    "t_january_c": -36.0,
+    "v_cold_period_m_s": 1.8
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Витим",
+    "t_january_c": -28.3,
+    "v_cold_period_m_s": 2.3
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Джалинда",
+    "t_january_c": -37.6,
+    "v_cold_period_m_s": 1.8
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Джарджан",
+    "t_january_c": -37.5,
+    "v_cold_period_m_s": 2.8
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Джикимда",
+    "t_january_c": -33.3,
+    "v_cold_period_m_s": 0.8
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Жиганск",
+    "t_january_c": -37.9,
+    "v_cold_period_m_s": 3.1
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Зырянка",
+    "t_january_c": -36.0,
+    "v_cold_period_m_s": 2.0
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Исить",
+    "t_january_c": -34.3,
+    "v_cold_period_m_s": 2.0
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Иэма",
+    "t_january_c": -44.1,
+    "v_cold_period_m_s": 1.2
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Крест-Хальджай",
+    "t_january_c": -43.1,
+    "v_cold_period_m_s": 0.8
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Куйга",
+    "t_january_c": -40.5,
+    "v_cold_period_m_s": 2.0
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Кюсюр",
+    "t_january_c": -37.1,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Ленск",
+    "t_january_c": -28.6,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Мирный",
+    "t_january_c": -30.6,
+    "v_cold_period_m_s": 3.1
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Нагорный",
+    "t_january_c": -28.6,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Нера",
+    "t_january_c": -45.5,
+    "v_cold_period_m_s": 1.8
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Нюрба",
+    "t_january_c": -34.9,
+    "v_cold_period_m_s": 2.0
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Оймякон",
+    "t_january_c": -46.0,
+    "v_cold_period_m_s": 0.9
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Олекминск",
+    "t_january_c": -31.0,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Оленек",
+    "t_january_c": -36.4,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Охотский Перевоз",
+    "t_january_c": -42.0,
+    "v_cold_period_m_s": 1.1
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Сангары",
+    "t_january_c": -37.8,
+    "v_cold_period_m_s": 2.8
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Саскылах",
+    "t_january_c": -34.6,
+    "v_cold_period_m_s": 3.4
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Среднеколымск",
+    "t_january_c": -35.6,
+    "v_cold_period_m_s": 1.6
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Сунтар",
+    "t_january_c": -32.2,
+    "v_cold_period_m_s": 1.9
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Сухана",
+    "t_january_c": -41.0,
+    "v_cold_period_m_s": 1.3
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Токо",
+    "t_january_c": -37.6,
+    "v_cold_period_m_s": 0.7
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Томмот",
+    "t_january_c": -34.1,
+    "v_cold_period_m_s": 0.7
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Томпо",
+    "t_january_c": -42.9,
+    "v_cold_period_m_s": 1.9
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Туой-Хая",
+    "t_january_c": -30.5,
+    "v_cold_period_m_s": 1.8
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Тяня",
+    "t_january_c": -32.3,
+    "v_cold_period_m_s": 0.4
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Усть-Мая",
+    "t_january_c": -39.6,
+    "v_cold_period_m_s": 1.4
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Усть-Миль",
+    "t_january_c": -37.3,
+    "v_cold_period_m_s": 1.0
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Усть-Мома",
+    "t_january_c": -42.5,
+    "v_cold_period_m_s": 0.9
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Чокурдах",
+    "t_january_c": -33.7,
+    "v_cold_period_m_s": 3.9
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Чульман",
+    "t_january_c": -30.5,
+    "v_cold_period_m_s": 2.5
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Чурапча",
+    "t_january_c": -41.3,
+    "v_cold_period_m_s": 1.0
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Шелагонцы",
+    "t_january_c": -40.1,
+    "v_cold_period_m_s": 1.1
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Эйк",
+    "t_january_c": -36.1,
+    "v_cold_period_m_s": 2.1
+  },
+  {
+    "region": "Республика Саха (Якутия)",
+    "locality": "Якутск",
+    "t_january_c": -38.6,
+    "v_cold_period_m_s": 1.5
+  },
+  {
+    "region": "Республика Северная Осетия - Алания",
+    "locality": "Владикавказ",
+    "t_january_c": -2.4,
+    "v_cold_period_m_s": 1.3
+  },
+  {
+    "region": "Республика Северная Осетия - Алания",
+    "locality": "Моздок",
+    "t_january_c": -2.5,
+    "v_cold_period_m_s": 1.6
+  },
+  {
+    "region": "Республика Татарстан (Татарстан)",
+    "locality": "Бугульма",
+    "t_january_c": -12.2,
+    "v_cold_period_m_s": 4.9
+  },
+  {
+    "region": "Республика Татарстан (Татарстан)",
+    "locality": "Елабуга",
+    "t_january_c": -11.7,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Республика Татарстан (Татарстан)",
+    "locality": "Казань",
+    "t_january_c": -10.8,
+    "v_cold_period_m_s": 2.8
+  },
+  {
+    "region": "Республика Татарстан (Татарстан)",
+    "locality": "Чистополь",
+    "t_january_c": -11.8,
+    "v_cold_period_m_s": 4.9
+  },
+  {
+    "region": "Республика Татарстан (Татарстан)",
+    "locality": "Чулпаново",
+    "t_january_c": -11.9,
+    "v_cold_period_m_s": 4.0
+  },
+  {
+    "region": "Республика Тыва",
+    "locality": "Кызыл",
+    "t_january_c": -28.9,
+    "v_cold_period_m_s": 1.3
+  },
+  {
+    "region": "Республика Тыва",
+    "locality": "Мугур-Аксы",
+    "t_january_c": -20.5,
+    "v_cold_period_m_s": 2.0
+  },
+  {
+    "region": "Республика Тыва",
+    "locality": "Тоора-Хем",
+    "t_january_c": -26.5,
+    "v_cold_period_m_s": 0.7
+  },
+  {
+    "region": "Республика Тыва",
+    "locality": "Эрзин",
+    "t_january_c": -31.2,
+    "v_cold_period_m_s": 1.2
+  },
+  {
+    "region": "Республика Хакассия",
+    "locality": "Абакан",
+    "t_january_c": -18.2,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Республика Хакассия",
+    "locality": "Неожиданный",
+    "t_january_c": -18.3,
+    "v_cold_period_m_s": 1.3
+  },
+  {
+    "region": "Республика Хакассия",
+    "locality": "Шира",
+    "t_january_c": -16.7,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Ростовская область",
+    "locality": "Гигант",
+    "t_january_c": -3.3,
+    "v_cold_period_m_s": 3.9
+  },
+  {
+    "region": "Ростовская область",
+    "locality": "Зимовники",
+    "t_january_c": -4.2,
+    "v_cold_period_m_s": 3.8
+  },
+  {
+    "region": "Ростовская область",
+    "locality": "Казанская",
+    "t_january_c": -6.0,
+    "v_cold_period_m_s": 2.5
+  },
+  {
+    "region": "Ростовская область",
+    "locality": "Миллерово",
+    "t_january_c": -5.8,
+    "v_cold_period_m_s": 4.0
+  },
+  {
+    "region": "Ростовская область",
+    "locality": "Ростов-на-Дону",
+    "t_january_c": -3.5,
+    "v_cold_period_m_s": 2.3
+  },
+  {
+    "region": "Ростовская область",
+    "locality": "Таганрог",
+    "t_january_c": -3.1,
+    "v_cold_period_m_s": 3.4
+  },
+  {
+    "region": "Рязанская область",
+    "locality": "Павелец",
+    "t_january_c": -8.5,
+    "v_cold_period_m_s": 3.2
+  },
+  {
+    "region": "Рязанская область",
+    "locality": "Рязань",
+    "t_january_c": -8.1,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Самарская область",
+    "locality": "Большая Глушица",
+    "t_january_c": -11.1,
+    "v_cold_period_m_s": 3.1
+  },
+  {
+    "region": "Самарская область",
+    "locality": "Самара",
+    "t_january_c": -10.5,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Самарская область",
+    "locality": "Серноводск",
+    "t_january_c": -11.6,
+    "v_cold_period_m_s": 3.7
+  },
+  {
+    "region": "Саратовская область",
+    "locality": "Александров Гай",
+    "t_january_c": -9.4,
+    "v_cold_period_m_s": 3.6
+  },
+  {
+    "region": "Саратовская область",
+    "locality": "Балашов",
+    "t_january_c": -8.3,
+    "v_cold_period_m_s": 3.6
+  },
+  {
+    "region": "Саратовская область",
+    "locality": "Ершов",
+    "t_january_c": -10.1,
+    "v_cold_period_m_s": 4.4
+  },
+  {
+    "region": "Саратовская область",
+    "locality": "Ртищево",
+    "t_january_c": -9.0,
+    "v_cold_period_m_s": 3.6
+  },
+  {
+    "region": "Саратовская область",
+    "locality": "Саратов",
+    "t_january_c": -7.7,
+    "v_cold_period_m_s": 3.1
+  },
+  {
+    "region": "Сахалинская область",
+    "locality": "Александровск-Сахалинский",
+    "t_january_c": -16.4,
+    "v_cold_period_m_s": 4.4
+  },
+  {
+    "region": "Сахалинская область",
+    "locality": "Долинск",
+    "t_january_c": -13.2,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Сахалинская область",
+    "locality": "Корсаков",
+    "t_january_c": -9.8,
+    "v_cold_period_m_s": 3.6
+  },
+  {
+    "region": "Сахалинская область",
+    "locality": "Курильск",
+    "t_january_c": -4.4,
+    "v_cold_period_m_s": 5.9
+  },
+  {
+    "region": "Сахалинская область",
+    "locality": "Макаров",
+    "t_january_c": -13.1,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Сахалинская область",
+    "locality": "Невельск",
+    "t_january_c": -7.6,
+    "v_cold_period_m_s": 5.2
+  },
+  {
+    "region": "Сахалинская область",
+    "locality": "Ноглики",
+    "t_january_c": -17.4,
+    "v_cold_period_m_s": 3.9
+  },
+  {
+    "region": "Сахалинская область",
+    "locality": "Онор",
+    "t_january_c": -18.4,
+    "v_cold_period_m_s": 2.7
+  },
+  {
+    "region": "Сахалинская область",
+    "locality": "Оха",
+    "t_january_c": -18.2,
+    "v_cold_period_m_s": 4.0
+  },
+  {
+    "region": "Сахалинская область",
+    "locality": "Погиби",
+    "t_january_c": -19.1,
+    "v_cold_period_m_s": 4.5
+  },
+  {
+    "region": "Сахалинская область",
+    "locality": "Поронайск",
+    "t_january_c": -15.7,
+    "v_cold_period_m_s": 3.4
+  },
+  {
+    "region": "Сахалинская область",
+    "locality": "Холмск",
+    "t_january_c": -8.3,
+    "v_cold_period_m_s": 4.7
+  },
+  {
+    "region": "Сахалинская область",
+    "locality": "Южно-Курильск",
+    "t_january_c": -4.2,
+    "v_cold_period_m_s": 5.2
+  },
+  {
+    "region": "Сахалинская область",
+    "locality": "Южно-Сахалинск",
+    "t_january_c": -12.2,
+    "v_cold_period_m_s": 2.7
+  },
+  {
+    "region": "Свердловская область",
+    "locality": "Атымья",
+    "t_january_c": -19.1,
+    "v_cold_period_m_s": 1.9
+  },
+  {
+    "region": "Свердловская область",
+    "locality": "Верхотурье",
+    "t_january_c": -15.8,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Свердловская область",
+    "locality": "Екатеринбург",
+    "t_january_c": -13.1,
+    "v_cold_period_m_s": 3.1
+  },
+  {
+    "region": "Свердловская область",
+    "locality": "Ивдель",
+    "t_january_c": -18.7,
+    "v_cold_period_m_s": 1.7
+  },
+  {
+    "region": "Свердловская область",
+    "locality": "Каменск-Уральский",
+    "t_january_c": -14.4,
+    "v_cold_period_m_s": 2.1
+  },
+  {
+    "region": "Свердловская область",
+    "locality": "Нижний Тагил",
+    "t_january_c": -14.7,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Свердловская область",
+    "locality": "Туринск",
+    "t_january_c": -16.0,
+    "v_cold_period_m_s": 2.8
+  },
+  {
+    "region": "Свердловская область",
+    "locality": "Шамары",
+    "t_january_c": -14.5,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Смоленская область",
+    "locality": "Вязьма",
+    "t_january_c": -7.5,
+    "v_cold_period_m_s": 3.5
+  },
+  {
+    "region": "Смоленская область",
+    "locality": "Смоленск",
+    "t_january_c": -6.7,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Ставропольский край",
+    "locality": "Арзгир",
+    "t_january_c": -2.8,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Ставропольский край",
+    "locality": "Дивное",
+    "t_january_c": -3.0,
+    "v_cold_period_m_s": 3.3
+  },
+  {
+    "region": "Ставропольский край",
+    "locality": "Кисловодск",
+    "t_january_c": -2.5,
+    "v_cold_period_m_s": 1.5
+  },
+  {
+    "region": "Ставропольский край",
+    "locality": "Минеральные Воды",
+    "t_january_c": -2.8,
+    "v_cold_period_m_s": 3.5
+  },
+  {
+    "region": "Ставропольский край",
+    "locality": "Невинномысск",
+    "t_january_c": -2.6,
+    "v_cold_period_m_s": 2.7
+  },
+  {
+    "region": "Ставропольский край",
+    "locality": "Ставрополь",
+    "t_january_c": -2.7,
+    "v_cold_period_m_s": 4.8
+  },
+  {
+    "region": "Тамбовская область",
+    "locality": "Жердевка",
+    "t_january_c": -8.1,
+    "v_cold_period_m_s": 3.9
+  },
+  {
+    "region": "Тамбовская область",
+    "locality": "Тамбов",
+    "t_january_c": -8.1,
+    "v_cold_period_m_s": 3.5
+  },
+  {
+    "region": "Тверская область",
+    "locality": "Бежецк",
+    "t_january_c": -9.5,
+    "v_cold_period_m_s": 3.4
+  },
+  {
+    "region": "Тверская область",
+    "locality": "Старица",
+    "t_january_c": -7.8,
+    "v_cold_period_m_s": 3.2
+  },
+  {
+    "region": "Тверская область",
+    "locality": "Тверь",
+    "t_january_c": -8.0,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Тверская область",
+    "locality": "Торопец",
+    "t_january_c": -6.9,
+    "v_cold_period_m_s": 2.8
+  },
+  {
+    "region": "Томская область",
+    "locality": "Александровское",
+    "t_january_c": -20.9,
+    "v_cold_period_m_s": 3.3
+  },
+  {
+    "region": "Томская область",
+    "locality": "Колпашево",
+    "t_january_c": -19.7,
+    "v_cold_period_m_s": 2.5
+  },
+  {
+    "region": "Томская область",
+    "locality": "Напас",
+    "t_january_c": -21.3,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Томская область",
+    "locality": "Пудино",
+    "t_january_c": -19.3,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Томская область",
+    "locality": "Средний Васюган",
+    "t_january_c": -19.6,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Томская область",
+    "locality": "Томск",
+    "t_january_c": -17.6,
+    "v_cold_period_m_s": 1.8
+  },
+  {
+    "region": "Томская область",
+    "locality": "Усть-Озерное",
+    "t_january_c": -20.6,
+    "v_cold_period_m_s": 2.0
+  },
+  {
+    "region": "Тульская область",
+    "locality": "Волово",
+    "t_january_c": -8.1,
+    "v_cold_period_m_s": 3.6
+  },
+  {
+    "region": "Тульская область",
+    "locality": "Тула",
+    "t_january_c": -7.6,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Тюменская область",
+    "locality": "Голышманово",
+    "t_january_c": -16.4,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Тюменская область",
+    "locality": "Демьянское",
+    "t_january_c": -18.4,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Тюменская область",
+    "locality": "Сладково",
+    "t_january_c": -16.9,
+    "v_cold_period_m_s": 3.9
+  },
+  {
+    "region": "Тюменская область",
+    "locality": "Тобольск",
+    "t_january_c": -17.8,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Тюменская область",
+    "locality": "Тюмень",
+    "t_january_c": -15.6,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Удмуртская Республика",
+    "locality": "Глазов",
+    "t_january_c": -13.5,
+    "v_cold_period_m_s": 3.7
+  },
+  {
+    "region": "Удмуртская Республика",
+    "locality": "Ижевск",
+    "t_january_c": -12.8,
+    "v_cold_period_m_s": 3.7
+  },
+  {
+    "region": "Удмуртская Республика",
+    "locality": "Сарапул",
+    "t_january_c": -12.5,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Ульяновская область",
+    "locality": "Канадей",
+    "t_january_c": -10.3,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Ульяновская область",
+    "locality": "Сурское",
+    "t_january_c": -10.1,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Ульяновская область",
+    "locality": "Ульяновск",
+    "t_january_c": -10.5,
+    "v_cold_period_m_s": 4.2
+  },
+  {
+    "region": "Хабаровский край",
+    "locality": "Аян",
+    "t_january_c": -17.7,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Хабаровский край",
+    "locality": "Байдуков",
+    "t_january_c": -19.7,
+    "v_cold_period_m_s": 5.8
+  },
+  {
+    "region": "Хабаровский край",
+    "locality": "Бикин",
+    "t_january_c": -20.3,
+    "v_cold_period_m_s": 1.9
+  },
+  {
+    "region": "Хабаровский край",
+    "locality": "Вяземская",
+    "t_january_c": -19.4,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Хабаровский край",
+    "locality": "Гвасюги",
+    "t_january_c": -23.3,
+    "v_cold_period_m_s": 1.0
+  },
+  {
+    "region": "Хабаровский край",
+    "locality": "Джаорэ",
+    "t_january_c": -19.3,
+    "v_cold_period_m_s": 3.2
+  },
+  {
+    "region": "Хабаровский край",
+    "locality": "Им.П.Осипенко",
+    "t_january_c": -26.4,
+    "v_cold_period_m_s": 1.6
+  },
+  {
+    "region": "Хабаровский край",
+    "locality": "Комсомольск-на-Амуре",
+    "t_january_c": -24.4,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Хабаровский край",
+    "locality": "Нелькан",
+    "t_january_c": -34.5,
+    "v_cold_period_m_s": 1.3
+  },
+  {
+    "region": "Хабаровский край",
+    "locality": "Нижнетамбовское",
+    "t_january_c": -24.9,
+    "v_cold_period_m_s": 2.5
+  },
+  {
+    "region": "Хабаровский край",
+    "locality": "Николаевск-на-Амуре",
+    "t_january_c": -21.9,
+    "v_cold_period_m_s": 3.4
+  },
+  {
+    "region": "Хабаровский край",
+    "locality": "Охотск",
+    "t_january_c": -20.5,
+    "v_cold_period_m_s": 3.7
+  },
+  {
+    "region": "Хабаровский край",
+    "locality": "Советская Гавань",
+    "t_january_c": -15.6,
+    "v_cold_period_m_s": 2.8
+  },
+  {
+    "region": "Хабаровский край",
+    "locality": "Софийский прииск",
+    "t_january_c": -30.8,
+    "v_cold_period_m_s": 1.6
+  },
+  {
+    "region": "Хабаровский край",
+    "locality": "Троицкое",
+    "t_january_c": -21.4,
+    "v_cold_period_m_s": 3.0
+  },
+  {
+    "region": "Хабаровский край",
+    "locality": "Хабаровск",
+    "t_january_c": -19.9,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Хабаровский край",
+    "locality": "Чегдомын",
+    "t_january_c": -29.3,
+    "v_cold_period_m_s": 0.9
+  },
+  {
+    "region": "Хабаровский край",
+    "locality": "Чумикан",
+    "t_january_c": -21.3,
+    "v_cold_period_m_s": 4.9
+  },
+  {
+    "region": "Ханты-Мансийский автономный округ - Югра",
+    "locality": "Березово",
+    "t_january_c": -21.5,
+    "v_cold_period_m_s": 3.6
+  },
+  {
+    "region": "Ханты-Мансийский автономный округ - Югра",
+    "locality": "Кондинское",
+    "t_january_c": -18.4,
+    "v_cold_period_m_s": 3.4
+  },
+  {
+    "region": "Ханты-Мансийский автономный округ - Югра",
+    "locality": "Корлики",
+    "t_january_c": -23.3,
+    "v_cold_period_m_s": 2.2
+  },
+  {
+    "region": "Ханты-Мансийский автономный округ - Югра",
+    "locality": "Леуши",
+    "t_january_c": -17.3,
+    "v_cold_period_m_s": 2.6
+  },
+  {
+    "region": "Ханты-Мансийский автономный округ - Югра",
+    "locality": "Няксимволь",
+    "t_january_c": -19.9,
+    "v_cold_period_m_s": 1.8
+  },
+  {
+    "region": "Ханты-Мансийский автономный округ - Югра",
+    "locality": "Октябрьское",
+    "t_january_c": -20.3,
+    "v_cold_period_m_s": 1.8
+  },
+  {
+    "region": "Ханты-Мансийский автономный округ - Югра",
+    "locality": "Сосьва",
+    "t_january_c": -21.9,
+    "v_cold_period_m_s": 1.5
+  },
+  {
+    "region": "Ханты-Мансийский автономный округ - Югра",
+    "locality": "Сургут",
+    "t_january_c": -20.6,
+    "v_cold_period_m_s": 4.3
+  },
+  {
+    "region": "Ханты-Мансийский автономный округ - Югра",
+    "locality": "Угут",
+    "t_january_c": -20.0,
+    "v_cold_period_m_s": 2.3
+  },
+  {
+    "region": "Ханты-Мансийский автономный округ - Югра",
+    "locality": "Ханты-Мансийск",
+    "t_january_c": -19.6,
+    "v_cold_period_m_s": 2.5
+  },
+  {
+    "region": "Херсонская область",
+    "locality": "Аскания-Нова",
+    "t_january_c": -1.9,
+    "v_cold_period_m_s": 4.6
+  },
+  {
+    "region": "Херсонская область",
+    "locality": "Геническ",
+    "t_january_c": -1.3,
+    "v_cold_period_m_s": 4.7
+  },
+  {
+    "region": "Херсонская область",
+    "locality": "Херсон",
+    "t_january_c": -1.8,
+    "v_cold_period_m_s": 3.7
+  },
+  {
+    "region": "Челябинская область",
+    "locality": "Бреды",
+    "t_january_c": -14.7,
+    "v_cold_period_m_s": 2.8
+  },
+  {
+    "region": "Челябинская область",
+    "locality": "Верхнеуральск",
+    "t_january_c": -16.1,
+    "v_cold_period_m_s": 2.4
+  },
+  {
+    "region": "Челябинская область",
+    "locality": "Нязепетровск",
+    "t_january_c": -14.4,
+    "v_cold_period_m_s": 2.3
+  },
+  {
+    "region": "Челябинская область",
+    "locality": "Октябрьское",
+    "t_january_c": -16.0,
+    "v_cold_period_m_s": 3.6
+  },
+  {
+    "region": "Челябинская область",
+    "locality": "Челябинск",
+    "t_january_c": -14.6,
+    "v_cold_period_m_s": 2.3
+  },
+  {
+    "region": "Чеченская Республика",
+    "locality": "Грозный",
+    "t_january_c": -2.2,
+    "v_cold_period_m_s": 1.9
+  },
+  {
+    "region": "Чеченская Республика",
+    "locality": "Наурская",
+    "t_january_c": -1.9,
+    "v_cold_period_m_s": 1.5
+  },
+  {
+    "region": "Чувашская Республика - Чувашия",
+    "locality": "Порецкое",
+    "t_january_c": -10.2,
+    "v_cold_period_m_s": 4.4
+  },
+  {
+    "region": "Чувашская Республика - Чувашия",
+    "locality": "Чебоксары",
+    "t_january_c": -10.7,
+    "v_cold_period_m_s": 5.1
+  },
+  {
+    "region": "Чукотский автономный округ",
+    "locality": "Анадырь",
+    "t_january_c": -21.4,
+    "v_cold_period_m_s": 6.6
+  },
+  {
+    "region": "Чукотский автономный округ",
+    "locality": "Илирней",
+    "t_january_c": -34.2,
+    "v_cold_period_m_s": 1.2
+  },
+  {
+    "region": "Чукотский автономный округ",
+    "locality": "Марково",
+    "t_january_c": -26.0,
+    "v_cold_period_m_s": 2.1
+  },
+  {
+    "region": "Чукотский автономный округ",
+    "locality": "Омолон",
+    "t_january_c": -36.6,
+    "v_cold_period_m_s": 1.2
+  },
+  {
+    "region": "Чукотский автономный округ",
+    "locality": "Островное",
+    "t_january_c": -34.1,
+    "v_cold_period_m_s": 1.9
+  },
+  {
+    "region": "Чукотский автономный округ",
+    "locality": "Эгвекинот",
+    "t_january_c": -17.4,
+    "v_cold_period_m_s": 4.9
+  },
+  {
+    "region": "Чукотский автономный округ",
+    "locality": "Эньмувеем",
+    "t_january_c": -26.0,
+    "v_cold_period_m_s": 1.9
+  },
+  {
+    "region": "Ямало-Ненецкий автономный округ",
+    "locality": "Марресаля, мыс",
+    "t_january_c": -20.9,
+    "v_cold_period_m_s": 6.3
+  },
+  {
+    "region": "Ямало-Ненецкий автономный округ",
+    "locality": "Мужи",
+    "t_january_c": -22.6,
+    "v_cold_period_m_s": 3.3
+  },
+  {
+    "region": "Ямало-Ненецкий автономный округ",
+    "locality": "Надым",
+    "t_january_c": -23.2,
+    "v_cold_period_m_s": 3.6
+  },
+  {
+    "region": "Ямало-Ненецкий автономный округ",
+    "locality": "Салехард",
+    "t_january_c": -23.7,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Ямало-Ненецкий автономный округ",
+    "locality": "Тазовский",
+    "t_january_c": -26.0,
+    "v_cold_period_m_s": 5.3
+  },
+  {
+    "region": "Ямало-Ненецкий автономный округ",
+    "locality": "Тарко-Сале",
+    "t_january_c": -24.4,
+    "v_cold_period_m_s": 2.9
+  },
+  {
+    "region": "Ямало-Ненецкий автономный округ",
+    "locality": "Уренгой",
+    "t_january_c": -25.8,
+    "v_cold_period_m_s": 3.7
+  },
+  {
+    "region": "Ямало-Ненецкий автономный округ",
+    "locality": "Халясавэй",
+    "t_january_c": -23.5,
+    "v_cold_period_m_s": 2.7
+  },
+  {
+    "region": "Ярославская область",
+    "locality": "Переславль-Залесский",
+    "t_january_c": -8.6,
+    "v_cold_period_m_s": 2.8
+  },
+  {
+    "region": "Ярославская область",
+    "locality": "Ярославль",
+    "t_january_c": -9.2,
+    "v_cold_period_m_s": 3.6
+  }
+]

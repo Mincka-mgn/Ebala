@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="78mm" height="30mm" viewBox="0 0 78 30">
+  <title>Сводчатая кровля. Размеры L, H, f</title>
+  <desc>Векторная схема здания со сводчатой кровлей для вставки в Word. Высота рисунка 30 мм, размер надписей 10 пт.</desc>
+
+  <g fill="none" stroke="#111" stroke-linecap="square" stroke-linejoin="miter">
+    <!-- Контур здания: гладкий симметричный свод, вертикальные стены, основание -->
+    <path d="M 5.6,13.7 C 5.6,9.0 17.8,5.2 32.8,5.2 C 47.8,5.2 60,9.0 60,13.7 V 21.9 H 5.6 Z"
+          stroke-width="0.37" fill="#fff"/>
+
+    <!-- Горизонтальная опорная отметка пят свода -->
+    <path d="M 60,13.7 H 69.2" stroke-width="0.18"/>
+
+    <!-- f: высота подъёма свода от пят до вершины -->
+    <path d="M 32.8,5.2 H 71.2" stroke-width="0.18"/>
+    <path d="M 65.0,5.2 V 13.7" stroke-width="0.24"/>
+
+    <!-- H: полная высота от низа здания до вершины свода -->
+    <path d="M 60,21.9 H 71.2" stroke-width="0.18"/>
+    <path d="M 70.5,5.2 V 21.9" stroke-width="0.24"/>
+
+    <!-- L: ширина здания, надпись над размерной линией -->
+    <path d="M 5.6,22.4 V 29 M 60,22.4 V 29" stroke-width="0.18"/>
+    <path d="M 5.6,27.7 H 60" stroke-width="0.24"/>
+  </g>
+
+  <!-- Стрелки увеличены под физическую высоту рисунка 30 мм -->
+  <g fill="#111" stroke="none">
+    <path d="M 65,5.2 L 64.45,7.35 H 65.55 Z"/>
+    <path d="M 65,13.7 L 64.45,11.55 H 65.55 Z"/>
+    <path d="M 70.5,5.2 L 69.95,7.35 H 71.05 Z"/>
+    <path d="M 70.5,21.9 L 69.95,19.75 H 71.05 Z"/>
+    <path d="M 5.6,27.7 L 7.75,27.14 V 28.26 Z"/>
+    <path d="M 60,27.7 L 57.85,27.14 V 28.26 Z"/>
+  </g>
+
+  <!-- 10 pt при размере 78 x 30 мм в Word -->
+  <g font-family="Arial, Helvetica, sans-serif" font-size="3.5278" font-weight="normal" fill="#111">
+    <text x="62.15" y="10.9">f</text>
+    <text x="72.5" y="14.8">H</text>
+    <text x="32.8" y="26.05" text-anchor="middle">L</text>
+  </g>
+</svg>

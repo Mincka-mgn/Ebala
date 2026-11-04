@@ -1,0 +1,6 @@
+Ebala 0.39 — проверки
+GO111MODULE=off go test ./... -count=1 — PASS
+GOOS=windows GOARCH=amd64 GO111MODULE=off go build — PASS
+Word DOCX и эпюра: проверены визуально при PDF-конвертации.
+Excel XLSX: структурная валидация и загрузка через artifact_tool.
+Ограничения см. CHANGES_0.39.txt: GUI Windows и пересчёт MS Excel не проверены.

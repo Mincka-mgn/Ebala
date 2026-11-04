@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160mm" height="61.5mm" viewBox="0 0 800 308">
+  <rect x="0" y="0" width="800" height="308" fill="white"/>
+  <g fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M70 206 Q235 6 400 206 Q565 6 730 206" stroke-width="3.2"/>
+    <path d="M70 206 V240 H730 V206" stroke-width="2.2"/>
+    <path d="M400 206 V240" stroke-width="1.2" stroke-dasharray="6 5"/>
+    <path d="M65 206 H735" stroke-width="1.1" stroke-dasharray="7 5"/>
+    <path d="M52 106 H70 M52 206 H70 M52 106 V206" stroke-width="1.2"/>
+    <path d="M746 106 H770 M746 240 H770 M768 106 V240" stroke-width="1.2"/>
+    <path d="M70 240 V270 M400 240 V270 M730 240 V270 M70 264 H400 M400 264 H730" stroke-width="1.2"/>
+  </g>
+  <g fill="#111">
+    <path d="M52 106 L48 116 H56 Z M52 206 L48 196 H56 Z"/>
+    <path d="M768 106 L764 116 H772 Z M768 240 L764 230 H772 Z"/>
+    <path d="M70 264 L82 260 V268 Z M400 264 L388 260 V268 Z M400 264 L412 260 V268 Z M730 264 L718 260 V268 Z"/>
+  </g>
+  <g fill="#111" font-size="20" font-family="Georgia,Times New Roman,serif" font-style="italic">
+    <text x="31" y="163">f</text>
+    <text x="778" y="178">H</text>
+    <text x="228" y="257" text-anchor="middle">l</text>
+    <text x="563" y="257" text-anchor="middle">l</text>
+  </g>
+</svg>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="78mm" height="30mm" viewBox="0 0 78 30">
+  <title>Перепад высот h</title>
+  <desc>Векторная схема перепада высот с единственным вертикальным линейным размером h. Физический размер 78 на 30 мм, надпись 10 пт.</desc>
+
+  <!-- Контур перепада, без рамки пользовательского интерфейса -->
+  <path d="M 11.0,24.0 V 5.5 H 17.5 V 24.0 H 70.5"
+        fill="none" stroke="#111" stroke-width="0.45" stroke-linecap="square" stroke-linejoin="miter"/>
+
+  <!-- Выносные и размерная линии -->
+  <g fill="none" stroke="#111" stroke-linecap="square">
+    <path d="M 17.8,5.5 H 22.8 M 17.8,24.0 H 22.8" stroke-width="0.18"/>
+    <path d="M 21.8,5.5 V 24.0" stroke-width="0.25"/>
+  </g>
+
+  <!-- Увеличенные размерные стрелки, направленные внутрь размера -->
+  <g fill="#111">
+    <path d="M 21.8,5.5 L 21.24,7.75 L 22.36,7.75 Z"/>
+    <path d="M 21.8,24.0 L 21.24,21.75 L 22.36,21.75 Z"/>
+  </g>
+
+  <!-- Размер шрифта 10 pt (3,5278 мм) -->
+  <text x="25.1" y="16.0" font-family="Arial, Helvetica, sans-serif" font-size="3.5278" fill="#111">h</text>
+</svg>

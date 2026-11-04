@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "items": [
+    {
+      "id": "builtin-linoleum",
+      "name": "Полы с линолеумом",
+      "rows": [
+        {
+          "name": "Стяжка цементно-песчаная",
+          "kind": "layer",
+          "thickness": 40,
+          "density": 1900,
+          "gamma": 1.3
+        },
+        {
+          "name": "Линолеум ПВХ",
+          "kind": "direct",
+          "g_norm": 3.0,
+          "gamma": 1.3
+        }
+      ]
+    },
+    {
+      "id": "builtin-tile",
+      "name": "Полы с плиткой",
+      "rows": [
+        {
+          "name": "Стяжка цементно-песчаная",
+          "kind": "layer",
+          "thickness": 40,
+          "density": 1900,
+          "gamma": 1.3
+        },
+        {
+          "name": "Клей плиточный",
+          "kind": "layer",
+          "thickness": 10,
+          "density": 1500,
+          "gamma": 1.3
+        },
+        {
+          "name": "Плитка керамогранитная",
+          "kind": "layer",
+          "thickness": 10,
+          "density": 2300,
+          "gamma": 1.3
+        }
+      ]
+    },
+    {
+      "id": "builtin-cold-roof",
+      "name": "Плоская холодная кровля",
+      "rows": [
+        {
+          "name": "Стяжка цементно-песчаная",
+          "kind": "layer",
+          "thickness": 40,
+          "density": 1900,
+          "gamma": 1.3
+        },
+        {
+          "name": "Битумная обмазка",
+          "kind": "layer",
+          "thickness": 2,
+          "density": 1200,
+          "gamma": 1.3
+        },
+        {
+          "name": "Рубероид на горячем битуме",
+          "kind": "direct",
+          "g_norm": 2.0,
+          "gamma": 1.3
+        },
+        {
+          "name": "Рубероид на горячем битуме",
+          "kind": "direct",
+          "g_norm": 2.0,
+          "gamma": 1.3
+        },
+        {
+          "name": "Рубероид на горячем битуме",
+          "kind": "direct",
+          "g_norm": 2.0,
+          "gamma": 1.3
+        }
+      ]
+    },
+    {
+      "id": "builtin-warm-roof",
+      "name": "Плоская утеплённая кровля",
+      "rows": [
+        {
+          "name": "Пароизоляция обмазочная",
+          "kind": "layer",
+          "thickness": 2,
+          "density": 1200,
+          "gamma": 1.3
+        },
+        {
+          "name": "Минераловатные плиты",
+          "kind": "layer",
+          "thickness": 100,
+          "density": 180,
+          "gamma": 1.2
+        },
+        {
+          "name": "Стяжка цементно-песчаная",
+          "kind": "layer",
+          "thickness": 40,
+          "density": 1900,
+          "gamma": 1.3
+        },
+        {
+          "name": "Рубероид на горячем битуме",
+          "kind": "direct",
+          "g_norm": 2.0,
+          "gamma": 1.3
+        },
+        {
+          "name": "Рубероид на горячем битуме",
+          "kind": "direct",
+          "g_norm": 2.0,
+          "gamma": 1.3
+        },
+        {
+          "name": "Рубероид на горячем битуме",
+          "kind": "direct",
+          "g_norm": 2.0,
+          "gamma": 1.3
+        }
+      ]
+    },
+    {
+      "id": "builtin-sandwich-roof",
+      "name": "Сэндвич-кровля (послойная)",
+      "rows": [
+        {
+          "name": "Стропильная система металлическая",
+          "kind": "direct",
+          "g_norm": 22,
+          "gamma": 1.05
+        },
+        {
+          "name": "Профнастил НС40-800-0,7 (нижний)",
+          "kind": "direct",
+          "g_norm": 8.1,
+          "gamma": 1.05
+        },
+        {
+          "name": "Полиэтиленовая плёнка",
+          "kind": "direct",
+          "g_norm": 0.1,
+          "gamma": 1.2
+        },
+        {
+          "name": "Пенополистирол",
+          "kind": "layer",
+          "thickness": 50,
+          "density": 35,
+          "gamma": 1.2
+        },
+        {
+          "name": "Профнастил НС40-800-0,7 (верхний)",
+          "kind": "direct",
+          "g_norm": 8.1,
+          "gamma": 1.05
+        }
+      ]
+    }
+  ]
+}

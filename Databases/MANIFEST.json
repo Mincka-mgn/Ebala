@@ -1,0 +1,15 @@
+{
+  "version": "0.18",
+  "database": "KRANY_GOST_HANDBOOK_DB_v0_3.zip",
+  "crane_source_version": "0.3",
+  "crane_records": 1760,
+  "sources": [
+    "ГОСТ 22045-89",
+    "ГОСТ 25711-83",
+    "ГОСТ 7890-93",
+    "Кузнецов, Металлические конструкции, том 2 (1998)"
+  ],
+  "series_included": false,
+  "crane_catalog": "Catalog/cranes_gost_handbook.json",
+  "other_data": "TEMP_LOADS_STAGE3_DB_v0_1.zip"
+}
