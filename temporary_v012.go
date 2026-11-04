@@ -64,6 +64,12 @@ func tempSP20Section(r SP20Row, mode TempAreaMode, area float64, floors int) (Te
 	}
 	s := sp20Selection(r)
 	s.Params["area_factor"] = factor
+	// These are ACCEPTED inputs, not calculated results. The independent XLSX
+	// uses them to recompute φ from the actual catalogue class and floor count.
+	s.Params["reduction_mode"] = int(mode)
+	s.Params["reduction_class"] = tempReductionClass(r)
+	s.Params["reduction_area_m2"] = area
+	s.Params["reduction_floors"] = floors
 	s.Params["normative_reduced"] = r.Norm * factor
 	s.Params["design_reduced"] = r.Design * factor
 	scope := "Полное значение"

@@ -13,11 +13,11 @@ func iceExcelChart(entries map[string]string, s IceLoadCalc, blockIndex ...int) 
 		suffix = fmt.Sprintf(" %d", blockIndex[0])
 	}
 
-	n := len(s.Points)
+	n := iceExcelHeightCapacity
 	if n == 0 {
 		return fmt.Errorf("Нет точек для Excel-эпюры")
 	}
-	sheetID, err := snowExcelSheet(entries, "Эпюры нагрузок"+suffix, tempExcelRow(1, "Гололёд и ветер: эпюры по высоте")+tempExcelRow(2, "Вертикальная ось — высота, м; горизонтальная — интенсивность, "+s.NormUnit())+tempExcelRow(3, "Числовые ряды связаны с листом «Гололёд - расчёт». Изменение формул обновляет диаграмму."), false)
+	sheetID, err := snowExcelSheet(entries, "Эпюры нагрузок"+suffix, tempExcelRow(1, "На этом листе показаны высотные эпюры гололёда и ветра; диаграммы связаны с вычисляемыми значениями расчётного листа.")+tempExcelRow(2, "Вертикальная ось — высота, м; горизонтальная — интенсивность, "+s.NormUnit())+tempExcelRow(3, "Числовые ряды связаны с листом «Гололёд - расчёт». Изменение формул обновляет диаграмму."), false)
 	if err != nil {
 		return err
 	}
@@ -44,26 +44,21 @@ func iceExcelChart(entries map[string]string, s IceLoadCalc, blockIndex ...int) 
 	entries["xl/drawings/_rels/"+drawingName+".rels"] = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/chart" Target="../charts/` + chartName + `"/></Relationships>`
 	end := n + 4
 	var series strings.Builder
-	addSeries := func(index int, title string, xcol string, color string, values func(IceLoadPoint) float64) {
+	addSeries := func(index int, title, xcol, color string) {
 		xRange := fmt.Sprintf("'Гололёд - расчёт%s'!$%s$5:$%s$%d", suffix, xcol, xcol, end)
 		yRange := fmt.Sprintf("'Гололёд - расчёт%s'!$A$5:$A$%d", suffix, end)
-		var xc, yc strings.Builder
-		for i, p := range s.Points {
-			fmt.Fprintf(&xc, `<c:pt idx="%d"><c:v>%.12g</c:v></c:pt>`, i, values(p))
-			fmt.Fprintf(&yc, `<c:pt idx="%d"><c:v>%.12g</c:v></c:pt>`, i, p.HeightM)
-		}
-		fmt.Fprintf(&series, `<c:ser><c:idx val="%d"/><c:order val="%d"/><c:tx><c:v>%s</c:v></c:tx><c:spPr><a:ln w="28575"><a:solidFill><a:srgbClr val="%s"/></a:solidFill></a:ln></c:spPr><c:marker><c:symbol val="none"/></c:marker><c:xVal><c:numRef><c:f>%s</c:f><c:numCache><c:formatCode>General</c:formatCode><c:ptCount val="%d"/>%s</c:numCache></c:numRef></c:xVal><c:yVal><c:numRef><c:f>%s</c:f><c:numCache><c:formatCode>General</c:formatCode><c:ptCount val="%d"/>%s</c:numCache></c:numRef></c:yVal><c:smooth val="0"/></c:ser>`, index, index, tempXML(title), color, tempXML(xRange), n, xc.String(), tempXML(yRange), n, yc.String())
+		// Deliberately NO c:numCache: it would duplicate Go values and remain
+		// stale if user changes height, step, temperature or terrain.
+		fmt.Fprintf(&series, `<c:ser><c:idx val="%d"/><c:order val="%d"/><c:tx><c:v>%s</c:v></c:tx><c:spPr><a:ln w="28575"><a:solidFill><a:srgbClr val="%s"/></a:solidFill></a:ln></c:spPr><c:marker><c:symbol val="none"/></c:marker><c:xVal><c:numRef><c:f>%s</c:f></c:numRef></c:xVal><c:yVal><c:numRef><c:f>%s</c:f></c:numRef></c:yVal><c:smooth val="0"/></c:ser>`, index, index, tempXML(title), color, tempXML(xRange), tempXML(yRange))
 	}
-	addSeries(0, "Гололёд нормативный", "G", "222222", func(p IceLoadPoint) float64 { return p.Norm })
-	addSeries(1, "Гололёд расчётный", "H", "C22B37", func(p IceLoadPoint) float64 { return p.Design })
-	if s.Wind.Enabled {
-		addSeries(2, "Ветер при гололёде", "N", "2469BB", func(p IceLoadPoint) float64 { return p.WindDesign })
-		addSeries(3, "Ветер ведущий", "O", "147C4A", func(p IceLoadPoint) float64 { return p.WindLeading })
-	}
+	addSeries(0, "Гололёд нормативный", "G", "222222")
+	addSeries(1, "Гололёд расчётный", "H", "C22B37")
+	addSeries(2, "Ветер при гололёде", "N", "2469BB")
+	addSeries(3, "Ветер ведущий", "O", "147C4A")
 	textTitle := func(v string) string {
 		return `<c:title><c:tx><c:rich><a:bodyPr/><a:lstStyle/><a:p><a:pPr><a:defRPr/></a:pPr><a:r><a:rPr lang="ru-RU"/><a:t>` + tempXML(v) + `</a:t></a:r><a:endParaRPr lang="ru-RU"/></a:p></c:rich></c:tx><c:overlay val="0"/></c:title>`
 	}
-	entries["xl/charts/"+chartName] = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><c:chartSpace xmlns:c="http://schemas.openxmlformats.org/drawingml/2006/chart" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><c:lang val="ru-RU"/><c:chart>` + textTitle("Высотные эпюры гололёда и ветра") + `<c:autoTitleDeleted val="0"/><c:plotArea><c:layout/><c:scatterChart><c:scatterStyle val="line"/><c:varyColors val="0"/>` + series.String() + `<c:axId val="500001"/><c:axId val="500002"/></c:scatterChart>` + `<c:valAx><c:axId val="500001"/><c:scaling><c:orientation val="minMax"/><c:min val="0"/></c:scaling>` + textTitle("Интенсивность, "+s.NormUnit()) + `<c:axPos val="b"/><c:majorGridlines/><c:numFmt formatCode="0.00" sourceLinked="0"/><c:tickLblPos val="nextTo"/><c:crossAx val="500002"/><c:crosses val="autoZero"/><c:crossBetween val="between"/></c:valAx>` + `<c:valAx><c:axId val="500002"/><c:scaling><c:orientation val="minMax"/></c:scaling>` + textTitle("Высота, м") + `<c:axPos val="l"/><c:majorGridlines/><c:numFmt formatCode="0.0" sourceLinked="0"/><c:tickLblPos val="nextTo"/><c:crossAx val="500001"/><c:crosses val="autoZero"/><c:crossBetween val="between"/></c:valAx></c:plotArea><c:legend><c:legendPos val="b"/><c:layout/></c:legend><c:plotVisOnly val="1"/></c:chart></c:chartSpace>`
+	entries["xl/charts/"+chartName] = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><c:chartSpace xmlns:c="http://schemas.openxmlformats.org/drawingml/2006/chart" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><c:lang val="ru-RU"/><c:chart>` + textTitle("Высотные эпюры гололёда и ветра") + `<c:autoTitleDeleted val="0"/><c:plotArea><c:layout/><c:scatterChart><c:scatterStyle val="line"/><c:varyColors val="0"/>` + series.String() + `<c:axId val="500001"/><c:axId val="500002"/></c:scatterChart>` + `<c:valAx><c:axId val="500001"/><c:scaling><c:orientation val="minMax"/><c:min val="0"/></c:scaling>` + textTitle("Интенсивность, "+s.NormUnit()) + `<c:axPos val="b"/><c:majorGridlines/><c:numFmt formatCode="0.00" sourceLinked="0"/><c:tickLblPos val="nextTo"/><c:crossAx val="500002"/><c:crosses val="autoZero"/><c:crossBetween val="between"/></c:valAx>` + `<c:valAx><c:axId val="500002"/><c:scaling><c:orientation val="minMax"/></c:scaling>` + textTitle("Высота, м") + `<c:axPos val="l"/><c:majorGridlines/><c:numFmt formatCode="0.0" sourceLinked="0"/><c:tickLblPos val="nextTo"/><c:crossAx val="500001"/><c:crosses val="autoZero"/><c:crossBetween val="between"/></c:valAx></c:plotArea><c:legend><c:legendPos val="b"/><c:layout/></c:legend><c:plotVisOnly val="1"/><c:dispBlanksAs val="gap"/></c:chart></c:chartSpace>`
 	types := entries["[Content_Types].xml"]
 	types = strings.Replace(types, "</Types>", fmt.Sprintf(`<Override PartName="/xl/drawings/%s" ContentType="application/vnd.openxmlformats-officedocument.drawing+xml"/><Override PartName="/xl/charts/%s" ContentType="application/vnd.openxmlformats-officedocument.drawingml.chart+xml"/></Types>`, drawingName, chartName), 1)
 	entries["[Content_Types].xml"] = types

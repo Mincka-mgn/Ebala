@@ -1083,20 +1083,25 @@ func tempAction(id int) bool {
 			compositionEntered()
 			selection := project.selectedReport()
 			report.SiteLines = projectSiteLines(project.Site, project)
+			siteSnapshot := project.Site
+			report.Site = &siteSnapshot
 			report.Snows = selection.Snows
 			report.Ices = selection.Ices
 			report.WeightRows = selection.WeightRows
 			report.WeightBlocks = selection.WeightBlocks
+			report.WeightInputs = selection.WeightInputs
 			report.SnowTitles = selection.SnowTitles
 			report.IceTitles = selection.IceTitles
 			report.CraneGroups = selection.CraneGroups
 			report.Sections = selection.Sections
 		} else {
 			report.SiteLines = nil
+			report.Site = nil
 			report.Snow = nil
 			report.Ice = nil
 			report.WeightRows = nil
 			report.WeightBlocks = nil
+			report.WeightInputs = nil
 		}
 		report.Project = strings.TrimSpace(get(tempProject))
 		if local {

@@ -108,7 +108,8 @@ func TestSnowV030WorkbookSeparateSheets(t *testing.T) {
 			audit = strings.Contains(string(data), "Коэффициенты")
 		}
 	}
-	if imgs != len(s.Cases)+1 || mainHasDrawing || other < len(s.Cases)+3 || !audit {
+	// Chart-based Excel retains one geometry PNG instead of one per variant.
+	if imgs != 1 || mainHasDrawing || other < len(s.Cases)+3 || !audit {
 		t.Fatalf("images %d, drawing in main %v, sheets %d, audit %v", imgs, mainHasDrawing, other, audit)
 	}
 }

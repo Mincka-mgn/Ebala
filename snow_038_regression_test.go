@@ -28,7 +28,7 @@ func Test038SnowPartialSegmentsAndExcel(t *testing.T) {
 			examined++
 			for j, v := range c.Intervals {
 				f, _ := snowExcelMuFormula(got, c, v, j+5)
-				if v.Mu == 0 && f != "=0" {
+				if v.Mu == 0 && !(f == "=0" || (strings.HasPrefix(f, "=IF(") && strings.Contains(f, ",0)"))) {
 					t.Errorf("%s / %s, interval %v: unload got %q", sh, c.Title, v, f)
 				}
 				if v.Mu > 0 && (f == "=0" || strings.Contains(f, "2*ABS(2*MOD")) {
@@ -87,7 +87,7 @@ func Test038MultiGableNormativePatterns(t *testing.T) {
 				}
 				for i, v := range c.Intervals {
 					f, _ := snowExcelMuFormula(got, c, v, i+5)
-					if v.Mu == 0 && f != "=0" {
+					if v.Mu == 0 && !(f == "=0" || (strings.HasPrefix(f, "=IF(") && strings.Contains(f, ",0)"))) {
 						t.Errorf("n=%d %s unload: %s", n, c.Title, f)
 					}
 				}

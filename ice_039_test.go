@@ -143,7 +143,7 @@ func Test039WordExcelAndDiagramIntegration(t *testing.T) {
 	if e != nil || len(plot) < 1000 {
 		t.Fatalf("diagram %v", e)
 	}
-	for _, needle := range []string{"$B$39", "$B$40", "$B$42", "$B$43", "K5/1000", "J5"} {
+	for _, needle := range []string{"$B$41", "$B$42", "$B$43", "Гололёд табл.12.3", "Ветер табл.11.1", "J5"} {
 		if !strings.Contains(iceExcelCalcData(out), needle) {
 			t.Errorf("missing excel formula %q", needle)
 		}

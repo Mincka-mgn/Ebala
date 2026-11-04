@@ -123,10 +123,13 @@ func TestSnowExports(t *testing.T) {
 		if e != nil {
 			t.Fatal(e)
 		}
-		images, found := 0, false
+		images, charts, found := 0, 0, false
 		for _, f := range r.File {
 			if strings.HasSuffix(f.Name, ".png") {
 				images++
+			}
+			if strings.HasPrefix(f.Name, "xl/charts/chart") && strings.HasSuffix(f.Name, ".xml") {
+				charts++
 			}
 			if strings.HasSuffix(f.Name, "document.xml") || strings.HasSuffix(f.Name, "sheet1.xml") {
 				handle, er := f.Open()
@@ -142,7 +145,8 @@ func TestSnowExports(t *testing.T) {
 			}
 		}
 		r.Close()
-		if images != len(s.Cases)+1 || !found {
+		// Word carries static epures; Excel contains only geometry PNG and formula-driven charts.
+		if !found || (ext == "docx" && images != len(s.Cases)+1) || (ext == "xlsx" && (images != 1 || charts != len(snowExcelVariants(s)))) {
 			t.Fatalf("%s: images=%d, cases=%d, found=%v", ext, images, len(s.Cases), found)
 		}
 		fi, _ := os.Stat(path)

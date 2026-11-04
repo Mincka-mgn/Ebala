@@ -163,7 +163,7 @@ func Test050SheetFormulasAndOrder(t *testing.T) {
 				t.Errorf("misaddressed gamma factor in %s", name)
 			}
 			fcount += strings.Count(xml, "<f>")
-			if strings.Contains(xml, "Δ μ Excel") && strings.Contains(xml, "Геометрия Б.15а") {
+			if strings.Contains(xml, "μ по формулам Excel") && strings.Contains(xml, "Геометрия Б.15а") && !strings.Contains(xml, "μ Go") {
 				seenGrid = true
 			}
 		}

@@ -28,9 +28,9 @@ func transportKind(s TempSelection) string {
 		return "Tram"
 	case strings.Contains(t, "железнодорож") || strings.Contains(t, "с14") || strings.Contains(t, "с11"):
 		return "SK"
-	case strings.Contains(t, "н14") || strings.Contains(t, "н11"):
+	case strings.Contains(t, "н14") || strings.Contains(t, "н11") || strings.Contains(t, "нк-14") || strings.Contains(t, "нк-11"):
 		return "NK"
-	case strings.Contains(t, "а14") || strings.Contains(t, "а11"):
+	case strings.Contains(t, "а14") || strings.Contains(t, "а11") || strings.Contains(t, "ак-14") || strings.Contains(t, "ак-11"):
 		return "AK"
 	}
 	return ""

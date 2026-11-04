@@ -1,0 +1,160 @@
+{
+  "books": 15,
+  "sheets": 303,
+  "formulas": 523790,
+  "charts": 88,
+  "chart_refs": 356,
+  "passed": 15,
+  "details": [
+    {
+      "file": "crane.xlsx",
+      "sheets": 9,
+      "formulas": 101,
+      "charts": 0,
+      "chart_refs": 0,
+      "rows": 63,
+      "errors": [],
+      "ok": true
+    },
+    {
+      "file": "crane_1span.xlsx",
+      "sheets": 9,
+      "formulas": 101,
+      "charts": 0,
+      "chart_refs": 0,
+      "rows": 63,
+      "errors": [],
+      "ok": true
+    },
+    {
+      "file": "crane_2span.xlsx",
+      "sheets": 9,
+      "formulas": 373,
+      "charts": 0,
+      "chart_refs": 0,
+      "rows": 128,
+      "errors": [],
+      "ok": true
+    },
+    {
+      "file": "dome.xlsx",
+      "sheets": 27,
+      "formulas": 178063,
+      "charts": 8,
+      "chart_refs": 32,
+      "rows": 14974,
+      "errors": [],
+      "ok": true
+    },
+    {
+      "file": "gable.xlsx",
+      "sheets": 23,
+      "formulas": 6402,
+      "charts": 7,
+      "chart_refs": 28,
+      "rows": 1103,
+      "errors": [],
+      "ok": true
+    },
+    {
+      "file": "gable_20.xlsx",
+      "sheets": 23,
+      "formulas": 6402,
+      "charts": 7,
+      "chart_refs": 28,
+      "rows": 1103,
+      "errors": [],
+      "ok": true
+    },
+    {
+      "file": "gable_40.xlsx",
+      "sheets": 23,
+      "formulas": 6402,
+      "charts": 7,
+      "chart_refs": 28,
+      "rows": 1103,
+      "errors": [],
+      "ok": true
+    },
+    {
+      "file": "general.xlsx",
+      "sheets": 6,
+      "formulas": 23,
+      "charts": 0,
+      "chart_refs": 0,
+      "rows": 25,
+      "errors": [],
+      "ok": true
+    },
+    {
+      "file": "ice.xlsx",
+      "sheets": 12,
+      "formulas": 14407,
+      "charts": 1,
+      "chart_refs": 8,
+      "rows": 2033,
+      "errors": [],
+      "ok": true
+    },
+    {
+      "file": "multi_gable.xlsx",
+      "sheets": 77,
+      "formulas": 91764,
+      "charts": 34,
+      "chart_refs": 136,
+      "rows": 13560,
+      "errors": [],
+      "ok": true
+    },
+    {
+      "file": "skylight.xlsx",
+      "sheets": 25,
+      "formulas": 7317,
+      "charts": 8,
+      "chart_refs": 32,
+      "rows": 1253,
+      "errors": [],
+      "ok": true
+    },
+    {
+      "file": "skylight_0.xlsx",
+      "sheets": 25,
+      "formulas": 7317,
+      "charts": 8,
+      "chart_refs": 32,
+      "rows": 1253,
+      "errors": [],
+      "ok": true
+    },
+    {
+      "file": "sphere_cone.xlsx",
+      "sheets": 29,
+      "formulas": 205077,
+      "charts": 8,
+      "chart_refs": 32,
+      "rows": 15512,
+      "errors": [],
+      "ok": true
+    },
+    {
+      "file": "transport.xlsx",
+      "sheets": 4,
+      "formulas": 24,
+      "charts": 0,
+      "chart_refs": 0,
+      "rows": 17,
+      "errors": [],
+      "ok": true
+    },
+    {
+      "file": "weight.xlsx",
+      "sheets": 2,
+      "formulas": 17,
+      "charts": 0,
+      "chart_refs": 0,
+      "rows": 11,
+      "errors": [],
+      "ok": true
+    }
+  ]
+}

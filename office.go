@@ -64,8 +64,13 @@ func cellText(addr, s string, style int) string {
 func cellNum(addr string, v float64, style int) string {
 	return fmt.Sprintf(`<c r="%s" s="%d"><v>%s</v></c>`, addr, style, xnum(v))
 }
-func cellFormula(addr, formula string, v float64, style int) string {
-	return fmt.Sprintf(`<c r="%s" s="%d"><f>%s</f><v>%s</v></c>`, addr, style, esc(formula), xnum(v))
+
+// A formula cell may NOT contain a Go-calculated cached value. The workbook
+// must recalculate in Excel; see calcPr/fullCalcOnLoad on every export path.
+// The retained numeric argument is used by older callers but intentionally
+// ignored. A future cleanup can remove it when all callers are migrated.
+func cellFormula(addr, formula string, _ float64, style int) string {
+	return fmt.Sprintf(`<c r="%s" s="%d"><f>%s</f><v></v></c>`, addr, style, esc(formula))
 }
 func xrow(idx int, cells ...string) string {
 	return fmt.Sprintf(`<row r="%d">%s</row>`, idx, strings.Join(cells, ""))
@@ -83,7 +88,7 @@ func ExportExcel(p Project, path string) error {
 		return e
 	}
 	var a strings.Builder
-	a.WriteString(xrow(1, cellText("A1", "СОБСТВЕННЫЙ ВЕС МНОГОСЛОЙНОЙ КОНСТРУКЦИИ", 1)))
+	a.WriteString(xrow(1, cellText("A1", "На этом листе приведён проверочный расчёт собственного веса многослойной конструкции.", 1)))
 	a.WriteString(xrow(2, cellText("A2", "Слой", 2), cellText("B2", "Толщина, м", 2), cellText("C2", "Уд. вес, кН/м³", 2), cellText("D2", "gн, кПа", 2), cellText("E2", "γf", 2), cellText("F2", "gр, кПа", 2), cellText("G2", "gн, кгс/м²", 2), cellText("H2", "gр, кгс/м²", 2), cellText("J2", "1 кПа в кгс/м²", 2)))
 	for i, l := range p.Layers {
 		j := i + 3
@@ -103,7 +108,7 @@ func ExportExcel(p Project, path string) error {
 	// Other sheets keep the 0.03 layout, links and formulas unchanged.
 	if p.Weight != nil {
 		a.Reset()
-		a.WriteString(xrow(1, cellText("A1", "СОБСТВЕННЫЙ ВЕС: "+p.Weight.Name, 1)))
+		a.WriteString(xrow(1, cellText("A1", "На этом листе приведён проверочный расчёт собственного веса: "+p.Weight.Name, 1)))
 		a.WriteString(xrow(2, cellText("A2", "Наименование", 2), cellText("B2", "Способ ввода", 2), cellText("C2", "Толщина, мм", 2), cellText("D2", "Плотность, кг/м³", 2), cellText("E2", "gн, кгс/м²", 2), cellText("F2", "γf", 2), cellText("G2", "gр, кгс/м²", 2), cellText("H2", "gн, кПа", 2), cellText("I2", "gр, кПа", 2)))
 		for i, l := range p.Weight.Rows {
 			j := i + 3
@@ -130,7 +135,7 @@ func ExportExcel(p Project, path string) error {
 		a.WriteString(xrow(total+5, cellText(fmt.Sprintf("A%d", total+5), "Общий γf,экв = Σgр / Σgн", 2), cellFormula(fmt.Sprintf("D%d", total+5), fmt.Sprintf("IF(D%d=0,0,F%d/D%d)", total, total, total), r.SWD/r.SWN, 4)))
 	}
 	var w strings.Builder
-	w.WriteString(xrow(1, cellText("A1", "ВЕТЕР: ТОЛЬКО УПРОЩЁННАЯ ОЦЕНКА, НЕ РАСЧЁТ ПО СП", 1)))
+	w.WriteString(xrow(1, cellText("A1", "На этом листе приведена упрощённая оценка ветровой нагрузки; нормативный ветровой модуль не реализован.", 1)))
 	w.WriteString(xrow(2, cellText("A2", "Параметр", 2), cellText("B2", "Значение", 2), cellText("C2", "Единица", 2), cellText("D2", "кгс/м²", 2), cellText("F2", "1 кПа в кгс/м²", 2)))
 	for i, x := range []struct {
 		label string
@@ -167,7 +172,7 @@ func ExportExcel(p Project, path string) error {
 		return "Из местности"
 	}(), 0)))
 	var clim strings.Builder
-	clim.WriteString(xrow(1, cellText("A1", "ХАРАКТЕРИСТИКИ МЕСТНОСТИ · СПРАВОЧНЫЕ ИСХОДНЫЕ ДАННЫЕ", 1)))
+	clim.WriteString(xrow(1, cellText("A1", "На этом листе приведены исходные характеристики местности и принятые климатические параметры.", 1)))
 	for _, v := range []struct {
 		row          int
 		title, value string

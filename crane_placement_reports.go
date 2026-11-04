@@ -167,7 +167,7 @@ func craneExcelSheetRows(rows string) string {
 	swap := strings.NewReplacer(` s="0"`, ` s="0"`, ` s="1"`, ` s="9"`, ` s="2"`, ` s="5"`, ` s="3"`, ` s="11"`, ` s="4"`, ` s="11"`)
 	return swap.Replace(rows)
 }
-func craneExcelPackage(path string, summary, details, beam string, detailWidths []float64) error {
+func craneExcelPackage(path string, summary, details, beam, inputs string, detailWidths []float64) error {
 	r, err := zip.NewReader(bytes.NewReader(craneExcelTemplate), int64(len(craneExcelTemplate)))
 	if err != nil {
 		return fmt.Errorf("шаблон Excel: %w", err)
@@ -191,13 +191,17 @@ func craneExcelPackage(path string, summary, details, beam string, detailWidths 
 	files["xl/worksheets/sheet1.xml"] = sheetXML(craneExcelSheetRows(summary), []float64{7, 57, 23, 14, 19, 25})
 	files["xl/worksheets/sheet2.xml"] = sheetXML(craneExcelSheetRows(details), detailWidths)
 	files["xl/worksheets/sheet3.xml"] = sheetXML(craneExcelSheetRows(beam), []float64{30, 19, 19, 20, 20, 20, 18, 23, 20})
+	files["xl/worksheets/sheet4.xml"] = sheetXML(craneExcelSheetRows(inputs), []float64{20, 40, 17, 18, 20, 19})
 	// Keep the original Excel-generated package and its styles, add only one genuine sheet.
-	const contentType = `<Override PartName="/xl/worksheets/sheet3.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>`
+	const contentType = `<Override PartName="/xl/worksheets/sheet3.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/worksheets/sheet4.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>`
 	files["[Content_Types].xml"] = strings.Replace(files["[Content_Types].xml"], "</Types>", contentType+"</Types>", 1)
-	const relationship = `<Relationship Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="/xl/worksheets/sheet3.xml" Id="rIdCraneBeamAudit"/>`
+	const relationship = `<Relationship Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="/xl/worksheets/sheet3.xml" Id="rIdCraneBeamAudit"/><Relationship Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="/xl/worksheets/sheet4.xml" Id="rIdCraneInput"/>`
 	files["xl/_rels/workbook.xml.rels"] = strings.Replace(files["xl/_rels/workbook.xml.rels"], "</Relationships>", relationship+"</Relationships>", 1)
 	const sheet = `<x:sheet name="Балка" sheetId="3" r:id="rIdCraneBeamAudit" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"/>`
 	files["xl/workbook.xml"] = strings.Replace(files["xl/workbook.xml"], "</x:sheets>", sheet+"</x:sheets>", 1)
+	const inputSheet = `<x:sheet name="Исходные данные" sheetId="4" r:id="rIdCraneInput" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"/>`
+	files["xl/workbook.xml"] = strings.Replace(files["xl/workbook.xml"], "<x:sheets>", "<x:sheets>"+inputSheet, 1)
+	files["xl/workbook.xml"] = strings.Replace(files["xl/workbook.xml"], "</x:workbook>", `<x:calcPr calcMode="auto" fullCalcOnLoad="1" forceFullCalc="1"/></x:workbook>`, 1)
 	return packageZip(path, files)
 }
 

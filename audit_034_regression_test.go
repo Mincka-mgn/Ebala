@@ -62,10 +62,10 @@ func TestAudit034A01ExcelAndGoPaired(t *testing.T) {
 			t.Fatal(e)
 		}
 		x := string(content)
-		if strings.Contains(x, "КОЭФФИЦИЕНТЫ") {
+		if strings.Contains(x, "На этом листе вычисляются коэффициенты ce") {
 			found = true
-			if !strings.Contains(x, "&#39;Исходные данные&#39;!B5") || !strings.Contains(x, "&#39;Исходные данные&#39;!B6") {
-				t.Fatalf("A01: Excel ce/ct not bound to actual core: %s", f.Name)
+			if !strings.Contains(x, "Исходные данные") || !strings.Contains(x, "Таблица 11.2") || !strings.Contains(x, "Таблица 10.2") {
+				t.Fatalf("A01: Excel ce/ct must compute from source cells and SP tables: %s", f.Name)
 			}
 		}
 	}

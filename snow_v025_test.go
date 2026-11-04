@@ -124,11 +124,13 @@ func TestSnowV025LanternAndExports(t *testing.T) {
 			}
 		}
 		z.Close()
-		expected := len(s.Cases)+1
-        if file == word { expected += 3 } // two joint-zone B sections and the approved plan
-        if n != expected {
-            t.Fatalf("%s images %d expected %d", file, n,expected)
-        }
+		expected := 1 // Excel retains only the roof plan; epures are native charts.
+		if file == word {
+			expected = len(s.Cases) + 4
+		} // two joint-zone B sections and the approved plan
+		if n != expected {
+			t.Fatalf("%s images %d expected %d", file, n, expected)
+		}
 	}
 	z, e := zip.OpenReader(excel)
 	if e != nil {
@@ -147,9 +149,9 @@ func TestSnowV025LanternAndExports(t *testing.T) {
 				t.Fatal(e)
 			}
 			text := string(b)
-			// The ct and gamma cells are the SECOND metadata row, despite the extra new metadata row.
-			if !strings.Contains(text, "$B$4") || !strings.Contains(text, "$D$4") {
-				t.Fatal("wrong formula references after metadata row inserted")
+			// The main load sheet must take its outputs from the independently computed coefficient and variant sheets.
+			if !strings.Contains(text, "Коэффициенты") || !strings.Contains(text, "Перечень загружений") {
+				t.Fatal("main load sheet not linked to formulas")
 			}
 		}
 	}

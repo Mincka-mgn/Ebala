@@ -1,0 +1,123 @@
+{
+  "weight": {
+    "inputs": {
+      "thickness_mm": 150,
+      "density_kg_m3": 2500,
+      "gamma_f": 1.1
+    },
+    "expected": {
+      "normative_kPa": 3.67749375,
+      "design_kPa": 4.045243125
+    },
+    "reference": "gн = 0.150·2500·9.80665/1000, gр=γf·gн"
+  },
+  "temporary_class1": {
+    "inputs": {
+      "class": 1,
+      "area_m2": 36,
+      "floors": 3
+    },
+    "expected": {
+      "phi": 0.5732050807568877
+    },
+    "reference": "СП 20.13330.2016: A1=9; минимум 0,4; несколько перекрытий"
+  },
+  "temporary_class2": {
+    "inputs": {
+      "class": 2,
+      "area_m2": 144,
+      "floors": 2
+    },
+    "expected": {
+      "phi": 0.6767766952966369
+    },
+    "reference": "СП 20.13330.2016: A2=36; минимум 0,5; несколько перекрытий"
+  },
+  "ice_height": {
+    "inputs": {
+      "height_m": 15
+    },
+    "expected": {
+      "k": 1.1
+    },
+    "reference": "СП 20.13330.2016, таблица 12.3: k10=1,0; k20=1,2"
+  },
+  "ice_diameter": {
+    "inputs": {
+      "diameter_mm": 15
+    },
+    "expected": {
+      "mu1": 0.95
+    },
+    "reference": "СП 20.13330.2016, таблица 12.4: μ10=1,0; μ20=0,9"
+  },
+  "ice_height_250m": {
+    "inputs": {
+      "height_m": 250
+    },
+    "expected": {
+      "b_other_areas_mm": 40
+    },
+    "reference": "СП 20.13330.2016, таблица 12.2: 200 м=35, 300 м=45"
+  },
+  "crane_one_span": {
+    "inputs": {
+      "span_m": 6,
+      "wheel_x_m": 3,
+      "P_kN": 100,
+      "section_x_m": 3
+    },
+    "expected": {
+      "moment_kN_m": 150
+    },
+    "reference": "Однопролётная шарнирная балка: M=P·a·b/L"
+  },
+  "crane_two_span": {
+    "inputs": {
+      "spans_m": [
+        6,
+        6
+      ],
+      "wheel_x_m": 3,
+      "P_kN": 100,
+      "section_x_m": 3
+    },
+    "expected": {
+      "M_support_per_kN_m": -0.5625,
+      "moment_kN_m": 121.875
+    },
+    "reference": "Метод трёх моментов: 2·(6+6)·M1 = -3·3·(6+3)/6; M(3)=100·(1,5+M1·0,5)"
+  },
+  "sphere_cone_linear_18deg": {
+    "inputs": {
+      "D_m": 18.0,
+      "r_m": 6.0,
+      "H_m": 12.0,
+      "alpha2_degrees": 18.0,
+      "f_m": 2.9242772660961567,
+      "z_m": 7.5
+    },
+    "expected": {
+      "linear_arc": true,
+      "height_m": 9.563102278253202,
+      "mu2_dome": 3.626707241011361
+    },
+    "reference": "Предел касательного сопряжения: R=∞, αмест=α₂, r30=r; зависимость μ₂ как в расчётном ядре"
+  },
+  "sphere_cone_linear_40deg": {
+    "inputs": {
+      "D_m": 18.0,
+      "r_m": 6.0,
+      "H_m": 12.0,
+      "alpha2_degrees": 40.0,
+      "f_m": 7.55189668059552,
+      "z_m": 7.5
+    },
+    "expected": {
+      "linear_arc": true,
+      "height_m": 5.706752766170401,
+      "mu2_dome": 1.8479135885679094
+    },
+    "reference": "Предел касательного сопряжения: R=∞, αмест=α₂, r30=r; зависимость μ₂ как в расчётном ядре"
+  }
+}

@@ -305,10 +305,18 @@ func (p Project) suggestedCurrentName(kind string, current int) string {
 }
 func tempKey(t TempSelection) string { return fmt.Sprint(t.Group, "|", t.Title, "|", t.Source) }
 func (p Project) selectedReport() TempReport {
-	r := TempReport{Version: 1}
+	// The main-window export calls selectedReport directly, bypassing the
+	// temporary-loads screen. Preserve the accepted locality snapshot here
+	// as well, otherwise its independent Excel source sheet silently vanishes.
+	site := p.Site
+	r := TempReport{Version: 1, Site: &site}
 	for _, b := range p.SavedBlocks {
 		switch b.Kind {
 		case "weight":
+			if b.WeightCalc != nil {
+				// Keep original layer/direct inputs for Excel, separately from Word results.
+				r.WeightInputs = append(r.WeightInputs, WeightReportInput{Title: b.Title, Rows: append([]WeightRow(nil), b.WeightCalc.Rows...)})
+			}
 			if b.WeightCalc != nil {
 				group := ProjectWeightBlock{Title: b.Title}
 				for _, row := range b.WeightCalc.Rows {

@@ -16,17 +16,17 @@ func ExportWeightExcel(w WeightCalc, path string) error {
 	if strings.TrimSpace(w.Name) != "" {
 		title += ": " + w.Name
 	}
-	a.WriteString(xrow(1, cellText("A1", title, 1)))
+	a.WriteString(xrow(1, cellText("A1", "На этом листе приведён подробный проверочный расчёт «"+title+"»: формулы ссылаются на отдельный лист исходных данных.", 1)))
 	a.WriteString(xrow(2, cellText("A2", "Наименование", 2), cellText("B2", "Способ расчёта", 2), cellText("C2", "t, мм", 2), cellText("D2", "ρ, кг/м³", 2), cellText("E2", "gн, кгс/м²", 2), cellText("F2", "γf", 2), cellText("G2", "gр, кгс/м²", 2), cellText("H2", "gн, кПа", 2), cellText("I2", "gр, кПа", 2)))
 	for i, r := range w.Rows {
 		n := i + 3
 		cs := []string{cellText(fmt.Sprintf("A%d", n), r.Name, 0), cellText(fmt.Sprintf("B%d", n), map[bool]string{true: "По толщине", false: "Готовая нагрузка"}[r.Kind == "layer"], 0)}
 		if r.Kind == "layer" {
-			cs = append(cs, cellNum(fmt.Sprintf("C%d", n), r.Thickness, 5), cellNum(fmt.Sprintf("D%d", n), r.Density, 5), cellFormula(fmt.Sprintf("E%d", n), fmt.Sprintf("C%d*D%d/1000", n, n), r.NormKgf(), 5))
+			cs = append(cs, cellFormula(fmt.Sprintf("C%d", n), fmt.Sprintf("'Исходные данные'!C%d", n), 0, 5), cellFormula(fmt.Sprintf("D%d", n), fmt.Sprintf("'Исходные данные'!D%d", n), 0, 5), cellFormula(fmt.Sprintf("E%d", n), fmt.Sprintf("C%d*D%d/1000", n, n), r.NormKgf(), 5))
 		} else {
-			cs = append(cs, cellNum(fmt.Sprintf("E%d", n), r.GNorm, 5))
+			cs = append(cs, cellFormula(fmt.Sprintf("E%d", n), fmt.Sprintf("'Исходные данные'!E%d", n), 0, 5))
 		}
-		cs = append(cs, cellNum(fmt.Sprintf("F%d", n), r.Gamma, 3), cellFormula(fmt.Sprintf("G%d", n), fmt.Sprintf("E%d*F%d", n, n), r.NormKgf()*r.Gamma, 5), cellFormula(fmt.Sprintf("H%d", n), fmt.Sprintf("E%d*0.00980665", n), kgfM2ToKpa(r.NormKgf()), 3), cellFormula(fmt.Sprintf("I%d", n), fmt.Sprintf("G%d*0.00980665", n), kgfM2ToKpa(r.NormKgf()*r.Gamma), 3))
+		cs = append(cs, cellFormula(fmt.Sprintf("F%d", n), fmt.Sprintf("'Исходные данные'!F%d", n), 0, 3), cellFormula(fmt.Sprintf("G%d", n), fmt.Sprintf("E%d*F%d", n, n), r.NormKgf()*r.Gamma, 5), cellFormula(fmt.Sprintf("H%d", n), fmt.Sprintf("E%d*0.00980665", n), kgfM2ToKpa(r.NormKgf()), 3), cellFormula(fmt.Sprintf("I%d", n), fmt.Sprintf("G%d*0.00980665", n), kgfM2ToKpa(r.NormKgf()*r.Gamma), 3))
 		a.WriteString(xrow(n, cs...))
 	}
 	t := len(w.Rows) + 3
@@ -45,14 +45,37 @@ func ExportWeightExcel(w WeightCalc, path string) error {
 	a.WriteString(xrow(t, cellText(fmt.Sprintf("A%d", t), "ИТОГО", 2), cellFormula(fmt.Sprintf("E%d", t), fd, norm, 6), cellFormula(fmt.Sprintf("G%d", t), fg, design, 6), cellFormula(fmt.Sprintf("H%d", t), fh, kgfM2ToKpa(norm), 4), cellFormula(fmt.Sprintf("I%d", t), fi, kgfM2ToKpa(design), 4)))
 	a.WriteString(xrow(t+2, cellText(fmt.Sprintf("A%d", t+2), "Общий коэффициент γf = Σgр / Σgн", 2), cellFormula(fmt.Sprintf("E%d", t+2), fmt.Sprintf(`IF(E%d=0,"",G%d/E%d)`, t, t, t), eq, 4)))
 	a.WriteString(xrow(t+3, cellText(fmt.Sprintf("A%d", t+3), "gр = gн × γf,экв;  gн = gр / γf,экв", 0)))
-	return packageZip(path, map[string]string{
+	entries := map[string]string{
 		"[Content_Types].xml":        `<?xml version="1.0" encoding="UTF-8"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>`,
 		"_rels/.rels":                `<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>`,
-		"xl/workbook.xml":            `<?xml version="1.0" encoding="UTF-8"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Собственный вес" sheetId="1" r:id="rId1"/></sheets><calcPr calcMode="auto" fullCalcOnLoad="1"/></workbook>`,
+		"xl/workbook.xml":            `<?xml version="1.0" encoding="UTF-8"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Собственный вес" sheetId="1" r:id="rId1"/></sheets><calcPr calcMode="auto" fullCalcOnLoad="1" forceFullCalc="1"/></workbook>`,
 		"xl/_rels/workbook.xml.rels": `<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>`,
 		"xl/styles.xml":              `<?xml version="1.0" encoding="UTF-8"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><numFmts count="2"><numFmt numFmtId="164" formatCode="0.0000"/><numFmt numFmtId="165" formatCode="0.0"/></numFmts><fonts count="2"><font><sz val="10"/><name val="Arial"/></font><font><b/><sz val="10"/><name val="Arial"/></font></fonts><fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FFE8EEF5"/></patternFill></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="7"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0"/><xf numFmtId="164" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="164" fontId="1" fillId="2" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="165" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="165" fontId="1" fillId="2" borderId="0" xfId="0" applyNumberFormat="1"/></cellXfs></styleSheet>`,
 		"xl/worksheets/sheet1.xml":   sheetXML(a.String(), []float64{48, 23, 15, 18, 20, 12, 20, 19, 19}),
-	})
+	}
+	var inp strings.Builder
+	inp.WriteString(tempExcelInputRow(1, "На этом листе приведены исходные данные собственного веса. Изменение толщины, плотности, готовой нагрузки или γf автоматически пересчитывает расчётный лист."))
+	inp.WriteString(tempExcelInputRow(2, "Наименование", "Тип", "t, мм", "ρ, кг/м³", "gн напрямую, кгс/м²", "γf"))
+	for i, row := range w.Rows {
+		k := i + 3
+		kind := "Готовая нагрузка"
+		if row.Kind == "layer" {
+			kind = "По толщине"
+		}
+		v := []string{row.Name, kind, "", "", "", xnum(row.Gamma)}
+		if row.Kind == "layer" {
+			v[2] = xnum(row.Thickness)
+			v[3] = xnum(row.Density)
+		} else {
+			v[4] = xnum(row.GNorm)
+		}
+		inp.WriteString(tempExcelInputRow(k, v...))
+	}
+	if _, err := snowExcelSheet(entries, "Исходные данные", inp.String(), false); err != nil {
+		return err
+	}
+	snowExcelReorderSheets(entries)
+	return packageZip(path, entries)
 }
 
 func ExportWeightWord(w WeightCalc, path string) error {

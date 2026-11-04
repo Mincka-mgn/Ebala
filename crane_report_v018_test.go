@@ -59,7 +59,7 @@ func Test018ReportPickedCraneHasKindAndDistances(t *testing.T) {
 			if strings.Contains(string(data), "двухпролётный") {
 				foundKind = true
 			}
-			if strings.Contains(string(data), "Межколёсные") || strings.Contains(string(data), "Расстояния") {
+			if strings.Contains(string(data), "Межколёсные") || strings.Contains(string(data), "Расстояния") || strings.Contains(string(data), "Шаг до предыдущего") {
 				foundTitle = true
 			}
 		}

@@ -24,8 +24,8 @@ func TestAudit037ExcelVaultPartial(t *testing.T) {
 		for _, v := range c.Intervals {
 			if v.X1 >= s.Span/2 && v.Mu == 0 {
 				f, _ := snowExcelMuFormula(out, c, v, 15)
-				// Normative partial case cannot have a nonzero load in unloaded half.
-				if !strings.HasPrefix(f, "=0") {
+				// Excel must compute the unloaded half dynamically from editable span and coordinate, not copy a Go-derived constant.
+				if !strings.HasPrefix(f, "=IF(") || !strings.Contains(f, ",0)") || !strings.Contains(f, "Исходные данные") {
 					t.Errorf("vault partial: Go mu=0 at x=[%.3f,%.3f], Excel generated %s", v.X1, v.X2, f)
 				}
 				return // The audit fixture forgot to return on a successful match.
@@ -53,7 +53,7 @@ func TestAudit037ExcelMultivaultPartial(t *testing.T) {
 		for _, v := range c.Intervals {
 			if v.Mu == 0 && v.X1 == 0 {
 				f, _ := snowExcelMuFormula(out, c, v, 15)
-				if !strings.HasPrefix(f, "=0") {
+				if !strings.HasPrefix(f, "=IF(") || !strings.Contains(f, ",0)") || !strings.Contains(f, "Исходные данные") {
 					t.Errorf("multivault partial: Go mu=0 at [%.2f,%.2f], Excel generated %s", v.X1, v.X2, f)
 				}
 				return // The audit fixture forgot to return on a successful match.

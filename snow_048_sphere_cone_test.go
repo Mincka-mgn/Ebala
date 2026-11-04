@@ -122,7 +122,7 @@ func Test048SphereConeWordExcel(t *testing.T) {
 				if strings.Contains(string(data), "Б.15а") || strings.Contains(string(data), "Сфера с конусом") {
 					foundB15a = true
 				}
-				if strings.Contains(string(data), "Пространственный вариант по β") {
+				if strings.Contains(string(data), "пространственные коэффициенты") || strings.Contains(string(data), "Сетка Б.15а") || strings.Contains(string(data), "Пространственный вариант по β") {
 					foundPolar = true
 				}
 			}

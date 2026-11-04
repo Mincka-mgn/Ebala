@@ -40,6 +40,14 @@ type TempSelection struct {
 	Status string                 `json:"status,omitempty"`
 	Wheels []TempWheel            `json:"wheels,omitempty"`
 }
+
+// WeightReportInput preserves editable layer geometry for the independent Excel ledger.
+// SavedReportBlock already contains these input rows; no change to project files.
+type WeightReportInput struct {
+	Title string      `json:"title"`
+	Rows  []WeightRow `json:"rows"`
+}
+
 type TempReport struct {
 	Snows        []SnowCalc           `json:"snows,omitempty"`
 	Ices         []IceLoadCalc        `json:"ices,omitempty"`
@@ -49,8 +57,10 @@ type TempReport struct {
 	Project      string               `json:"project"`
 	Sections     []TempSelection      `json:"sections"`
 	SiteLines    []string             `json:"site_lines,omitempty"`
+	Site         *Site                `json:"site_input,omitempty"`
 	WeightRows   []ProjectWeightLine  `json:"weight_rows,omitempty"`
 	WeightBlocks []ProjectWeightBlock `json:"weight_blocks,omitempty"`
+	WeightInputs []WeightReportInput  `json:"weight_inputs,omitempty"`
 	CraneGroups  []CraneReportGroup   `json:"crane_groups,omitempty"`
 	SnowTitles   []string             `json:"snow_titles,omitempty"`
 	IceTitles    []string             `json:"ice_titles,omitempty"`

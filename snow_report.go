@@ -297,33 +297,31 @@ func snowWordAppend(s SnowCalc, imageCount *int, rel *strings.Builder, entries m
 
 // snowExcelAppend writes only auditable numeric cells on the main worksheet.
 // Graphics are placed on dedicated worksheets by snowExcelAddFigureSheets.
-func snowExcelAppend(s SnowCalc, add func(...string), row *int, imageCount *int, rels, drawing *strings.Builder, entries map[string]string) error {
+// snowExcelAppend is a formula-linked overview; no evaluated Go loads are embedded.
+// The per-variant worksheets are the only source for derived μ and load cells.
+func snowExcelAppend(s SnowCalc, add func(...string), row *int, imageCount *int, rels, drawing *strings.Builder, entries map[string]string, suffix string) error {
+	input := "'Исходные данные" + suffix + "'!"
+	coef := "'Коэффициенты" + suffix + "'!"
 	add("СНЕГОВЫЕ НАГРУЗКИ · СП 20.13330.2016")
 	add("Тип покрытия", s.ReportName(), "Снеговой район", s.Region)
-	add("Sg, кПа", "='Коэффициенты'!B2", "ce", "='Коэффициенты'!B19", "ct", "='Коэффициенты'!B21", "γf", "='Коэффициенты'!B3")
-	factors := *row
-	add("L, м", xnum(s.Span), "B, м", xnum(s.Width), "α, град", xnum(s.Angle), "h/f, м", xnum(s.Rise))
-	add("H конька, м", xnum(s.RoofHeight), "T января", snowTemperatureLabelCommon(s), "V холодного периода", snowWindLabelCommon(s))
-	add("Источник климата", snowClimateOrigin(s))
-	add("Расчётное уравнение", "Sн = μ × ce × ct × Sg", "Sр = γf × Sн", "Sпониж = 0,5 × μ × Sg (если допускается)")
-	add("Нормативные данные", "ce и ct определяются по разделу 10 СП 20.13330.2016; μ — по конкретной схеме приложения Б")
-	add("Результаты", fmt.Sprintf("Выявлено %d возможных взаимоисключающих нормативных вариантов снегового загружения", len(s.Cases)))
-	for i, c := range s.Cases {
+	add("Sg, кПа", "="+input+"B3", "ce", "="+coef+"B19", "ct", "="+coef+"B21", "γf", "="+input+"B4")
+	add("Геометрия", "="+input+"B11", "Радиус/ширина", "="+input+"B12", "Уклон, град", "="+input+"B13", "Высота, м", "="+input+"B10")
+	add("Расчётное уравнение", "Sн=μ·ce·ct·Sg", "Sр=γf·Sн", "Каждое μ рассчитано на листе варианта")
+	plan := snowExcelVariants(s)
+	catalog := "'Перечень загружений" + suffix + "'!"
+	add("Итоги загружений", "="+catalog+"B"+fmt.Sprint(len(plan)+4), "Отдельные варианты не суммируются")
+	for i, item := range plan {
+		c := item.Case
 		add("")
 		add(fmt.Sprintf("ВАРИАНТ %d: %s", i+1, c.Title), c.Source)
-		add("Основание и пояснение", c.Note)
-		add("От, м", "До, м", "μ", "Sн, кПа", "Sр, кПа", "Sпониж, кПа")
-		for _, v := range c.Intervals {
-			next := *row + 1
-			// B:factors = Sg, D:factors = ce, F:factors = ct, H:factors = γf.
-			q := fmt.Sprintf("=C%d*$B$%d*$D$%d*$F$%d", next, factors, factors, factors)
-			design := fmt.Sprintf("=D%d*$H$%d", next, factors)
-			add(xnum(v.X1), xnum(v.X2), xnum(v.Mu), q, design, snowReducedFormula(s, next, factors))
-		}
+		catalogRow := fmt.Sprint(i + 3)
+		add("Применяется", "="+catalog+"D"+catalogRow, "μmax", "="+catalog+"E"+catalogRow, "Sн,max, кПа", "="+catalog+"F"+catalogRow, "Sр,max, кПа", "="+catalog+"G"+catalogRow)
+		// Numeric samples are on the live variant sheet. The overview must
+		// not inherit the original Go interval count or fixed interval geometry.
 	}
-	add("Пониженная нормативная нагрузка", snowReducedLabelCommon(s))
 	return nil
 }
+
 func snowClimateOrigin(s SnowCalc) string {
 	if s.ClimateOrigin == "sp131" {
 		return "СП 131.13330.2025; " + s.ClimateReferenceRegion + "; " + s.ClimateReferencePlace

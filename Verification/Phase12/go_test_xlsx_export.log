@@ -1,0 +1,6 @@
+=== RUN   TestExcelPhase10Fixture
+--- PASS: TestExcelPhase10Fixture (27.60s)
+=== RUN   TestExcelPhase11Fixtures
+--- PASS: TestExcelPhase11Fixtures (1.27s)
+PASS
+ok  	_/mnt/data/Ebala_Excel_Phase12_Sources	28.892s

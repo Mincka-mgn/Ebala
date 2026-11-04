@@ -142,7 +142,10 @@ func Test043PlacementGroupPersistAndOutput(t *testing.T) {
 			}
 		}
 		z.Close()
-		if countPNG < 2 {
+		// The Word contains physical placement drawings. The XLSX is
+		// intentionally formula-driven and does not duplicate static PNG
+		// charts that become stale when the engineer edits source inputs.
+		if ext == "docx" && countPNG < 2 {
 			t.Fatalf("%s missing placement drawings (%d)", ext, countPNG)
 		}
 		if !strings.Contains(output, "Балка 6 м") || !strings.Contains(output, "Балка 12 м") {

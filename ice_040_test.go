@@ -59,7 +59,7 @@ func Test040ExcelNativeChartAndFormulaReferences(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		var chart, inputs, calc string
+		var chart, inputs, calc, muTable string
 		for _, f := range z.File {
 			r, e := f.Open()
 			if e != nil {
@@ -103,26 +103,32 @@ func Test040ExcelNativeChartAndFormulaReferences(t *testing.T) {
 			if strings.HasPrefix(f.Name, "xl/charts/chart") {
 				chart = string(b)
 			}
-			if strings.Contains(f.Name, "snow2.xml") {
-				inputs = string(b)
-			}
-			if strings.Contains(f.Name, "snow3.xml") {
-				calc = string(b)
+			if strings.HasPrefix(f.Name, "xl/worksheets/") {
+				x := string(b)
+				if strings.Contains(x, "Диаметр элемента без гололёда") {
+					inputs = x
+				}
+				if strings.Contains(x, "Гололёд нормативный") {
+					calc = x
+				}
+				if strings.Contains(x, "таблица 12.4") {
+					muTable = x
+				}
 			}
 		}
 		z.Close()
 		if !strings.Contains(chart, "<c:scatterChart>") || !strings.Contains(chart, "Гололёд - расчёт") {
 			t.Fatal("No editable XY chart linked to calculation cells")
 		}
-		if strings.Contains(inputs, "мм / μ1") || !strings.Contains(inputs, "Диаметр провода или троса") {
+		if strings.Contains(inputs, "мм / μ1") || !strings.Contains(inputs, "Диаметр элемента без гололёда") {
 			t.Fatal("Unexplained diameter table")
 		}
 		if !strings.Contains(calc, "Гололёд - исходные") || !strings.Contains(calc, "Гололёд нормативный") {
 			t.Fatal("Calculation formula references or headings missing")
 		}
 		if shape == "round_wire" {
-			if !strings.Contains(inputs, "IF(B6&lt;=A20") {
-				t.Fatal("Mu1 interpolation should guard lower boundary")
+			if !strings.Contains(muTable, "IF(A12&lt;=") || !strings.Contains(calc, "Гололёд табл.12.4") {
+				t.Fatal("Mu1 interpolation must refer to live normative table 12.4")
 			}
 			for _, p := range out.Points {
 				if p.Mu1 != .6 {
@@ -252,7 +258,8 @@ func Test040CombinedSnowIceExport(t *testing.T) {
 			drawCount++
 		}
 	}
-	if chartCount != 1 || drawCount < 2 {
+	// Native snow charts supplement the original ice chart; they replace static PNG epures.
+	if chartCount < 1+len(s.Cases) || drawCount < chartCount {
 		t.Fatalf("combined chart/drawings: chart %d, drawing %d", chartCount, drawCount)
 	}
 	if !seen["xl/workbook.xml"] || !seen["xl/_rels/workbook.xml.rels"] {

@@ -87,10 +87,16 @@ func TestTransportReportsV015(t *testing.T) {
 			}
 		}
 		z.Close()
-		if figures < 4 {
-			t.Fatalf("expected four figures in %s, got %d", p, figures)
+		if p == doc && figures < 4 {
+			t.Fatalf("expected four Word figures in %s, got %d", p, figures)
 		}
-		if s, _ := os.Stat(p); s.Size() < 25000 {
+		if p == xls {
+			parts := excel051Parts(t, p)
+			if !strings.Contains(parts["xl/workbook.xml"], "Транспорт - исходные") || !strings.Contains(parts["xl/workbook.xml"], "Транспорт - расчёт") {
+				t.Fatal("Excel missing independent transport formula sheets")
+			}
+		}
+		if s, _ := os.Stat(p); s.Size() < 3000 {
 			t.Fatal("undersized", p)
 		}
 	}

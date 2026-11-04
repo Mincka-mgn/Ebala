@@ -39,7 +39,7 @@ var (
 	pGetOpen     = c32.NewProc("GetOpenFileNameW")
 )
 
-const ebalaVersion = "0.50"
+const ebalaVersion = "0.53"
 const ebalaTitle = "Ebala " + ebalaVersion
 
 const (
@@ -712,7 +712,11 @@ func runAction(id int) {
 		if path == "" {
 			return
 		}
-		saveAndNotify(path, func(file string) error { return ExportExcel(project, file) })
+		// User exports always use the independent formula-based load ledger.
+		// No fallback to the historical demonstration workbook with copied Go results.
+		saveAndNotify(path, func(file string) error {
+			return exportTempExcel(project.selectedReport(), file)
+		})
 	case 305:
 		if activePage == "site" {
 			s, err := currentSiteForReport()

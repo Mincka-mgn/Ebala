@@ -13,7 +13,17 @@ func tempXML(s string) string {
 	xml.EscapeText(&b, []byte(s))
 	return b.String()
 }
+
+// A literal marker distinguishes a user-entered name (possibly beginning
+// with '=') from the actual formula expressions written by our generator.
+// The marker is removed before it reaches OOXML; no XML control bytes leak.
+func tempExcelLiteral(value string) string { return "\x00" + value }
+
 func tempExcelCell(row, col int, value string) string {
+	if strings.HasPrefix(value, "\x00") {
+		// A name remains a string even when it looks numeric or starts '='.
+		return fmt.Sprintf(`<c r="%c%d" t="inlineStr"><is><t>%s</t></is></c>`, rune(65+col), row, tempXML(strings.TrimPrefix(value, "\x00")))
+	}
 	if strings.HasPrefix(value, "=") {
 		return fmt.Sprintf(`<c r="%c%d"><f>%s</f><v></v></c>`, rune(65+col), row, tempXML(strings.TrimPrefix(value, "=")))
 	}
@@ -22,6 +32,33 @@ func tempExcelCell(row, col int, value string) string {
 	}
 	return fmt.Sprintf(`<c r="%c%d" t="str"><v>%s</v></c>`, rune(65+col), row, tempXML(value))
 }
+
+// tempExcelInputRow writes a user/accepted SOURCE row. Unlike tempExcelRow,
+// user-entered strings are never interpreted as Excel formulas. This keeps
+// input sheets independent of precomputed Go values and prevents formula
+// injection via a user-defined layer, load or crane name beginning with "=".
+// Numeric inputs remain numeric cells so Excel formulas can reference them.
+func tempExcelInputCell(row, col int, value string) string {
+	address := fmt.Sprintf("%c%d", rune(65+col), row)
+	if number, err := strconv.ParseFloat(strings.TrimSpace(value), 64); err == nil && !math.IsNaN(number) && !math.IsInf(number, 0) {
+		return fmt.Sprintf(`<c r="%s"><v>%s</v></c>`, address, strconv.FormatFloat(number, 'f', -1, 64))
+	}
+	return fmt.Sprintf(`<c r="%s" t="inlineStr"><is><t>%s</t></is></c>`, address, tempXML(value))
+}
+
+func tempExcelInputRow(row int, cells ...string) string {
+	if row == 1 && len(cells) > 0 && !strings.HasPrefix(cells[0], "На этом листе") {
+		cells[0] = "На этом листе приведены исходные данные: " + cells[0]
+	}
+	var b strings.Builder
+	b.WriteString(fmt.Sprintf(`<row r="%d">`, row))
+	for col, value := range cells {
+		b.WriteString(tempExcelInputCell(row, col, value))
+	}
+	b.WriteString(`</row>`)
+	return b.String()
+}
+
 func tempExcelRow(row int, cells ...string) string {
 	if row == 1 && len(cells) > 0 && !strings.HasPrefix(cells[0], "На этом листе") {
 		cells[0] = "На этом листе приведены данные раздела: " + cells[0]
@@ -51,7 +88,7 @@ func exportTempExcel(r TempReport, path string) error {
 			regular = append(regular, s)
 		}
 	}
-	if len(regular)+len(transport)+len(cranes)+len(r.WeightRows)+len(r.SiteLines)+len(r.Snows)+len(r.Ices)+len(r.CraneGroups) == 0 && r.Snow == nil && r.Ice == nil {
+	if len(regular)+len(transport)+len(cranes)+len(r.WeightRows)+len(r.WeightBlocks)+len(r.SiteLines)+len(r.Snows)+len(r.Ices)+len(r.CraneGroups) == 0 && r.Snow == nil && r.Ice == nil {
 		return fmt.Errorf("Ведомость пуста")
 	}
 	var w strings.Builder
@@ -60,43 +97,34 @@ func exportTempExcel(r TempReport, path string) error {
 	imageEntries := map[string]string{}
 	rowNum := 0
 	add := func(vals ...string) { rowNum++; w.WriteString(tempExcelRow(rowNum, vals...)) }
-	add(func() string {
-		if len(r.WeightRows)+len(r.SiteLines) > 0 {
-			return "ОБЩАЯ ВЕДОМОСТЬ НАГРУЗОК"
-		}
-		if r.Snow != nil && r.Ice == nil && len(regular)+len(transport)+len(cranes) == 0 {
-			return "РАСЧЁТ СНЕГОВЫХ НАГРУЗОК"
-		}
-		if r.Ice != nil && r.Snow == nil && len(regular)+len(transport)+len(cranes) == 0 {
-			return "РАСЧЁТ ГОЛОЛЁДНЫХ НАГРУЗОК"
-		}
-		return "ВРЕМЕННЫЕ И ТРАНСПОРТНЫЕ НАГРУЗКИ"
-	}())
-	if r.Project != "" {
-		add("Объект", r.Project)
-	}
+	// Final results are intentionally placed AFTER source, normative and
+	// formula worksheets. This worksheet is a navigation/summary view, not
+	// a second place to store Go-computed load values.
+	add("На этом листе приведены итоговые загружения и ссылки на расчётные листы. Исходные данные редактируются только на листах исходных данных; коэффициенты и нагрузки вычисляются формулами Excel.")
 	if len(r.SiteLines) > 0 {
 		add("ХАРАКТЕРИСТИКИ МЕСТНОСТИ")
 		for _, line := range r.SiteLines {
-			add(line)
+			add(tempExcelLiteral(line))
 		}
 	}
 	if len(r.WeightRows) > 0 || len(r.WeightBlocks) > 0 {
 		add("ПОСТОЯННЫЕ НАГРУЗКИ. СОБСТВЕННЫЙ ВЕС")
+		ix := 3
 		for _, group := range weightReportBlocks(r) {
-			add(group.Title)
+			add(tempExcelLiteral(group.Title))
 			add("№", "Наименование", "Нормативная, кПа", "γf", "Расчётная, кПа")
-			norm, design := 0.0, 0.0
-			for i, x := range group.Rows {
-				norm += x.Norm
-				design += x.Design
-				add(fmt.Sprint(i+1), x.Name, tempRU(x.Norm, 4), tempRU(x.Gamma, 3), tempRU(x.Design, 4))
+			begin := ix
+			for i, line := range group.Rows {
+				add(fmt.Sprint(i+1), tempExcelLiteral(line.Name), fmt.Sprintf("='Собственный вес - расчёт'!C%d", ix), fmt.Sprintf("='Собственный вес - расчёт'!D%d", ix), fmt.Sprintf("='Собственный вес - расчёт'!E%d", ix))
+				ix++
 			}
-			add("", "ИТОГО", tempRU(norm, 4), "", tempRU(design, 4))
+			if ix > begin {
+				add("", "ИТОГО", fmt.Sprintf("=SUM('Собственный вес - расчёт'!C%d:C%d)", begin, ix-1), "", fmt.Sprintf("=SUM('Собственный вес - расчёт'!E%d:E%d)", begin, ix-1))
+			}
 		}
 	}
 	if r.Snow != nil {
-		if err := snowExcelAppend(*r.Snow, add, &rowNum, &imageCount, &imageRels, &drawing, imageEntries); err != nil {
+		if err := snowExcelAppend(*r.Snow, add, &rowNum, &imageCount, &imageRels, &drawing, imageEntries, ""); err != nil {
 			return err
 		}
 	}
@@ -105,94 +133,103 @@ func exportTempExcel(r TempReport, path string) error {
 	}
 	for idx, ice := range r.Ices {
 		if idx < len(r.IceTitles) {
-			add("Гололёдная нагрузка", r.IceTitles[idx])
+			add("Гололёдная нагрузка", tempExcelLiteral(r.IceTitles[idx]))
 		}
 		iceExcelAppendIndexed(ice, idx+1, add)
 	}
 	for i, snow := range r.Snows {
 		if i < len(r.SnowTitles) {
-			add("Снеговая нагрузка", r.SnowTitles[i])
+			add("Снеговая нагрузка", tempExcelLiteral(r.SnowTitles[i]))
 		}
-		if err := snowExcelAppend(snow, add, &rowNum, &imageCount, &imageRels, &drawing, imageEntries); err != nil {
+		if err := snowExcelAppend(snow, add, &rowNum, &imageCount, &imageRels, &drawing, imageEntries, fmt.Sprintf(" %d", i+1)); err != nil {
 			return err
 		}
 	}
 	if len(regular) > 0 {
 		add("Временные нагрузки (СП 20.13330.2016)")
-		add("№", "Наименование", "Нормативная (кгс/м²; кгс/м; кгс)", "Нормативная (кПа; кН/м; кН)", "γf", "Расчётная (кгс/м²; кгс/м; кгс)", "Расчётная (кПа; кН/м; кН)", "Основание")
-		for i, s := range regular {
-			unit := tempNumberText(s.Params["unit"])
-			factor := kgfPerKN
-			if unit == "кПа" {
-				factor = kpaToKgfM2(1)
+		add("№", "Наименование", "Нормативная в кгс", "Нормативная в кПа/кН", "γf", "Расчётная в кгс", "Расчётная в кПа/кН", "Основание")
+		for i, sel := range regular {
+			row := i + 3
+			undefined := false
+			if v, ok := sel.Params["is_defined"].(bool); ok && !v {
+				undefined = true
 			}
-			if def, ok := s.Params["is_defined"].(bool); ok && !def {
-				add(fmt.Sprint(i+1), s.Title, "По заданию", "", tempRU(tempNumber(s, "gamma_f"), 2), "По заданию", "", tempReadableSource(s.Source))
+			if undefined {
+				add(fmt.Sprint(i+1), tempExcelLiteral(sel.Title), "По заданию", "", "='Временные - исходные'!C"+strconv.Itoa(row), "По заданию", "", tempExcelLiteral(tempReadableSource(sel.Source)))
 				continue
 			}
-			n, d := tempNumber(s, "normative_reduced"), tempNumber(s, "design_reduced")
-			technical := "кгс"
-			if unit == "кПа" {
-				technical = "кгс/м²"
-			} else if unit == "кН/м" {
-				technical = "кгс/м"
-			}
-			add(fmt.Sprint(i+1), s.Title, tempRU(n*factor, 2)+" "+technical, tempRU(n, 3)+" "+unit, tempRU(tempNumber(s, "gamma_f"), 2), tempRU(d*factor, 2)+" "+technical, tempRU(d, 3)+" "+unit, tempReadableSource(s.Source))
+			c := "'Временные - расчёт'!"
+			add(fmt.Sprint(i+1), tempExcelLiteral(sel.Title), fmt.Sprintf("=%sG%d", c, row), fmt.Sprintf("=%sD%d", c, row), fmt.Sprintf("=%sE%d", c, row), fmt.Sprintf("=%sH%d", c, row), fmt.Sprintf("=%sF%d", c, row), tempExcelLiteral(tempReadableSource(sel.Source)))
 		}
 	}
 	if len(transport) > 0 {
 		add("Транспортные нагрузки (СП 35.13330.2011)")
 		add("№", "Транспортная нагрузка", "Общие данные", "Нормативные нагрузки", "γf", "Расчётные нагрузки", "Основание")
 		for i, s := range transport {
-			d, n, g, c := tempTransportFields(s)
-			add(fmt.Sprint(i+1), s.Title, d, n, g, c, tempReadableSource(s.Source))
+			r := i + 3
+			calc := "'Транспорт - расчёт'!"
+			add(fmt.Sprint(i+1), tempExcelLiteral(s.Title), fmt.Sprintf("=%sB%d", calc, r), fmt.Sprintf("=%sC%d", calc, r), fmt.Sprintf("=%sE%d", calc, r), fmt.Sprintf("=%sF%d", calc, r), tempExcelLiteral(tempReadableSource(s.Source)))
 		}
 	}
 	if len(transport) > 0 {
-		add("")
-		add("ПОДРОБНЫЕ КАРТОЧКИ ТРАНСПОРТНЫХ НАГРУЗОК")
-		for _, selected := range transport {
-			tempExcelTransportDetail(selected, add, &rowNum, &imageCount, &imageRels, &drawing, imageEntries)
-		}
+		add("Подробные формулы транспортных схем", "См. листы «Транспорт - исходные» и «Транспорт - расчёт»")
 	}
+	craneWheelRow := 3
 	if len(cranes) > 0 {
 		add("Мостовые краны")
-		add("№", "Кран", "Тип крана", "Колёс на путь", "Колёсные нагрузки, кН (тс)", "Межколёсные расстояния, мм", "Основание")
-		for i, s := range cranes {
-			add(fmt.Sprint(i+1), s.Title, tempCraneKind(s), fmt.Sprint(len(s.Wheels)), tempForcesBoth(s), tempSteps(s), tempReadableSource(s.Source))
+		add("№ крана", "Кран", "Тип", "№ колеса", "Pн, кН", "Pн, тс", "x, мм", "Шаг, мм")
+		for i, sel := range cranes {
+			for j := range sel.Wheels {
+				add(fmt.Sprint(i+1), tempExcelLiteral(sel.Title), tempCraneKind(sel), fmt.Sprint(j+1),
+					fmt.Sprintf("='Краны - расчёт'!E%d", craneWheelRow),
+					fmt.Sprintf("='Краны - расчёт'!F%d", craneWheelRow),
+					fmt.Sprintf("='Краны - расчёт'!D%d", craneWheelRow),
+					fmt.Sprintf("='Краны - расчёт'!G%d", craneWheelRow))
+				craneWheelRow++
+			}
 		}
 	}
+	placementIndex := 0
 	for _, group := range r.CraneGroups {
-		add("МОСТОВЫЕ КРАНЫ", group.Title)
-		add("№", "Кран", "Тип", "Колёсные нагрузки, кН (тс)", "Расстояния между колёсами, мм")
+		add("МОСТОВЫЕ КРАНЫ", tempExcelLiteral(group.Title))
+		add("№ крана", "Кран", "Тип", "№ колеса", "Pн, кН", "Pн, тс", "x, мм", "Шаг, мм")
 		for i, c := range group.Cranes {
-			add(fmt.Sprint(i+1), c.Title, tempCraneKind(c), tempForcesBoth(c), tempSteps(c))
+			for j := range c.Wheels {
+				add(fmt.Sprint(i+1), tempExcelLiteral(c.Title), tempCraneKind(c), fmt.Sprint(j+1),
+					fmt.Sprintf("='Краны - расчёт'!E%d", craneWheelRow),
+					fmt.Sprintf("='Краны - расчёт'!F%d", craneWheelRow),
+					fmt.Sprintf("='Краны - расчёт'!D%d", craneWheelRow),
+					fmt.Sprintf("='Краны - расчёт'!G%d", craneWheelRow))
+				craneWheelRow++
+			}
 		}
 		for _, place := range group.Placements {
-			add("РАССТАНОВКА КРАНОВ", place.Title, "Пролёты балок, м", place.SpansText)
-			add("№", "Опасное положение", "Значение", "Единицы", "Сечение, мм")
+			placementIndex++
+			add("РАССТАНОВКА КРАНОВ", tempExcelLiteral(place.Title), "Пролёты балки", tempExcelLiteral(place.SpansText))
+			add("№", "Опасное положение", "Усилие из формул, кН или кН·м", "Единицы", "Сечение, мм")
+			// Numerical optimization supplies the locations, not the effort.
+			// The combined workbook repeats the independently calculated
+			// influence ordinates and sums using the same four worksheets as
+			// the standalone verification file.
+			pointRow := 9 + len(place.Result.SpansMM)
 			for i, c := range place.Result.Cases {
-				add(fmt.Sprint(i+1), c.Name, tempRU(c.Value, 4), c.Units, tempRU(c.SectionMM, 1))
-				add("", "Положения колёс от левой опоры, мм", "Нагрузка, кН", "Кран")
+				caseRow := i + 5
+				add(fmt.Sprint(i+1), tempExcelLiteral(c.Name),
+					fmt.Sprintf("='%s'!C%d", excelPhase4PlacementSheetName(placementIndex, "Итоги"), caseRow),
+					c.Units,
+					fmt.Sprintf("='%s'!E%d", excelPhase4PlacementSheetName(placementIndex, "Итоги"), caseRow))
+				add("", "Координата колеса (найдена численно), мм", "Принятая Pн, кН", "Кран")
 				for _, wheel := range c.Points {
-					add("", tempRU(wheel.XMM, 1), tempRU(wheel.PKN, 2), wheel.Crane)
-				}
-				picture, err := craneCasePNG(place.Result.SpansMM, c)
-				if err != nil {
-					return err
-				}
-				imageCount++
-				id := imageCount
-				imageEntries[fmt.Sprintf("xl/media/crane_%d.png", id)] = string(picture)
-				fmt.Fprintf(&imageRels, `<Relationship Id="rId%d" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/crane_%d.png"/>`, id, id)
-				start := rowNum + 1
-				fmt.Fprintf(&drawing, `<xdr:twoCellAnchor editAs="oneCell"><xdr:from><xdr:col>1</xdr:col><xdr:colOff>0</xdr:colOff><xdr:row>%d</xdr:row><xdr:rowOff>0</xdr:rowOff></xdr:from><xdr:to><xdr:col>6</xdr:col><xdr:colOff>0</xdr:colOff><xdr:row>%d</xdr:row><xdr:rowOff>0</xdr:rowOff></xdr:to><xdr:pic><xdr:nvPicPr><xdr:cNvPr id="%d" name="Расстановка кранов"/><xdr:cNvPicPr/></xdr:nvPicPr><xdr:blipFill><a:blip r:embed="rId%d"/><a:stretch><a:fillRect/></a:stretch></xdr:blipFill><xdr:spPr><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></xdr:spPr></xdr:pic><xdr:clientData/></xdr:twoCellAnchor>`, start, start+15, id, id)
-				for j := 0; j < 18; j++ {
-					add("")
+					add("",
+						fmt.Sprintf("='%s'!C%d*1000", excelPhase4PlacementSheetName(placementIndex, "Вход"), pointRow),
+						fmt.Sprintf("='%s'!D%d", excelPhase4PlacementSheetName(placementIndex, "Вход"), pointRow),
+						tempExcelLiteral(wheel.Crane))
+					pointRow++
 				}
 			}
 		}
 	}
+
 	sheet := `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheetFormatPr defaultRowHeight="19"/><cols><col min="1" max="1" width="24" customWidth="1"/><col min="2" max="2" width="58" customWidth="1"/><col min="3" max="7" width="28" customWidth="1"/><col min="8" max="8" width="82" customWidth="1"/></cols><sheetData>` + w.String() + `</sheetData>` + func() string {
 		if imageCount > 0 {
 			return `<drawing r:id="rId1"/>`
@@ -202,7 +239,7 @@ func exportTempExcel(r TempReport, path string) error {
 	entries := map[string]string{
 		"[Content_Types].xml":        `<?xml version="1.0" encoding="UTF-8"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>`,
 		"_rels/.rels":                `<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>`,
-		"xl/workbook.xml":            `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Нагрузки" sheetId="1" r:id="rId1"/></sheets><calcPr fullCalcOnLoad="1"/></workbook>`,
+		"xl/workbook.xml":            `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Нагрузки" sheetId="1" r:id="rId1"/></sheets><calcPr calcMode="auto" fullCalcOnLoad="1" forceFullCalc="1"/></workbook>`,
 		"xl/_rels/workbook.xml.rels": `<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>`,
 		"xl/worksheets/sheet1.xml":   sheet,
 		"xl/styles.xml":              `<?xml version="1.0" encoding="UTF-8"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><fonts count="1"><font><sz val="11"/><name val="Arial"/></font></fonts><fills count="2"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill></fills><borders count="1"><border/></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0"/></cellStyles></styleSheet>`,
@@ -215,6 +252,26 @@ func exportTempExcel(r TempReport, path string) error {
 		entries["xl/worksheets/_rels/sheet1.xml.rels"] = `<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/drawing" Target="../drawings/drawing1.xml"/></Relationships>`
 		entries["xl/drawings/drawing1.xml"] = `<?xml version="1.0" encoding="UTF-8"?><xdr:wsDr xmlns:xdr="http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">` + drawing.String() + `</xdr:wsDr>`
 		entries["xl/drawings/_rels/drawing1.xml.rels"] = `<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">` + imageRels.String() + `</Relationships>`
+	}
+	// Every combined report has one entry point for accepted data. Each
+	// module owns its actual source rows on clearly named following sheets.
+	snowExcelGridStyle(entries)
+	if e := excelPhase3InputIndex(entries, r, regular, transport, cranes); e != nil {
+		return e
+	}
+	if e := excelPhase3SiteSheets(entries, r.Site); e != nil {
+		return e
+	}
+	if len(weightReportBlocks(r)) > 0 || len(regular) > 0 || len(transport) > 0 {
+		if e := excel051LedgerSheets(entries, r, regular, transport); e != nil {
+			return e
+		}
+	}
+	if e := excelPhase3CraneSheets(entries, r, cranes); e != nil {
+		return e
+	}
+	if e := excelPhase4CranePlacementSheets(entries, r); e != nil {
+		return e
 	}
 	if r.Snow != nil {
 		if e := snowExcelV031(entries, *r.Snow); e != nil {
@@ -242,8 +299,6 @@ func exportTempExcel(r TempReport, path string) error {
 			return e
 		}
 	}
-	if r.Snow != nil || len(r.Snows) > 0 {
-		snowExcelReorderSheets(entries)
-	}
+	snowExcelReorderSheets(entries)
 	return packageZip(path, entries)
 }
