@@ -71,6 +71,8 @@ jobs:
 
               names = {p.as_posix() for _, p in files}
               if 'main.go' not in names or 'model.go' not in names:
+                  print('GO ROOT CANDIDATES:', [p for p in sorted(names) if p.endswith('/main.go') or p.endswith('/model.go') or p in ('main.go','model.go')], flush=True)
+                  print('GO FILE SAMPLES:', [p for p in sorted(names) if p.lower().endswith('.go')][:45], flush=True)
                   print('ZIP paths (first 120):', flush=True)
                   for path in sorted(names)[:120]:
                       print(' -', path, flush=True)
