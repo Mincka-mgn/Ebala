@@ -917,6 +917,11 @@ func snowRead() (SnowCalc, error) {
 		{snowSpan, &s.Span, "L левой кровли"}, {snowWidth, &s.Width, "B левой кровли"},
 	}
 	for _, f := range fields {
+		// У круглого покрытия Б.15а нет отдельной длины B.
+		// Не считывать и не проверять скрытое поле прямоугольной кровли.
+		if s.Shape == "sphere_cone" && f.id == snowWidth {
+			continue
+		}
 		if *f.v, err = snowNumber(f.id); err != nil {
 			return s, fmt.Errorf("%s: %w", f.name, err)
 		}

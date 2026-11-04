@@ -39,8 +39,8 @@ var (
 	pGetOpen     = c32.NewProc("GetOpenFileNameW")
 )
 
-const ebalaVersion = "0.54"
-const ebalaTitle = "Ebala " + ebalaVersion
+const ebalaVersion = "0.55"
+const ebalaTitle = "Ebala " + ebalaVersion + " (бета)"
 
 const (
 	WS_OVERLAPPEDWINDOW = 0x00CF0000
