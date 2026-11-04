@@ -62,7 +62,7 @@ jobs:
               # Strip one or more common top-level wrapper directories.
               for _ in range(4):
                   paths = [p for _, p in files]
-                  if PurePosixPath('main.go') in paths and PurePosixPath('model.go') in paths:
+                  if PurePosixPath('main_windows.go') in paths and PurePosixPath('model.go') in paths:
                       break
                   roots = {p.parts[0] for p in paths}
                   if len(roots) != 1 or any(len(p.parts) < 2 for p in paths):
@@ -70,13 +70,12 @@ jobs:
                   files = [(info, PurePosixPath(*p.parts[1:])) for info, p in files]
 
               names = {p.as_posix() for _, p in files}
-              if 'main.go' not in names or 'model.go' not in names:
-                  print('GO ROOT CANDIDATES:', [p for p in sorted(names) if p.endswith('/main.go') or p.endswith('/model.go') or p in ('main.go','model.go')], flush=True)
-                  print('GO FILE SAMPLES:', [p for p in sorted(names) if p.lower().endswith('.go')][:45], flush=True)
-                  print('ZIP paths (first 120):', flush=True)
-                  for path in sorted(names)[:120]:
-                      print(' -', path, flush=True)
-                  raise SystemExit('Cannot identify Ebala source root containing main.go and model.go; no files changed')
+              go_count = sum(1 for p in names if p.endswith('.go'))
+              if 'main_windows.go' not in names or 'model.go' not in names or go_count < 100:
+                  raise SystemExit(
+                      f'Unexpected Ebala source tree: main_windows.go={"main_windows.go" in names}, '
+                      f'model.go={"model.go" in names}, Go files={go_count}; no files changed'
+                  )
 
               kept = [(info, p) for info, p in files if not protected(p)]
               seen = set()
