@@ -1,0 +1,64 @@
+name: Prepare Ebala 0.55 beta draft release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/draft-ebala-055.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  draft-release:
+    name: Attach verified packages to an unpublished beta release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Build verified ZIP packages
+        run: python3 .github/scripts/package_ebala_beta.py 0.55
+      - name: Prepare release notes
+        shell: bash
+        run: |
+          cat > RELEASE_NOTES.md <<'EOF'
+          ## Ebala 0.55 Beta
+
+          Первая публичная бета-версия инженерной программы Ebala для расчёта нагрузок и воздействий на строительные конструкции.
+
+          **Скачать для Windows:** файл Ebala_0.55.zip. Распакуйте целиком и запустите Ebala_0.55.exe. Карты, справочники, базы и остальные ресурсы уже входят в архив.
+
+          **Полные исходники:** файл Ebala_0.55_Sources.zip.
+
+          ### Изменения
+          - Исправлены расчётные и Excel-параметры круглого покрытия «сфера с конусом» по схеме Б.15а: диаметр D, без фиктивного B и lc.
+          - Исправления общей Excel-ведомости при нескольких снеговых и гололёдных загружениях из версии 0.54 включены.
+          - Уточнены обозначение и статус бета-версии.
+
+          ### Известные ограничения
+          - Самостоятельного модуля расчёта ветровой нагрузки пока нет.
+          - Полная независимая нормативная проверка всех схем ещё не завершена.
+          - Работа GUI, Word/Excel в Microsoft Office и пересчёт после ручного редактирования отдельных ячеек не проходили полноценную приёмку на Windows в рамках этого выпуска.
+          - Для ответственных проектных решений результаты необходимо независимо проверять.
+
+          Подробности: CHANGES_0.55.txt и TESTPLAN_WINDOWS_0.55.txt в архиве исходников.
+          EOF
+      - name: Create private draft release with both archives
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          if gh release view v0.55-beta.1 >/dev/null 2>&1; then
+            echo "Release already exists. No changes made."
+            exit 0
+          fi
+          gh release create v0.55-beta.1 \
+            dist/Ebala_0.55.zip \
+            dist/Ebala_0.55_Sources.zip \
+            --target main \
+            --title "Ebala 0.55 Beta" \
+            --notes-file RELEASE_NOTES.md \
+            --prerelease \
+            --draft
+          echo "Draft beta release created. NOT published."
