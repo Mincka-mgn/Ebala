@@ -5,7 +5,6 @@ on:
     branches: [main]
     paths:
       - 'Ebala_*_Sources.zip'
-      - '.github/workflows/import-ebala-sources.yml'
   workflow_dispatch:
 
 permissions:
@@ -114,6 +113,9 @@ jobs:
                           dst.write(chunk)
 
           archive.unlink()
+          version = name.removeprefix('Ebala_').removesuffix('_Sources')
+          with open(__import__('os').environ['GITHUB_ENV'], 'a', encoding='utf-8') as env:
+              env.write(f'EBALA_IMPORT_VERSION={version}\n')
           print(f'Imported {len(kept)} source files from {name}, preserving Maps and PROJECT.md')
           PY
       - name: Commit imported source tree
@@ -125,6 +127,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Nothing to commit"
           else
-            git commit -m "Import Ebala 0.53 sources and preserve Maps"
+            git commit -m "Import Ebala ${EBALA_IMPORT_VERSION} sources and preserve Maps"
             git push
           fi
