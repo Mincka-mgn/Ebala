@@ -795,23 +795,14 @@ func snowExcelV031(entries map[string]string, s SnowCalc, blockIndex ...int) err
 		suffix = fmt.Sprintf(" %d", blockIndex[0])
 	}
 	rename := func(body string) string {
-		if suffix == "" {
-			return body
+		names := []string{
+			"Исходные данные", "Коэффициенты", "Таблица 10.2", "Таблица 11.2",
+			"Геометрия Б.15а", "Границы зон", "Перепад Б.8", "Секторная сетка",
 		}
-		body = strings.ReplaceAll(body, "'Исходные данные'!", "'Исходные данные"+suffix+"'!")
-		body = strings.ReplaceAll(body, "'Коэффициенты'!", "'Коэффициенты"+suffix+"'!")
-		body = strings.ReplaceAll(body, "'Таблица 10.2'!", "'Таблица 10.2"+suffix+"'!")
-		body = strings.ReplaceAll(body, "'Таблица 11.2'!", "'Таблица 11.2"+suffix+"'!")
-		body = strings.ReplaceAll(body, "'Геометрия Б.15а'!", "'Геометрия Б.15а"+suffix+"'!")
-		body = strings.ReplaceAll(body, "'Границы зон'!", "'Границы зон"+suffix+"'!")
-		body = strings.ReplaceAll(body, "'Перепад Б.8'!", "'Перепад Б.8"+suffix+"'!")
-		body = strings.ReplaceAll(body, "'Секторная сетка'!", "'Секторная сетка"+suffix+"'!")
 		for i := range s.Cases {
-			old := fmt.Sprintf("'Сетка Б.15а вар.%d'!", i+1)
-			newName := fmt.Sprintf("'Сетка Б.15а вар.%d%s'!", i+1, suffix)
-			body = strings.ReplaceAll(body, old, newName)
+			names = append(names, fmt.Sprintf("Сетка Б.15а вар.%d", i+1))
 		}
-		return body
+		return excelRenameOwnSheetRefs(body, suffix, names...)
 	}
 
 	snowExcelGridStyle(entries)

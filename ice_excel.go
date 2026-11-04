@@ -150,16 +150,10 @@ func iceExcelV038(entries map[string]string, s IceLoadCalc, blockIndex ...int) e
 		suffix = fmt.Sprintf(" %d", blockIndex[0])
 	}
 	rename := func(body string) string {
-		if suffix == "" {
-			return body
-		}
-		body = strings.ReplaceAll(body, "'Гололёд - исходные'!", "'Гололёд - исходные"+suffix+"'!")
-		body = strings.ReplaceAll(body, "'Гололёд - расчёт'!", "'Гололёд - расчёт"+suffix+"'!")
-		body = strings.ReplaceAll(body, "'Гололёд - сетка'!", "'Гололёд - сетка"+suffix+"'!")
-		for _, name := range []string{"Гололёд табл.12.2", "Гололёд табл.12.3", "Гололёд табл.12.4", "Ветер табл.11.1", "Ветер табл.11.2", "Гололёд - параметры"} {
-			body = strings.ReplaceAll(body, "'"+name+"'!", "'"+name+suffix+"'!")
-		}
-		return body
+		return excelRenameOwnSheetRefs(body, suffix,
+			"Гололёд - исходные", "Гололёд - расчёт", "Гололёд - сетка",
+			"Гололёд табл.12.2", "Гололёд табл.12.3", "Гололёд табл.12.4",
+			"Ветер табл.11.1", "Ветер табл.11.2", "Гололёд - параметры")
 	}
 
 	if _, e := snowExcelSheet(entries, "Гололёд - сетка"+suffix, iceExcelHeightGrid("Гололёд - исходные"+suffix), false); e != nil {

@@ -1,12 +1,12 @@
-Ebala 0.53 — исходные тексты программы
+Ebala 0.54 — исходные тексты программы
 Go, ресурсы, климатические справочники, регрессионные тесты.
 Проверка: GO111MODULE=off go test ./...
-Сборка: build_windows.bat (или GOOS=windows GOARCH=amd64 GO111MODULE=off go build -ldflags="-H=windowsgui -s -w" -o Ebala_0.53.exe .).
+Сборка: build_windows.bat (или GOOS=windows GOARCH=amd64 GO111MODULE=off go build -ldflags="-H=windowsgui -s -w" -o Ebala_0.54.exe .).
 Ограничения расчёта приведены в CHANGES_0.41.txt.
 Для регрессионной проверки: GO111MODULE=off go test ./... -count=1.
 Для контрольного экспорта: EBALA_QA_OUT=<папка> GO111MODULE=off go test -run Test041MultipleSnowAndIceExports -v.
 
-Для сборки версии Ebala 0.53 используйте исходники из данного архива. Перечень изменений: CHANGES_0.53.txt.
+Для сборки версии Ebala 0.54 используйте исходники из данного архива. Перечень изменений: CHANGES_0.54.txt.
 
 Изменения версии 0.46: CHANGES_0.46.txt.
 
@@ -16,4 +16,4 @@ Go 1.23.x не поддерживает Windows 7; для Windows 7 необхо
 Рисунок сферы с конусом snow_B15a_approved_geometry.png — утверждённый пользователем PNG без изменения байтов.
 Формирование: GO111MODULE=off go test ./... -count=1; сборка через build_windows.bat.
 
-Ограничения проверки выпуска 0.53: см. EXCEL_PHASE12_QA.md. Этот выпуск является проверочным; все критерии Excel ещё не закрыты.
+Ограничения проверки выпуска 0.54: см. EXCEL_PHASE12_QA.md. Этот выпуск является проверочным; все критерии Excel ещё не закрыты.

@@ -1,0 +1,26 @@
+[
+  {
+    "filename": "multi_2snow_1ice_weight_crane_transport.xlsx",
+    "sheets": 75,
+    "formulas": 226020,
+    "chart_formulas": 68,
+    "missing_references": 0,
+    "wrong_block_references": 0,
+    "navigation_references": 0,
+    "invalid_formulas": 0,
+    "samples": [],
+    "ok": true
+  },
+  {
+    "filename": "stress_14snow_1ice.xlsx",
+    "sheets": 454,
+    "formulas": 1161902,
+    "chart_formulas": 644,
+    "missing_references": 0,
+    "wrong_block_references": 0,
+    "navigation_references": 0,
+    "invalid_formulas": 0,
+    "samples": [],
+    "ok": true
+  }
+]

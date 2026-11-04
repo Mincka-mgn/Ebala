@@ -1,0 +1,6 @@
+GO111MODULE=off go test -count=1 -timeout=300s ./...: PASS (62.533s)
+EBALA_QA_DIR=... GO111MODULE=off go test -run ^TestExcel054MultiLoadFixtures$ -count=1: PASS (30.17s)
+GOOS=windows GOARCH=amd64 CGO_ENABLED=0 GO111MODULE=off go build -trimpath -ldflags='-H=windowsgui -s -w': PASS
+PE: Machine=0x8664 x64; OptionalHeader=0x20b; Subsystem=2 Windows GUI.
+Independent OOXML scan two generated workbooks: PASS, 1 387 922 formulas checked; 0 broken and wrong-index sheet references.
+MS Excel numerical recomputation on Windows: NOT PERFORMED.

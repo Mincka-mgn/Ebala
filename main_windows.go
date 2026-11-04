@@ -39,7 +39,7 @@ var (
 	pGetOpen     = c32.NewProc("GetOpenFileNameW")
 )
 
-const ebalaVersion = "0.53"
+const ebalaVersion = "0.54"
 const ebalaTitle = "Ebala " + ebalaVersion
 
 const (
