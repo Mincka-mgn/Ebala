@@ -1,0 +1,126 @@
+name: Import Ebala source archive
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Ebala_*_Sources.zip'
+      - '.github/workflows/import-ebala-sources.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out complete history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Extract most recent source ZIP safely
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path, PurePosixPath
+          from zipfile import ZipFile
+          import stat
+          import subprocess
+
+          archives = sorted(Path('.').glob('Ebala_*_Sources.zip'))
+          if len(archives) != 1:
+              raise SystemExit(f'Expected exactly one Ebala_*_Sources.zip, found {len(archives)}')
+          archive = archives[0]
+          name = archive.stem
+          if not Path('PROJECT.md').is_file():
+              raise SystemExit('PROJECT.md is missing; refusing to import')
+
+          def protected(path):
+              lower = path.as_posix().casefold()
+              return (lower in {'project.md', 'readme.md', '.gitignore'} or
+                      lower.startswith('maps/') or lower == 'maps' or
+                      lower.startswith('.github/') or lower == '.github')
+
+          with ZipFile(archive) as z:
+              bad = z.testzip()
+              if bad:
+                  raise SystemExit('Damaged ZIP member: ' + bad)
+              files = []
+              for entry in z.infolist():
+                  path = PurePosixPath(entry.filename.replace('\\', '/'))
+                  if path.is_absolute() or '..' in path.parts or ':' in path.as_posix():
+                      raise SystemExit(f'Unsafe archive path: {entry.filename}')
+                  mode = (entry.external_attr >> 16) & 0xffff
+                  if stat.S_ISLNK(mode):
+                      raise SystemExit(f'Symlink not permitted: {entry.filename}')
+                  if not entry.is_dir() and path.parts and path.parts[0] not in {'__MACOSX'}:
+                      files.append((entry, path))
+
+              if not files or len(files) > 10000:
+                  raise SystemExit('Archive is empty or unexpectedly large')
+              # Strip one or more common top-level wrapper directories.
+              for _ in range(4):
+                  paths = [p for _, p in files]
+                  if PurePosixPath('main.go') in paths and PurePosixPath('model.go') in paths:
+                      break
+                  roots = {p.parts[0] for p in paths}
+                  if len(roots) != 1 or any(len(p.parts) < 2 for p in paths):
+                      break
+                  files = [(info, PurePosixPath(*p.parts[1:])) for info, p in files]
+
+              names = {p.as_posix() for _, p in files}
+              if 'main.go' not in names or 'model.go' not in names:
+                  raise SystemExit('Cannot identify Ebala source root containing main.go and model.go; no files changed')
+
+              kept = [(info, p) for info, p in files if not protected(p)]
+              seen = set()
+              for info, path in kept:
+                  key = path.as_posix().casefold()
+                  if key in seen:
+                      raise SystemExit(f'Case-insensitive duplicate: {path}')
+                  seen.add(key)
+
+              baseline = subprocess.check_output([
+                  'git', 'ls-tree', '-r', '--name-only',
+                  'b5ccd8026a0cf16468faf59655dbb70c4ca2a8b3'
+              ], text=True).splitlines()
+
+              current_files = {p for p in subprocess.check_output(
+                  ['git', 'ls-files'], text=True
+              ).splitlines()}
+
+              # Remove files from the previous 0.50 source tree that no
+              # longer exist in 0.53. Never touch Maps or repo infrastructure.
+              for old in baseline:
+                  path = PurePosixPath(old)
+                  if old in current_files and old not in names and not protected(path):
+                      target = Path(old)
+                      if target.is_file():
+                          target.unlink()
+
+              for info, path in kept:
+                  target = Path(path.as_posix())
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  with z.open(info) as src, target.open('wb') as dst:
+                      while True:
+                          chunk = src.read(1024 * 1024)
+                          if not chunk:
+                              break
+                          dst.write(chunk)
+
+          archive.unlink()
+          print(f'Imported {len(kept)} source files from {name}, preserving Maps and PROJECT.md')
+          PY
+      - name: Commit imported source tree
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Import Ebala 0.53 sources and preserve Maps"
+            git push
+          fi
