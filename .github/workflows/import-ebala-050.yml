@@ -1,0 +1,58 @@
+name: Import Ebala 0.50 source archive
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Ebala_0.50_Sources.zip'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Unpack source files without changing program code
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          from shutil import copyfileobj
+
+          archive = Path("Ebala_0.50_Sources.zip")
+          project = Path("PROJECT.md")
+          if not archive.is_file():
+              raise SystemExit("Missing Ebala_0.50_Sources.zip in repository root")
+          if not project.is_file():
+              raise SystemExit("Upload the current PROJECT.md next to the archive before importing")
+
+          with ZipFile(archive) as z:
+              corrupt = z.testzip()
+              if corrupt:
+                  raise SystemExit(f"Corrupt ZIP entry: {corrupt}")
+              for info in z.infolist():
+                  path = Path(info.filename)
+                  if path.is_absolute() or ".." in path.parts:
+                      raise SystemExit(f"Unsafe ZIP path: {info.filename}")
+                  if info.is_dir() or path.as_posix() == "PROJECT.md":
+                      continue
+                  path.parent.mkdir(parents=True, exist_ok=True)
+                  with z.open(info) as source, path.open("wb") as dest:
+                      copyfileobj(source, dest)
+          archive.unlink()
+          PY
+      - name: Commit unpacked source tree
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Import Ebala 0.50 source tree (without code changes)"
+            git push
+          fi
