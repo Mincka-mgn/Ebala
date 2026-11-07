@@ -1,0 +1,43 @@
+name: Sync Ebala PROJECT.md from uploaded 0.64 source archive
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sync-project-064.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore approved project document from the original 0.64 ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          git show 4e51233a296c97f56de52fd954256d5faef27cee:Ebala_0.64_Sources.zip > /tmp/ebala_064_sources.zip
+          unzip -p /tmp/ebala_064_sources.zip PROJECT.md > PROJECT.md.new
+          test "$(wc -c < PROJECT.md.new)" -gt 60000
+          grep -Fq '0.64' PROJECT.md.new
+          mv PROJECT.md.new PROJECT.md
+          git diff --stat -- PROJECT.md
+      - name: Commit the exact 0.64 PROJECT.md, without modifying application code
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add PROJECT.md
+          if git diff --cached --quiet; then
+            echo "PROJECT.md already matches the uploaded 0.64 source ZIP"
+          else
+            git commit -m "Sync PROJECT.md with original Ebala 0.64 source archive"
+            git push
+          fi
