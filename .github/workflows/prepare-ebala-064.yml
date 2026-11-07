@@ -1,0 +1,80 @@
+name: Prepare Ebala 0.64 beta release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/prepare-ebala-064.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    name: Verify and attach complete Windows and source ZIPs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out complete source history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Restore source ZIP originally uploaded for version 0.64
+        shell: bash
+        run: |
+          set -euo pipefail
+          git show 4e51233a296c97f56de52fd954256d5faef27cee:Ebala_0.64_Sources.zip > _input_064_sources.zip
+          unzip -tq _input_064_sources.zip
+          echo "Original 0.64 source ZIP recovered from the upload commit."
+
+      - name: Build complete archives and verify Windows x64 GUI
+        run: python3 .github/scripts/prepare_release_064.py
+
+      - name: Write release notes
+        shell: bash
+        run: |
+          cat > release_notes_064.md <<'EOF'
+          ## Ebala 0.64 Beta
+
+          Бесплатная бета-версия программы для инженерного расчёта нагрузок и воздействий на строительные конструкции.
+
+          **Для Windows:** скачайте файл Ebala_0.64_Windows.zip, распакуйте его целиком в отдельную папку и запустите Ebala_0.64.exe. Карты районирования, справочники и нормативные данные включены в комплект.
+
+          **Исходный код:** Ebala_0.64_Sources.zip. Включены Go-исходники, документация версии 0.64, регрессионные тесты, ресурсы и карты.
+
+          ### Что изменено в версии 0.64
+          - Уточнены схемы ветровых воздействий, обозначения зон и направления ветра на рисунках.
+          - Улучшен экспорт Word для стен и повторяющихся зон.
+          - В Excel переработаны исходные данные, оглавление расчётов, названия результатов, структура справочных листов и ссылки размеров B, L.
+          - Добавлен выбор конструктивной системы и декремента колебаний для имеющейся ветви учёта пульсаций.
+          - Сохранение DOCX/XLSX теперь запрашивает подтверждение перезаписи существующего файла.
+
+          ### Ограничения бета-версии
+          - Полный динамический ветровой расчёт по собственным частотам не реализован.
+          - Полная независимая нормативная ревизия всех расчётных схем не завершена.
+          - Интерактивный запуск GUI на пользовательском Windows и фактический пересчёт Excel в Microsoft Office не подтверждены в рамках подготовки этого релиза.
+          - Результаты, используемые для ответственных инженерных решений, следует независимо проверять.
+
+          Подробнее: CHANGES_0.64.txt и PROJECT.md в архиве исходников.
+          EOF
+
+      - name: Create unpublished beta release with BOTH attached archives
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view v0.64-beta.1 >/dev/null 2>&1; then
+            echo "Release already exists; refusing to overwrite without review."
+            exit 1
+          fi
+          gh release create v0.64-beta.1 \
+            dist/Ebala_0.64_Windows.zip \
+            dist/Ebala_0.64_Sources.zip \
+            --target main \
+            --title "Ebala 0.64 Beta" \
+            --notes-file release_notes_064.md \
+            --prerelease \
+            --draft
+          echo "DRAFT CREATED. Nothing published and 0.55 not modified."
