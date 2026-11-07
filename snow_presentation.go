@@ -69,6 +69,9 @@ func snowPresentations(s SnowCalc) []SnowLoadView {
 func (v SnowLoadView) MaxMu() float64 {
 	max := 0.0
 	for _, c := range v.Cases {
+		if c.PeakMu > max {
+			max = c.PeakMu
+		}
 		for _, interval := range c.Intervals {
 			if interval.Mu > max {
 				max = interval.Mu

@@ -1,0 +1,22 @@
+{
+  "external_reference_archive": null,
+  "external_reference_root_dir": "reference",
+  "sha256_zip": "d40b0a1515b3d63a4fe846c9964032f7c576d39721220592e7b1658d73da94dd",
+  "reference_version": "0.6.0",
+  "reference_is_independent_archive": false,
+  "linkage": {
+    "tables": "data/tables_appendix_v.csv",
+    "straight_graphs": "data/straight_graphs.json",
+    "curved_graphs": "formulas/curved_graphs.json",
+    "all_in_one": "data/SP20_wind_all_in_one.json",
+    "special_sp375_zone": "external/sp375_appendix_a_zonal_factor.json"
+  },
+  "do_not_duplicate_reference_content": true,
+  "previous_archive": "v0.5 separately includes new SP375 A2 chart and 1978 historical data; independent SP20 table content unchanged",
+  "reference_directory_from_calculations": "../reference",
+  "reference_location_kind": "sibling_directory_in_flat_wind_math_archive",
+  "original_reference_archive": {
+    "filename": "SP20_AppendixV_Wind_Reference_v0_6.zip",
+    "sha256": "d40b0a1515b3d63a4fe846c9964032f7c576d39721220592e7b1658d73da94dd"
+  }
+}

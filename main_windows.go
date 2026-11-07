@@ -39,7 +39,7 @@ var (
 	pGetOpen     = c32.NewProc("GetOpenFileNameW")
 )
 
-const ebalaVersion = "0.55"
+const ebalaVersion = "0.64"
 const ebalaTitle = "Ebala " + ebalaVersion + " (бета)"
 
 const (
@@ -238,6 +238,9 @@ func unitChanged(id int) {
 	case 105:
 		convertEdit(105, 103, 1/kgfPerKN, 8) // kgf/m3 -> kN/m3
 	case 201:
+		if activePage == "wind" {
+			return
+		} // current wind unit and source are handled by wind_ui_windows.go
 		if !changingUnits {
 			project.WindOverride = true
 			project.WindZoneOverride = "Пользовательский"
@@ -255,25 +258,7 @@ func unitChanged(id int) {
 		convertEdit(205, 201, 1/kgfPerKN, 8) // kgf/m2 -> kPa
 	}
 }
-func syncWind() error {
-	keys := []int{201, 202, 203, 204}
-	vals := make([]float64, len(keys))
-	for i, k := range keys {
-		v, e := parseNumber(get(k))
-		if e != nil {
-			return fmt.Errorf("Поле ветра №%d: %w", i+1, e)
-		}
-		vals[i] = v
-	}
-	w := Wind{vals[0], vals[1], vals[2], vals[3]}
-	check := project
-	check.Wind = w
-	if _, e := check.Calc(); e != nil {
-		return e
-	}
-	project.Wind = w
-	return nil
-}
+func syncWind() error { windPreserveDraft(); return nil }
 func readLayer() (Layer, error) {
 	name := strings.TrimSpace(get(101))
 	t, e := parseNumber(get(102))
@@ -317,10 +302,7 @@ func refresh() {
 		pSend.Call(controls[100], LB_ADDSTRING, 0, uintptr(unsafe.Pointer(ptr(row))))
 	}
 	changingUnits = true
-	for i, v := range []float64{project.Wind.W0, project.Wind.KZ, project.Wind.C, project.Wind.GammaF} {
-		set(201+i, xnum(v))
-	}
-	set(205, decimalInput(project.Wind.W0*kgfPerKN, 3))
+	windSetForm()
 	changingUnits = false
 	if len(project.Layers) > 0 {
 		send(100, LB_SETCURSEL, 0, 0)
@@ -335,8 +317,12 @@ func renderResults() {
 	}
 	set(401, fmt.Sprintf("Нормативная: %s кПа  =  %s кгс/м²", displayNumber(r.SWN), decimalInput(r.SWN*kgfPerKN, 2)))
 	set(405, fmt.Sprintf("Расчётная:     %s кПа  =  %s кгс/м²", displayNumber(r.SWD), decimalInput(r.SWD*kgfPerKN, 2)))
-	set(402, fmt.Sprintf("Нормативная: %s кПа  =  %s кгс/м²", displayNumber(r.WN), decimalInput(r.WN*kgfPerKN, 2)))
-	set(406, fmt.Sprintf("Расчётная:     %s кПа  =  %s кгс/м²", displayNumber(r.WD), decimalInput(r.WD*kgfPerKN, 2)))
+	if activePage != "wind" { // the old demonstrational total is not the wind-module result
+		set(402, fmt.Sprintf("Нормативная: %s кПа  =  %s кгс/м²", displayNumber(r.WN), decimalInput(r.WN*kgfPerKN, 2)))
+		set(406, fmt.Sprintf("Расчётная:     %s кПа  =  %s кгс/м²", displayNumber(r.WD), decimalInput(r.WD*kgfPerKN, 2)))
+	} else {
+		windShowResult()
+	}
 	projectHomeOverview()
 }
 func chooseSave(ext, pattern, initial string, open bool) string {
@@ -352,6 +338,9 @@ func chooseSave(ext, pattern, initial string, open bool) string {
 		f.Flags |= OFN_FILEMUSTEXIST
 		r, _, _ = pGetOpen.Call(uintptr(unsafe.Pointer(&f)))
 	} else {
+		// Native common dialog: Yes to replace, No to return and pick a new
+		// name, Cancel to leave without touching the existing report.
+		f.Flags |= 0x00000002 // OFN_OVERWRITEPROMPT
 		r, _, _ = pGetSave.Call(uintptr(unsafe.Pointer(&f)))
 	}
 	if r == 0 {
@@ -401,7 +390,9 @@ func switchPage(next string) {
 	}
 	if next == "site" && siteBackButton != 0 {
 		title := "← На главную"
-		if siteReturnPage == "snow" {
+		if siteReturnPage == "wind" {
+			title = "← К ветру"
+		} else if siteReturnPage == "snow" {
 			title = "← К снегу"
 		} else if siteReturnPage == "ice" {
 			title = "← К гололёду"
@@ -414,6 +405,9 @@ func switchPage(next string) {
 	}
 	refreshClimateUI()
 	projectHomeOverview()
+	if next == "wind" {
+		windSetTab(windCurrentTab)
+	}
 	if next == "temporary" {
 		projectOverviewRefresh()
 	}
@@ -533,7 +527,7 @@ func runAction(id int) {
 	case 646:
 		lookupCurrentElevation()
 	case 207:
-		useSiteWind()
+		windTakeFromSite()
 	case 703:
 		useSiteSnow()
 	case 704:
@@ -553,13 +547,21 @@ func runAction(id int) {
 				draftSite = s
 			}
 			siteReturnPage = ""
+			if target == "wind" {
+				windSyncSite()
+			}
 			switchPage(target)
+			if target == "wind" {
+				windSetForm()
+			}
 			if target == "snow" {
 				snowPageEntered()
 			}
 			if target == "ice" {
 				icePageEntered()
 			}
+		} else if activePage == "wind" && windCurrentTab == 1 {
+			windSetTab(0)
 		} else if activePage == "snow" && snowCurrentTab == 1 {
 			snowSetTab(0)
 		} else if activePage == "ice_extra" {
@@ -614,11 +616,7 @@ func runAction(id int) {
 		send(100, LB_SETCURSEL, uintptr(ix), 0)
 		showLayer(ix)
 	case 301:
-		if err := syncWind(); err != nil {
-			message(err.Error(), true)
-			return
-		}
-		renderResults()
+		windCalculate()
 	case 302:
 		if activePage == "wind" {
 			if err := syncWind(); err != nil {
@@ -626,7 +624,7 @@ func runAction(id int) {
 				return
 			}
 		}
-		path := chooseSave("json", "Проект расчёта (JSON)", "расчёт_нагрузок.json", false)
+		path := chooseSave("json", "Проект расчёта (JSON)", "Расчёт нагрузок.json", false)
 		if path == "" {
 			return
 		}
@@ -686,9 +684,24 @@ func runAction(id int) {
 			}
 		}
 		project.WindOverride = p.WindOverride
+		if p.WindDraft != nil {
+			windDraft = *p.WindDraft
+			windUnit = "kpa"
+			if windDraft.DisplayUnit == "kgf" {
+				windUnit = "kgf"
+			}
+		} else {
+			windDraft = windDefaultInput(p.Site.WindZone)
+		}
+		windCurrentBlockID = 0
+		windCurrentResult = nil
 		refresh()
 		message("Проект открыт", false)
 	case 304:
+		if activePage == "wind" {
+			windExportSelected(false)
+			return
+		}
 		if activePage == "site" {
 			s, err := currentSiteForReport()
 			if err != nil {
@@ -698,7 +711,7 @@ func runAction(id int) {
 			if !confirmSiteReport(s) {
 				return
 			}
-			path := chooseSave("xlsx", "Excel XLSX", "характеристики_местности.xlsx", false)
+			path := chooseSave("xlsx", "Excel XLSX", "Характеристики местности.xlsx", false)
 			if path != "" {
 				saveAndNotify(path, func(file string) error { return ExportSiteExcel(s, file) })
 			}
@@ -708,7 +721,7 @@ func runAction(id int) {
 			message(err.Error(), true)
 			return
 		}
-		path := chooseSave("xlsx", "Файлы Excel (XLSX)", "нагрузки_расчёт.xlsx", false)
+		path := chooseSave("xlsx", "Файлы Excel (XLSX)", "Нагрузки расчёт.xlsx", false)
 		if path == "" {
 			return
 		}
@@ -718,6 +731,10 @@ func runAction(id int) {
 			return exportTempExcel(project.selectedReport(), file)
 		})
 	case 305:
+		if activePage == "wind" {
+			windExportSelected(true)
+			return
+		}
 		if activePage == "site" {
 			s, err := currentSiteForReport()
 			if err != nil {
@@ -727,7 +744,7 @@ func runAction(id int) {
 			if !confirmSiteReport(s) {
 				return
 			}
-			path := chooseSave("docx", "Word DOCX", "характеристики_местности.docx", false)
+			path := chooseSave("docx", "Word DOCX", "Характеристики местности.docx", false)
 			if path != "" {
 				saveAndNotify(path, func(file string) error { return ExportSiteWord(s, file) })
 			}
@@ -737,11 +754,11 @@ func runAction(id int) {
 			message(err.Error(), true)
 			return
 		}
-		path := chooseSave("docx", "Документы Word (DOCX)", "нагрузки_отчёт.docx", false)
+		path := chooseSave("docx", "Документы Word (DOCX)", "Нагрузки отчёт.docx", false)
 		if path == "" {
 			return
 		}
-		saveAndNotify(path, func(file string) error { return ExportWord(project, file) })
+		saveAndNotify(path, func(file string) error { return exportTempWord(project.selectedReport(), file) })
 	}
 }
 func wndProc(w, m, wp, lp uintptr) uintptr {
@@ -751,6 +768,9 @@ func wndProc(w, m, wp, lp uintptr) uintptr {
 		return 0
 	case WM_COMMAND:
 		id, code := int(wp&0xffff), int((wp>>16)&0xffff)
+		if windCommand(id) {
+			return 0
+		}
 		if snowNotification(id, code) {
 			return 0
 		}
@@ -774,12 +794,17 @@ func wndProc(w, m, wp, lp uintptr) uintptr {
 			seismicMapChanged()
 		} else if code == CBN_SELCHANGE && id == iceKind {
 			iceAction(iceKind)
+		} else if code == CBN_SELCHANGE && activePage == "wind" && windComboCommand(id) {
+			// User selected a wind scheme or display unit.
 		} else if code == CBN_SELCHANGE && isClimateCombo(id) {
 			climateComboChanged(id)
 			if activePage == "site" && !changingUnits {
 				siteSaveSelectionSilently()
 			}
 		} else if code == EN_CHANGE {
+			if windManualPressureEdited(id, code) {
+				return 0
+			}
 			if activePage == "site" && !changingUnits && ((id >= 631 && id <= 635) || id == 644 || id == 662 || id == 663) {
 				siteSaveSelectionSilently()
 			}
@@ -813,6 +838,7 @@ func wndProc(w, m, wp, lp uintptr) uintptr {
 	case 5: // WM_SIZE
 		tempResize()
 		snowResize()
+		windResize()
 		return 0
 	case WM_NOTIFY:
 		if tempTableNotify(lp) {
@@ -846,6 +872,9 @@ func wndProc(w, m, wp, lp uintptr) uintptr {
 			return 1
 		}
 		if snowPaintDiagram(wp, lp) {
+			return 1
+		}
+		if windPaint(wp, lp) {
 			return 1
 		}
 		if tempWrapPaint(lp) {
@@ -903,10 +932,7 @@ func buildHome() {
 	menuButton(501, "01   ХАРАКТЕРИСТИКИ МЕСТНОСТИ\r\nПоиск по климату и СП 14.13330.2018", 26, 148, true)
 	menuButton(502, "02   СОБСТВЕННЫЙ ВЕС\r\nСправочник материалов и расчёт пирога", 573, 148, true)
 	menuButton(503, "03   РАСЧЁТ СНЕГА\r\nПокрытия, перепады и резервуары · СП 20.13330.2016", 26, 247, true)
-	// ЗАГЛУШКА: самостоятельный модуль ветровой нагрузки НЕ РЕАЛИЗОВАН.
-	// Отключён намеренно до завершения разработки снегового модуля.
-	// Не активировать при аудитах/рефакторинге без отдельного ТЗ.
-	menuButton(504, "04   РАСЧЁТ ВЕТРА\r\nМодуль в разработке", 573, 247, false)
+	menuButton(504, "04   РАСЧЁТ ВЕТРА\r\nСтены и двускатные крыши · СП 20.13330.2016", 573, 247, true)
 	menuButton(505, "05   РАСЧЁТ ГОЛОЛЁДА\r\nКруглые и строительные элементы · СП 20.13330.2016", 26, 346, true)
 	menuButton(506, "06   ВРЕМЕННЫЕ НАГРУЗКИ\r\nПомещения и конструкции · СП 20.13330.2016", 573, 346, true)
 	menuButton(507, "07   ТРАНСПОРТНЫЕ НАГРУЗКИ\r\nАвтомобильные и железнодорожные · СП 35.13330.2011", 26, 445, true)
@@ -950,38 +976,7 @@ func buildAbout() {
 }
 func buildWeight() { buildWeightNative() }
 
-// ЗАГЛУШКА / СТАРЫЙ ПРОТОТИП: buildWind() оставлен в исходниках только
-// как историческая заготовка. Полный нормативный расчёт ветра по
-// СП 20.13330.2016 (аэродинамические схемы, пульсации и пр.) НЕ РЕАЛИЗОВАН.
-// Кнопка входа на главной отключена сознательно. Не считать этот код
-// реализованной функцией при аудите и не включать без отдельного задания.
-// Это не относится к вспомогательному учёту ветра внутри модуля гололёда.
-func buildWind() {
-	buildingPage = "wind"
-	navigation("Расчёт ветра", "Временная проверочная схема · полный нормативный модуль будет разработан отдельно")
-	label("ВНИМАНИЕ: здесь только w = w₀ × k(z) × c. Не учитываются пульсации и специальные аэродинамические схемы СП 20.13330.2016.", 21, 116, 1100, 39)
-	create("STATIC", "", WS_CHILD|WS_VISIBLE, 28, 151, 1075, 30, 210)
-	label("Район ветра (табл. 11.1)", 28, 175, 350, 24)
-	combo(206, windOptions, 28, 199, 340)
-	label("Базовое давление w₀, кПа", 28, 243, 360, 24)
-	label("То же давление, кгс/м²", 568, 243, 360, 24)
-	edit(201, "", 28, 272, 340, 33)
-	edit(205, "", 568, 272, 340, 33)
-	label("Выбор района подставляет w₀ автоматически; изменение давления создаёт локальную правку.", 29, 316, 1050, 25)
-	button(207, "Восстановить из местности", 568, 344, 340, 34)
-	label("Коэффициент высоты k(z)", 28, 394, 380, 24)
-	label("Аэродинамический коэффициент c", 568, 394, 440, 24)
-	edit(202, "", 28, 423, 340, 32)
-	edit(203, "", 568, 423, 340, 32)
-	label("Коэффициент надёжности γf", 28, 471, 435, 24)
-	edit(204, "", 28, 500, 340, 32)
-	button(301, "Рассчитать", 568, 496, 240, 40)
-	label("РЕЗУЛЬТАТ РАСЧЁТА ВЕТРОВОГО ДАВЛЕНИЯ", 21, 547, 1080, 25)
-	create("STATIC", "", WS_CHILD|WS_VISIBLE, 21, 576, 1075, 24, 402)
-	create("STATIC", "", WS_CHILD|WS_VISIBLE, 21, 601, 1075, 24, 406)
-	label("Предварительный расчёт. Не заменяет полный нормативный ветровой расчёт.", 21, 626, 1080, 20)
-	footer()
-}
+func buildWind() { windBuildUI() }
 func buildUI() {
 	buildHome()
 	buildAbout()
@@ -992,6 +987,7 @@ func buildUI() {
 	buildWeight()
 	buildSnowInputs()
 	buildWind()
+	windBuildPulseHelp()
 	buildIceInputs()
 	buildIceAdvanced()
 	tempLoad()

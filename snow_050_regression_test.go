@@ -29,7 +29,7 @@ func Test050Zone5ModeAndAngularDistribution(t *testing.T) {
 		t.Fatalf("test geometry does not reach zone 6: %.4f", g.Angle1)
 	}
 	r := g.ConeRadius / 2
-	m, z := g.spatialMu(r, 135)
+	m, z := g.spatialMu(r, 270)
 	if z != 5 || m <= 0 {
 		t.Fatalf("default interpretation zone 5: z=%d μ=%g", z, m)
 	}
@@ -39,7 +39,7 @@ func Test050Zone5ModeAndAngularDistribution(t *testing.T) {
 	if e != nil {
 		t.Fatal(e)
 	}
-	m, z = gs.spatialMu(r, 135)
+	m, z = gs.spatialMu(r, 270)
 	if z != 5 || m != 0 {
 		t.Fatalf("strict interpretation must return zero: z=%d μ=%g", z, m)
 	}
@@ -48,8 +48,8 @@ func Test050Zone5ModeAndAngularDistribution(t *testing.T) {
 		outer bool
 		zone  int
 	}{
-		{0, true, 1}, {45, true, 1}, {90, true, 2}, {135, true, 6},
-		{45, false, 3}, {90, false, 4}, {135, false, 5},
+		{0, true, 2}, {45, true, 1}, {90, true, 1}, {270, true, 6},
+		{45, false, 3}, {90, false, 3}, {270, false, 5},
 	} {
 		radius := r
 		if it.outer {
@@ -60,11 +60,13 @@ func Test050Zone5ModeAndAngularDistribution(t *testing.T) {
 			t.Errorf("r=%g β=%g: zone=%d want=%d", radius, it.beta, zone, it.zone)
 		}
 	}
-	if mu, _ := g.spatialMu((g.ConeRadius+g.D/2)/2, 0); math.Abs(mu) > 1e-8 {
-		t.Errorf("zone1 sin(0)≠0: %g", mu)
-	}
-	if mu, _ := g.spatialMu((g.ConeRadius+g.D/2)/2, 180); math.Abs(mu) > 1e-8 {
-		t.Errorf("zone6 sin(180)≠0: %g", mu)
+	radius := (g.ConeRadius + g.D/2) / 2
+	peak, _ := g.spatialMu(radius, 90)
+	for _, beta := range []float64{0, 30, 150, 180} {
+		mu, _ := g.spatialMu(radius, beta)
+		if math.Abs(mu-0.5*peak) > 1e-8 {
+			t.Errorf("zone2/boundary beta=%g: µ=%g, expected µ90/2=%g", beta, mu, 0.5*peak)
+		}
 	}
 }
 func Test050PartialSectors(t *testing.T) {

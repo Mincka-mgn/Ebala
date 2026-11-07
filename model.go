@@ -167,6 +167,7 @@ type Site struct {
 	Place                  string  `json:"place,omitempty"`
 	SnowZone               string  `json:"snow_zone,omitempty"`
 	WindZone               string  `json:"wind_zone,omitempty"`
+	WindTerrain            string  `json:"wind_terrain,omitempty"`
 	IceZone                string  `json:"ice_zone,omitempty"`
 	SnowGround             float64 `json:"snow_ground_kpa,omitempty"`
 	SnowNote               string  `json:"snow_reference,omitempty"`
@@ -207,6 +208,7 @@ type SavedReportBlock struct {
 	Ice        *IceLoadCalc          `json:"ice,omitempty"`
 	Temporary  *TempSelection        `json:"temporary,omitempty"`
 	CraneSet   []TempSelection       `json:"crane_set,omitempty"`
+	WindCalc   *WindCalculation      `json:"wind_calculation,omitempty"`
 	Placement  *CranePlacementResult `json:"crane_placement,omitempty"`
 	ParentID   int                   `json:"parent_id,omitempty"`
 	SpansText  string                `json:"spans_text,omitempty"`
@@ -216,6 +218,8 @@ type Project struct {
 	Layers               []Layer            `json:"layers"`
 	Weight               *WeightCalc        `json:"weight,omitempty"`
 	Wind                 Wind               `json:"wind"`
+	WindDraft            *WindInput         `json:"wind_draft,omitempty"`
+	WindDraftRaw         map[int]string     `json:"wind_draft_raw,omitempty"`
 	Site                 Site               `json:"site,omitempty"`
 	WindOverride         bool               `json:"wind_override,omitempty"`
 	WindZoneOverride     string             `json:"wind_zone_override,omitempty"`

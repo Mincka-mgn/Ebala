@@ -1,0 +1,170 @@
+{
+  "name": "SP20_AppendixV_Wind_Reference_v0_6",
+  "version": "0.6.0",
+  "date": "2026-11-06",
+  "files": {
+    "README.md": {
+      "bytes": 7336,
+      "sha256": "317c8804ba3d8947e358f072c68578c0a56f2b8fa66fa0fe8bb74f2dfb0f645e"
+    },
+    "data/SP20_wind_all_in_one.json": {
+      "bytes": 212034,
+      "sha256": "d7f57ee6888e9eaaec95bc3a17411918dc47fe5a215496be9162db0067705b48"
+    },
+    "data/branch_selection_rules.json": {
+      "bytes": 6054,
+      "sha256": "71e2a45555d98b4af3f829ccdac24b048b3b8e46ca1ea945983743b4c49098b8"
+    },
+    "data/straight_graph_points.csv": {
+      "bytes": 7112,
+      "sha256": "24eb16ee5c6dd8d17b46647da5d2fe664e91dafdc37d71de558e287ab05b5017"
+    },
+    "data/straight_graphs.json": {
+      "bytes": 22946,
+      "sha256": "e3935c3db9b1dfb612bdeed5296d310c0b159b72901592697e08410d918c958d"
+    },
+    "data/tables_appendix_v.csv": {
+      "bytes": 68969,
+      "sha256": "866cd24d7d9ab948472901e38e67fc41ad1951f3356a16121d8f9b528af51a5c"
+    },
+    "docs/ADDITIONAL_SOURCES.md": {
+      "bytes": 2503,
+      "sha256": "b5c24bc7970589faf5dbadd6b363f9d9104f847153088a3eafc37ea02007b220"
+    },
+    "docs/ERRATA_V16.md": {
+      "bytes": 882,
+      "sha256": "2ec44d9bc711962ad1d73a7834c1a5fd625ab9aa61f0bcb6d8922d2d433fdca8"
+    },
+    "docs/HOW_TO_USE.md": {
+      "bytes": 12128,
+      "sha256": "4c01f486ee85b474318d906d2c29c09d5984bce55719ce9aec309097f655e1ca"
+    },
+    "docs/MATH_AND_STATUS.md": {
+      "bytes": 9778,
+      "sha256": "8cadd955762165d039ce9975d05531c52d6438c6418155798ad0211e5db604d8"
+    },
+    "docs/TABLE_INDEX.md": {
+      "bytes": 3876,
+      "sha256": "14ad1fea88fb8d7b17e445d5fcb98c4c179654be38321ccd3b9177bc1cf09da1"
+    },
+    "docs/V17_MODES.md": {
+      "bytes": 5620,
+      "sha256": "e74bed266c96b659a17c47fe058ee40ca404ff1d112036709c05d4d6507ec7e5"
+    },
+    "docs/VERIFYING_AND_INTEGRATING.md": {
+      "bytes": 5962,
+      "sha256": "8b8598e4f5af37a0deeae2e94086bf3256e5c49c80fad95effddbf7a7bb9f48e"
+    },
+    "external/catalog.json": {
+      "bytes": 959,
+      "sha256": "72c5e8231e2bb39ac6c21c6fae81ea667e182bee3a17624b3dcb8c186c9ce8f2"
+    },
+    "external/guide1978_table6_historical.csv": {
+      "bytes": 465,
+      "sha256": "b117455b5c460ec45ddcecb830ff6be24f8e804a67726d9be72f46380c47797c"
+    },
+    "external/guide1978_technical_source.json": {
+      "bytes": 2156,
+      "sha256": "e8d36aae0b7051b042290580e6a2fcf47d9993a8e1597851b8b1478d99d9b591"
+    },
+    "external/sp375_appendix_a_zonal_factor.json": {
+      "bytes": 2575,
+      "sha256": "df5f9755047006c3db3c1bacd3e2e43df88ac7fcab15c36e9fb9293b78026736"
+    },
+    "figures/Guide_1978_fig6.png": {
+      "bytes": 413898,
+      "sha256": "492ed48854275d3ec663f837b881bce3206d0875347ce3f41231e53cc6ddc9cc"
+    },
+    "figures/Guide_1978_formula_48.png": {
+      "bytes": 377305,
+      "sha256": "7bba8f4348cf3db6834f1027475e1f540bbc04353babd9aa2fe88726215a6f0d"
+    },
+    "figures/SP375_figA2_zonal_reduction.png": {
+      "bytes": 125377,
+      "sha256": "9a0cc5f1ea09a33d32261e3b25b699b6d3994ce50374d929760b1ff74138d7b6"
+    },
+    "figures/Table_V04_canopies.png": {
+      "bytes": 129360,
+      "sha256": "890d562103403e84c1a967b7eb93a6bc640211e4146d4bcf4eefa2c8bfb9ee35"
+    },
+    "figures/Table_V09_schemes.png": {
+      "bytes": 40053,
+      "sha256": "a31f16caa67d36877b6ee1202f8a112530f47ad595abe27bf4f50160d5458f44"
+    },
+    "figures/Table_V10_schemes.png": {
+      "bytes": 78144,
+      "sha256": "5616d42063f2b0425118398f08e9c97e4936449b3befc47b21f687e9fc108b47"
+    },
+    "figures/Table_V12_zones.png": {
+      "bytes": 112071,
+      "sha256": "b74f88dfe5345175b7ef7ca600fd30767f5a9309b26fa86243d659934c2aba3a"
+    },
+    "figures/V05_vault.png": {
+      "bytes": 145725,
+      "sha256": "32eca314135d39d4bf6be94076bd59ee33b9be50103457be5bf0bd35b319655a"
+    },
+    "figures/V06_dome.png": {
+      "bytes": 200907,
+      "sha256": "2d96f439c1f890b0c27c8faeeb434e1df53481daa2a15d98571409801d914950"
+    },
+    "figures/V14_sphere.png": {
+      "bytes": 72647,
+      "sha256": "9b71860eb0f0265db7051a9bc74a92dbd096230260e26071088b3f5e69de2ebd"
+    },
+    "figures/V16_cylinder_pressure.png": {
+      "bytes": 92181,
+      "sha256": "ba35c6d233b3694492b5c718b4120f0dd9bf485c6f83db28269ef359b0d081fb"
+    },
+    "figures/V17_cylinder_drag.png": {
+      "bytes": 77503,
+      "sha256": "636ead571a14cf9cf0eaf67de2cd84c4c01f772055a527639cff948094350878"
+    },
+    "figures/V19_rectangular_prism.png": {
+      "bytes": 97823,
+      "sha256": "aff13ddc3f15019e9bfb529d2de574f2d2e7c91b6ee8c0f3c3dc3d9e6139d0c7"
+    },
+    "figures/V23_slenderness.png": {
+      "bytes": 127057,
+      "sha256": "272263cf7af127fa19e28239bb24e767e032c06d6520a4bdc2c42d830eb40d16"
+    },
+    "formulas/curved_graphs.json": {
+      "bytes": 10301,
+      "sha256": "96f2dbcbf522509ffef9e8386839911cff6453a1417cd143e176fdafd02ad601"
+    },
+    "tests/verify_reference.py": {
+      "bytes": 7002,
+      "sha256": "6ff8566a894d373deb0cc80f56d61e7cd86d0250daf39a62075299e61c8e25d3"
+    },
+    "tests/verify_supplements.py": {
+      "bytes": 1504,
+      "sha256": "266a1f555f88b915ef65114caa686a897c89456a23fa9f02b7513fb675e765da"
+    },
+    "verification/V16_bulgarian_7_angles.csv": {
+      "bytes": 2495,
+      "sha256": "b3a926bbc8c6b02ba76f93494d21048b0d19dba702c2f915b82f79d33772d7c6"
+    },
+    "verification/V16_bulgarian_comparison.png": {
+      "bytes": 147056,
+      "sha256": "09e08bdd8482c9f11862537da7b9304a87b9fbf619ed53fdac0d07c23ff4d84c"
+    },
+    "verification/V17_continuous_vs_discrete.png": {
+      "bytes": 91524,
+      "sha256": "1580a59a9f4a5e485ff945d93e64bcc72c6f36d543903a24a7d0c539baa6254e"
+    },
+    "verification/V17_control_points.csv": {
+      "bytes": 346,
+      "sha256": "aa8f7bb2c2a14a40f6d1f2e4de5e0dd2c5f558d50818dfec3ab37aa3984c4dea"
+    },
+    "verification/V17_formula_comparison.png": {
+      "bytes": 56999,
+      "sha256": "c1513be6f1bdd0f08b3a9bce5e7b487b936505d127668f81e64869b9b923bda7"
+    },
+    "verification/V17_roughness_modes.csv": {
+      "bytes": 4326,
+      "sha256": "6025b5f04ac059cc575d30212f931281914e78cfe8575330c839c490b6cbd1e5"
+    }
+  },
+  "change_summary": "External special figure A2 SP375 and historical guide1978, without changing 13 SP20 tables and 7 original graphs.",
+  "packaging": "directory_in_merged_wind_mathematics_v1_1",
+  "relative_root": "reference"
+}

@@ -1,0 +1,133 @@
+case_id;source_section;figure_ids;field_id;symbol;unit;meaning;reference_status
+GENERAL_BASIC;11.1.1–11.1.11;"11.1; 11.2";wind_region;район;—;Ветровой район;LOCAL_OR_SCHEME
+GENERAL_BASIC;11.1.1–11.1.11;"11.1; 11.2";terrain;A/B/C;—;Тип местности;LOCAL_OR_SCHEME
+GENERAL_BASIC;11.1.1–11.1.11;"11.1; 11.2";w0;w₀;Па;Нормативное ветровое давление;LOCAL_OR_SCHEME
+GENERAL_BASIC;11.1.1–11.1.11;"11.1; 11.2";h;h;м;Высота здания/сооружения;LOCAL_OR_SCHEME
+GENERAL_BASIC;11.1.1–11.1.11;"11.1; 11.2";d;d;м;Поперечный размер здания или диаметр;LOCAL_OR_SCHEME
+GENERAL_BASIC;11.1.1–11.1.11;"11.1; 11.2";z;z;м;Текущая высота над землёй;LOCAL_OR_SCHEME
+GENERAL_BASIC;11.1.1–11.1.11;"11.1; 11.2";c_e;cₑ;1;Аэродинамический коэффициент внешнего давления;LOCAL_OR_SCHEME
+GENERAL_BASIC;11.1.1–11.1.11;"11.1; 11.2";f1;f₁;Гц;Первая собственная частота;LOCAL_OR_SCHEME
+GENERAL_BASIC;11.1.1–11.1.11;"11.1; 11.2";f2;f₂;Гц;Вторая собственная частота;LOCAL_OR_SCHEME
+GENERAL_BASIC;11.1.1–11.1.11;"11.1; 11.2";delta_damp;δ;1;Суммарный логарифмический декремент;LOCAL_OR_SCHEME
+GENERAL_BASIC;11.1.1–11.1.11;"11.1; 11.2";rho;ρ;м;Размер расчётной поверхности;LOCAL_OR_SCHEME
+GENERAL_BASIC;11.1.1–11.1.11;"11.1; 11.2";chi;χ;м;Размер расчётной поверхности;LOCAL_OR_SCHEME
+GENERAL_PEAK;"11.2; В.1.17";В.24;w0;w₀;Па;Нормативное ветровое давление;APPENDIX_REFERENCE
+GENERAL_PEAK;"11.2; В.1.17";В.24;z_e;zₑ;м;Эквивалентная высота;APPENDIX_REFERENCE
+GENERAL_PEAK;"11.2; В.1.17";В.24;terrain;A/B/C;—;Тип местности;APPENDIX_REFERENCE
+GENERAL_PEAK;"11.2; В.1.17";В.24;A_loaded;A;м²;Расчётная площадь ограждения;APPENDIX_REFERENCE
+GENERAL_PEAK;"11.2; В.1.17";В.24;c_peak;cₚ,+ / cₚ,−;1;Пиковый аэродинамический коэффициент;APPENDIX_REFERENCE
+GENERAL_VORTEX;"11.3; В.2";В.18;lambda_e;λₑ;1;Относительное удлинение;LOCAL_OR_SCHEME
+GENERAL_VORTEX;"11.3; В.2";В.18;f_i;fᵢ;Гц;Частота i-й собственной формы;LOCAL_OR_SCHEME
+GENERAL_VORTEX;"11.3; В.2";В.18;d;d;м;Поперечный размер здания или диаметр;LOCAL_OR_SCHEME
+GENERAL_VORTEX;"11.3; В.2";В.18;St;St;1;Число Струхаля;LOCAL_OR_SCHEME
+GENERAL_VORTEX;"11.3; В.2";В.18;k_v;k_v;1;Коэффициент захвата частоты;LOCAL_OR_SCHEME
+GENERAL_VORTEX;"11.3; В.2";В.18;w0;w₀;Па;Нормативное ветровое давление;LOCAL_OR_SCHEME
+GENERAL_VORTEX;"11.3; В.2";В.18;terrain;A/B/C;—;Тип местности;LOCAL_OR_SCHEME
+GENERAL_VORTEX;"11.3; В.2";В.18;z_eq;zэк;м;Эквивалентная высота для динамики;LOCAL_OR_SCHEME
+B1_1_WALL;В.1.1;В.1;h;h;м;Высота здания/сооружения;APPENDIX_REFERENCE
+B1_1_WALL;В.1.1;В.1;z_e;zₑ;м;Эквивалентная высота;APPENDIX_REFERENCE
+B1_1_WALL;В.1.1;В.1;wall_zone;A/B/C/D;—;Участок отдельно стоящей стены;APPENDIX_REFERENCE
+B1_1_BILLBOARD;В.1.1;В.2;b;b;м;Ширина или расстояние между фермами;APPENDIX_REFERENCE
+B1_1_BILLBOARD;В.1.1;В.2;d;d;м;Поперечный размер здания или диаметр;APPENDIX_REFERENCE
+B1_1_BILLBOARD;В.1.1;В.2;z_g;z_g;м;Отметка нижнего края сферы над землёй;APPENDIX_REFERENCE
+B1_1_BILLBOARD;В.1.1;В.2;k_lambda;k_λ;1;Коэффициент относительного удлинения;APPENDIX_REFERENCE
+B1_2_GABLE;В.1.2;"В.3; В.4";alpha_roof;α;град;Уклон кровли;APPENDIX_REFERENCE
+B1_2_GABLE;В.1.2;"В.3; В.4";h;h;м;Высота здания/сооружения;APPENDIX_REFERENCE
+B1_2_GABLE;В.1.2;"В.3; В.4";d;d;м;Поперечный размер здания или диаметр;APPENDIX_REFERENCE
+B1_2_GABLE;В.1.2;"В.3; В.4";b;b;м;Ширина или расстояние между фермами;APPENDIX_REFERENCE
+B1_2_GABLE;В.1.2;"В.3; В.4";wind_direction;"V; 0°/90°";град;Расчётное направление ветра;APPENDIX_REFERENCE
+B1_2_GABLE;В.1.2;"В.3; В.4";roof_zone;F/G/H/I/J;—;Участок кровли;APPENDIX_REFERENCE
+B1_3_VAULT;В.1.3;В.5;f_rise;f;м;Стрела подъёма свода/купола;APPENDIX_REFERENCE
+B1_3_VAULT;В.1.3;В.5;l;l;м;Продольный размер сооружения;APPENDIX_REFERENCE
+B1_3_VAULT;В.1.3;В.5;h;h;м;Высота здания/сооружения;APPENDIX_REFERENCE
+B1_3_VAULT;В.1.3;В.5;h1;h₁;м;Высота h₁;APPENDIX_REFERENCE
+B1_3_VAULT;В.1.3;В.5;c_e;cₑ;1;Аэродинамический коэффициент внешнего давления;APPENDIX_REFERENCE
+B1_4_DOME;В.1.4;В.6а;f_rise;f;м;Стрела подъёма свода/купола;APPENDIX_REFERENCE
+B1_4_DOME;В.1.4;В.6а;l;l;м;Продольный размер сооружения;APPENDIX_REFERENCE
+B1_4_DOME;В.1.4;В.6а;h1;h₁;м;Высота h₁;APPENDIX_REFERENCE
+B1_4_DOME;В.1.4;В.6а;section_position;сечение;м;Положение сечения по куполу;APPENDIX_REFERENCE
+B1_4_CONE;В.1.4;В.6б;alpha_roof;α;град;Уклон кровли;LOCAL_OR_SCHEME
+B1_4_CONE;В.1.4;В.6б;zone;A/B/C/D/E/F/G/H/I/J/K/L/M;—;Номер участка схемы;LOCAL_OR_SCHEME
+B1_5_LANTERNS;В.1.5;В.7;h1;h₁;м;Высота h₁;APPENDIX_REFERENCE
+B1_5_LANTERNS;В.1.5;В.7;h2;h₂;м;Высота h₂;APPENDIX_REFERENCE
+B1_5_LANTERNS;В.1.5;В.7;l;l;м;Продольный размер сооружения;APPENDIX_REFERENCE
+B1_5_LANTERNS;В.1.5;В.7;a;a;м;Геометрический размер a;APPENDIX_REFERENCE
+B1_5_LANTERNS;В.1.5;В.7;lambda_lantern;λ;1;Относительный размер фонаря;APPENDIX_REFERENCE
+B1_5_LANTERNS;В.1.5;В.7;alpha_roof;α;град;Уклон кровли;APPENDIX_REFERENCE
+B1_6_SKYLIGHTS;В.1.6;В.8;h1;h₁;м;Высота h₁;APPENDIX_REFERENCE
+B1_6_SKYLIGHTS;В.1.6;В.8;h2;h₂;м;Высота h₂;APPENDIX_REFERENCE
+B1_6_SKYLIGHTS;В.1.6;В.8;a;a;м;Геометрический размер a;APPENDIX_REFERENCE
+B1_6_SKYLIGHTS;В.1.6;В.8;lambda_lantern;λ;1;Относительный размер фонаря;APPENDIX_REFERENCE
+B1_7_SHED;В.1.7;В.9;alpha_roof;α;град;Уклон кровли;APPENDIX_REFERENCE
+B1_7_SHED;В.1.7;В.9;h1;h₁;м;Высота h₁;APPENDIX_REFERENCE
+B1_7_SHED;В.1.7;В.9;l;l;м;Продольный размер сооружения;APPENDIX_REFERENCE
+B1_8_STEP;В.1.8;В.10;a;a;м;Геометрический размер a;APPENDIX_REFERENCE
+B1_8_STEP;В.1.8;В.10;d;d;м;Поперечный размер здания или диаметр;APPENDIX_REFERENCE
+B1_8_STEP;В.1.8;В.10;zone;A/B/C/D/E/F/G/H/I/J/K/L/M;—;Номер участка схемы;APPENDIX_REFERENCE
+B1_8_STEP;В.1.8;В.10;position;(уточнить для схемы);—;"Вспомогательный параметр; см. cases.json";APPENDIX_REFERENCE
+B1_9_INTERNAL;В.1.9;В.11;A_openings;A_проёмов;м²;Площадь проёмов;LOCAL_OR_SCHEME
+B1_9_INTERNAL;В.1.9;В.11;A_walls;A_ограждения;м²;Полная площадь ограждений;LOCAL_OR_SCHEME
+B1_9_INTERNAL;В.1.9;В.11;mu_permeability;μ;%;Проницаемость ограждения;LOCAL_OR_SCHEME
+B1_9_INTERNAL;В.1.9;В.11;wind_case;вариант;—;Вариант направления ветра;LOCAL_OR_SCHEME
+B1_10_CANOPY;В.1.10;В.12;canopy_scheme;I/II/III/IV;—;Тип навеса;APPENDIX_REFERENCE
+B1_10_CANOPY;В.1.10;В.12;alpha_roof;α;град;Уклон кровли;APPENDIX_REFERENCE
+B1_10_CANOPY;В.1.10;В.12;zone;A/B/C/D/E/F/G/H/I/J/K/L/M;—;Номер участка схемы;APPENDIX_REFERENCE
+B1_11_SPHERE;В.1.11;"В.13; В.14";d;d;м;Поперечный размер здания или диаметр;APPENDIX_REFERENCE
+B1_11_SPHERE;В.1.11;"В.13; В.14";z_g;z_g;м;Отметка нижнего края сферы над землёй;APPENDIX_REFERENCE
+B1_11_SPHERE;В.1.11;"В.13; В.14";w0;w₀;Па;Нормативное ветровое давление;APPENDIX_REFERENCE
+B1_11_SPHERE;В.1.11;"В.13; В.14";k;k(zₑ);1;Высотный коэффициент;APPENDIX_REFERENCE
+B1_11_SPHERE;В.1.11;"В.13; В.14";gamma_f;γ_f;1;Коэффициент надёжности по ветру;APPENDIX_REFERENCE
+B1_11_SPHERE;В.1.11;"В.13; В.14";delta_rough;Δ;м;Абсолютная шероховатость поверхности;APPENDIX_REFERENCE
+B1_11_SPHERE;В.1.11;"В.13; В.14";Re;Re;1;Число Рейнольдса;APPENDIX_REFERENCE
+B1_12_CYLINDER;В.1.12;"В.15; В.16; В.17; В.18";d;d;м;Поперечный размер здания или диаметр;APPENDIX_REFERENCE
+B1_12_CYLINDER;В.1.12;"В.15; В.16; В.17; В.18";h;h;м;Высота здания/сооружения;APPENDIX_REFERENCE
+B1_12_CYLINDER;В.1.12;"В.15; В.16; В.17; В.18";z_e;zₑ;м;Эквивалентная высота;APPENDIX_REFERENCE
+B1_12_CYLINDER;В.1.12;"В.15; В.16; В.17; В.18";Re;Re;1;Число Рейнольдса;APPENDIX_REFERENCE
+B1_12_CYLINDER;В.1.12;"В.15; В.16; В.17; В.18";delta_rough;Δ;м;Абсолютная шероховатость поверхности;APPENDIX_REFERENCE
+B1_12_CYLINDER;В.1.12;"В.15; В.16; В.17; В.18";rel_rough;Δ/d;1;Относительная шероховатость;APPENDIX_REFERENCE
+B1_12_CYLINDER;В.1.12;"В.15; В.16; В.17; В.18";lambda_e;λₑ;1;Относительное удлинение;APPENDIX_REFERENCE
+B1_12_CYLINDER;В.1.12;"В.15; В.16; В.17; В.18";k_lambda;k_λ;1;Коэффициент относительного удлинения;APPENDIX_REFERENCE
+B1_12_CYLINDER;В.1.12;"В.15; В.16; В.17; В.18";beta_cyl;β;град;Полярный угол на цилиндре;APPENDIX_REFERENCE
+B1_12_CYLINDER;В.1.12;"В.15; В.16; В.17; В.18";beta_wind;β;град;Направление ветра/угол к элементу;APPENDIX_REFERENCE
+B1_13_PRISM;В.1.13;В.19;l;l;м;Продольный размер сооружения;APPENDIX_REFERENCE
+B1_13_PRISM;В.1.13;В.19;d;d;м;Поперечный размер здания или диаметр;APPENDIX_REFERENCE
+B1_13_PRISM;В.1.13;В.19;lambda_e;λₑ;1;Относительное удлинение;APPENDIX_REFERENCE
+B1_13_PRISM;В.1.13;В.19;k_lambda;k_λ;1;Коэффициент относительного удлинения;APPENDIX_REFERENCE
+B1_13_PRISM;В.1.13;В.19;profile_kind;(уточнить для схемы);—;"Вспомогательный параметр; см. cases.json";APPENDIX_REFERENCE
+B1_13_PRISM;В.1.13;В.19;Re;Re;1;Число Рейнольдса;APPENDIX_REFERENCE
+B1_14_LATTICE;В.1.14;"В.20; В.21; В.22";A_i;A_i;м²;Площадь проекции i-го элемента;APPENDIX_REFERENCE
+B1_14_LATTICE;В.1.14;"В.20; В.21; В.22";A_k;A_k;м²;Площадь контура фермы;APPENDIX_REFERENCE
+B1_14_LATTICE;В.1.14;"В.20; В.21; В.22";c_xi;(уточнить для схемы);—;"Вспомогательный параметр; см. cases.json";APPENDIX_REFERENCE
+B1_14_LATTICE;В.1.14;"В.20; В.21; В.22";phi_solidity;φ;1;Степень заполнения решётки;APPENDIX_REFERENCE
+B1_14_LATTICE;В.1.14;"В.20; В.21; В.22";b;b;м;Ширина или расстояние между фермами;APPENDIX_REFERENCE
+B1_14_LATTICE;В.1.14;"В.20; В.21; В.22";h;h;м;Высота здания/сооружения;APPENDIX_REFERENCE
+B1_14_LATTICE;В.1.14;"В.20; В.21; В.22";Re;Re;1;Число Рейнольдса;APPENDIX_REFERENCE
+B1_15_SLENDER;В.1.15;В.23;l;l;м;Продольный размер сооружения;APPENDIX_REFERENCE
+B1_15_SLENDER;В.1.15;В.23;b;b;м;Ширина или расстояние между фермами;APPENDIX_REFERENCE
+B1_15_SLENDER;В.1.15;В.23;lambda_e;λₑ;1;Относительное удлинение;APPENDIX_REFERENCE
+B1_15_SLENDER;В.1.15;В.23;phi_solidity;φ;1;Степень заполнения решётки;APPENDIX_REFERENCE
+B1_16_ROUGH;В.1.16;;surface_kind;материал;—;Тип поверхности;APPENDIX_REFERENCE
+B1_16_ROUGH;В.1.16;;d;d;м;Поперечный размер здания или диаметр;APPENDIX_REFERENCE
+B1_17_PEAK;В.1.17;В.24;zone;A/B/C/D/E/F/G/H/I/J/K/L/M;—;Номер участка схемы;APPENDIX_REFERENCE
+B1_17_PEAK;В.1.17;В.24;b;b;м;Ширина или расстояние между фермами;APPENDIX_REFERENCE
+B1_17_PEAK;В.1.17;В.24;l;l;м;Продольный размер сооружения;APPENDIX_REFERENCE
+B1_17_PEAK;В.1.17;В.24;h;h;м;Высота здания/сооружения;APPENDIX_REFERENCE
+B2_VORTEX_FORCE;В.2.1–В.2.4;;V_cr;V_{cr,i};м/с;Критическая скорость ветра;LOCAL_OR_SCHEME
+B2_VORTEX_FORCE;В.2.1–В.2.4;;c_y;c_y;1;Коэффициент поперечной силы;LOCAL_OR_SCHEME
+B2_VORTEX_FORCE;В.2.1–В.2.4;;d;d;м;Поперечный размер здания или диаметр;LOCAL_OR_SCHEME
+B2_VORTEX_FORCE;В.2.1–В.2.4;;phi_mode;φᵢ(z);1;Форма собственных колебаний;LOCAL_OR_SCHEME
+B2_VORTEX_FORCE;В.2.1–В.2.4;;delta_s;δ_s;1;Логарифмический декремент конструкционного демпфирования;LOCAL_OR_SCHEME
+B2_VORTEX_FORCE;В.2.1–В.2.4;;b_over_d;b/d;1;Соотношение размеров цилиндра/призмы;LOCAL_OR_SCHEME
+B3_COMFORT;В.3;;w_g;w_g;Па;Пульсационная нормативная составляющая ветра;LOCAL_OR_SCHEME
+B3_COMFORT;В.3;;building_function;функция;—;Назначение здания;LOCAL_OR_SCHEME
+B3_COMFORT;В.3;;a_max;a_c,max;м/с²;Предельное ускорение этажа;LOCAL_OR_SCHEME
+M_MODAL;приложение М, М.1–М.8;;v50;v₅₀;м/с;Скорость ветра с осреднением 10 мин и повторяемостью 50 лет;LOCAL_OR_SCHEME
+M_MODAL;приложение М, М.1–М.8;;zeta10;ζ₁₀;1;Коэффициент пульсации на 10 м;LOCAL_OR_SCHEME
+M_MODAL;приложение М, М.1–М.8;;sigma_Q;σ_Q;Н;Стандарт усилия;LOCAL_OR_SCHEME
+M_MODAL;приложение М, М.1–М.8;;sigma_u;σ_u;м;Стандарт перемещений;LOCAL_OR_SCHEME
+M_MODAL;приложение М, М.1–М.8;;phi_mode;φᵢ(z);1;Форма собственных колебаний;LOCAL_OR_SCHEME
+SP375_TOWER_ZONAL_WIND;СП375 приложение А;СП375.А.1, А.2;sp375_a_zone;a;м;Длина участка относительно перелома поясов решетчатой башни;SPECIAL_SP375
+SP375_TOWER_ZONAL_WIND;СП375 приложение А;СП375.А.1, А.2;sp375_w_design;w;в единицах w;Расчётная нагрузка: давление или погонная нагрузка. Единица должна совпадать с выходным w_loc.;SPECIAL_SP375
+SP375_CHIMNEY_SPECIAL_WIND;СП375 п.7.1;;structure_kind;—;—;"Дымовая труба, поддерживающая башня и т.д.; определяет применимость специальных коэффициентов";SPECIAL_SP375
+SP375_CHIMNEY_SPECIAL_WIND;СП375 п.7.1;;structure_material;—;—;Важен для выбора специальных коэффициентов надежности;SPECIAL_SP375
+SP375_CHIMNEY_SPECIAL_WIND;СП375 п.7.1;;sp375_H;H;м;"Высота специального сооружения; не смешивать с h условной высоты другого расчетного случая";SPECIAL_SP375

@@ -49,6 +49,8 @@ type WeightReportInput struct {
 }
 
 type TempReport struct {
+	Winds        []WindCalculation    `json:"winds,omitempty"`
+	WindTitles   []string             `json:"wind_titles,omitempty"`
 	Snows        []SnowCalc           `json:"snows,omitempty"`
 	Ices         []IceLoadCalc        `json:"ices,omitempty"`
 	Snow         *SnowCalc            `json:"snow,omitempty"`

@@ -1,0 +1,2192 @@
+{
+  "expression_format": "Arithmetics with identifiers, ** power, named functions and lookups; some formal entries intentionally do not have executable scalar evaluation",
+  "formula_statuses": [
+    "VERIFIED_FROM_IMAGE",
+    "ENGINEERING_APPROXIMATION",
+    "FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION"
+  ],
+  "formulas": [
+    {
+      "id": "11.1",
+      "source_ref": "11.1.2, (11.1)",
+      "expression": "w_m + w_g",
+      "latex": "w_m + w_g",
+      "inputs": [
+        "w_m",
+        "w_g"
+      ],
+      "output": "w",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": null,
+      "note": "Внутреннее давление допускается определять без w_g"
+    },
+    {
+      "id": "11.2",
+      "source_ref": "11.1.3, (11.2)",
+      "expression": "w0 * k * c_aerodynamic",
+      "latex": "w_m = w_0 k(z_e) c",
+      "inputs": [
+        "w0",
+        "k",
+        "c_aerodynamic"
+      ],
+      "output": "w_m",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": null,
+      "note": "Сохранять направление и тип аэродинамического коэффициента."
+    },
+    {
+      "id": "11.3",
+      "source_ref": "11.1.4, (11.3)",
+      "expression": "0.43 * v50**2",
+      "latex": "0.43 * v50**2",
+      "inputs": [
+        "v50"
+      ],
+      "output": "w0",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "v50 — 10-минутное осреднение, повторяемость 50 лет, 10 м, тип местности А"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "11.4",
+      "source_ref": "11.1.6, (11.4)",
+      "expression": "k10 * (z_e/10)**(2*alpha_terrain)",
+      "latex": "k10 * (z_e/10)**(2*alpha_terrain)",
+      "inputs": [
+        "z_e",
+        "k10",
+        "alpha_terrain"
+      ],
+      "output": "k",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "10 <= z_e <= 300"
+      ],
+      "lookup": null,
+      "note": "Альтернатива таблице 11.2; при z_e<10 пользоваться таблицей 11.2."
+    },
+    {
+      "id": "11.5",
+      "source_ref": "11.1.8, (11.5)",
+      "expression": "w_m * zeta * v_corr",
+      "latex": "w_m * zeta * v_corr",
+      "inputs": [
+        "w_m",
+        "zeta",
+        "v_corr"
+      ],
+      "output": "w_g",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "f1 > f_lim"
+      ],
+      "lookup": null,
+      "note": "При особых условиях для низких/одноэтажных железобетонных зданий СП разрешает упрощение. Форма 11.5 неприменима автоматически для динамического режима 11.7."
+    },
+    {
+      "id": "11.6",
+      "source_ref": "11.1.8, (11.6)",
+      "expression": "zeta10 * (z_e/10)**(-alpha_terrain)",
+      "latex": "zeta10 * (z_e/10)**(-alpha_terrain)",
+      "inputs": [
+        "z_e",
+        "zeta10",
+        "alpha_terrain"
+      ],
+      "output": "zeta",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "10 <= z_e <= 300"
+      ],
+      "lookup": null,
+      "note": "Альтернатива таблице 11.4; ниже 10 м использовать таблицу."
+    },
+    {
+      "id": "11.7",
+      "source_ref": "11.1.8, (11.7)",
+      "expression": "w_m * xi * zeta * v_corr",
+      "latex": "w_m * xi * zeta * v_corr",
+      "inputs": [
+        "w_m",
+        "xi",
+        "zeta",
+        "v_corr"
+      ],
+      "output": "w_g",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "f1 < f_lim < f2"
+      ],
+      "lookup": {
+        "dataset": "calc",
+        "formula": "11.1.xi_davenport_approx",
+        "source_graph": "11.1"
+      },
+      "note": "Для режима f1<f_lim<f2 величина ξ рассчитывается по согласованной инженерной аппроксимации рисунка 11.1 (формула 11.1.xi_davenport_approx); исходный рисунок остаётся нормативным источником. Этот ξ не является формулой СП. Не применять эту одноформовую схему вместо расчёта нескольких форм приложения М."
+    },
+    {
+      "id": "11.8",
+      "source_ref": "11.1.8, (11.8)",
+      "expression": "sqrt(w0 * k_dynamic * gamma_f)/(940*f1)",
+      "latex": "sqrt(w0 * k_dynamic * gamma_f)/(940*f1)",
+      "inputs": [
+        "w0",
+        "k_dynamic",
+        "gamma_f",
+        "f1"
+      ],
+      "output": "Tg1",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "f1 > 0",
+        "w0>=0",
+        "k_dynamic>=0"
+      ],
+      "lookup": null,
+      "note": "Для зданий zэк=0,8h; для горизонтальных элементов высота расположения. k_dynamic=k(zэк)."
+    },
+    {
+      "id": "11.1.xi_davenport_approx",
+      "source_ref": "СП 20.13330.2016, п. 11.1.8, рисунок 11.1; инженерная формула, НЕ текст СП",
+      "expression": "sqrt(1 + pi**2/(3*delta_damp) * Tg1**(2/3) / (1 + Tg1**2)**(4/3))",
+      "latex": "\\xi=\\sqrt{1+\\frac{\\pi^2}{3\\delta}\\frac{T_{g,1}^{2/3}}{(1+T_{g,1}^2)^{4/3}}}",
+      "inputs": [
+        "Tg1",
+        "delta_damp"
+      ],
+      "output": "xi",
+      "kind": "formula",
+      "normative_status": "ENGINEERING_APPROXIMATION",
+      "conditions": [
+        "delta_damp > 0 (математическое условие)",
+        "Tg1 >= 0 (математическое условие)",
+        "Проверенная область сравнения с рисунком 11.1: 0 <= Tg1 <= 0.30, delta_damp = 0.15, 0.22, 0.30.",
+        "При 0.15 < delta_damp < 0.30 численное значение рассчитывается непосредственно без интерполяции; это согласованное инженерное продолжение модели.",
+        "Вне проверенной области: показывать предупреждение о неподтвержденной точности, не обнулять и не блокировать математически определённый расчёт.",
+        "Суммарный декремент задаётся с учётом п. 11.1.8 и условий для специальных демпфирующих устройств."
+      ],
+      "lookup": null,
+      "note": "СОГЛАСОВАННОЕ ПРИБЛИЖЕНИЕ (06.11.2026) для автоматического определения ξ вместо считывания с печатного рис. 11.1. Формула мотивирована спектром Давенпорта, но не опубликована как нормативная формула СП. Сверка: 24 точки предыдущей предварительной оцифровки, максимальное |Δξ|<0.10, относительное местами до ~6%; отметка 3% не является гарантией на всём поле рисунка. См. docs/FIGURE_11_1_APPROXIMATION_DECISION.md. Историческое обоснование: ЦНИИСК 1978, формула (48); не является формулой современного СП.",
+      "approximation": {
+        "type": "davenport_spectrum_inspired_single_mode",
+        "user_approved": true,
+        "decision_date": "2026-11-06",
+        "normative_formula": false,
+        "reference_figure": "11.1",
+        "verification_file": "verification/figure_11_1_approximation_vs_print.csv",
+        "printed_point_count": 24,
+        "max_abs_delta_xi": 0.09525466,
+        "rms_delta_xi": 0.05765707,
+        "max_relative_percent": 5.9819,
+        "validity_checked_Tg1": [
+          0,
+          0.3
+        ],
+        "validity_checked_delta": [
+          0.15,
+          0.22,
+          0.3
+        ],
+        "outside_range_policy": "warn_and_calculate_when_mathematically_defined",
+        "intermediate_delta_policy": "continuous_direct_evaluation_no_graph_interpolation",
+        "uncertainty": "Примерная оцифровка печатного графика, не погрешность к точной непрерывной нормативной функции",
+        "historical_context_reference": "Руководство ЦНИИСК 1978, приложение 2, формула (48), рис.6, таблица 6: историческая близкая интегральная модель; точного совпадения с современным рисунком 11.1 не доказано."
+      }
+    },
+    {
+      "id": "11.9",
+      "source_ref": "11.1.9, (11.9)",
+      "expression": "sqrt(sum(X_s**2 for each vibration mode s))",
+      "latex": "X=\\sqrt{\\sum_{s=1}^{S}X_s^2}",
+      "inputs": [
+        "X_s"
+      ],
+      "output": "X",
+      "kind": "aggregate",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": null,
+      "note": "Геометрическое сложение усилий/перемещений по собственным формам."
+    },
+    {
+      "id": "11.9a",
+      "source_ref": "11.1.10, (11.9а)",
+      "expression": "sqrt(w0*k_dynamic*gamma_f)/(940*Tg_lim)",
+      "latex": "sqrt(w0*k_dynamic*gamma_f)/(940*Tg_lim)",
+      "inputs": [
+        "w0",
+        "k_dynamic",
+        "gamma_f",
+        "Tg_lim"
+      ],
+      "output": "f_lim",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "Tg_lim > 0"
+      ],
+      "lookup": {
+        "dataset": "calc",
+        "table": "11.5"
+      },
+      "note": "Tg_lim по таблице 11.5 при принятом δ."
+    },
+    {
+      "id": "11.10",
+      "source_ref": "11.2, (11.10)",
+      "expression": "w0*k*(1+zeta)*c_peak*nu_peak",
+      "latex": "w0*k*(1+zeta)*c_peak*nu_peak",
+      "inputs": [
+        "w0",
+        "k",
+        "zeta",
+        "c_peak",
+        "nu_peak"
+      ],
+      "output": "w_peak",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "calc",
+        "table": "11.8"
+      },
+      "note": "Вычислять отдельно плюсовой и минусовой варианты; c_peak со знаком."
+    },
+    {
+      "id": "11.11",
+      "source_ref": "11.3.2, (11.11)",
+      "expression": "k_v*f_i*d/St",
+      "latex": "k_v*f_i*d/St",
+      "inputs": [
+        "k_v",
+        "f_i",
+        "d",
+        "St"
+      ],
+      "output": "V_cr",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "St>0",
+        "0.9<=k_v<=1.1 (рекомендация выбора наиболее неблагоприятного варианта)"
+      ],
+      "lookup": null,
+      "note": "Струхаль: круг 0,2; острые кромки, включая прямоугольник, 0,11."
+    },
+    {
+      "id": "11.12",
+      "source_ref": "11.3.3, (11.12)",
+      "expression": "V_cr > V_max",
+      "latex": "V_cr > V_max",
+      "inputs": [
+        "V_cr",
+        "V_max"
+      ],
+      "output": "vortex_resonance_excluded",
+      "kind": "predicate",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": null,
+      "note": "Если истинно, резонансное вихревое возбуждение не возникает по 11.3.3; отдельно учитывать геометрию λₑ."
+    },
+    {
+      "id": "11.13",
+      "source_ref": "11.3.3, (11.13)",
+      "expression": "1.5*sqrt(w0*k_dynamic)",
+      "latex": "1.5*sqrt(w0*k_dynamic)",
+      "inputs": [
+        "w0",
+        "k_dynamic"
+      ],
+      "output": "V_max",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": null,
+      "note": "Для зданий и башенных сооружений плавно изменяющегося сечения, труб и мачт без оттяжек zэк=0,8h."
+    },
+    {
+      "id": "11.4.gamma",
+      "source_ref": "11.4",
+      "expression": "1.4",
+      "latex": "1.4",
+      "inputs": [
+        "load_type"
+      ],
+      "output": "gamma_f",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "load_type in [main,peak]"
+      ],
+      "lookup": null,
+      "note": "Для резонансного вихревого возбуждения γ_f=1,0."
+    },
+    {
+      "id": "11.4.gamma_vortex",
+      "source_ref": "11.4",
+      "expression": "1.0",
+      "latex": "1.0",
+      "inputs": [
+        "load_type"
+      ],
+      "output": "gamma_f",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "load_type=vortex_resonance"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "11.1.5.tower",
+      "source_ref": "11.1.5",
+      "expression": "z",
+      "latex": "z",
+      "inputs": [
+        "z"
+      ],
+      "output": "z_e",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "geometry=tower,mast,pipe,lattice"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "11.1.5.building_low",
+      "source_ref": "11.1.5",
+      "expression": "h",
+      "latex": "h",
+      "inputs": [
+        "h",
+        "d",
+        "z"
+      ],
+      "output": "z_e",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "geometry=building",
+        "h<=d"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "11.1.5.building_mid_upper",
+      "source_ref": "11.1.5",
+      "expression": "h",
+      "latex": "h",
+      "inputs": [
+        "h",
+        "d",
+        "z"
+      ],
+      "output": "z_e",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "geometry=building",
+        "d<h<=2*d",
+        "z>=h-d"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "11.1.5.building_mid_lower",
+      "source_ref": "11.1.5",
+      "expression": "d",
+      "latex": "d",
+      "inputs": [
+        "h",
+        "d",
+        "z"
+      ],
+      "output": "z_e",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "geometry=building",
+        "d<h<=2*d",
+        "0<z<h-d"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "11.1.5.building_high_upper",
+      "source_ref": "11.1.5",
+      "expression": "h",
+      "latex": "h",
+      "inputs": [
+        "h",
+        "d",
+        "z"
+      ],
+      "output": "z_e",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "geometry=building",
+        "h>2*d",
+        "z>=h-d"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "11.1.5.building_high_middle",
+      "source_ref": "11.1.5",
+      "expression": "z",
+      "latex": "z",
+      "inputs": [
+        "h",
+        "d",
+        "z"
+      ],
+      "output": "z_e",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "geometry=building",
+        "h>2*d",
+        "d<z<h-d"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "11.1.5.building_high_lower",
+      "source_ref": "11.1.5",
+      "expression": "d",
+      "latex": "d",
+      "inputs": [
+        "h",
+        "d",
+        "z"
+      ],
+      "output": "z_e",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "geometry=building",
+        "h>2*d",
+        "0<z<=d"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "11.1.lookup_w0",
+      "source_ref": "11.1.4, табл. 11.1",
+      "expression": "lookup(11.1,wind_region).w0_kPa*1000",
+      "latex": "lookup(11.1,wind_region).w0_kPa*1000",
+      "inputs": [
+        "wind_region"
+      ],
+      "output": "w0",
+      "kind": "table_lookup",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "calc",
+        "table": "11.1"
+      },
+      "note": "Для пользовательского w0 локально допускается переопределение с фиксацией происхождения."
+    },
+    {
+      "id": "11.2.lookup_k",
+      "source_ref": "11.1.6, табл. 11.2",
+      "expression": "lookup_interp(11.2,z_e,terrain)",
+      "latex": "lookup_interp(11.2,z_e,terrain)",
+      "inputs": [
+        "z_e",
+        "terrain"
+      ],
+      "output": "k",
+      "kind": "table_lookup",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "calc",
+        "table": "11.2"
+      },
+      "note": "Таблица высот с линейной интерполяцией. Не подменять формулой 11.4 без явного режима."
+    },
+    {
+      "id": "11.4.lookup_zeta",
+      "source_ref": "11.1.8, табл. 11.4",
+      "expression": "lookup_interp(11.4,z_e,terrain)",
+      "latex": "lookup_interp(11.4,z_e,terrain)",
+      "inputs": [
+        "z_e",
+        "terrain"
+      ],
+      "output": "zeta",
+      "kind": "table_lookup",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "calc",
+        "table": "11.4"
+      },
+      "note": null
+    },
+    {
+      "id": "11.6.lookup_v",
+      "source_ref": "11.1.11, табл. 11.6/11.7",
+      "expression": "lookup2d(11.6,rho,chi)",
+      "latex": "lookup2d(11.6,rho,chi)",
+      "inputs": [
+        "rho",
+        "chi"
+      ],
+      "output": "v_corr",
+      "kind": "table_lookup",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "calc",
+        "table": "11.6"
+      },
+      "note": "Билинейная интерполяция является вычислительным предложением; в тексте пункта 11.1.11 прямой приказ интерполировать не найден."
+    },
+    {
+      "id": "11.8.lookup_nu_peak",
+      "source_ref": "11.2, табл. 11.8",
+      "expression": "lookup_interp(11.8,A_loaded,load_sign)",
+      "latex": "lookup_interp(11.8,A_loaded,load_sign)",
+      "inputs": [
+        "A_loaded",
+        "load_sign"
+      ],
+      "output": "nu_peak",
+      "kind": "table_lookup",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "calc",
+        "table": "11.8"
+      },
+      "note": "Пиковые +/− имеют отдельные строки коэффициента ν."
+    },
+    {
+      "id": "B.1.1.wall",
+      "source_ref": "В.1.1, рис. В.1, табл. В.1",
+      "expression": "lookup(B.1,wall_zone)",
+      "latex": "lookup(B.1,wall_zone)",
+      "inputs": [
+        "wall_zone"
+      ],
+      "output": "c_x",
+      "kind": "reference_lookup",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "reference",
+        "table": "В.1"
+      },
+      "note": "Эквивалентная высота z_e=h; участки A/B/C/D определяются через 0,3h,2h,4h по рисунку."
+    },
+    {
+      "id": "B.1.1.billboard",
+      "source_ref": "В.1.1, рис. В.2",
+      "expression": "2.5*k_lambda",
+      "latex": "2.5*k_lambda",
+      "inputs": [
+        "k_lambda"
+      ],
+      "output": "c_x",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "нижняя кромка щита z_g>=d/4"
+      ],
+      "lookup": {
+        "dataset": "reference",
+        "graph": "В.23"
+      },
+      "note": null
+    },
+    {
+      "id": "B.1.1.billboard_e",
+      "source_ref": "В.1.1, рис. В.2",
+      "expression": "+/- 0.25*b",
+      "latex": "+/- 0.25*b",
+      "inputs": [
+        "b"
+      ],
+      "output": "a_e",
+      "kind": "alternatives",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": null,
+      "note": "Два варианта с горизонтальным эксцентриситетом, без усреднения."
+    },
+    {
+      "id": "B.1.2.side_wall",
+      "source_ref": "В.1.2, табл. В.2",
+      "expression": "lookup(B.2,zone)",
+      "latex": "lookup(B.2,zone)",
+      "inputs": [
+        "zone"
+      ],
+      "output": "c_e",
+      "kind": "reference_lookup",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "reference",
+        "table": "В.2"
+      },
+      "note": null
+    },
+    {
+      "id": "B.1.2.roof",
+      "source_ref": "В.1.2, табл. В.3а, В.3б",
+      "expression": "lookup(B.3a_or_B.3b,roof_zone,alpha_roof,wind_direction,variant)",
+      "latex": "lookup(B.3a_or_B.3b,roof_zone,alpha_roof,wind_direction,variant)",
+      "inputs": [
+        "roof_zone",
+        "alpha_roof",
+        "wind_direction",
+        "variant"
+      ],
+      "output": "c_e",
+      "kind": "reference_lookup",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "reference",
+        "tables": [
+          "В.3а",
+          "В.3б"
+        ]
+      },
+      "note": "Для α=15°..30° при направлении ветра 0° предусмотреть два самостоятельных варианта эпюр."
+    },
+    {
+      "id": "B.1.2.friction",
+      "source_ref": "В.1.2, рис. В.4,б",
+      "expression": "0.02",
+      "latex": "0.02",
+      "inputs": [
+        "roof_smooth",
+        "wind_direction"
+      ],
+      "output": "c_f",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "протяженное гладкое покрытие, ветер под 90°"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.3.vault",
+      "source_ref": "В.1.3, рис. В.5",
+      "expression": "curve(B.5,geometry_ratio,branch)",
+      "latex": "curve(B.5,geometry_ratio,branch)",
+      "inputs": [
+        "f_rise",
+        "l",
+        "h",
+        "h1",
+        "branch"
+      ],
+      "output": "c_e",
+      "kind": "reference_curve",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "reference",
+        "graph": "В.5"
+      },
+      "note": "Проверить обе ветви c_e1 при определённых f/l и h1/l; они альтернативные, не усредняются. Машинный идентификатор стрелы подъёма: f_rise (м); на схеме СП обозначение f.",
+      "source_symbol_bindings": {
+        "f": "f_rise"
+      }
+    },
+    {
+      "id": "B.1.4.dome",
+      "source_ref": "В.1.4, рис. В.6,а",
+      "expression": "curve(B.6a,ratios,location)",
+      "latex": "curve(B.6a,ratios,location)",
+      "inputs": [
+        "f_rise",
+        "l",
+        "h1",
+        "section_position"
+      ],
+      "output": "c_e",
+      "kind": "reference_curve",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "reference",
+        "graph": "В.6а"
+      },
+      "note": "Параметры в A,B,C; вдоль сечений параллельных B–B постоянный коэффициент, между сечениями линейная интерполяция. Машинный идентификатор стрелы подъёма: f_rise (м); на схеме СП обозначение f.",
+      "source_symbol_bindings": {
+        "f": "f_rise"
+      }
+    },
+    {
+      "id": "B.1.4.cone.A",
+      "source_ref": "В.1.4, рис. В.6,б",
+      "expression": "-1.5",
+      "latex": "-1.5",
+      "inputs": [
+        "zone",
+        "alpha_roof"
+      ],
+      "output": "c_e",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "zone=A",
+        "15<alpha_roof<30"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.4.cone.B",
+      "source_ref": "В.1.4, рис. В.6,б",
+      "expression": "-1.0",
+      "latex": "-1.0",
+      "inputs": [
+        "zone",
+        "alpha_roof"
+      ],
+      "output": "c_e",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "zone=B",
+        "15<alpha_roof<30"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.4.cone.C",
+      "source_ref": "В.1.4, рис. В.6,б",
+      "expression": "-1.1",
+      "latex": "-1.1",
+      "inputs": [
+        "zone",
+        "alpha_roof"
+      ],
+      "output": "c_e",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "zone=C",
+        "15<alpha_roof<30"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.4.cone.D",
+      "source_ref": "В.1.4, рис. В.6,б",
+      "expression": "-2.0",
+      "latex": "-2.0",
+      "inputs": [
+        "zone",
+        "alpha_roof"
+      ],
+      "output": "c_e",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "zone=D",
+        "15<alpha_roof<30"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.4.cone.E",
+      "source_ref": "В.1.4, рис. В.6,б",
+      "expression": "-0.7",
+      "latex": "-0.7",
+      "inputs": [
+        "zone",
+        "alpha_roof"
+      ],
+      "output": "c_e",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "zone=E",
+        "15<alpha_roof<30"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.5.lantern_c_low",
+      "source_ref": "В.1.5, рис. В.7",
+      "expression": "0.2",
+      "latex": "0.2",
+      "inputs": [
+        "lambda_lantern"
+      ],
+      "output": "c_e",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "lambda_lantern<=2"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.5.lantern_c_mid",
+      "source_ref": "В.1.5, рис. В.7",
+      "expression": "0.1*lambda_lantern",
+      "latex": "0.1*lambda_lantern",
+      "inputs": [
+        "lambda_lantern"
+      ],
+      "output": "c_e",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "2<lambda_lantern<=8"
+      ],
+      "lookup": null,
+      "note": "λ=a/h_ф по тексту пункта (чертёжная подпись требует проверки на визуальной схеме)."
+    },
+    {
+      "id": "B.1.5.lantern_c_high",
+      "source_ref": "В.1.5, рис. В.7",
+      "expression": "0.8",
+      "latex": "0.8",
+      "inputs": [
+        "lambda_lantern"
+      ],
+      "output": "c_e",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "lambda_lantern>8"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.5.other_roof",
+      "source_ref": "В.1.5–В.1.7",
+      "expression": "-0.5",
+      "latex": "-0.5",
+      "inputs": [
+        "zone"
+      ],
+      "output": "c_e",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "соответствующие прочие участки покрытия"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.6.skylights",
+      "source_ref": "В.1.6, рис. В.8",
+      "expression": "call(B.1.5.lantern_c)",
+      "latex": "call(B.1.5.lantern_c)",
+      "inputs": [
+        "zone",
+        "lambda_lantern"
+      ],
+      "output": "c_e",
+      "kind": "dispatch",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": null,
+      "note": "Наветренный фонарь по В.3а/В.3б, остальные — как участок C в В.1.5."
+    },
+    {
+      "id": "B.1.7.shed_friction",
+      "source_ref": "В.1.7, рис. В.9",
+      "expression": "0.04",
+      "latex": "0.04",
+      "inputs": [
+        "roof_type"
+      ],
+      "output": "c_f",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "roof_type=shed"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.8.step_M",
+      "source_ref": "В.1.8, рис. В.10",
+      "expression": "0.8",
+      "latex": "0.8",
+      "inputs": [
+        "zone"
+      ],
+      "output": "c_e",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "zone=M"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.8.step_L",
+      "source_ref": "В.1.8, рис. В.10",
+      "expression": "linear_interpolation(c_e_zone_K,c_e_zone_M,position)",
+      "latex": "linear_interpolation(c_e_zone_K,c_e_zone_M,position)",
+      "inputs": [
+        "position",
+        "c_e_zone_K",
+        "c_e_zone_M"
+      ],
+      "output": "c_e",
+      "kind": "interpolation",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": null,
+      "note": "Геометрия границ L по рисунку В.10."
+    },
+    {
+      "id": "B.1.9.permeability",
+      "source_ref": "В.1.9",
+      "expression": "100*A_openings/A_walls",
+      "latex": "100*A_openings/A_walls",
+      "inputs": [
+        "A_openings",
+        "A_walls"
+      ],
+      "output": "mu_permeability",
+      "kind": "derived",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": null,
+      "note": "Проницаемость в %, для выбора граничных режимов."
+    },
+    {
+      "id": "B.1.9.low",
+      "source_ref": "В.1.9, рис. В.11",
+      "expression": "choose(+0.2,-0.2)",
+      "latex": "choose(+0.2,-0.2)",
+      "inputs": [
+        "mu_permeability",
+        "load_case"
+      ],
+      "output": "c_i",
+      "kind": "alternatives",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "mu_permeability<=5"
+      ],
+      "lookup": null,
+      "note": "Выбрать неблагоприятный знак для каждой стены; не делать один усреднённый коэффициент."
+    },
+    {
+      "id": "B.1.9.high_negative",
+      "source_ref": "В.1.9, рис. В.11",
+      "expression": "-0.5",
+      "latex": "-0.5",
+      "inputs": [
+        "mu_permeability",
+        "wind_case"
+      ],
+      "output": "c_i",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "mu_permeability>=30",
+        "wind_case=1"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.9.high_positive",
+      "source_ref": "В.1.9, рис. В.11",
+      "expression": "0.8",
+      "latex": "0.8",
+      "inputs": [
+        "mu_permeability",
+        "wind_case"
+      ],
+      "output": "c_i",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "mu_permeability>=30",
+        "wind_case=2"
+      ],
+      "lookup": null,
+      "note": "Для 5<μ<30 СП явно не задаёт формулу: требуется отдельный инженерный выбор, не скрытая интерполяция."
+    },
+    {
+      "id": "B.1.10.canopy",
+      "source_ref": "В.1.10, табл. В.4",
+      "expression": "lookup(B.4,canopy_scheme,alpha_roof,zone)",
+      "latex": "lookup(B.4,canopy_scheme,alpha_roof,zone)",
+      "inputs": [
+        "canopy_scheme",
+        "alpha_roof",
+        "zone"
+      ],
+      "output": "c_p",
+      "kind": "reference_lookup",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "reference",
+        "table": "В.4"
+      },
+      "note": "c_p уже суммарный для верхней и нижней стороны; знак задаёт направление."
+    },
+    {
+      "id": "B.1.11.sphere_re",
+      "source_ref": "В.1.11, (В.1)",
+      "expression": "0.88*d*sqrt(w0*k*gamma_f)*100000",
+      "latex": "0.88*d*sqrt(w0*k*gamma_f)*100000",
+      "inputs": [
+        "d",
+        "w0",
+        "k",
+        "gamma_f"
+      ],
+      "output": "Re",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": null,
+      "note": "Числовой коэффициент 0,88·10^5 требует w0 в Па, d в м; нормативная формула не общая лабораторная Re=Vd/ν."
+    },
+    {
+      "id": "B.1.11.sphere_cx",
+      "source_ref": "В.1.11, рис. В.14",
+      "expression": "curve(B.14,Re,delta_rough/d)",
+      "latex": "curve(B.14,Re,delta_rough/d)",
+      "inputs": [
+        "Re",
+        "delta_rough",
+        "d"
+      ],
+      "output": "c_x",
+      "kind": "reference_curve",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "reference",
+        "graph": "В.14"
+      },
+      "note": "При z_g<d/2 коэффициент c_x умножается на 1,6; указать влияние положения относительно земли."
+    },
+    {
+      "id": "B.1.11.sphere_lift_far",
+      "source_ref": "В.1.11",
+      "expression": "0",
+      "latex": "0",
+      "inputs": [
+        "z_g",
+        "d"
+      ],
+      "output": "c_z",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "z_g>d/2"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.11.sphere_lift_near",
+      "source_ref": "В.1.11",
+      "expression": "0.6",
+      "latex": "0.6",
+      "inputs": [
+        "z_g",
+        "d"
+      ],
+      "output": "c_z",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "z_g<d/2"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.11.sphere_z_e",
+      "source_ref": "В.1.11",
+      "expression": "z_g+d/2",
+      "latex": "z_g+d/2",
+      "inputs": [
+        "z_g",
+        "d"
+      ],
+      "output": "z_e",
+      "kind": "derived",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.12.cylinder_cp",
+      "source_ref": "В.1.12, (В.2)",
+      "expression": "k_lambda1*c_beta",
+      "latex": "k_lambda1*c_beta",
+      "inputs": [
+        "k_lambda1",
+        "c_beta"
+      ],
+      "output": "c_e",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": null,
+      "note": "k_lambda1=1 при c_beta>0, иначе k_lambda; c_beta по болгарской аппроксимации В.16 в отдельном справочнике."
+    },
+    {
+      "id": "B.1.12.cylinder_k1_pos",
+      "source_ref": "В.1.12",
+      "expression": "1",
+      "latex": "1",
+      "inputs": [
+        "c_beta"
+      ],
+      "output": "k_lambda1",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "c_beta>0"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.12.cylinder_k1_neg",
+      "source_ref": "В.1.12",
+      "expression": "k_lambda",
+      "latex": "k_lambda",
+      "inputs": [
+        "c_beta",
+        "k_lambda"
+      ],
+      "output": "k_lambda1",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "c_beta<0"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.12.cylinder_cp_beta",
+      "source_ref": "В.1.12, рис. В.16, табл. В.5",
+      "expression": "bulgarian_piecewise(Re,beta_cyl)",
+      "latex": "bulgarian_piecewise(Re,beta_cyl)",
+      "inputs": [
+        "Re",
+        "beta_cyl",
+        "rel_rough"
+      ],
+      "output": "c_beta",
+      "kind": "reference_curve",
+      "normative_status": "ENGINEERING_APPROXIMATION",
+      "conditions": [
+        "rel_rough<1e-4"
+      ],
+      "lookup": {
+        "dataset": "reference",
+        "graph": "В.16"
+      },
+      "note": "ОБЯЗАТЕЛЬНО: В.16 только при Δ/d < 10^-4; v0.4 справочника содержал опечатку 5·10^-4; исправлено в отдельном v0.5."
+    },
+    {
+      "id": "B.1.12.cylinder_cx",
+      "source_ref": "В.1.12, (В.3)",
+      "expression": "k_lambda*c_x_inf",
+      "latex": "k_lambda*c_x_inf",
+      "inputs": [
+        "k_lambda",
+        "c_x_inf"
+      ],
+      "output": "c_x",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "reference",
+        "graph": "В.17"
+      },
+      "note": "c_x_inf(Re, Δ/d) по текущей модели v0.5, непрерывный режим по шероховатости основной; дискретный альтернатива."
+    },
+    {
+      "id": "B.1.12.inclined_cx",
+      "source_ref": "В.1.12, (В.4)",
+      "expression": "c_x*(sin(beta_wind*pi/180))**2",
+      "latex": "c_x*(sin(beta_wind*pi/180))**2",
+      "inputs": [
+        "c_x",
+        "beta_wind"
+      ],
+      "output": "c_x_beta",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": null,
+      "note": "beta_wind в градусах; угол между осью элемента и вектором скорости ветра."
+    },
+    {
+      "id": "B.1.12.wires",
+      "source_ref": "В.1.12",
+      "expression": "1.2",
+      "latex": "1.2",
+      "inputs": [
+        "element_kind"
+      ],
+      "output": "c_x",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "провода/тросы, включая покрытые гололёдом"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.13.prism_cx",
+      "source_ref": "В.1.13, (В.5)",
+      "expression": "k_lambda*c_x_inf",
+      "latex": "k_lambda*c_x_inf",
+      "inputs": [
+        "k_lambda",
+        "c_x_inf"
+      ],
+      "output": "c_x",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "reference",
+        "graph": "В.19",
+        "table": "В.7"
+      },
+      "note": null
+    },
+    {
+      "id": "B.1.13.profiles",
+      "source_ref": "В.1.13",
+      "expression": "1.4",
+      "latex": "1.4",
+      "inputs": [
+        "profile_kind"
+      ],
+      "output": "c_x",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "конструкционные профили"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.14.lattice_cx",
+      "source_ref": "В.1.14, (В.6)",
+      "expression": "sum(c_xi*A_i)/A_k",
+      "latex": "sum(c_xi*A_i)/A_k",
+      "inputs": [
+        "c_xi",
+        "A_i",
+        "A_k"
+      ],
+      "output": "c_x",
+      "kind": "aggregate",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "A_k>0"
+      ],
+      "lookup": null,
+      "note": "c_xi коэффициент каждого i-го элемента; относится к площади внешнего контура A_k."
+    },
+    {
+      "id": "B.1.14.solidity",
+      "source_ref": "В.1.14, рис. В.21",
+      "expression": "sum(A_i)/A_k",
+      "latex": "sum(A_i)/A_k",
+      "inputs": [
+        "A_i",
+        "A_k"
+      ],
+      "output": "phi_solidity",
+      "kind": "aggregate",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "A_k>0"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.14.lattice_follow",
+      "source_ref": "В.1.14, рис. В.21",
+      "expression": "c_x1*eta_shadow",
+      "latex": "c_x1*eta_shadow",
+      "inputs": [
+        "c_x1",
+        "eta_shadow"
+      ],
+      "output": "c_x2",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "reference",
+        "table": "В.8"
+      },
+      "note": "Для ферм из труб при Re>=4·10^5 η=0,95; при меньшем Re и для профилей по табл. В.8."
+    },
+    {
+      "id": "B.1.14.lattice_tube_eta",
+      "source_ref": "В.1.14",
+      "expression": "0.95",
+      "latex": "0.95",
+      "inputs": [
+        "Re",
+        "element_kind"
+      ],
+      "output": "eta_shadow",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "element_kind=tubes",
+        "Re>=4e5"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.14.spatial",
+      "source_ref": "В.1.14, (В.7)",
+      "expression": "c_x*(1+eta_shadow)*k_1",
+      "latex": "c_x*(1+eta_shadow)*k_1",
+      "inputs": [
+        "c_x",
+        "eta_shadow",
+        "k_1"
+      ],
+      "output": "c_t",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "reference",
+        "table": "В.9"
+      },
+      "note": "k_1 задаётся по геометрии/ориентации пространственной фермы."
+    },
+    {
+      "id": "B.1.15.lambda",
+      "source_ref": "В.1.15",
+      "expression": "l/b",
+      "latex": "l/b",
+      "inputs": [
+        "l",
+        "b"
+      ],
+      "output": "lambda_geometric",
+      "kind": "derived",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "b>0"
+      ],
+      "lookup": null,
+      "note": "По таблице В.10 определяется λ_e, используя вариант закрепления/геометрии; не подменять λ_e просто l/b."
+    },
+    {
+      "id": "B.1.15.k_lambda",
+      "source_ref": "В.1.15, рис. В.23",
+      "expression": "curve(B.23,lambda_e,phi_solidity)",
+      "latex": "curve(B.23,lambda_e,phi_solidity)",
+      "inputs": [
+        "lambda_e",
+        "phi_solidity"
+      ],
+      "output": "k_lambda",
+      "kind": "reference_curve",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "reference",
+        "graph": "В.23",
+        "table": "В.10"
+      },
+      "note": "Степень заполнения φ=ΣAi/Ak для решёток."
+    },
+    {
+      "id": "B.1.16.roughness",
+      "source_ref": "В.1.16, табл. В.11",
+      "expression": "lookup(B.11,surface_kind)",
+      "latex": "lookup(B.11,surface_kind)",
+      "inputs": [
+        "surface_kind"
+      ],
+      "output": "delta_rough",
+      "kind": "reference_lookup",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "reference",
+        "table": "В.11"
+      },
+      "note": null
+    },
+    {
+      "id": "B.1.16.rel_rough",
+      "source_ref": "В.1.16",
+      "expression": "delta_rough/d",
+      "latex": "delta_rough/d",
+      "inputs": [
+        "delta_rough",
+        "d"
+      ],
+      "output": "rel_rough",
+      "kind": "derived",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "d>0"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.17.peak_plus",
+      "source_ref": "В.1.17",
+      "expression": "1.2",
+      "latex": "1.2",
+      "inputs": [
+        "building_type",
+        "surface"
+      ],
+      "output": "c_peak",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "прямоугольное в плане здание, стена, положительное пиковое давление"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.1.17.peak_minus",
+      "source_ref": "В.1.17, табл. В.12",
+      "expression": "lookup(B.12,zone)",
+      "latex": "lookup(B.12,zone)",
+      "inputs": [
+        "zone"
+      ],
+      "output": "c_peak",
+      "kind": "reference_lookup",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": {
+        "dataset": "reference",
+        "table": "В.12"
+      },
+      "note": "Границы зон стен и кровли по рисунку В.24; e=min(b,l)."
+    },
+    {
+      "id": "B.2.1.F",
+      "source_ref": "В.2.1, (В.8)",
+      "expression": "0.61*pi*V_cr**2*c_y_cr*d*phi_mode/delta_s",
+      "latex": "0.61*pi*V_cr**2*c_y_cr*d*phi_mode/delta_s",
+      "inputs": [
+        "V_cr",
+        "c_y_cr",
+        "d",
+        "phi_mode",
+        "delta_s"
+      ],
+      "output": "F_i_z",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "delta_s>0"
+      ],
+      "lookup": null,
+      "note": "Для однопролётных сооружений; для высотных зданий нужны модельные испытания."
+    },
+    {
+      "id": "B.2.1.mode_norm",
+      "source_ref": "В.2.1, (В.9)",
+      "expression": "max(abs(phi_mode(z))) == 1",
+      "latex": "max(abs(phi_mode(z))) == 1",
+      "inputs": [
+        "phi_mode"
+      ],
+      "output": "mode_normalized",
+      "kind": "predicate",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.2.2.cy_circular",
+      "source_ref": "В.2.2",
+      "expression": "0.3",
+      "latex": "0.3",
+      "inputs": [
+        "section_shape"
+      ],
+      "output": "c_y_cr",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "section_shape=circular"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.2.2.cy_rect1",
+      "source_ref": "В.2.2",
+      "expression": "1.1",
+      "latex": "1.1",
+      "inputs": [
+        "b_over_d",
+        "V_cr",
+        "V_max"
+      ],
+      "output": "c_y_cr",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "section_shape=rectangular",
+        "b_over_d>0.5",
+        "V_cr/V_max<0.8"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.2.2.cy_rect2",
+      "source_ref": "В.2.2",
+      "expression": "0.6",
+      "latex": "0.6",
+      "inputs": [
+        "b_over_d",
+        "V_cr",
+        "V_max"
+      ],
+      "output": "c_y_cr",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "section_shape=rectangular",
+        "b_over_d>0.5",
+        "V_cr/V_max>=0.8"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.2.3.wm_cr",
+      "source_ref": "В.2.3, (В.10)",
+      "expression": "(V_cr/V_max)**2 * w_m_design",
+      "latex": "(V_cr/V_max)**2 * w_m_design",
+      "inputs": [
+        "V_cr",
+        "V_max",
+        "w_m_design"
+      ],
+      "output": "w_m_cr",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "V_max>0"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.2.3.wg_cr",
+      "source_ref": "В.2.3, (В.10)",
+      "expression": "(V_cr/V_max)**2 * w_g_design",
+      "latex": "(V_cr/V_max)**2 * w_g_design",
+      "inputs": [
+        "V_cr",
+        "V_max",
+        "w_g_design"
+      ],
+      "output": "w_g_cr",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "V_max>0"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.3.comfort_wind",
+      "source_ref": "В.3, (В.11)",
+      "expression": "0.7 * w_g",
+      "latex": "0.7 * w_g",
+      "inputs": [
+        "w_g"
+      ],
+      "output": "w_comfort",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "B.3.comfort_residential",
+      "source_ref": "В.3, (В.12а)",
+      "expression": "0.08",
+      "latex": "0.08",
+      "inputs": [
+        "building_function"
+      ],
+      "output": "a_max",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "residential"
+      ],
+      "lookup": null,
+      "note": "Предельное ускорение в м/с²."
+    },
+    {
+      "id": "B.3.comfort_office",
+      "source_ref": "В.3, (В.12б)",
+      "expression": "0.13",
+      "latex": "0.13",
+      "inputs": [
+        "building_function"
+      ],
+      "output": "a_max",
+      "kind": "selection",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "public_or_administrative_or_office"
+      ],
+      "lookup": null,
+      "note": "Предельное ускорение в м/с²."
+    },
+    {
+      "id": "M.1",
+      "source_ref": "М.2, (М.1)",
+      "expression": "sigma_Q * gamma_g",
+      "latex": "sigma_Q * gamma_g",
+      "inputs": [
+        "sigma_Q",
+        "gamma_g"
+      ],
+      "output": "Q_p",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": null,
+      "note": "γ_g=3,0; σ_Q получается из спектрального анализа, а не из простой формулы нагрузки."
+    },
+    {
+      "id": "M.2",
+      "source_ref": "М.2, (М.2)",
+      "expression": "sigma_u * gamma_g",
+      "latex": "sigma_u * gamma_g",
+      "inputs": [
+        "sigma_u",
+        "gamma_g"
+      ],
+      "output": "u_p",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "M.3",
+      "source_ref": "М.3.1, (М.3)",
+      "expression": "sqrt(D_u)",
+      "latex": "sqrt(D_u)",
+      "inputs": [
+        "D_u"
+      ],
+      "output": "sigma_u",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "D_u>=0"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "M.4",
+      "source_ref": "М.3.1, (М.4)",
+      "expression": "(zeta10**2/(2*pi)**4)*sum_{k=1..s}(sum_{k1=1..s}(G[k,k1]*phi_k(x)*phi_k1(x)/(f_k**2*f_k1**2)))",
+      "latex": "(zeta10**2/(2*pi)**4)*sum_{k=1..s}(sum_{k1=1..s}(G[k,k1]*phi_k(x)*phi_k1(x)/(f_k**2*f_k1**2)))",
+      "inputs": [
+        "zeta10",
+        "G_k_k1",
+        "phi_k",
+        "phi_k1",
+        "f_k",
+        "f_k1"
+      ],
+      "output": "D_u",
+      "kind": "modal_double_sum",
+      "normative_status": "FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION",
+      "conditions": [],
+      "lookup": null,
+      "note": "Ортонормированные собственные формы и обобщённые воздействия; буквенная запись сверяется по формуле М.4 при реализации."
+    },
+    {
+      "id": "M.5",
+      "source_ref": "М.3.2, (М.5)",
+      "expression": "L(u)",
+      "latex": "L(u)",
+      "inputs": [
+        "u",
+        "L"
+      ],
+      "output": "Q",
+      "kind": "operator",
+      "normative_status": "FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION",
+      "conditions": [],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "M.6",
+      "source_ref": "М.3.2, (М.6)",
+      "expression": "sqrt(D_Q)",
+      "latex": "sqrt(D_Q)",
+      "inputs": [
+        "D_Q"
+      ],
+      "output": "sigma_Q",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "D_Q>=0"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "M.7",
+      "source_ref": "М.3.2, (М.7)",
+      "expression": "(zeta10**2/(2*pi)**4)*sum_{k,k1=1..s}(L(phi_k(x))*L(phi_k1(x))*G[k,k1]/(f_k**2*f_k1**2))",
+      "latex": "(zeta10**2/(2*pi)**4)*sum_{k,k1=1..s}(L(phi_k(x))*L(phi_k1(x))*G[k,k1]/(f_k**2*f_k1**2))",
+      "inputs": [
+        "zeta10",
+        "L",
+        "phi_k",
+        "G_k_k1",
+        "f_k"
+      ],
+      "output": "D_Q",
+      "kind": "modal_double_sum",
+      "normative_status": "FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION",
+      "conditions": [],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "M.8",
+      "source_ref": "М.4, (М.8)",
+      "expression": "double_integral_A(g_k(x1)*g_k1(x2)*xi2_k_k1(x1,x2) dx1 dx2)",
+      "latex": "double_integral_A(g_k(x1)*g_k1(x2)*xi2_k_k1(x1,x2) dx1 dx2)",
+      "inputs": [
+        "g_k",
+        "g_k1",
+        "xi2_k_k1"
+      ],
+      "output": "G_k_k1",
+      "kind": "surface_double_integral",
+      "normative_status": "FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION",
+      "conditions": [],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "M.9",
+      "source_ref": "М.4, (М.9)",
+      "expression": "phi_k(x) dot w_m(x) * zeta(z)",
+      "latex": "phi_k(x) dot w_m(x) * zeta(z)",
+      "inputs": [
+        "phi_k",
+        "w_m",
+        "zeta"
+      ],
+      "output": "g_k",
+      "kind": "vector_dot",
+      "normative_status": "FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION",
+      "conditions": [],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "M.10",
+      "source_ref": "М.4, (М.10)",
+      "expression": "integral_0_inf(S_p0(f_spectral,x1,x2)/(Delta_k(f_spectral)*Delta_k1(f_spectral)) d(f_spectral))",
+      "latex": "integral_0_inf(S_p0(f,x1,x2)/(Delta_k(f)*Delta_k1(f)) df)",
+      "inputs": [
+        "S_p0",
+        "Delta_k",
+        "Delta_k1"
+      ],
+      "output": "xi2_k_k1",
+      "kind": "frequency_integral",
+      "normative_status": "FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION",
+      "conditions": [],
+      "lookup": null,
+      "note": "Обозначение f в исходной записи СП является частотой (Гц); машинный идентификатор f_spectral.",
+      "integration_variable": "f_spectral",
+      "source_symbol_bindings": {
+        "f": "f_spectral"
+      }
+    },
+    {
+      "id": "M.11",
+      "source_ref": "М.4, (М.11)",
+      "expression": "(1-(f_spectral/f_k)**2)**2 + gamma_k*(f_spectral/f_k)**2",
+      "latex": "\\Delta_k^2(f)=[1-(f/f_k)^2]^2+\\gamma_k(f/f_k)^2",
+      "inputs": [
+        "f_spectral",
+        "f_k",
+        "gamma_k"
+      ],
+      "output": "Delta2_k",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": null,
+      "note": "Сверено с СП, приложение М, формула (М.11), печ. с.125 (PDF с.128). Коэффициент γ_k входит в первой степени. Δ²_k(f) не путать с шероховатостью Δ. Обозначение f в исходной записи СП является частотой (Гц); машинный идентификатор f_spectral.",
+      "source_symbol_bindings": {
+        "f": "f_spectral"
+      }
+    },
+    {
+      "id": "M.12",
+      "source_ref": "М.4, (М.12)",
+      "expression": "sigma0**2 * S_v0(f_spectral) * r_v(f_spectral,x1,x2)",
+      "latex": "sigma0**2 * S_v0(f) * r_v(f,x1,x2)",
+      "inputs": [
+        "sigma0",
+        "S_v0",
+        "r_v"
+      ],
+      "output": "S_p0",
+      "kind": "formula",
+      "normative_status": "FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION",
+      "conditions": [],
+      "lookup": null,
+      "note": "Обозначение f в исходной записи СП является частотой (Гц); машинный идентификатор f_spectral.",
+      "source_symbol_bindings": {
+        "f": "f_spectral"
+      }
+    },
+    {
+      "id": "M.13",
+      "source_ref": "М.5, (М.13)",
+      "expression": "(2/(3*f_spectral))*(lambda_f**2/(1+lambda_f**2)**(4/3))",
+      "latex": "(2/(3*f))*(lambda_f**2/(1+lambda_f**2)**(4/3))",
+      "inputs": [
+        "f_spectral",
+        "lambda_f"
+      ],
+      "output": "S_v0",
+      "kind": "formula",
+      "normative_status": "FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION",
+      "conditions": [
+        "f_spectral>0"
+      ],
+      "lookup": null,
+      "note": "Обозначение f в исходной записи СП является частотой (Гц); машинный идентификатор f_spectral. Спектральная плотность имеет размерность с (Гц^-1).",
+      "source_symbol_bindings": {
+        "f": "f_spectral"
+      },
+      "output_unit": "с"
+    },
+    {
+      "id": "M.14",
+      "source_ref": "М.5, (М.14)",
+      "expression": "f_spectral*L_x/V0",
+      "latex": "f*L_x/V0",
+      "inputs": [
+        "f_spectral",
+        "L_x",
+        "V0"
+      ],
+      "output": "lambda_f",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "V0>0"
+      ],
+      "lookup": null,
+      "note": "L_x=1200 м; V0=0,84 v50. Обозначение f в исходной записи СП является частотой (Гц); машинный идентификатор f_spectral.",
+      "source_symbol_bindings": {
+        "f": "f_spectral"
+      }
+    },
+    {
+      "id": "M.15",
+      "source_ref": "М.6, (М.15)",
+      "expression": "exp(-f_spectral*T_v)",
+      "latex": "exp(-f*T_v)",
+      "inputs": [
+        "f_spectral",
+        "T_v"
+      ],
+      "output": "r_v",
+      "kind": "formula",
+      "normative_status": "FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION",
+      "conditions": [],
+      "lookup": null,
+      "note": "Обозначение f в исходной записи СП является частотой (Гц); машинный идентификатор f_spectral.",
+      "source_symbol_bindings": {
+        "f": "f_spectral"
+      }
+    },
+    {
+      "id": "M.16",
+      "source_ref": "М.6, (М.16)",
+      "expression": "Delta_l_v/V0",
+      "latex": "Delta_l_v/V0",
+      "inputs": [
+        "Delta_l_v",
+        "V0"
+      ],
+      "output": "T_v",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [
+        "V0>0"
+      ],
+      "lookup": null,
+      "note": null
+    },
+    {
+      "id": "M.17",
+      "source_ref": "М.6, (М.17)",
+      "expression": "sum_{i=1..3}((b_i*Delta_x_i)**2)",
+      "latex": "sum_{i=1..3}((b_i*Delta_x_i)**2)",
+      "inputs": [
+        "b_i",
+        "Delta_x_i"
+      ],
+      "output": "Delta_l_v_squared",
+      "kind": "vector_norm",
+      "normative_status": "VERIFIED_FROM_IMAGE",
+      "conditions": [],
+      "lookup": null,
+      "note": "b_1=20; b_2=b_3=8; Delta_x_i=abs(x1_i-x2_i)."
+    },
+    {
+      "id": "M.18",
+      "source_ref": "М.7, (М.18)",
+      "expression": "xi_s_squared <= (1+epsilon_D)*v0_squared",
+      "latex": "\\xi_s^2\\le(1+\\varepsilon_\\mathrm{Д})v_0^2",
+      "inputs": [
+        "xi_s_squared",
+        "epsilon_D",
+        "v0_squared"
+      ],
+      "output": "mode_frequency_convergence",
+      "kind": "predicate",
+      "normative_status": "FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION",
+      "conditions": [],
+      "lookup": null,
+      "note": "В (М.18) применяется v₀² из (М.20), НЕ V₀² из (М.14)/(М.16). Для ξ_s² использовать частный случай (М.19) при k=k₁=s. ε_Д≤0,01. Полный динамический расчёт требует численного решателя. Все члены сравнения имеют единицу 1: xi_s_squared, epsilon_D и v0_squared.",
+      "depends_on_formula_ids": [
+        "M.19",
+        "M.20"
+      ],
+      "input_bindings": {
+        "xi_s_squared": {
+          "formula_id": "M.19",
+          "output": "xi2_k_k1",
+          "selection": "k=k1=s"
+        },
+        "v0_squared": {
+          "formula_id": "M.20",
+          "output": "v0_squared"
+        }
+      }
+    },
+    {
+      "id": "M.19",
+      "source_ref": "М.7, (М.19)",
+      "expression": "integral_0_inf(S_v0(f_spectral)/(Delta_k(f_spectral)*Delta_k1(f_spectral))*r_m(f_spectral) d(f_spectral))",
+      "latex": "integral_0_inf(S_v0(f)/(Delta_k(f)*Delta_k1(f))*r_m(f) df)",
+      "inputs": [
+        "S_v0",
+        "Delta_k",
+        "Delta_k1",
+        "r_m"
+      ],
+      "output": "xi2_k_k1",
+      "kind": "frequency_integral",
+      "normative_status": "FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION",
+      "conditions": [],
+      "lookup": null,
+      "note": "Обозначение f в исходной записи СП является частотой (Гц); машинный идентификатор f_spectral.",
+      "integration_variable": "f_spectral",
+      "source_symbol_bindings": {
+        "f": "f_spectral"
+      }
+    },
+    {
+      "id": "M.20",
+      "source_ref": "М.7, (М.20)",
+      "expression": "integral_0_inf(S_v0(f_spectral)*r_m(f_spectral) d(f_spectral))",
+      "latex": "integral_0_inf(S_v0(f)*r_m(f) df)",
+      "inputs": [
+        "S_v0",
+        "r_m"
+      ],
+      "output": "v0_squared",
+      "kind": "frequency_integral",
+      "normative_status": "FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION",
+      "conditions": [],
+      "lookup": null,
+      "note": "Обозначение f в исходной записи СП является частотой (Гц); машинный идентификатор f_spectral. Значение v0_squared безразмерно: это не квадрат скорости V0 в м²/с².",
+      "integration_variable": "f_spectral",
+      "source_symbol_bindings": {
+        "f": "f_spectral"
+      },
+      "output_unit": "1",
+      "dimensional_analysis": "S_v0: с = Гц^-1; r_m: 1; d(f_spectral): Гц => интеграл безразмерный, unit=1."
+    },
+    {
+      "id": "M.21",
+      "source_ref": "М.7, (М.21)",
+      "expression": "r(f_spectral,T_vm)",
+      "latex": "r(f,T_vm)",
+      "inputs": [
+        "f_spectral",
+        "T_vm"
+      ],
+      "output": "r_m",
+      "kind": "definition",
+      "normative_status": "FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION",
+      "conditions": [],
+      "lookup": null,
+      "note": "Обозначение f в исходной записи СП является частотой (Гц); машинный идентификатор f_spectral.",
+      "source_symbol_bindings": {
+        "f": "f_spectral"
+      }
+    },
+    {
+      "id": "SP375.A2.lookup_x_zone",
+      "source_ref": "СП 375.1325800.2023, приложение А, рис. А.2, печ. с.103",
+      "expression": "lookup_interp(SP375_A2_ZONE_X, sp375_a_zone)",
+      "latex": "x=x(a)\\,\\,(рис.\\ А.2)",
+      "inputs": [
+        "sp375_a_zone"
+      ],
+      "output": "sp375_x_zone",
+      "kind": "lookup",
+      "normative_status": "NORMATIVE_GRAPH_WITH_DIGITIZED_LINEAR_SEGMENTS",
+      "conditions": [
+        "решётчатая башня с переломом поясов; раскосы/распорки",
+        "0<=sp375_a_zone<=50 м (поле рисунка); вне диапазона предупреждать, не экстраполировать молча"
+      ],
+      "lookup": {
+        "dataset": "reference",
+        "supplement_id": "SP375_A2_ZONE_X",
+        "file": "external/sp375_appendix_a_zonal_factor.json",
+        "method": "piecewise_linear"
+      },
+      "note": "Коэффициент x считывается/интерполируется по прямолинейным участкам рисунка А.2 СП375, исходные узлы хранятся в ОТДЕЛЬНОМ справочнике. Это не самостоятельная формула СП."
+    },
+    {
+      "id": "SP375.A1.w_loc",
+      "source_ref": "СП 375.1325800.2023, приложение А, формула (А.1), печ. с.102",
+      "expression": "sp375_x_zone*sp375_w_design",
+      "latex": "w_{loc}=xw",
+      "inputs": [
+        "sp375_x_zone",
+        "sp375_w_design"
+      ],
+      "output": "sp375_w_loc",
+      "kind": "formula",
+      "normative_status": "VERIFIED_FROM_SOURCE",
+      "conditions": [
+        "Только зональный расчет раскосов и распорок башен с переломом поясов",
+        "Снижение выше ИЛИ ниже точки схода поясов; два самостоятельных случая",
+        "w_design — расчетная ветровая нагрузка без zonal factor"
+      ],
+      "lookup": null,
+      "note": "Рассматривать два загружения СП375 рис. А.1; коэффициент нельзя накладывать сразу на всю башню."
+    },
+    {
+      "id": "SP375.7.1.wind_gamma",
+      "source_ref": "СП 375.1325800.2023, табл.7.1 и примечание 3, печ. с.16–17",
+      "expression": "lookup_sp375_gamma(structure_kind,structure_material,sp375_H)",
+      "latex": "\\gamma_f=\\gamma_f(H,\\mathrm{тип\\ конструкции})",
+      "inputs": [
+        "structure_kind",
+        "structure_material",
+        "sp375_H"
+      ],
+      "output": "sp375_gamma_f",
+      "kind": "selection_rule",
+      "normative_status": "VERIFIED_FROM_SOURCE",
+      "conditions": [
+        "применять только к сооружениям в области действия СП375",
+        "стальные трубы и башни: правило примечания 3 имеет приоритет над общими интервалами"
+      ],
+      "lookup": {
+        "dataset": "calc",
+        "file": "data/special_sp375_rules.json",
+        "id": "SP375_WIND_GAMMA_F"
+      },
+      "note": "Для стальных труб/башен H>210 м числовое значение не задано автоматически, требуется задание на проектирование."
+    }
+  ]
+}

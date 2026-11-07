@@ -1,0 +1,125 @@
+{
+  "name": "SP20_Wind_Calculation_DB_v0_5",
+  "version": "0.5.0",
+  "date": "2026-11-06",
+  "files": {
+    "README.md": {
+      "bytes": 8381,
+      "sha256": "6f5bdf0a212faea8ceac4d225ac1a553331e6c652ec9d1cdd4e63a38ed627a52"
+    },
+    "data/cases.json": {
+      "bytes": 33354,
+      "sha256": "2bd42e915868cf8106fca8570de3bb408fb3b3b70967b1a1bcb96fcb2e33bb2a"
+    },
+    "data/coverage.csv": {
+      "bytes": 9715,
+      "sha256": "d8a869c2e5fee78beafc7d07b806ecb30d408f9a2745c9fa335e7cd68c30e75e"
+    },
+    "data/cross_rules.json": {
+      "bytes": 1632,
+      "sha256": "fd2c228f030a9632e7f51377595e1e55d847298db2fbbe66bf21b7d7764e44f8"
+    },
+    "data/database_schema.json": {
+      "bytes": 3263,
+      "sha256": "d72d74f3ddc33c85827ae9d3f8181d9472f3b2a13544cc9ee4bce029da9de0a6"
+    },
+    "data/flows.json": {
+      "bytes": 7178,
+      "sha256": "b0848576368968063046361a0a1e9c150a4d3f42133f672086f7ded76cdc3197"
+    },
+    "data/formulas.json": {
+      "bytes": 67006,
+      "sha256": "baf6fc533b4db11a81771fe689fe92015815d85f3f479b31f38de538ea247b4f"
+    },
+    "data/graph_11_1_dynamic_coefficient.json": {
+      "bytes": 3777,
+      "sha256": "43d002586e3d38ed49f5e5abdabe1f862c54e5ff39da3cc621a1fb46dd7a3d0b"
+    },
+    "data/inputs_by_case.csv": {
+      "bytes": 16339,
+      "sha256": "7200bb8da75a6b7f59bfac74e0b5e8f9f1d8921c327374328df32a727107afd7"
+    },
+    "data/reference_linkage.json": {
+      "bytes": 1035,
+      "sha256": "793cd5f95a50fa7af5f6b4d86f953914cd20b90b9f95261be26d921f8c596d63"
+    },
+    "data/special_sp375_rules.json": {
+      "bytes": 3164,
+      "sha256": "a6bbc331b1be011375c2fa263843071cc855958fcd81e1ffade4adb790d31132"
+    },
+    "data/symbols.json": {
+      "bytes": 44515,
+      "sha256": "fd838e6f3f73144f796bb86f8e26a375d805f77706ea2c6b17c17c1ae2c548c0"
+    },
+    "data/tables_section11.json": {
+      "bytes": 7671,
+      "sha256": "56aa2ba00a00137d5b1ac63b25f47c54e73f2b18f8bbe4ff1cc08343f51b75a6"
+    },
+    "docs/DIMENSIONS_AND_SYMBOLS_FIX_2026-11-06.md": {
+      "bytes": 3039,
+      "sha256": "a1fe5170357ae89762c72f00d922289326a23df48464ae4b07806b9dbe1620fd"
+    },
+    "docs/FIGURE_11_1_APPROXIMATION_DECISION.md": {
+      "bytes": 7742,
+      "sha256": "efe9d3d7b8b4ed5a35bcbaee9ab96070c540fb7ead7b8fd9f8a043f2ae70edbc"
+    },
+    "docs/FORMULAS_AND_DECISIONS.md": {
+      "bytes": 5848,
+      "sha256": "e2574845537d3a53f74f675303cc84325a676bc41bec3f40edd0deccb7a51bc5"
+    },
+    "docs/INTEGRATION.md": {
+      "bytes": 7895,
+      "sha256": "3dfd53c2f70222de1d081251e95f3f2f24fa0088094402bae3369ce3d8664fee"
+    },
+    "docs/LIMITS_AND_AUDIT.md": {
+      "bytes": 5812,
+      "sha256": "79c2d80d889984a5e7e6028c6dad14e37343fa08267c54ccbc25495e2392c94a"
+    },
+    "docs/PROTOCOL_FIXES_2026-11-06.md": {
+      "bytes": 3102,
+      "sha256": "1c542d81fe9ccc93f8d1ec333d702c567e63349cb9da46d691abf2684722f039"
+    },
+    "docs/SP375_AND_GUIDE1978_ADDENDUM.md": {
+      "bytes": 4477,
+      "sha256": "663966f0acf38e7a6a32bd8d52d7e8a7349c3c9331e489abdfb80464c9441d31"
+    },
+    "samples/control_examples.json": {
+      "bytes": 4556,
+      "sha256": "bf8df744cb6f491b50839683420d8ea157ad982f24dd179c31554886f03689b9"
+    },
+    "tests/verify_appendix_m_regressions.py": {
+      "bytes": 2844,
+      "sha256": "86b8eead501042e12cc4e89ca9b5710a63165b6aa1360fedc5c5bee29b1d2b10"
+    },
+    "tests/verify_database.py": {
+      "bytes": 5036,
+      "sha256": "4dd2c80a5a3f61d8fdddabf33ef55d4f41c571c39eda6560eeb0cff2b91bd841"
+    },
+    "tests/verify_dynamic_xi_approximation.py": {
+      "bytes": 1575,
+      "sha256": "30c8ec3c7a13d33ace108ed84a98474c6d7e16fd3451174c37c95fccf868afe9"
+    },
+    "tests/verify_sp375_rules.py": {
+      "bytes": 2086,
+      "sha256": "83e020614a150861b79efd3241567a134b86321c0193948d8d46157c1d4ce588"
+    },
+    "tests/verify_symbol_dimensions.py": {
+      "bytes": 3449,
+      "sha256": "107b3877340f7b603fcb8905c9345391289fb7eed0ca9c2ee24f98a7937b2dea"
+    },
+    "tools/demo_arithmetic_reader.py": {
+      "bytes": 3467,
+      "sha256": "2af29a50f6fc37226fd3fb3865ca9ccaa6c336a06b7d7d8f234ed972fe8e786c"
+    },
+    "verification/figure_11_1_approximation_vs_print.csv": {
+      "bytes": 1443,
+      "sha256": "ab6d0ba12cef38abac4afae406f443736f711b45bf66618c839ce9052e87ba13"
+    }
+  },
+  "change_summary": "SP375 chimney/tower special rules, two zonal cases and guide1978 explanatory evidence; unchanged accepted SP20 graph formulas.",
+  "reference_archive": null,
+  "reference_sha256": null,
+  "packaging": "directory_in_merged_wind_mathematics_v1_1",
+  "relative_root": "calculations",
+  "reference_relative_dir": "../reference"
+}

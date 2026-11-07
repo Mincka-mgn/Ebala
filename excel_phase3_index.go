@@ -52,8 +52,25 @@ func excelPhase3InputIndex(entries map[string]string, r TempReport, regular, tra
 	if r.Ice != nil || len(r.Ices) > 0 {
 		add("Гололёд", "Гололёд - исходные / с номером загружения", "Один набор исходных данных на загружение")
 	}
+	if len(r.Winds) > 0 {
+		_, names := windExpandReports(r.Winds, r.WindTitles)
+		add("Ветровая нагрузка", "Ветер Исходные 1…", fmt.Sprintf("Расчётных зон и знаковых вариантов: %d", len(names)))
+		b.WriteString(tempExcelRow(row, "№", "Расчётный вариант / поверхность / зона", "Исходные данные", "Расчёт", "Эпюра"))
+		row++
+		for k, title := range names {
+			i := k + 1
+			link := func(name, caption string) string {
+				return fmt.Sprintf("=HYPERLINK(\"#'%s'!A1\",\"%s\")", name, caption)
+			}
+			b.WriteString(tempExcelRow(row, fmt.Sprint(i), tempExcelLiteral(title),
+				link(fmt.Sprintf("Ветер Исходные %d", i), "Исходные №"+fmt.Sprint(i)),
+				link(fmt.Sprintf("Ветер Расчёт %d", i), "Расчёт №"+fmt.Sprint(i)),
+				link(fmt.Sprintf("Ветер Эпюра %d", i), "Эпюра №"+fmt.Sprint(i))))
+			row++
+		}
+	}
 	if row == 3 {
-		add("Общие сведения", "Нагрузки", "В ведомости отсутствуют расчёты из поддерживаемых модулей")
+		add("Общие сведения", "Итоговые нагрузки", "В ведомости отсутствуют расчёты из поддерживаемых модулей")
 	}
 	_, err := snowExcelSheet(entries, "Исходные данные", b.String(), false)
 	return err

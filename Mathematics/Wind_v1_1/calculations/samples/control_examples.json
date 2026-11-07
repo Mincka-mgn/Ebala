@@ -1,0 +1,169 @@
+{
+  "control_examples": [
+    {
+      "example": "wall_basic_B",
+      "description": "Условный пример: местность B, район III, z_e=20 м, c_e=+0.8, ν=0.81",
+      "inputs": {
+        "w0": 380,
+        "k": 0.85,
+        "c_aerodynamic": 0.8,
+        "zeta": 0.92,
+        "v_corr": 0.81,
+        "gamma_f": 1.4
+      },
+      "expected": {
+        "w_m": 258.40000000000003,
+        "w_g": 192.55968000000004,
+        "w": 450.9596800000001,
+        "w_design": 631.3435520000002
+      },
+      "formulas": [
+        "11.2",
+        "11.5",
+        "11.1",
+        "11.4.gamma"
+      ]
+    },
+    {
+      "example": "peak_wall_plus",
+      "description": "Условная площадь ограждения A=5 м², cp+=1.2, коэффициент ν+=0.9",
+      "inputs": {
+        "w0": 380,
+        "k": 0.85,
+        "zeta": 0.92,
+        "c_peak": 1.2,
+        "nu_peak": 0.9
+      },
+      "expected": {
+        "w_peak": 669.7728
+      },
+      "formulas": [
+        "11.10"
+      ]
+    },
+    {
+      "example": "equivalent_height_high",
+      "description": "h=60 м,d=20 м,z=35 м; для h>2d получаем z_e=z",
+      "inputs": {
+        "h": 60,
+        "d": 20,
+        "z": 35
+      },
+      "expected": {
+        "z_e": 35
+      },
+      "formulas": [
+        "11.1.5.building_high_middle"
+      ]
+    },
+    {
+      "example": "vortex_velocity",
+      "description": "Круг d=2 м, f=1.2 Гц, St=0.2, kv=1",
+      "inputs": {
+        "d": 2,
+        "f_i": 1.2,
+        "St": 0.2,
+        "k_v": 1
+      },
+      "expected": {
+        "V_cr": 12
+      },
+      "formulas": [
+        "11.11"
+      ]
+    },
+    {
+      "example": "roof_internal_pressure",
+      "description": "При μ=4% два возможных коэффициента: +0.2 и −0.2",
+      "inputs": {
+        "mu_permeability": 4
+      },
+      "expected": {
+        "c_i_options": [
+          0.2,
+          -0.2
+        ]
+      },
+      "formulas": [
+        "B.1.9.low"
+      ]
+    },
+    {
+      "example": "appendix_M11_resonance",
+      "description": "Резонансная точка f=f_k: Δ_k² = γ_k (не γ_k²). Здесь f_spectral — частота (Гц), не геометрическая стрела подъёма f_rise.",
+      "inputs": {
+        "f_k": 1.7,
+        "gamma_k": 0.3,
+        "f_spectral": 1.7
+      },
+      "expected": {
+        "Delta2_k": 0.3
+      },
+      "formulas": [
+        "M.11"
+      ]
+    },
+    {
+      "example": "appendix_M11_off_resonance",
+      "description": "f/f_k=0,5, γ_k=0,3: Δ_k²=0,6375. Здесь f_spectral — частота (Гц), не геометрическая стрела подъёма f_rise.",
+      "inputs": {
+        "f_k": 2.0,
+        "gamma_k": 0.3,
+        "f_spectral": 1.0
+      },
+      "expected": {
+        "Delta2_k": 0.6375
+      },
+      "formulas": [
+        "M.11"
+      ]
+    },
+    {
+      "example": "appendix_M18_boundary",
+      "description": "Граница условия М.18: ξ_s²=(1+ε_Д)v₀². Вход v0_squared безразмерен (единица 1), хотя обозначение в СП — v₀².",
+      "inputs": {
+        "xi_s_squared": 1.01,
+        "epsilon_D": 0.01,
+        "v0_squared": 1.0
+      },
+      "expected": {
+        "mode_frequency_convergence": true
+      },
+      "formulas": [
+        "M.18",
+        "M.20"
+      ]
+    },
+    {
+      "example": "appendix_M18_above_boundary",
+      "description": "М.18: превышение допустимой границы, при V₀=10 м/с старое выражение ошибочно давало true. Вход v0_squared безразмерен (единица 1), хотя обозначение в СП — v₀².",
+      "inputs": {
+        "xi_s_squared": 1.02,
+        "epsilon_D": 0.01,
+        "v0_squared": 1.0,
+        "V0": 10.0
+      },
+      "expected": {
+        "mode_frequency_convergence": false
+      },
+      "formulas": [
+        "M.18",
+        "M.20"
+      ]
+    },
+    {
+      "example": "figure_11_1_dynamic_xi_continuous_delta",
+      "description": "Прямая подстановка промежуточного декремента δ=0,18 и Tg1=0,20 в согласованную формулу; НЕ интерполяция между тремя кривыми.",
+      "inputs": {
+        "Tg1": 0.2,
+        "delta_damp": 0.18
+      },
+      "expected": {
+        "xi": 2.6329047496374844
+      },
+      "formulas": [
+        "11.1.xi_davenport_approx"
+      ]
+    }
+  ]
+}

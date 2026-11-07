@@ -1,0 +1,68 @@
+figure;pdf_page;printed_page;group_id;curve_id;curve_label;x_name;x_scale;x;y_name;y;point_index;qualifier
+В.5;60;57;c_e1;B5_CE1_H0;c_e1 при h1/l=0;f_over_l;linear;0.0;c_e;0.0;0;approx_digitized
+В.5;60;57;c_e1;B5_CE1_H0;c_e1 при h1/l=0;f_over_l;linear;0.5;c_e;0.8;1;approx_digitized
+В.5;60;57;c_e1;B5_CE1_HGE05_NEG;c_e1 при h1/l≥0.5, отрицательная ветвь;f_over_l;linear;0.0;c_e;-0.7;0;approx_digitized
+В.5;60;57;c_e1;B5_CE1_HGE05_NEG;c_e1 при h1/l≥0.5, отрицательная ветвь;f_over_l;linear;0.1;c_e;-1.2;1;approx_digitized
+В.5;60;57;c_e1;B5_CE1_HGE05_NEG;c_e1 при h1/l≥0.5, отрицательная ветвь;f_over_l;linear;0.2;c_e;-1.2;2;approx_digitized
+В.5;60;57;c_e1;B5_CE1_HGE05_NEG;c_e1 при h1/l≥0.5, отрицательная ветвь;f_over_l;linear;0.3;c_e;-0.3;3;approx_digitized
+В.5;60;57;c_e1;B5_CE1_HGE05_POS;c_e1 при h1/l≥0.5, положительная ветвь;f_over_l;linear;0.2;c_e;0.0;0;approx_digitized
+В.5;60;57;c_e1;B5_CE1_HGE05_POS;c_e1 при h1/l≥0.5, положительная ветвь;f_over_l;linear;0.5;c_e;0.8;1;approx_digitized
+В.5;60;57;c_e2;B5_CE2;c_e2;f_over_l;linear;0.0;c_e;-0.7;0;approx_digitized
+В.5;60;57;c_e2;B5_CE2;c_e2;f_over_l;linear;0.5;c_e;-1.2;1;approx_digitized
+В.6а;62;59;A;B6_A_H0;A при h1/l=0;f_over_l;linear;0.05;c_e;0.13;0;approx_digitized
+В.6а;62;59;A;B6_A_H0;A при h1/l=0;f_over_l;linear;0.5;c_e;0.8;1;approx_digitized
+В.6а;62;59;A;B6_A_H025;A при h1/l=0.25;f_over_l;linear;0.05;c_e;-1.4;0;approx_digitized
+В.6а;62;59;A;B6_A_H025;A при h1/l=0.25;f_over_l;linear;0.5;c_e;0.8;1;approx_digitized
+В.6а;62;59;A;B6_A_HGE1;A при h1/l≥1;f_over_l;linear;0.05;c_e;-1.4;0;approx_digitized
+В.6а;62;59;A;B6_A_HGE1;A при h1/l≥1;f_over_l;linear;0.1;c_e;-1.7;1;approx_digitized
+В.6а;62;59;A;B6_A_HGE1;A при h1/l≥1;f_over_l;linear;0.35;c_e;-1.4;2;approx_digitized
+В.6а;62;59;A;B6_A_HGE1;A при h1/l≥1;f_over_l;linear;0.5;c_e;0.8;3;approx_digitized
+В.6а;62;59;B;B6_B_H0;B при h1/l=0;f_over_l;linear;0.05;c_e;-0.25;0;approx_digitized
+В.6а;62;59;B;B6_B_H0;B при h1/l=0;f_over_l;linear;0.5;c_e;-1.2;1;approx_digitized
+В.6а;62;59;B;B6_B_HGE05;B при h1/l≥0.5;f_over_l;linear;0.05;c_e;-0.55;0;approx_digitized
+В.6а;62;59;B;B6_B_HGE05;B при h1/l≥0.5;f_over_l;linear;0.1;c_e;-0.8;1;approx_digitized
+В.6а;62;59;B;B6_B_HGE05;B при h1/l≥0.5;f_over_l;linear;0.25;c_e;-1.2;2;approx_digitized
+В.6а;62;59;B;B6_B_HGE05;B при h1/l≥0.5;f_over_l;linear;0.5;c_e;-1.3;3;approx_digitized
+В.6а;62;59;C;B6_C_H0;C при h1/l=0;f_over_l;linear;0.05;c_e;0.0;0;approx_digitized
+В.6а;62;59;C;B6_C_H0;C при h1/l=0;f_over_l;linear;0.5;c_e;0.0;1;approx_digitized
+В.6а;62;59;C;B6_C_HGE05;C при h1/l≥0.5;f_over_l;linear;0.05;c_e;-0.5;0;approx_digitized
+В.6а;62;59;C;B6_C_HGE05;C при h1/l≥0.5;f_over_l;linear;0.5;c_e;-0.5;1;approx_digitized
+В.14;68;65;cx_sphere;B14_ROUGH_1E3;Δ/d=1e-3;Re;log10;100000.0;c_x;0.6;0;approx_digitized
+В.14;68;65;cx_sphere;B14_ROUGH_1E3;Δ/d=1e-3;Re;log10;250000.0;c_x;0.6;1;approx_digitized
+В.14;68;65;cx_sphere;B14_ROUGH_1E3;Δ/d=1e-3;Re;log10;400000.0;c_x;0.4;2;approx_digitized
+В.14;68;65;cx_sphere;B14_ROUGH_1E3;Δ/d=1e-3;Re;log10;30000000.0;c_x;0.4;3;approx_digitized
+В.14;68;65;cx_sphere;B14_ROUGH_1E4;Δ/d=1e-4;Re;log10;100000.0;c_x;0.6;0;approx_digitized
+В.14;68;65;cx_sphere;B14_ROUGH_1E4;Δ/d=1e-4;Re;log10;250000.0;c_x;0.6;1;approx_digitized
+В.14;68;65;cx_sphere;B14_ROUGH_1E4;Δ/d=1e-4;Re;log10;500000.0;c_x;0.3;2;approx_digitized
+В.14;68;65;cx_sphere;B14_ROUGH_1E4;Δ/d=1e-4;Re;log10;30000000.0;c_x;0.3;3;approx_digitized
+В.14;68;65;cx_sphere;B14_ROUGH_1E5;Δ/d=1e-5;Re;log10;100000.0;c_x;0.6;0;approx_digitized
+В.14;68;65;cx_sphere;B14_ROUGH_1E5;Δ/d=1e-5;Re;log10;250000.0;c_x;0.6;1;approx_digitized
+В.14;68;65;cx_sphere;B14_ROUGH_1E5;Δ/d=1e-5;Re;log10;600000.0;c_x;0.2;2;approx_digitized
+В.14;68;65;cx_sphere;B14_ROUGH_1E5;Δ/d=1e-5;Re;log10;30000000.0;c_x;0.2;3;approx_digitized
+В.19;72;69;rectangular_prism;B19_RECTANGLE;c_x∞ прямоугольного сечения;l_over_d;log10;0.1;c_x_infinity;2.0;0;approx_digitized
+В.19;72;69;rectangular_prism;B19_RECTANGLE;c_x∞ прямоугольного сечения;l_over_d;log10;0.2;c_x_infinity;2.0;1;approx_digitized
+В.19;72;69;rectangular_prism;B19_RECTANGLE;c_x∞ прямоугольного сечения;l_over_d;log10;0.7;c_x_infinity;2.4;2;approx_digitized
+В.19;72;69;rectangular_prism;B19_RECTANGLE;c_x∞ прямоугольного сечения;l_over_d;log10;5.0;c_x_infinity;1.0;3;approx_digitized
+В.19;72;69;rectangular_prism;B19_RECTANGLE;c_x∞ прямоугольного сечения;l_over_d;log10;10.0;c_x_infinity;0.9;4;approx_digitized
+В.19;72;69;rectangular_prism;B19_RECTANGLE;c_x∞ прямоугольного сечения;l_over_d;log10;50.0;c_x_infinity;0.9;5;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_010;φ=0.1;lambda_e;log10;1.0;k_lambda;0.99;0;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_010;φ=0.1;lambda_e;log10;10.0;k_lambda;0.99;1;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_010;φ=0.1;lambda_e;log10;60.0;k_lambda;1.0;2;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_010;φ=0.1;lambda_e;log10;100.0;k_lambda;1.0;3;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_010;φ=0.1;lambda_e;log10;200.0;k_lambda;1.0;4;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_050;φ=0.5;lambda_e;log10;1.0;k_lambda;0.885;0;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_050;φ=0.5;lambda_e;log10;10.0;k_lambda;0.91;1;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_050;φ=0.5;lambda_e;log10;100.0;k_lambda;0.975;2;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_050;φ=0.5;lambda_e;log10;200.0;k_lambda;1.0;3;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_090;φ=0.9;lambda_e;log10;1.0;k_lambda;0.825;0;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_090;φ=0.9;lambda_e;log10;10.0;k_lambda;0.87;1;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_090;φ=0.9;lambda_e;log10;100.0;k_lambda;0.96;2;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_090;φ=0.9;lambda_e;log10;200.0;k_lambda;1.0;3;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_095;φ=0.95;lambda_e;log10;1.0;k_lambda;0.725;0;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_095;φ=0.95;lambda_e;log10;10.0;k_lambda;0.8;1;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_095;φ=0.95;lambda_e;log10;100.0;k_lambda;0.955;2;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_095;φ=0.95;lambda_e;log10;200.0;k_lambda;1.0;3;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_100;φ=1.0;lambda_e;log10;1.0;k_lambda;0.6;0;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_100;φ=1.0;lambda_e;log10;10.0;k_lambda;0.7;1;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_100;φ=1.0;lambda_e;log10;100.0;k_lambda;0.945;2;approx_digitized
+В.23;75;72;k_lambda_by_phi;B23_PHI_100;φ=1.0;lambda_e;log10;200.0;k_lambda;1.0;3;approx_digitized

@@ -1,0 +1,191 @@
+{
+  "dataset_version": "0.6.0",
+  "status": "ENGINEERING_APPROXIMATION_SUITABLE_FOR_APPROXIMATE_GRAPH_READOUT_NOT_NORMATIVE_FORMULA",
+  "source": "СП 20.13330.2016 с изм. 1–6, приложение В, рисунки В.16 и В.17",
+  "models": {
+    "B16": {
+      "figure": "В.16",
+      "physical_quantity": "c_beta (внешнее давление по окружности цилиндра)",
+      "inputs": [
+        {
+          "name": "Re",
+          "unit": "1",
+          "positive": true
+        },
+        {
+          "name": "beta_deg",
+          "unit": "degree",
+          "min": 0,
+          "max": 180
+        },
+        {
+          "name": "delta_over_d",
+          "unit": "1"
+        }
+      ],
+      "applicability_SP": {
+        "delta_over_d": "< 1e-4",
+        "beta_deg": [
+          0,
+          180
+        ],
+        "Re_reference_curves": [
+          500000,
+          2000000,
+          10000000
+        ],
+        "reference": "В.1.12 и таблица В.5"
+      },
+      "branches": [
+        {
+          "reference_Re": 500000,
+          "beta_min_deg": 85,
+          "cp_min": -2.2,
+          "beta_b_deg": 135,
+          "cp_b": -0.4
+        },
+        {
+          "reference_Re": 2000000,
+          "beta_min_deg": 80,
+          "cp_min": -1.9,
+          "beta_b_deg": 120,
+          "cp_b": -0.7
+        },
+        {
+          "reference_Re": 10000000,
+          "beta_min_deg": 75,
+          "cp_min": -1.5,
+          "beta_b_deg": 105,
+          "cp_b": -0.8
+        }
+      ],
+      "segments": [
+        {
+          "range": "0 <= beta <= beta_min",
+          "expression": "cp=1-(1-cp_min)*sin(pi*beta/(2*beta_min))**2",
+          "kind": "bulgarian_published_trigonometric_piecewise",
+          "angles": "input beta and beta_min are both degrees; argument of sin is in radians"
+        },
+        {
+          "range": "beta_min < beta <= beta_b",
+          "expression": "cp=cp_b-(cp_b-cp_min)*cos(pi*(beta-beta_min)/(2*(beta_b-beta_min)))",
+          "kind": "bulgarian_published_trigonometric_piecewise",
+          "angles": "input beta, beta_min, beta_b in degrees; argument of cos is in radians"
+        },
+        {
+          "range": "beta_b < beta <= 180",
+          "expression": "cp=cp_b",
+          "kind": "constant"
+        }
+      ],
+      "re_selection": {
+        "mode": "NEAREST_LOG_ORDER_NO_INTERPOLATION",
+        "log_midpoints_approx": [
+          1000000,
+          4472135.955
+        ],
+        "boundary_action": "if uncertain select one whole reference curve for relevant adverse pressure/suction case; may consider both as separate alternatives",
+        "limits": "Do not assert a continuous cp(Re) between reference curves"
+      },
+      "additional_coefficient": "c_e1(beta)=k_lambda1(beta)*cp(beta), k_lambda1=1 for cp>0; for cp<0 use k_lambda from В.1.15",
+      "authoritative_vs_derived": "Четыре параметра каждой кривой из таблицы В.5 СП; тригонометрические зависимости из болгарского инженерного примера, не формулы СП; проверены приблизительным считыванием рис. В.16.",
+      "verification_reference": "verification/V16_bulgarian_comparison.png",
+      "model_id": "B16_BULGARIAN_TRIGONOMETRIC_2026_11",
+      "model_source_kind": "published_engineering_approximation_not_a_normative_equation",
+      "model_source_url": "https://proektsoft.bg/calcpad/Demo/L4.5.%20%D0%A6%D0%B8%D0%BB%D0%B8%D0%BD%D0%B4%D1%8A%D1%80.pdf",
+      "model_source_label": "Болгарский демонстрационный инженерный расчёт по БДС EN 1991-1-4 (Calcpad)",
+      "verification_points": "verification/V16_bulgarian_7_angles.csv",
+      "note": "В архиве v0.4 применяется болгарская кусочная тригонометрическая модель; степень n=4 не используется. Между кривыми по Re не интерполировать."
+    },
+    "B17": {
+      "figure": "В.17",
+      "physical_quantity": "c_x,infinity for circular cylinder",
+      "inputs": [
+        {
+          "name": "Re",
+          "positive": true,
+          "unit": "1"
+        },
+        {
+          "name": "delta_over_d",
+          "nonnegative": true,
+          "unit": "1"
+        }
+      ],
+      "reference_roughness_curves": [
+        {
+          "delta_over_d": "<= 1e-5",
+          "effective_delta": 1e-05,
+          "purpose": "нижняя опорная ветвь; при δ=0 не вычислять log10(0)"
+        },
+        {
+          "delta_over_d": "1e-4",
+          "effective_delta": 0.0001,
+          "purpose": "опора для альтернативного дискретного режима"
+        },
+        {
+          "delta_over_d": "1e-3",
+          "effective_delta": 0.001,
+          "purpose": "опора для альтернативного дискретного режима"
+        },
+        {
+          "delta_over_d": "1e-2",
+          "effective_delta": 0.01,
+          "purpose": "опора для альтернативного дискретного режима"
+        },
+        {
+          "delta_over_d": ">= 0.05",
+          "mode": "constant_1.2",
+          "purpose": "заданное графиком верхнее плато"
+        }
+      ],
+      "roughness_selection": {
+        "default_mode": "CONTINUOUS_LOG_ROUGHNESS",
+        "alternate_mode": "DISCRETE_CONSERVATIVE_UPPER_COEFFICIENT",
+        "allowed_modes": [
+          "CONTINUOUS_LOG_ROUGHNESS",
+          "DISCRETE_CONSERVATIVE_UPPER_COEFFICIENT"
+        ],
+        "default_rule": "Для 1e-5 < delta < 0.05 подставлять фактическое delta=Delta/d в логарифм c_rough; не округлять delta до порядков величины и не интерполировать между готовыми c.",
+        "lower_reference_rule": "Для 0 <= delta <= 1e-5 использовать δ_eff=1e-5 (кривая «<=1e-5»); исходную delta хранить без изменения; это выбор граничной кривой, а не экстраполяция.",
+        "upper_plateau_rule": "Для delta >= 0.05 использовать c_x,infinity=1.2 из графика. На delta=0.05 графическая ветвь принимается отдельным правилом; возможен малый скачок относительно аналитической ветви слева.",
+        "alternate_rule": "Внутри (1e-5,0.05) найти соседние опорные серии из [1e-5,1e-4,1e-3,1e-2,0.05] и взять max(c_x_inf(left), c_x_inf(right)) при том же Re; на 0.05 c=1.2. Межкривую интерполяцию здесь не выполнять.",
+        "input_policy": "Re>0; delta>=0; предусмотреть предупреждение при выходе за диапазон Re графика, но не скрытое изменение введённого Re.",
+        "normative_status": "Непрерывная зависимость от шероховатости является инженерным расширением аналитической ветви EN 1991-1-4 и не предписана текстом СП 20.13330.2016."
+      },
+      "segments": {
+        "roughness_branch": "c_rough=1.2+0.18*log10(10*delta_effective)/(1+0.4*log10(Re/1e6))",
+        "delta_effective_default": "delta_effective=max(delta,1e-5), provided delta<0.05; for delta>=0.05 use c_x_inf=1.2 separately",
+        "descending_EN": "c_down_EN=0.11/(Re/1e6)**1.4",
+        "descending_adjusted_to_SP": "c_down_SP=0.11/(1.6*Re/1e6)**1.4",
+        "combined": "c_x_inf=max(0.4,min(1.2,c_down_SP),c_rough) for 0<=delta<0.05, Re>0, denominator nonzero",
+        "upper_roughness": "if delta>=0.05: c_x_inf=1.2",
+        "discrete_conservative": "max(evaluate(left_reference_at_Re),evaluate(right_reference_at_Re)) for nearest reference bracket including 0.05 plateau"
+      },
+      "Re_graph_range_approx": [
+        10000,
+        50000000
+      ],
+      "final_coefficient": "c_x=k_lambda*c_x,infinity, with k_lambda from В.23 and lambda_e from table В.10",
+      "authoritative_vs_derived": "Кривые и границы берутся из рисунка В.17 СП; c_rough и первоначальная нисходящая ветвь взяты с графика 7.28 EN 1991-1-4:2005+A1:2010, поправка 1.6 и min/max являются инженерной адаптацией. Непрерывная подстановка фактического Δ/d в c_rough согласована как рабочий способ v0.4; консервативный дискретный выбор сохранён как альтернативный режим.",
+      "qualification": "Формулы не являются дословными уравнениями СП. Переключение на плато при δ>=0.05 может давать малый скачок; сглаживание через эту границу без нового решения не выполнять.",
+      "verification_reference": "verification/V17_formula_comparison.png",
+      "model_id": "B17_EUROCODE_SP_FIT_CONTINUOUS_ROUGHNESS_2026_11",
+      "calculation_contract": {
+        "default": [
+          "Compute Re and delta=Delta/d in consistent units.",
+          "If delta>=0.05, return c_x_inf=1.2 and report upper plateau.",
+          "Else let delta_eff=max(delta,1e-5) (delta=0 is admissible physical input).",
+          "Evaluate c_rough and c_down_SP, then c_x_inf=max(0.4,min(1.2,c_down_SP),c_rough).",
+          "Compute k_lambda independently from Fig. V.23 and tab. V.10 when required by SP."
+        ],
+        "alternate": [
+          "Find adjacent delta reference series bracketing the actual delta.",
+          "Evaluate the same c_x_inf function on both reference series at actual Re.",
+          "Return the larger value; for the 0.05 reference use c_x_inf=1.2.",
+          "Include selected branch/mode in project input data and report calculation provenance."
+        ]
+      }
+    }
+  }
+}

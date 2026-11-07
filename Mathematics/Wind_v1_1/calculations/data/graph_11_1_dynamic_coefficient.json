@@ -1,0 +1,151 @@
+{
+  "id": "11.1",
+  "caption": "Коэффициент динамичности ξ в зависимости от T_g и δ",
+  "source_page_pdf": 24,
+  "source_page_sp": 21,
+  "status": "ENGINEERING_APPROXIMATION_APPROVED_WITH_EXPLICIT_VERIFICATION_LIMITS",
+  "axes": {
+    "x": "T_g,1",
+    "y": "xi,1"
+  },
+  "curves": [
+    {
+      "delta": 0.15,
+      "points": [
+        [
+          0,
+          1
+        ],
+        [
+          0.02,
+          1.65
+        ],
+        [
+          0.05,
+          2.01
+        ],
+        [
+          0.1,
+          2.39
+        ],
+        [
+          0.15,
+          2.6
+        ],
+        [
+          0.2,
+          2.79
+        ],
+        [
+          0.25,
+          2.91
+        ],
+        [
+          0.3,
+          3.05
+        ]
+      ]
+    },
+    {
+      "delta": 0.22,
+      "points": [
+        [
+          0,
+          1
+        ],
+        [
+          0.02,
+          1.54
+        ],
+        [
+          0.05,
+          1.8
+        ],
+        [
+          0.1,
+          2.05
+        ],
+        [
+          0.15,
+          2.22
+        ],
+        [
+          0.2,
+          2.39
+        ],
+        [
+          0.25,
+          2.51
+        ],
+        [
+          0.3,
+          2.62
+        ]
+      ]
+    },
+    {
+      "delta": 0.3,
+      "points": [
+        [
+          0,
+          1
+        ],
+        [
+          0.02,
+          1.43
+        ],
+        [
+          0.05,
+          1.62
+        ],
+        [
+          0.1,
+          1.76
+        ],
+        [
+          0.15,
+          1.91
+        ],
+        [
+          0.2,
+          2.04
+        ],
+        [
+          0.25,
+          2.16
+        ],
+        [
+          0.3,
+          2.25
+        ]
+      ]
+    }
+  ],
+  "method_proposed": "Активный метод: аналитическая инженерная формула 11.1.xi_davenport_approx; таблица кривых сохранена только для проверки погрешности. Не применять интерполяцию по δ для вычисления ξ.",
+  "reference_pdf": "СП20, рис. 11.1, PDF стр. 24",
+  "active_method": {
+    "type": "formula",
+    "formula_id": "11.1.xi_davenport_approx",
+    "method_status": "ENGINEERING_APPROXIMATION",
+    "user_approved": "2026-11-06",
+    "direct_delta_evaluation": true,
+    "no_interpolation_delta_required": true,
+    "applicability_note": "Сравнение с напечатанным графиком выполнено только для 0≤Tg1≤0,30 и δ∈{0,15;0,22;0,30}; между ними δ — аргумент формулы."
+  },
+  "printed_digitized_points_usage": "COMPARISON_AND_TESTS_ONLY_NOT_CALCULATION_SOURCE",
+  "verification": {
+    "source_points": "ПРЕДВАРИТЕЛЬНАЯ оцифровка напечатанного рисунка 11.1 (не нормативная цифровая таблица)",
+    "point_count": 24,
+    "max_abs_difference": 0.09525466,
+    "rms_difference": 0.05765707,
+    "max_rel_percent": 5.9819,
+    "tolerance_accepted": "Ориентир: |Δξ|≤0,10 по напечатанному графику в проверенных точках; нет гарантии ≤3% во всём диапазоне.",
+    "comparison_file": "verification/figure_11_1_approximation_vs_print.csv"
+  },
+  "additional_historical_evidence": {
+    "source": "ЦНИИСК 1978, приложение 2, формула (48), рис.6, табл.6",
+    "scope": "контроль происхождения старой спектральной модели, не прямое нормативное равенство рисунку 11.1 СП20",
+    "reference_dataset": "external/guide1978_technical_source.json",
+    "chosen_formula_unchanged": true
+  }
+}

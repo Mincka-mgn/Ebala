@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300">
+<rect width="520" height="300" fill="white"/>
+<g stroke="#111" stroke-width="3" fill="none" stroke-linejoin="round"><path d="M80 242V136L230 44L380 136V242Z"/><path d="M80 136H380" stroke-dasharray="6 7"/><path d="M58 249H402" stroke-width="2"/></g>
+<g stroke="#111" stroke-width="1.5" fill="none"><path d="M408 242V44M402 44h12M402 242h12M425 136V44M419 44h12M419 136h12"/></g>
+<g font-family="DejaVu Sans, sans-serif" font-size="20" fill="#111"><text x="442" y="151">H</text><text x="449" y="96">h</text><text x="92" y="282" font-size="15">H — до конька; h — подъём крыши</text></g>
+</svg>

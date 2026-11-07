@@ -1,0 +1,27 @@
+Ebala 0.60 — журнал проверки
+Дата: 06.11.2026
+
+1) Go roof tests: PASS: TestWind060RoofNormativeCoefficientBranches;
+   TestWind060RoofDirectionsAndIndependentSignAlternatives;
+   TestWind060RoofZoneFootprintsPartitionWholePlan;
+   TestWind060RoofXLSXFormulaIndependence;
+   TestWind060RoofWordRetainsSourcesAndBranches.
+2) Go TestWind060QAExport (переменная EBALA_WIND_QA_OUT): PASS.
+3) Весь Go test с временным исключением Test049WordExcelCompletePolars и
+   Test050SheetFormulasAndOrder: 288 pass, 14 skip, 0 fail (промежуточный прогон).
+   Повторный полный go test: не завершён в лимит времени на старом тесте
+   выгрузки снегового отчёта. Не считать его успешным.
+4) Python-скрипты математической спецификации: 7/7 PASS.
+5) Нормативные файлы WindData неизменны по сравнению с Stage1.
+6) Контрольный документ DOCX: создан, XML корректен, содержит зоны кровли
+   и альтернативные варианты. Microsoft Word не запускался.
+7) Контрольная книга XLSX: создана, ZIP корректен, XML 82 листов без ошибок,
+   у каждого листа A1 — пояснение, 2221 формула. Excel не запускался.
+8) Windows EXE: GOOS=windows GOARCH=amd64 GO111MODULE=off;
+   -ldflags="-H=windowsgui"; PE Machine=0x8664, subsystem=2.
+9) Не проверено: запуск Win32, интерактивные списки, масштабирование,
+   пересчёт Excel в Microsoft Office, открытие DOCX в Microsoft Word.
+
+Вопрос нормативной применимости для дальнейшего уточнения:
+пульсации покрытия из прямоугольной проекции xoy (табл.11.7) требуют
+отдельной проверки для существенно наклонных скатов.

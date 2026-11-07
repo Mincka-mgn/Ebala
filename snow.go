@@ -28,6 +28,7 @@ type SnowCase struct {
 	Note      string           `json:"note,omitempty"`
 	Intervals []SnowInterval   `json:"intervals"`
 	Polar     []SnowPolarPoint `json:"polar,omitempty"`
+	PeakMu    float64          `json:"peak_mu,omitempty"`
 	Cross     []SnowInterval   `json:"cross_intervals,omitempty"`
 }
 type SnowRoofPart struct {
@@ -746,7 +747,9 @@ func snowCases(s SnowCalc) ([]SnowCase, error) {
 		// length must not exceed three times its transverse width.
 		dTransport := math.Min(d, 3*s.Width)
 		mt := 1 + (m1*u+m2*dTransport)/h
-		baseQ := s.Ground * s.CE * s.CT
+		// S₀ = Sg in appendix B (10.4, note 2). ce and ct affect Sн,
+		// never the B.8 drift geometry, upper bound or applicability.
+		baseQ := s.Ground
 		maxMu := math.Min(2*h/baseQ, 4)
 		if math.Max(u, d) > 48 {
 			maxMu = math.Min(2*h/baseQ, 4+2*math.Min(1, math.Max(0, (math.Max(u, d)-48)/24)))
@@ -1314,7 +1317,7 @@ func (s SnowCalc) Q(mu float64) float64        { return s.Ground * s.CE * s.CT *
 func (s SnowCalc) QDesign(mu float64) float64  { return s.Q(mu) * s.Gamma }
 func (s SnowCalc) QReduced(mu float64) float64 { return .5 * s.Ground * mu }
 func (s SnowCalc) MaxMu(c SnowCase) float64 {
-	max := 0.
+	max := c.PeakMu
 	for _, in := range c.Intervals {
 		if in.Mu > max {
 			max = in.Mu

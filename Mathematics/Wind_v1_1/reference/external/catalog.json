@@ -1,0 +1,19 @@
+{
+  "version": "0.6.0",
+  "principal_data": "СП 20.13330.2016, приложение В (не изменено в этой версии)",
+  "supplements": [
+    {
+      "dataset_id": "SP375_A2_ZONE_X",
+      "path": "external/sp375_appendix_a_zonal_factor.json",
+      "type": "NEW_SPECIAL_NORMATIVE_REFERENCE",
+      "normative_scope": "СП 375; только башни с переломом поясов"
+    },
+    {
+      "dataset_id": "GUIDE1978_HISTORICAL",
+      "path": "external/guide1978_technical_source.json",
+      "type": "HISTORICAL_TECHNICAL_CONTEXT_NOT_NORMATIVE",
+      "normative_scope": "не применять напрямую по СП 20"
+    }
+  ],
+  "separation_principle": "Новые источники НЕ добавлены к 13 таблицам приложения В и 7 графикам СП20. Точные справочники СП20 не изменены; новые данные выделены в external/."
+}

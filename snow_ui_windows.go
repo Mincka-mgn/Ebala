@@ -94,8 +94,8 @@ const (
 // в том числе для внутренней проверки двух соседних пролётов.
 // Не путать с самостоятельной схемой "Покрытие с парапетом" (shape="parapet", Б.13):
 // её скрывать нельзя. При аудите НЕ считать код "step" готовым функционалом.
-var snowKinds = []string{"Плоская", "Односкатная", "Двускатная", "Сводчатая", "С фонарём", "Резервуар: коническая", "Резервуар: сферическая", "Многопролётная двускатная (одинаковые)", "Многопролётная сводчатая (одинаковые)", "Шедовое покрытие", "Покрытие с парапетом", "Сфера с конусом"}
-var snowKindKeys = []string{"flat", "mono", "gable", "vault", "skylight", "cone", "dome", "multi_gable", "multi_vault", "shed", "parapet", "sphere_cone"}
+var snowKinds = []string{"Плоская", "Односкатная", "Двускатная", "Сводчатая", "С фонарём", "Резервуар: коническая", "Резервуар: сферическая", "Многопролётная двускатная (одинаковые)", "Многопролётная сводчатая (одинаковые)", "Шедовое покрытие", "Покрытие с парапетом"}
+var snowKindKeys = []string{"flat", "mono", "gable", "vault", "skylight", "cone", "dome", "multi_gable", "multi_vault", "shed", "parapet"}
 var snowDraft = defaultSnowCalc()
 var snowCurrentBlockID int
 var snowReturnFromMountain bool
@@ -158,7 +158,7 @@ func snowGroundUpdateUnitLabel(unit string) {
 var invalidateSnow = u32.NewProc("InvalidateRect")
 
 func snowIndex(shape string) int {
-	if shape == "wall" || shape == "step" {
+	if shape == "wall" || shape == "step" || shape == "sphere_cone" {
 		// Hidden standalone B.8 prototype: do not expose it through the selector.
 		return 0
 	}
@@ -1324,7 +1324,7 @@ func snowSphereRefreshGeometry(lastEdited int) {
 	r, e3 := snowNumber(snowSkylightA)
 	f, e4 := snowNumber(snowStep)
 	v, e5 := snowNumber(snowSlopeValue)
-	if e1 != nil || e2 != nil || e3 != nil || e4 != nil || e5 != nil || H <= 0 || d <= 2*r || r <= 0 {
+	if e1 != nil || e2 != nil || e3 != nil || e4 != nil || e5 != nil || H <= 0 || d <= 0 || r <= 0 {
 		return
 	}
 	s := defaultSnowCalc()
@@ -1353,7 +1353,11 @@ func snowSphereRefreshGeometry(lastEdited int) {
 	old, newD, changed := sphereConeExpandDiameter(&s)
 	if changed {
 		set(snowSpan, decimalInput(newD, 3))
-		message(fmt.Sprintf("Внимание! При заданных размерах касательная сферической части имела бы обратный уклон (α₁ > 90°). Диаметр D автоматически увеличен с %s до %s м.", decimalInput(old, 3), decimalInput(newD, 3)), false)
+		if old <= 2*r {
+			message(fmt.Sprintf("Внимание! Для сферы с конусом требуется D > 2r. Диаметр D автоматически увеличен с %s до %s м.", decimalInput(old, 3), decimalInput(newD, 3)), false)
+		} else {
+			message(fmt.Sprintf("Внимание! При заданных размерах касательная сферической части имела бы обратный уклон (α₁ > 90°). Диаметр D автоматически увеличен с %s до %s м.", decimalInput(old, 3), decimalInput(newD, 3)), false)
+		}
 	}
 	set(snowSphereAlpha1, decimalInput(sphereConeTangentAngle(s), 2))
 	if sphereConeTangentAngle(s) <= s.Angle {
@@ -1459,7 +1463,7 @@ func snowNotification(id, code int) bool {
 		return true
 	}
 	if code == EN_KILLFOCUS && (id == snowRoofHeight || id == snowSpan || id == snowSkylightA || id == snowStep || id == snowSphereAlpha1 || id == snowSlopeValue) {
-		if snowSel(snowShape) == len(snowKindKeys)-1 {
+		if snowSel(snowShape) >= 0 && snowSel(snowShape) < len(snowKindKeys) && snowKindKeys[snowSel(snowShape)] == "sphere_cone" {
 			snowSphereRefreshGeometry(id)
 		}
 		return false

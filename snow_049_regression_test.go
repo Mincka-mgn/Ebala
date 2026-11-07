@@ -75,7 +75,7 @@ func Test049AutoDiameterAndBetaStep(t *testing.T) {
 	}
 	for _, step := range []float64{5, 7, 10, 15, 30} {
 		b := sphereConeBetas(step)
-		if b[0] != 0 || b[len(b)-1] != 180 {
+		if b[0] != 0 || b[len(b)-1] != 360 {
 			t.Fatalf("missing beta end values for step %g", step)
 		}
 		x := sample049()

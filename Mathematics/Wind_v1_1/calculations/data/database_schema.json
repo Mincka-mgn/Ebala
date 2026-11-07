@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.2.0",
+  "storage": "UTF-8 JSON; numerical values native; machine-readable fields use stable latin IDs",
+  "datasets": {
+    "symbols.json": {
+      "primary_key": "symbols[].id"
+    },
+    "formulas.json": {
+      "primary_key": "formulas[].id"
+    },
+    "cases.json": {
+      "primary_key": "cases[].case_id"
+    },
+    "flows.json": {
+      "primary_key": "flows[].id"
+    },
+    "tables_section11.json": {
+      "primary_key": "tables[].id"
+    },
+    "graph_11_1_dynamic_coefficient.json": {
+      "primary_key": "id",
+      "role": "printed_graph_comparison_only",
+      "active_formula": "11.1.xi_davenport_approx"
+    },
+    "cross_rules.json": {
+      "primary_key": "rules[].id"
+    },
+    "special_sp375_rules.json": {
+      "primary_key": "rules[].id",
+      "scope": "SP375 special rules, not SP20 general formula"
+    }
+  },
+  "lookup_encoding": {
+    "internal": "dataset=calc and table=11.x",
+    "external": "dataset=reference and table or graph of appendix В",
+    "require_version": "SP20_AppendixV_Wind_Reference_v0_6",
+    "file_relative_paths": {
+      "reference_tables": "data/tables_appendix_v.csv",
+      "reference_graphs": "data/straight_graphs.json",
+      "reference_curved": "formulas/curved_graphs.json",
+      "special_sp375_zone": "external/sp375_appendix_a_zonal_factor.json"
+    }
+  },
+  "math_execution": {
+    "allow_only": [
+      "+",
+      "-",
+      "*",
+      "/",
+      "**",
+      "sqrt",
+      "sin",
+      "cos",
+      "log10",
+      "min",
+      "max",
+      "sum",
+      "lookup",
+      "lookup_interp",
+      "curve",
+      "piecewise"
+    ],
+    "no_eval": "Do not evaluate free-form text; use a parsed, whitelisted AST in the future program.",
+    "preconditions": "When formula mathematically impossible, block that computation with diagnostic; nonnormative input: show warning but allow calculable result.",
+    "approximations": "Use normative_status=ENGINEERING_APPROXIMATION and preserve provenance; ξ from formula 11.1.xi_davenport_approx; requires numerical δ and Tg1."
+  },
+  "calculational_project_rules": {
+    "docx": "kernel calculated values, exact formulas/links",
+    "xlsx": "separate live Excel formulas using raw input and raw normative tables, no cached results from Go",
+    "user_override": "store normative value + manual override + provenance separately",
+    "do_not_modify_saved_blocks": "changing terrain/lookup databases must not alter already saved calculation snapshots without explicit recalculation"
+  },
+  "source": "СП 20.13330.2016 изм. 1–6; раздел 11, приложение В, приложение М, п.12.3; дополнительно СП375.1325800.2023 и историческое руководство ЦНИИСК 1978 (контекст)",
+  "symbol_namespace": {
+    "machine_id": "unique globally; no ambiguous ID f",
+    "source_symbol": "allowed to repeat by separate scope",
+    "bindings": "cases[].drawing_symbol_bindings, formulas[].source_symbol_bindings",
+    "f_geometry": "f_rise [м]",
+    "f_appendix_m": "f_spectral [Гц]"
+  },
+  "dimensional_convention": {
+    "unit_1": "dimensionless",
+    "v0_squared": "1, not m²/s²",
+    "S_v0": "s = Hz^-1",
+    "frequency_integral_measure": "d(f_spectral), Hz"
+  }
+}

@@ -1,0 +1,115 @@
+﻿source;formula_id;kind;status;output;external_reference
+11.1.2, (11.1);11.1;formula;VERIFIED_FROM_IMAGE;w;
+11.1.3, (11.2);11.2;formula;VERIFIED_FROM_IMAGE;w_m;
+11.1.4, (11.3);11.3;formula;VERIFIED_FROM_IMAGE;w0;
+11.1.6, (11.4);11.4;formula;VERIFIED_FROM_IMAGE;k;
+11.1.8, (11.5);11.5;formula;VERIFIED_FROM_IMAGE;w_g;
+11.1.8, (11.6);11.6;formula;VERIFIED_FROM_IMAGE;zeta;
+11.1.8, (11.7);11.7;formula;VERIFIED_FROM_IMAGE;w_g;"{""dataset"": ""calc"", ""graph"": ""11.1""}"
+11.1.8, (11.8);11.8;formula;VERIFIED_FROM_IMAGE;Tg1;
+11.1.9, (11.9);11.9;aggregate;VERIFIED_FROM_IMAGE;X;
+11.1.10, (11.9а);11.9a;formula;VERIFIED_FROM_IMAGE;f_lim;"{""dataset"": ""calc"", ""table"": ""11.5""}"
+11.2, (11.10);11.10;formula;VERIFIED_FROM_IMAGE;w_peak;"{""dataset"": ""calc"", ""table"": ""11.8""}"
+11.3.2, (11.11);11.11;formula;VERIFIED_FROM_IMAGE;V_cr;
+11.3.3, (11.12);11.12;predicate;VERIFIED_FROM_IMAGE;vortex_resonance_excluded;
+11.3.3, (11.13);11.13;formula;VERIFIED_FROM_IMAGE;V_max;
+11.4;11.4.gamma;selection;VERIFIED_FROM_IMAGE;gamma_f;
+11.4;11.4.gamma_vortex;selection;VERIFIED_FROM_IMAGE;gamma_f;
+11.1.5;11.1.5.tower;formula;VERIFIED_FROM_IMAGE;z_e;
+11.1.5;11.1.5.building_low;formula;VERIFIED_FROM_IMAGE;z_e;
+11.1.5;11.1.5.building_mid_upper;formula;VERIFIED_FROM_IMAGE;z_e;
+11.1.5;11.1.5.building_mid_lower;formula;VERIFIED_FROM_IMAGE;z_e;
+11.1.5;11.1.5.building_high_upper;formula;VERIFIED_FROM_IMAGE;z_e;
+11.1.5;11.1.5.building_high_middle;formula;VERIFIED_FROM_IMAGE;z_e;
+11.1.5;11.1.5.building_high_lower;formula;VERIFIED_FROM_IMAGE;z_e;
+11.1.4, табл. 11.1;11.1.lookup_w0;table_lookup;VERIFIED_FROM_IMAGE;w0;"{""dataset"": ""calc"", ""table"": ""11.1""}"
+11.1.6, табл. 11.2;11.2.lookup_k;table_lookup;VERIFIED_FROM_IMAGE;k;"{""dataset"": ""calc"", ""table"": ""11.2""}"
+11.1.8, табл. 11.4;11.4.lookup_zeta;table_lookup;VERIFIED_FROM_IMAGE;zeta;"{""dataset"": ""calc"", ""table"": ""11.4""}"
+11.1.11, табл. 11.6/11.7;11.6.lookup_v;table_lookup;VERIFIED_FROM_IMAGE;v_corr;"{""dataset"": ""calc"", ""table"": ""11.6""}"
+11.2, табл. 11.8;11.8.lookup_nu_peak;table_lookup;VERIFIED_FROM_IMAGE;nu_peak;"{""dataset"": ""calc"", ""table"": ""11.8""}"
+В.1.1, рис. В.1, табл. В.1;B.1.1.wall;reference_lookup;VERIFIED_FROM_IMAGE;c_x;"{""dataset"": ""reference"", ""table"": ""В.1""}"
+В.1.1, рис. В.2;B.1.1.billboard;formula;VERIFIED_FROM_IMAGE;c_x;"{""dataset"": ""reference"", ""graph"": ""В.23""}"
+В.1.1, рис. В.2;B.1.1.billboard_e;alternatives;VERIFIED_FROM_IMAGE;a_e;
+В.1.2, табл. В.2;B.1.2.side_wall;reference_lookup;VERIFIED_FROM_IMAGE;c_e;"{""dataset"": ""reference"", ""table"": ""В.2""}"
+В.1.2, табл. В.3а, В.3б;B.1.2.roof;reference_lookup;VERIFIED_FROM_IMAGE;c_e;"{""dataset"": ""reference"", ""tables"": [""В.3а"", ""В.3б""]}"
+В.1.2, рис. В.4,б;B.1.2.friction;selection;VERIFIED_FROM_IMAGE;c_f;
+В.1.3, рис. В.5;B.1.3.vault;reference_curve;VERIFIED_FROM_IMAGE;c_e;"{""dataset"": ""reference"", ""graph"": ""В.5""}"
+В.1.4, рис. В.6,а;B.1.4.dome;reference_curve;VERIFIED_FROM_IMAGE;c_e;"{""dataset"": ""reference"", ""graph"": ""В.6а""}"
+В.1.4, рис. В.6,б;B.1.4.cone.A;selection;VERIFIED_FROM_IMAGE;c_e;
+В.1.4, рис. В.6,б;B.1.4.cone.B;selection;VERIFIED_FROM_IMAGE;c_e;
+В.1.4, рис. В.6,б;B.1.4.cone.C;selection;VERIFIED_FROM_IMAGE;c_e;
+В.1.4, рис. В.6,б;B.1.4.cone.D;selection;VERIFIED_FROM_IMAGE;c_e;
+В.1.4, рис. В.6,б;B.1.4.cone.E;selection;VERIFIED_FROM_IMAGE;c_e;
+В.1.5, рис. В.7;B.1.5.lantern_c_low;selection;VERIFIED_FROM_IMAGE;c_e;
+В.1.5, рис. В.7;B.1.5.lantern_c_mid;formula;VERIFIED_FROM_IMAGE;c_e;
+В.1.5, рис. В.7;B.1.5.lantern_c_high;selection;VERIFIED_FROM_IMAGE;c_e;
+В.1.5–В.1.7;B.1.5.other_roof;selection;VERIFIED_FROM_IMAGE;c_e;
+В.1.6, рис. В.8;B.1.6.skylights;dispatch;VERIFIED_FROM_IMAGE;c_e;
+В.1.7, рис. В.9;B.1.7.shed_friction;selection;VERIFIED_FROM_IMAGE;c_f;
+В.1.8, рис. В.10;B.1.8.step_M;selection;VERIFIED_FROM_IMAGE;c_e;
+В.1.8, рис. В.10;B.1.8.step_L;interpolation;VERIFIED_FROM_IMAGE;c_e;
+В.1.9;B.1.9.permeability;derived;VERIFIED_FROM_IMAGE;mu_permeability;
+В.1.9, рис. В.11;B.1.9.low;alternatives;VERIFIED_FROM_IMAGE;c_i;
+В.1.9, рис. В.11;B.1.9.high_negative;selection;VERIFIED_FROM_IMAGE;c_i;
+В.1.9, рис. В.11;B.1.9.high_positive;selection;VERIFIED_FROM_IMAGE;c_i;
+В.1.10, табл. В.4;B.1.10.canopy;reference_lookup;VERIFIED_FROM_IMAGE;c_p;"{""dataset"": ""reference"", ""table"": ""В.4""}"
+В.1.11, (В.1);B.1.11.sphere_re;formula;VERIFIED_FROM_IMAGE;Re;
+В.1.11, рис. В.14;B.1.11.sphere_cx;reference_curve;VERIFIED_FROM_IMAGE;c_x;"{""dataset"": ""reference"", ""graph"": ""В.14""}"
+В.1.11;B.1.11.sphere_lift_far;selection;VERIFIED_FROM_IMAGE;c_z;
+В.1.11;B.1.11.sphere_lift_near;selection;VERIFIED_FROM_IMAGE;c_z;
+В.1.11;B.1.11.sphere_z_e;derived;VERIFIED_FROM_IMAGE;z_e;
+В.1.12, (В.2);B.1.12.cylinder_cp;formula;VERIFIED_FROM_IMAGE;c_e;
+В.1.12;B.1.12.cylinder_k1_pos;selection;VERIFIED_FROM_IMAGE;k_lambda1;
+В.1.12;B.1.12.cylinder_k1_neg;selection;VERIFIED_FROM_IMAGE;k_lambda1;
+В.1.12, рис. В.16, табл. В.5;B.1.12.cylinder_cp_beta;reference_curve;ENGINEERING_APPROXIMATION;c_beta;"{""dataset"": ""reference"", ""graph"": ""В.16""}"
+В.1.12, (В.3);B.1.12.cylinder_cx;formula;VERIFIED_FROM_IMAGE;c_x;"{""dataset"": ""reference"", ""graph"": ""В.17""}"
+В.1.12, (В.4);B.1.12.inclined_cx;formula;VERIFIED_FROM_IMAGE;c_x_beta;
+В.1.12;B.1.12.wires;selection;VERIFIED_FROM_IMAGE;c_x;
+В.1.13, (В.5);B.1.13.prism_cx;formula;VERIFIED_FROM_IMAGE;c_x;"{""dataset"": ""reference"", ""graph"": ""В.19"", ""table"": ""В.7""}"
+В.1.13;B.1.13.profiles;selection;VERIFIED_FROM_IMAGE;c_x;
+В.1.14, (В.6);B.1.14.lattice_cx;aggregate;VERIFIED_FROM_IMAGE;c_x;
+В.1.14, рис. В.21;B.1.14.solidity;aggregate;VERIFIED_FROM_IMAGE;phi_solidity;
+В.1.14, рис. В.21;B.1.14.lattice_follow;formula;VERIFIED_FROM_IMAGE;c_x2;"{""dataset"": ""reference"", ""table"": ""В.8""}"
+В.1.14;B.1.14.lattice_tube_eta;selection;VERIFIED_FROM_IMAGE;eta_shadow;
+В.1.14, (В.7);B.1.14.spatial;formula;VERIFIED_FROM_IMAGE;c_t;"{""dataset"": ""reference"", ""table"": ""В.9""}"
+В.1.15;B.1.15.lambda;derived;VERIFIED_FROM_IMAGE;lambda_geometric;
+В.1.15, рис. В.23;B.1.15.k_lambda;reference_curve;VERIFIED_FROM_IMAGE;k_lambda;"{""dataset"": ""reference"", ""graph"": ""В.23"", ""table"": ""В.10""}"
+В.1.16, табл. В.11;B.1.16.roughness;reference_lookup;VERIFIED_FROM_IMAGE;delta_rough;"{""dataset"": ""reference"", ""table"": ""В.11""}"
+В.1.16;B.1.16.rel_rough;derived;VERIFIED_FROM_IMAGE;rel_rough;
+В.1.17;B.1.17.peak_plus;selection;VERIFIED_FROM_IMAGE;c_peak;
+В.1.17, табл. В.12;B.1.17.peak_minus;reference_lookup;VERIFIED_FROM_IMAGE;c_peak;"{""dataset"": ""reference"", ""table"": ""В.12""}"
+В.2.1, (В.8);B.2.1.F;formula;VERIFIED_FROM_IMAGE;F_i_z;
+В.2.1, (В.9);B.2.1.mode_norm;predicate;VERIFIED_FROM_IMAGE;mode_normalized;
+В.2.2;B.2.2.cy_circular;selection;VERIFIED_FROM_IMAGE;c_y_cr;
+В.2.2;B.2.2.cy_rect1;selection;VERIFIED_FROM_IMAGE;c_y_cr;
+В.2.2;B.2.2.cy_rect2;selection;VERIFIED_FROM_IMAGE;c_y_cr;
+В.2.3, (В.10);B.2.3.wm_cr;formula;VERIFIED_FROM_IMAGE;w_m_cr;
+В.2.3, (В.10);B.2.3.wg_cr;formula;VERIFIED_FROM_IMAGE;w_g_cr;
+В.3, (В.11);B.3.comfort_wind;formula;VERIFIED_FROM_IMAGE;w_comfort;
+В.3, (В.12а);B.3.comfort_residential;selection;VERIFIED_FROM_IMAGE;a_max;
+В.3, (В.12б);B.3.comfort_office;selection;VERIFIED_FROM_IMAGE;a_max;
+М.2, (М.1);M.1;formula;VERIFIED_FROM_IMAGE;Q_p;
+М.2, (М.2);M.2;formula;VERIFIED_FROM_IMAGE;u_p;
+М.3.1, (М.3);M.3;formula;VERIFIED_FROM_IMAGE;sigma_u;
+М.3.1, (М.4);M.4;modal_double_sum;FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION;D_u;
+М.3.2, (М.5);M.5;operator;FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION;Q;
+М.3.2, (М.6);M.6;formula;VERIFIED_FROM_IMAGE;sigma_Q;
+М.3.2, (М.7);M.7;modal_double_sum;FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION;D_Q;
+М.4, (М.8);M.8;surface_double_integral;FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION;G_k_k1;
+М.4, (М.9);M.9;vector_dot;FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION;g_k;
+М.4, (М.10);M.10;frequency_integral;FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION;xi2_k_k1;
+М.4, (М.11);M.11;formula;VERIFIED_FROM_IMAGE;Delta2_k;
+М.4, (М.12);M.12;formula;FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION;S_p0;
+М.5, (М.13);M.13;formula;FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION;S_v0;
+М.5, (М.14);M.14;formula;VERIFIED_FROM_IMAGE;lambda_f;
+М.6, (М.15);M.15;formula;FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION;r_v;
+М.6, (М.16);M.16;formula;VERIFIED_FROM_IMAGE;T_v;
+М.6, (М.17);M.17;vector_norm;VERIFIED_FROM_IMAGE;Delta_l_v_squared;
+М.7, (М.18);M.18;predicate;FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION;mode_frequency_convergence;
+М.7, (М.19);M.19;frequency_integral;FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION;xi2_k_k1;
+М.7, (М.20);M.20;frequency_integral;FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION;v0_squared;
+М.7, (М.21);M.21;definition;FORMAL_REQUIRES_FE_AND_NUMERICAL_INTEGRATION;r_m;
+рис. 11.1 (воспроизведение формулой, не текст СП);11.1.xi_davenport_approx;formula;ENGINEERING_APPROXIMATION;xi;11.1
+СП375 приложение А, рис А.2;SP375.A2.lookup_x_zone;lookup;NORMATIVE_GRAPH_WITH_DIGITIZED_LINEAR_SEGMENTS;sp375_x_zone;"{""dataset"": ""reference"", ""supplement"": ""SP375_A2_ZONE_X""}"
+СП375 приложение А, (А.1);SP375.A1.w_loc;formula;VERIFIED_FROM_SOURCE;sp375_w_loc;
+СП375 табл.7.1, прим.3;SP375.7.1.wind_gamma;selection_rule;VERIFIED_FROM_SOURCE;sp375_gamma_f;

@@ -91,7 +91,7 @@ func Test055SphereConeZone5AndOtherLoadsUnchangedByWidth(t *testing.T) {
 			t.Fatal("a fictitious B changed the full computed B.15a load")
 		}
 	}
-	mu, zone := ga.spatialMu(a.SkylightWidth/2, 180)
+	mu, zone := ga.spatialMu(a.SkylightWidth/2, 270)
 	if zone != 5 || mu <= 0 {
 		t.Fatalf("zone 5 must retain the approved load at cone slope 18°, got zone=%d mu=%g", zone, mu)
 	}

@@ -1,0 +1,1154 @@
+{
+  "cases": [
+    {
+      "case_id": "GENERAL_BASIC",
+      "title_ru": "Основная ветровая нагрузка",
+      "source_sections": [
+        "11.1.1–11.1.11"
+      ],
+      "figure_ids": [
+        "11.1",
+        "11.2"
+      ],
+      "input_ids": [
+        "wind_region",
+        "terrain",
+        "w0",
+        "h",
+        "d",
+        "z",
+        "c_e",
+        "f1",
+        "f2",
+        "delta_damp",
+        "rho",
+        "chi"
+      ],
+      "formula_ids": [
+        "11.1",
+        "11.2",
+        "11.3",
+        "11.4",
+        "11.5",
+        "11.6",
+        "11.7",
+        "11.8",
+        "11.1.xi_davenport_approx",
+        "11.9",
+        "11.9a",
+        "11.1.lookup_w0",
+        "11.2.lookup_k",
+        "11.4.lookup_zeta",
+        "11.6.lookup_v"
+      ],
+      "reference_table_ids": [],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [
+        "11.1",
+        "11.2",
+        "11.3",
+        "11.4",
+        "11.5",
+        "11.6",
+        "11.7"
+      ],
+      "drawing_symbols": {
+        "рис.11.2": {
+          "x": "направление ветра",
+          "z": "высота",
+          "a": "размер по оси x",
+          "b": "размер по оси y",
+          "h": "высота расчётной поверхности"
+        }
+      },
+      "rules": [
+        "Разделять внешнюю, внутреннюю и касательную нагрузки; не сводить разнонаправленные компоненты в одну скалярную цифру.",
+        "По 11.1.5 выбирать z_e для каждой зоны высоты.",
+        "Критерий f1 относительно f_lim определяет формулу w_g; сложная динамика по М.",
+        "Хранить для каждого ветрового направления свой тип местности.",
+        "Для ξ по рисунку 11.1 использовать инженерную формулу 11.1.xi_davenport_approx без интерполяции между кривыми по δ; предупреждать о выходе за проверенную область 0≤Tg1≤0,30 и 0,15≤δ≤0,30. Таблица 11.5 для T_g_lim отдельно, не подменять её этой формулой."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "GENERAL_PEAK",
+      "title_ru": "Пиковые ветровые нагрузки на ограждения",
+      "source_sections": [
+        "11.2",
+        "В.1.17"
+      ],
+      "figure_ids": [
+        "В.24"
+      ],
+      "input_ids": [
+        "w0",
+        "z_e",
+        "terrain",
+        "A_loaded",
+        "c_peak"
+      ],
+      "formula_ids": [
+        "11.10",
+        "11.8.lookup_nu_peak",
+        "B.1.17.peak_plus",
+        "B.1.17.peak_minus"
+      ],
+      "reference_table_ids": [
+        "В.12"
+      ],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [
+        "11.2",
+        "11.4",
+        "11.8"
+      ],
+      "drawing_symbols": {
+        "В.24": {
+          "b,l": "размеры кровли в плане",
+          "e": "min(b,l)",
+          "h": "высота стены",
+          "A,B": "зоны стены",
+          "C,D,E": "зоны покрытия"
+        }
+      },
+      "rules": [
+        "Считать пиковое положительное и отрицательное действие отдельно.",
+        "Коэффициенты c_p для других форм зданий не выводить из В.12: нужны испытания или опубликованные данные."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "GENERAL_VORTEX",
+      "title_ru": "Критические скорости вихревого возбуждения",
+      "source_sections": [
+        "11.3",
+        "В.2"
+      ],
+      "figure_ids": [
+        "В.18"
+      ],
+      "input_ids": [
+        "lambda_e",
+        "f_i",
+        "d",
+        "St",
+        "k_v",
+        "w0",
+        "terrain",
+        "z_eq"
+      ],
+      "formula_ids": [
+        "11.11",
+        "11.12",
+        "11.13"
+      ],
+      "reference_table_ids": [],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [
+        "11.2",
+        "11.3"
+      ],
+      "drawing_symbols": {
+        "В.18": {
+          "β": "угол между осью элемента и скоростью ветра"
+        }
+      },
+      "rules": [
+        "Условие λ_e>20 является проверкой необходимости учёта вихревого возбуждения.",
+        "Для круга St=0,2, для острых кромок 0,11; k_v выбирают наиболее неблагоприятным в 0,9..1,1."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "B1_1_WALL",
+      "title_ru": "Отдельно стоящие стены и заборы",
+      "source_sections": [
+        "В.1.1"
+      ],
+      "figure_ids": [
+        "В.1"
+      ],
+      "input_ids": [
+        "h",
+        "z_e",
+        "wall_zone"
+      ],
+      "formula_ids": [
+        "B.1.1.wall"
+      ],
+      "reference_table_ids": [
+        "В.1"
+      ],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [],
+      "drawing_symbols": {
+        "В.1": {
+          "h": "высота стены",
+          "A": "полоса от края 0,3h",
+          "B": "следующая зона 2h",
+          "C": "следующая зона 4h",
+          "D": "остальная часть"
+        }
+      },
+      "rules": [
+        "Коэффициенты по участкам, z_e=h."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "B1_1_BILLBOARD",
+      "title_ru": "Рекламные щиты",
+      "source_sections": [
+        "В.1.1"
+      ],
+      "figure_ids": [
+        "В.2"
+      ],
+      "input_ids": [
+        "b",
+        "d",
+        "z_g",
+        "k_lambda"
+      ],
+      "formula_ids": [
+        "B.1.1.billboard",
+        "B.1.1.billboard_e"
+      ],
+      "reference_table_ids": [],
+      "reference_graph_ids": [
+        "В.23"
+      ],
+      "calculation_table_ids": [],
+      "drawing_symbols": {
+        "В.2": {
+          "b": "ширина щита",
+          "d": "высота щита",
+          "z_g": "высота от земли до нижней кромки",
+          "e": "±0,25b"
+        }
+      },
+      "rules": [
+        "Рассчитывать два знака эксцентриситета."
+      ],
+      "conditions": [
+        "z_g>=d/4"
+      ],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "B1_2_GABLE",
+      "title_ru": "Двускатное покрытие и стены",
+      "source_sections": [
+        "В.1.2"
+      ],
+      "figure_ids": [
+        "В.3",
+        "В.4"
+      ],
+      "input_ids": [
+        "alpha_roof",
+        "h",
+        "d",
+        "b",
+        "wind_direction",
+        "roof_zone"
+      ],
+      "formula_ids": [
+        "B.1.2.side_wall",
+        "B.1.2.roof",
+        "B.1.2.friction"
+      ],
+      "reference_table_ids": [
+        "В.2",
+        "В.3а",
+        "В.3б"
+      ],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [],
+      "drawing_symbols": {
+        "В.3": {
+          "b": "размер фасада",
+          "d": "размер здания поперёк ветра",
+          "h": "высота здания",
+          "A,B,C,D,E": "участки стен"
+        },
+        "В.4": {
+          "α": "угол ската",
+          "F,G,H,I,J": "участки покрытия",
+          "V": "направление ветра"
+        }
+      },
+      "rules": [
+        "Для α от 15 до 30 градусов и ветра под 0° два альтернативных варианта; не складывать.",
+        "При ветре под 90° для гладкого протяжённого покрытия c_f=0,02."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "B1_3_VAULT",
+      "title_ru": "Сводчатое покрытие",
+      "source_sections": [
+        "В.1.3"
+      ],
+      "figure_ids": [
+        "В.5"
+      ],
+      "input_ids": [
+        "f_rise",
+        "l",
+        "h",
+        "h1",
+        "c_e"
+      ],
+      "formula_ids": [
+        "B.1.3.vault"
+      ],
+      "reference_table_ids": [
+        "В.2"
+      ],
+      "reference_graph_ids": [
+        "В.5"
+      ],
+      "calculation_table_ids": [],
+      "drawing_symbols": {
+        "В.5": {
+          "f": "стрела свода",
+          "l": "пролёт/ширина свода",
+          "h1": "высота до опоры покрытия",
+          "ce1,ce2,ce3": "характерные коэффициенты"
+        }
+      },
+      "rules": [
+        "В режиме В.5 для ce1 могут потребоваться две ветви."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA",
+      "drawing_symbol_bindings": {
+        "f": "f_rise"
+      }
+    },
+    {
+      "case_id": "B1_4_DOME",
+      "title_ru": "Купольное покрытие",
+      "source_sections": [
+        "В.1.4"
+      ],
+      "figure_ids": [
+        "В.6а"
+      ],
+      "input_ids": [
+        "f_rise",
+        "l",
+        "h1",
+        "section_position"
+      ],
+      "formula_ids": [
+        "B.1.4.dome"
+      ],
+      "reference_table_ids": [],
+      "reference_graph_ids": [
+        "В.6а"
+      ],
+      "calculation_table_ids": [],
+      "drawing_symbols": {
+        "В.6а": {
+          "A,C": "точки на противоположных сторонах",
+          "B-B": "секущая линия",
+          "f": "высота купола",
+          "l": "диаметр/пролёт"
+        }
+      },
+      "rules": [
+        "По промежуточным сечениям линейная интерполяция между A,B,C."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA",
+      "drawing_symbol_bindings": {
+        "f": "f_rise"
+      }
+    },
+    {
+      "case_id": "B1_4_CONE",
+      "title_ru": "Коническое покрытие",
+      "source_sections": [
+        "В.1.4"
+      ],
+      "figure_ids": [
+        "В.6б"
+      ],
+      "input_ids": [
+        "alpha_roof",
+        "zone"
+      ],
+      "formula_ids": [
+        "B.1.4.cone.A",
+        "B.1.4.cone.B",
+        "B.1.4.cone.C",
+        "B.1.4.cone.D",
+        "B.1.4.cone.E"
+      ],
+      "reference_table_ids": [],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [],
+      "drawing_symbols": {
+        "В.6б": {
+          "A,B,C,D,E": "нормативные участки",
+          "α": "уклон конического покрытия"
+        }
+      },
+      "rules": [],
+      "conditions": [
+        "15°<α<30°"
+      ],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "B1_5_LANTERNS",
+      "title_ru": "Здания с продольными фонарями и перепадом высоты",
+      "source_sections": [
+        "В.1.5"
+      ],
+      "figure_ids": [
+        "В.7"
+      ],
+      "input_ids": [
+        "h1",
+        "h2",
+        "l",
+        "a",
+        "lambda_lantern",
+        "alpha_roof"
+      ],
+      "formula_ids": [
+        "B.1.2.roof",
+        "B.1.5.lantern_c_low",
+        "B.1.5.lantern_c_mid",
+        "B.1.5.lantern_c_high",
+        "B.1.5.other_roof"
+      ],
+      "reference_table_ids": [
+        "В.2",
+        "В.3а",
+        "В.3б"
+      ],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [],
+      "drawing_symbols": {
+        "В.7": {
+          "h1": "высота более высокого объёма",
+          "h2": "высота нижнего объёма",
+          "hф": "высота фонаря",
+          "a": "расстояние между фонарями",
+          "A,B,C": "участки покрытия"
+        }
+      },
+      "rules": [
+        "Параметр λ проверить по оригиналу при внедрении.",
+        "Для расчёта высотного коэффициента h=h1."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "B1_6_SKYLIGHTS",
+      "title_ru": "Здания с зенитными фонарями",
+      "source_sections": [
+        "В.1.6"
+      ],
+      "figure_ids": [
+        "В.8"
+      ],
+      "input_ids": [
+        "h1",
+        "h2",
+        "a",
+        "lambda_lantern"
+      ],
+      "formula_ids": [
+        "B.1.6.skylights",
+        "B.1.5.other_roof"
+      ],
+      "reference_table_ids": [
+        "В.2",
+        "В.3а",
+        "В.3б"
+      ],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [],
+      "drawing_symbols": {
+        "В.8": {
+          "h1": "высота по фонарям",
+          "h2": "высота основной крыши",
+          "a": "расстояние между фонарями"
+        }
+      },
+      "rules": [
+        "Наветренный фонарь — по В.3, остальные по C В.1.5; h=h1."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "B1_7_SHED",
+      "title_ru": "Шедовое покрытие",
+      "source_sections": [
+        "В.1.7"
+      ],
+      "figure_ids": [
+        "В.9"
+      ],
+      "input_ids": [
+        "alpha_roof",
+        "h1",
+        "l"
+      ],
+      "formula_ids": [
+        "B.1.2.roof",
+        "B.1.5.other_roof",
+        "B.1.7.shed_friction"
+      ],
+      "reference_table_ids": [
+        "В.2",
+        "В.3а",
+        "В.3б"
+      ],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [],
+      "drawing_symbols": {
+        "В.9": {
+          "h1": "высота здания",
+          "α": "угол первого ската",
+          "l": "продольный размер"
+        }
+      },
+      "rules": [
+        "Только участок A по таблице В.3; остальные c_e=-0,5; c_f=0,04."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "B1_8_STEP",
+      "title_ru": "Здания с уступами",
+      "source_sections": [
+        "В.1.8"
+      ],
+      "figure_ids": [
+        "В.10"
+      ],
+      "input_ids": [
+        "a",
+        "d",
+        "zone",
+        "position"
+      ],
+      "formula_ids": [
+        "B.1.8.step_M",
+        "B.1.8.step_L",
+        "B.1.2.side_wall",
+        "B.1.2.roof"
+      ],
+      "reference_table_ids": [
+        "В.2",
+        "В.3а",
+        "В.3б"
+      ],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [],
+      "drawing_symbols": {
+        "В.10": {
+          "a": "размер уступа",
+          "d": "характерный размер фасада",
+          "K,L,M": "участки около уступа"
+        }
+      },
+      "rules": [
+        "Для L интерполировать по геометрической координате, для M c_e=0,8."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "B1_9_INTERNAL",
+      "title_ru": "Внутреннее давление",
+      "source_sections": [
+        "В.1.9"
+      ],
+      "figure_ids": [
+        "В.11"
+      ],
+      "input_ids": [
+        "A_openings",
+        "A_walls",
+        "mu_permeability",
+        "wind_case"
+      ],
+      "formula_ids": [
+        "B.1.9.permeability",
+        "B.1.9.low",
+        "B.1.9.high_negative",
+        "B.1.9.high_positive"
+      ],
+      "reference_table_ids": [],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [],
+      "drawing_symbols": {
+        "В.11": {
+          "μ": "проницаемость ограждения, %",
+          "c_i1,c_i2": "альтернативные варианты внутреннего давления"
+        }
+      },
+      "rules": [
+        "При μ<=5% учитывать оба знака ±0,2 по неблагоприятности.",
+        "При μ>=30% два нормативных режима −0,5 и +0,8.",
+        "Интервал 5%<μ<30% прямо не задан в пункте: запрет скрытой выдуманной интерполяции."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "B1_10_CANOPY",
+      "title_ru": "Навесы четырёх схем",
+      "source_sections": [
+        "В.1.10"
+      ],
+      "figure_ids": [
+        "В.12"
+      ],
+      "input_ids": [
+        "canopy_scheme",
+        "alpha_roof",
+        "zone"
+      ],
+      "formula_ids": [
+        "B.1.10.canopy"
+      ],
+      "reference_table_ids": [
+        "В.4"
+      ],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [],
+      "drawing_symbols": {
+        "В.12": {
+          "I,II,III,IV": "типы схем",
+          "α": "угол навеса",
+          "c_p1..c_p4": "суммарные коэффициенты зон"
+        }
+      },
+      "rules": [
+        "Табличные коэффициенты уже учитывают обе стороны покрытия."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "B1_11_SPHERE",
+      "title_ru": "Сферы",
+      "source_sections": [
+        "В.1.11"
+      ],
+      "figure_ids": [
+        "В.13",
+        "В.14"
+      ],
+      "input_ids": [
+        "d",
+        "z_g",
+        "w0",
+        "k",
+        "gamma_f",
+        "delta_rough",
+        "Re"
+      ],
+      "formula_ids": [
+        "B.1.11.sphere_z_e",
+        "B.1.11.sphere_re",
+        "B.1.11.sphere_cx",
+        "B.1.11.sphere_lift_far",
+        "B.1.11.sphere_lift_near"
+      ],
+      "reference_table_ids": [],
+      "reference_graph_ids": [
+        "В.14"
+      ],
+      "calculation_table_ids": [],
+      "drawing_symbols": {
+        "В.13": {
+          "d": "диаметр",
+          "z_g": "зазор от земли до низа сферы",
+          "z_e": "z_g+d/2"
+        }
+      },
+      "rules": [
+        "При z_g<d/2 увеличить c_x в 1,6 раза; c_z=0,6; при z_g>d/2 c_z=0."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "B1_12_CYLINDER",
+      "title_ru": "Цилиндры, трубы, тросы",
+      "source_sections": [
+        "В.1.12"
+      ],
+      "figure_ids": [
+        "В.15",
+        "В.16",
+        "В.17",
+        "В.18"
+      ],
+      "input_ids": [
+        "d",
+        "h",
+        "z_e",
+        "Re",
+        "delta_rough",
+        "rel_rough",
+        "lambda_e",
+        "k_lambda",
+        "beta_cyl",
+        "beta_wind"
+      ],
+      "formula_ids": [
+        "B.1.12.cylinder_cp_beta",
+        "B.1.12.cylinder_cp",
+        "B.1.12.cylinder_cx",
+        "B.1.12.inclined_cx",
+        "B.1.12.wires"
+      ],
+      "reference_table_ids": [
+        "В.5",
+        "В.6"
+      ],
+      "reference_graph_ids": [
+        "В.16",
+        "В.17",
+        "В.23"
+      ],
+      "calculation_table_ids": [],
+      "drawing_symbols": {
+        "В.15": {
+          "d": "диаметр цилиндра",
+          "c_e1,c_e2,c_i": "давления на стенку/кровлю"
+        },
+        "В.16": {
+          "β": "полярный угол, град",
+          "c_β": "коэффициент внешнего давления",
+          "β_min,β_b": "характерные углы"
+        },
+        "В.17": {
+          "Re": "число Рейнольдса, логарифмическая ось",
+          "Δ/d": "относительная шероховатость"
+        },
+        "В.18": {
+          "β": "угол между осью элемента и направлением ветра"
+        }
+      },
+      "rules": [
+        "В.16 нормативно только при Δ/d<10^-4, формула болгарской тригонометрической аппроксимации — в справочнике, не в СП.",
+        "В.17 по фактическому Δ/d непрерывным способом, альтернативно дискретно-консервативный, оба из справочника.",
+        "Для проводов/тросов c_x=1,2."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "B1_13_PRISM",
+      "title_ru": "Призматические сооружения",
+      "source_sections": [
+        "В.1.13"
+      ],
+      "figure_ids": [
+        "В.19"
+      ],
+      "input_ids": [
+        "l",
+        "d",
+        "lambda_e",
+        "k_lambda",
+        "profile_kind",
+        "Re"
+      ],
+      "formula_ids": [
+        "B.1.13.prism_cx",
+        "B.1.13.profiles"
+      ],
+      "reference_table_ids": [
+        "В.7"
+      ],
+      "reference_graph_ids": [
+        "В.19",
+        "В.23"
+      ],
+      "calculation_table_ids": [],
+      "drawing_symbols": {
+        "В.19": {
+          "l": "размер вдоль ветра",
+          "d": "поперечный размер",
+          "l/d": "абсцисса графика"
+        }
+      },
+      "rules": [
+        "Выбор c_x∞ по прямоугольной призме — график В.19, по правильным многоугольникам — табл. В.7."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "B1_14_LATTICE",
+      "title_ru": "Плоские и пространственные решётчатые конструкции",
+      "source_sections": [
+        "В.1.14"
+      ],
+      "figure_ids": [
+        "В.20",
+        "В.21",
+        "В.22"
+      ],
+      "input_ids": [
+        "A_i",
+        "A_k",
+        "c_xi",
+        "phi_solidity",
+        "b",
+        "h",
+        "Re"
+      ],
+      "formula_ids": [
+        "B.1.14.lattice_cx",
+        "B.1.14.solidity",
+        "B.1.14.lattice_follow",
+        "B.1.14.spatial",
+        "B.1.14.lattice_tube_eta"
+      ],
+      "reference_table_ids": [
+        "В.8",
+        "В.9"
+      ],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [],
+      "drawing_symbols": {
+        "В.20": {
+          "l": "длина фермы",
+          "h": "высота фермы",
+          "A_i": "проекции элементов",
+          "A_k": "площадь внешнего контура"
+        },
+        "В.21": {
+          "b": "расстояние между фермами",
+          "h": "высота ферм",
+          "b/h": "отношение расстояния к высоте"
+        },
+        "В.22": {
+          "b,h,l": "размеры пространственной решётки"
+        }
+      },
+      "rules": [
+        "Применять η для второй и последующих ферм; первая без затенения.",
+        "k_1 выбирать по форме и направлению ветра из В.9."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "B1_15_SLENDER",
+      "title_ru": "Учет относительного удлинения",
+      "source_sections": [
+        "В.1.15"
+      ],
+      "figure_ids": [
+        "В.23"
+      ],
+      "input_ids": [
+        "l",
+        "b",
+        "lambda_e",
+        "phi_solidity"
+      ],
+      "formula_ids": [
+        "B.1.15.lambda",
+        "B.1.15.k_lambda"
+      ],
+      "reference_table_ids": [
+        "В.10"
+      ],
+      "reference_graph_ids": [
+        "В.23"
+      ],
+      "calculation_table_ids": [],
+      "drawing_symbols": {
+        "В.23": {
+          "λ_e": "относительное удлинение",
+          "φ": "степень заполнения",
+          "k_λ": "коэффициент"
+        }
+      },
+      "rules": [
+        "Расчёт λ_e задаётся отдельной схемой табл. В.10; не применять одну формулу ко всем условиям закрепления."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "B1_16_ROUGH",
+      "title_ru": "Шероховатость",
+      "source_sections": [
+        "В.1.16"
+      ],
+      "figure_ids": [],
+      "input_ids": [
+        "surface_kind",
+        "d"
+      ],
+      "formula_ids": [
+        "B.1.16.roughness",
+        "B.1.16.rel_rough"
+      ],
+      "reference_table_ids": [
+        "В.11"
+      ],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [],
+      "drawing_symbols": {},
+      "rules": [
+        "Δ в метрах, d в метрах, относительная шероховатость безразмерна."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "B1_17_PEAK",
+      "title_ru": "Пиковые аэродинамические коэффициенты",
+      "source_sections": [
+        "В.1.17"
+      ],
+      "figure_ids": [
+        "В.24"
+      ],
+      "input_ids": [
+        "zone",
+        "b",
+        "l",
+        "h"
+      ],
+      "formula_ids": [
+        "B.1.17.peak_plus",
+        "B.1.17.peak_minus"
+      ],
+      "reference_table_ids": [
+        "В.12"
+      ],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [],
+      "drawing_symbols": {
+        "В.24": {
+          "A,B": "зоны стены",
+          "C,D,E": "зоны кровли",
+          "e": "меньший из размеров b и l"
+        }
+      },
+      "rules": [
+        "Прямоугольные в плане здания: c_p,+ стены 1,2; отсос по зонам В.12."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "B2_VORTEX_FORCE",
+      "title_ru": "Силы от вихревого возбуждения",
+      "source_sections": [
+        "В.2.1–В.2.4"
+      ],
+      "figure_ids": [],
+      "input_ids": [
+        "V_cr",
+        "c_y",
+        "d",
+        "phi_mode",
+        "delta_s",
+        "b_over_d"
+      ],
+      "formula_ids": [
+        "B.2.1.F",
+        "B.2.1.mode_norm",
+        "B.2.2.cy_circular",
+        "B.2.2.cy_rect1",
+        "B.2.2.cy_rect2",
+        "B.2.3.wm_cr",
+        "B.2.3.wg_cr"
+      ],
+      "reference_table_ids": [],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [],
+      "drawing_symbols": {},
+      "rules": [
+        "Требуется модель собственных форм. Высотные здания — данные испытаний в аэродинамической трубе.",
+        "При b/d<=0,5 расчёт на резонансное вихревое возбуждение допускается не проводить."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "B3_COMFORT",
+      "title_ru": "Динамическая комфортность",
+      "source_sections": [
+        "В.3"
+      ],
+      "figure_ids": [],
+      "input_ids": [
+        "w_g",
+        "building_function",
+        "a_max"
+      ],
+      "formula_ids": [
+        "B.3.comfort_wind",
+        "B.3.comfort_residential",
+        "B.3.comfort_office"
+      ],
+      "reference_table_ids": [],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [],
+      "drawing_symbols": {},
+      "rules": [
+        "Нормативная формула нагрузки сама по себе не вычисляет ускорение этажа: оно требует динамического расчёта."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "M_MODAL",
+      "title_ru": "Уточнённый расчёт пульсаций",
+      "source_sections": [
+        "приложение М, М.1–М.8"
+      ],
+      "figure_ids": [],
+      "input_ids": [
+        "v50",
+        "zeta10",
+        "sigma_Q",
+        "sigma_u",
+        "phi_mode"
+      ],
+      "formula_ids": [
+        "M.1",
+        "M.2",
+        "M.3",
+        "M.4",
+        "M.5",
+        "M.6",
+        "M.7",
+        "M.8",
+        "M.9",
+        "M.10",
+        "M.11",
+        "M.12",
+        "M.13",
+        "M.14",
+        "M.15",
+        "M.16",
+        "M.17",
+        "M.18",
+        "M.19",
+        "M.20",
+        "M.21"
+      ],
+      "reference_table_ids": [],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [],
+      "drawing_symbols": {},
+      "rules": [
+        "Используется модель, спектральная плотность, двойные интегралы, собственные частоты и формы; арифметическим коэффициентом не заменяется.",
+        "Статус: описаны нормативные формулы, но численный решатель не реализован."
+      ],
+      "conditions": [],
+      "status": "DECLARED_NOT_IMPLEMENTED_IN_EBALA"
+    },
+    {
+      "case_id": "SP375_CHIMNEY_SPECIAL_WIND",
+      "title_ru": "Дымовая труба: специальные коэффициенты и проверка вихревого возбуждения",
+      "source_sections": [
+        "СП375.1.1–1.2",
+        "СП375.6.2–6.4",
+        "СП375.7.1"
+      ],
+      "figure_ids": [],
+      "input_ids": [
+        "structure_kind",
+        "structure_material",
+        "sp375_H"
+      ],
+      "formula_ids": [
+        "SP375.7.1.wind_gamma"
+      ],
+      "reference_table_ids": [],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [],
+      "drawing_symbols": {},
+      "rules": [
+        "Специальные γ_f СП375 только после проверки применимости",
+        "Для стальных труб/башен примечание 3 выше общей таблицы",
+        "Для цилиндров и малой конусности требуется поверка вихревого резонанса и усталости; здесь только флаг требования, не решатель"
+      ],
+      "conditions": [
+        "Только сооружения из области действия СП375 (п.1.1, исключения 1.2)"
+      ],
+      "status": "DECLARED_SPECIAL_RULES_NOT_IMPLEMENTED_IN_EBALA",
+      "drawing_symbol_bindings": {
+        "H": "sp375_H"
+      }
+    },
+    {
+      "case_id": "SP375_TOWER_ZONAL_WIND",
+      "title_ru": "Решетчатая башня: зональное действие ветра у перелома поясов",
+      "source_sections": [
+        "СП375 приложение А, рис. А.1/А.2, формула А.1"
+      ],
+      "figure_ids": [
+        "СП375.А.1",
+        "СП375.А.2"
+      ],
+      "input_ids": [
+        "sp375_a_zone",
+        "sp375_w_design"
+      ],
+      "formula_ids": [
+        "SP375.A2.lookup_x_zone",
+        "SP375.A1.w_loc"
+      ],
+      "reference_table_ids": [],
+      "reference_graph_ids": [],
+      "calculation_table_ids": [],
+      "drawing_symbols": {
+        "СП375.А.1": {
+          "O": "точка перелома поясов",
+          "w": "эпюра ветровой нагрузки",
+          "w_loc": "локальная эпюра"
+        },
+        "СП375.А.2": {
+          "a": "длина участка, м",
+          "x": "понижающий коэффициент"
+        }
+      },
+      "drawing_symbol_bindings": {
+        "a": "sp375_a_zone",
+        "x": "sp375_x_zone",
+        "w": "sp375_w_design"
+      },
+      "rules": [
+        "Применять только для расчёта раскосов и распорок башен с переломом поясов",
+        "Рассчитать отдельно снижение выше перелома и снижение ниже перелома",
+        "x из отдельного справочника SP375_A2_ZONE_X",
+        "Выход за пределы a=0–50 м не интерполировать молча"
+      ],
+      "conditions": [
+        "специальный случай СП375, не общий ветер для любого здания"
+      ],
+      "status": "DECLARED_SPECIAL_RULES_NOT_IMPLEMENTED_IN_EBALA"
+    }
+  ]
+}

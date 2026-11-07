@@ -36,11 +36,14 @@ func sphereConeExpandDiameter(s *SnowCalc) (old, newValue float64, adjusted bool
 		return
 	}
 	delta := s.H - s.SkylightWidth*math.Tan(a)
-	if delta <= 0 {
-		return
+	// D must be larger than 2r even when the shoulder's rise is zero or
+	// negative. Earlier the UI returned before reaching this test, while
+	// SnowCompute could still silently enlarge D on Calculate.
+	minD := 2*s.SkylightWidth + .001
+	if delta > 0 {
+		wmin := delta / math.Tan((a+math.Pi/2)/2)
+		minD = math.Max(minD, 2*(s.SkylightWidth+wmin))
 	}
-	wmin := delta / math.Tan((a+math.Pi/2)/2)
-	minD := 2 * (s.SkylightWidth + wmin)
 	if minD > s.Span+1e-8 {
 		// Allow a tiny margin so floating-point rounding never produces >90°.
 		s.Span = math.Ceil((minD+0.0001)*1000) / 1000
@@ -104,15 +107,86 @@ func (g sphereConeGeometry) heightAtRadius(radius float64) float64 {
 	}
 	return g.CenterY - math.Sqrt(inside)
 }
-func (g sphereConeGeometry) maxDomeMu2() float64 {
-	m := 0.
-	for i := 0; i <= 120; i++ {
-		r := g.ConeRadius + (g.D/2-g.ConeRadius)*float64(i)/120
-		if v := g.domeMu2(r); v > m {
-			m = v
+
+// The coefficient Cr1 in B.10 refers to the rise of a hypothetical FULL
+// spherical dome, not to the height of the combined sphere-and-cone roof.
+// A spherical cap having the same diameter and the same peripheral tangent
+// alpha1 has rise f_sphere=(D/2)*tan(alpha1/2).
+func (g sphereConeGeometry) sphereOnlyRise() float64 {
+	return (g.D / 2) * math.Tan(g.Angle1*math.Pi/360)
+}
+
+func (g sphereConeGeometry) domeCriticalRadii() []float64 {
+	rs := []float64{g.ConeRadius, g.D / 2}
+	if g.LinearArc || g.SphereRadius == 0 {
+		return rs
+	}
+	// B.10 is quadratic until alpha=30 degrees, then piecewise linear
+	// in the local slope until alpha=60 degrees. On each interval extrema
+	// can only occur at an end or one of these critical slopes.
+	for _, angle := range []float64{30, 45, 60} {
+		dr := math.Abs(g.SphereRadius) * math.Sin(angle*math.Pi/180)
+		for _, radius := range []float64{g.CenterX - dr, g.CenterX + dr} {
+			if radius > g.ConeRadius && radius < g.D/2 {
+				rs = append(rs, radius)
+			}
 		}
 	}
-	return m
+	r30 := g.CenterX + math.Abs(g.SphereRadius)*0.5
+	if r30 > g.ConeRadius && r30 < g.D/2 {
+		rs = append(rs, r30)
+	}
+	// For a buried shoulder the visible snow-covered part ends where the
+	// roof crosses ground level. The maximum may occur at that boundary.
+	a, b := g.ConeRadius, g.D/2
+	ha, hb := g.heightAtRadius(a), g.heightAtRadius(b)
+	if (ha < 0) != (hb < 0) {
+		for i := 0; i < 80; i++ {
+			mid := (a + b) / 2
+			if (g.heightAtRadius(mid) < 0) == (ha < 0) {
+				a = mid
+			} else {
+				b = mid
+			}
+		}
+		rs = append(rs, (a+b)/2)
+	}
+	return rs
+}
+func (g sphereConeGeometry) maxDomeMu2() float64 {
+	max := 0.0
+	for _, radius := range g.domeCriticalRadii() {
+		if g.heightAtRadius(radius) >= 0 {
+			if mu := g.domeMu2(radius); mu > max {
+				max = mu
+			}
+		}
+	}
+	return max
+}
+func (g sphereConeGeometry) zone5Mu() float64 {
+	zone5Angle := g.Angle // user-approved geometric interpretation (alpha2)
+	if g.StrictZone5Formula {
+		zone5Angle = g.Angle1 // literal wording in B.12(b)
+	}
+	if zone5Angle > 7 && zone5Angle <= 15 {
+		return .8 * snowRoofMu(g.Angle)
+	}
+	if zone5Angle > 15 && zone5Angle <= 30 {
+		return .5 * g.domeMu2(g.ConeRadius)
+	}
+	return 0
+}
+func (g sphereConeGeometry) spatialMaxMu() float64 {
+	// Zone 1 peaks at beta=90°, cone zones at their perpendicular
+	// azimuth; zones 2 and 6 cannot exceed half the full dome peak.
+	// Zone 5 is piecewise constant. All critical dome slopes are checked
+	// analytically, without dependence on the presentation grid step.
+	maxConeRadius := g.ConeRadius
+	if tan := math.Tan(g.Angle * math.Pi / 180); tan > 0 {
+		maxConeRadius = math.Min(maxConeRadius, g.H/tan)
+	}
+	return math.Max(g.maxDomeMu2(), math.Max(g.coneMu2(math.Max(0, maxConeRadius)), g.zone5Mu()))
 }
 
 func (g sphereConeGeometry) sideAngle(radius float64) float64 {
@@ -137,8 +211,7 @@ func (g sphereConeGeometry) sideAngle(radius float64) float64 {
 }
 func (g sphereConeGeometry) domeMu2(radius float64) float64 {
 	alpha := math.Abs(g.sideAngle(radius))
-	rise := g.Rise
-	cr := 2.55 - math.Exp(.8-14*rise/g.D)
+	cr := 2.55 - math.Exp(.8-14*g.sphereOnlyRise()/g.D)
 	r30 := g.CenterX + math.Abs(g.SphereRadius)*.5
 	if r30 <= 0 || g.LinearArc {
 		r30 = g.ConeRadius
@@ -167,39 +240,28 @@ func (g sphereConeGeometry) coneMu2(radius float64) float64 {
 	return math.Max(0, c*radius/g.ConeRadius)
 }
 
-// The input beta is measured from the RIGHT radius, anticlockwise. The lower
-// semicircle mirrors the upper half; 0..180 degrees therefore contains every
-// distinct azimuth. The normative zones act SIMULTANEOUSLY, not as load cases.
+// Beta is the SINGLE normative polar azimuth of figure B.15a: beta=0°
+// points straight down in plan, 90° right (middle of zone 1), 180° up,
+// 270° left (middle of zones 5/6). The zones do NOT reset beta.
+// The roof sector boundaries are at 30, 150, 210 and 330 degrees.
 func (g sphereConeGeometry) spatialMu(radius, beta float64) (float64, int) {
-	b := math.Mod(beta+360, 360)
-	if b > 180 {
-		b = 360 - b
+	b := math.Mod(beta, 360)
+	if b < 0 {
+		b += 360
 	}
+	right := b > 30 && b < 150
+	left := b > 210 && b < 330
 	outer := radius >= g.ConeRadius
-	// The sector boundaries are 60 degrees from the upper meridian.
-	right := b < 60
-	left := b > 120
-	dome := g.domeMu2(radius)
-	if outer {
-		if right {
-			if g.heightAtRadius(radius) < 0 {
+	if g.heightAtRadius(radius) < 0 {
+		if outer {
+			if right {
 				return 0, 1
 			}
-			return dome * math.Sin(b*math.Pi/180), 1
-		}
-		if left {
-			if g.heightAtRadius(radius) < 0 {
+			if left {
 				return 0, 6
 			}
-			return .5 * dome * math.Sin(b*math.Pi/180), 6
-		}
-		// Zone 2 is 0.5 of the actual B.10 peak at beta=90°.
-		if g.heightAtRadius(radius) < 0 {
 			return 0, 2
 		}
-		return .5 * g.maxDomeMu2(), 2
-	}
-	if g.heightAtRadius(radius) < 0 {
 		if right {
 			return 0, 3
 		}
@@ -208,34 +270,41 @@ func (g sphereConeGeometry) spatialMu(radius, beta float64) (float64, int) {
 		}
 		return 0, 4
 	}
+	sine := math.Sin(b * math.Pi / 180)
+	if outer {
+		dome := g.domeMu2(radius)
+		if right {
+			return dome * sine, 1
+		}
+		if left {
+			// B.10 at 270° has a negative sine. Agreed engineering
+			// interpretation of B.15a zone 6: disregard that sign.
+			return .5 * dome * math.Abs(sine), 6
+		}
+		// Zone 2 uses the ENTIRE radial epure B.10 at beta=90°, halved.
+		// At beta=30° and 150°, sin(beta)=0.5, so zones 1/2 match.
+		return .5 * dome, 2
+	}
 	cone := g.coneMu2(radius)
 	if right {
-		return cone * math.Max(0, math.Sin(b*math.Pi/180)), 3
+		return cone * sine, 3
 	}
-	if !left {
-		return cone * math.Max(0, math.Sin(b*math.Pi/180)), 4
+	if left {
+		return g.zone5Mu(), 5
 	}
-	zone5Angle := g.Angle // geometric interpretation: the tangent at cone junction
-	if g.StrictZone5Formula {
-		zone5Angle = g.Angle1 // literal wording in B.12(b)
-	}
-	if zone5Angle > 7 && zone5Angle <= 15 {
-		return .8 * snowRoofMu(g.Angle), 5
-	}
-	if zone5Angle > 15 && zone5Angle <= 30 {
-		return .5 * g.domeMu2(g.ConeRadius), 5
-	}
-	return 0, 5
+	// Zone 4 belongs to both half-planes; its B.12/B.13 ordinate is a
+	// magnitude and cannot be negative on the left of the 180° meridian.
+	return cone * math.Abs(sine), 4
 }
 func sphereConeBetas(step float64) []float64 {
 	if !num(step) || step <= 0 {
 		step = 15
 	}
 	list := []float64{}
-	for b := 0.; b < 180.-1e-8; b += step {
+	for b := 0.; b < 360.-1e-8; b += step {
 		list = append(list, b)
 	}
-	return append(list, 180)
+	return append(list, 360)
 }
 func sphereConeRadii(g sphereConeGeometry) []float64 {
 	radii := []float64{}
@@ -299,10 +368,11 @@ func snowSphereConeCases(s SnowCalc) ([]SnowCase, error) {
 	if g.Angle1 <= 10 && g.Angle <= 7 {
 		return []SnowCase{first}, nil
 	}
-	line := fillLine(0, 180, func(r, b float64) float64 { m, _ := g.spatialMu(r, b); return m })
+	line := fillLine(90, 270, func(r, b float64) float64 { m, _ := g.spatialMu(r, b); return m })
 	second := snowCase("2. Пространственное загружение, зоны 1–6", "СП 20.13330.2016, Б.12(б), рисунок Б.15а, формулы (Б.10), (Б.12), (Б.13)",
-		"Все шесть зон действуют совместно. Сечения представлены по зонам 6–1 и 2–4–4–2; таблицы Word и Excel содержат полярную сетку.", line...)
-	second.Cross = fillLine(90, 270, func(r, b float64) float64 { m, _ := g.spatialMu(r, b); return m })
+		"Все шесть зон действуют совместно. β отсчитывается от направления вниз в плане. Сечения представлены по зонам 6–1 и 2–4–4–2; таблицы Word и Excel содержат полярную сетку.", line...)
+	second.Cross = fillLine(180, 0, func(r, b float64) float64 { m, _ := g.spatialMu(r, b); return m })
+	second.PeakMu = g.spatialMaxMu()
 	for _, beta := range betaSamples {
 		for _, radius := range radialSamples {
 			mu, zone := g.spatialMu(radius, beta)

@@ -119,6 +119,7 @@ func fillSiteInputs(s Site) {
 	}
 	setZone(634, snowChoice(s))
 	setZone(636, s.WindZone)
+	setZone(648, windSiteTerrainLabel(s.WindTerrain))
 	setZone(637, s.IceZone)
 	if s.SnowGround > 0 {
 		set(635, decimalInput(s.SnowGround, 3))
@@ -150,7 +151,7 @@ func readSiteManual() (Site, error) {
 	}
 	windZone := windInternalZone(get(636))
 	iceZone := get(637)
-	s := Site{Region: strings.TrimSpace(get(631)), District: strings.TrimSpace(get(632)), Place: strings.TrimSpace(get(633)), SnowZone: snowZone, WindZone: windZone, IceZone: iceZone, Reference: "Климатические зоны назначены пользователем"}
+	s := Site{Region: strings.TrimSpace(get(631)), District: strings.TrimSpace(get(632)), Place: strings.TrimSpace(get(633)), SnowZone: snowZone, WindZone: windZone, WindTerrain: windTerrainKey(get(648)), IceZone: iceZone, Reference: "Климатические зоны назначены пользователем"}
 	if isKChoice(choice) {
 		if !specialSnowSite(draftSite) || s.Region != draftSite.Region || s.Place != draftSite.Place {
 			return s, fmt.Errorf("Режим «Особый, по приложению К» разрешён только для выбранного города приложения К; если изменили населённый пункт, выберите снеговой район")
@@ -278,27 +279,9 @@ func refreshClimateUI() {
 			project.Wind.W0 = 0
 		}
 	}
-	changingUnits = true
-	set(201, xnum(project.Wind.W0))
-	set(205, decimalInput(kpaToKgfM2(project.Wind.W0), 3))
-	mode := ""
-	if project.WindOverride {
-		mode = project.WindZoneOverride
-		if mode == "" {
-			mode = "Пользовательский"
-		}
-	} else {
-		mode = s.WindZone
-	}
-	setZone(206, mode)
-	changingUnits = false
-	if project.WindOverride {
-		set(210, "ЛОКАЛЬНАЯ ПРАВКА: w₀ = "+knownFloat(project.Wind.W0, "кПа"))
-	} else if s.WindZone != "" {
-		set(210, "ИЗ МЕСТНОСТИ: ветровой район "+s.WindZone+" · "+climateZoneNotes("wind", s.WindZone))
-	} else {
-		set(210, "ВНИМАНИЕ: ветровой район не выбран; для расчёта назначьте его по карте")
-	}
+	// Wind module 0.58 owns its own input fields and display units. Updating
+	// snow/ice/site cannot silently rewrite a wind calculation draft.
+
 	snowZone, sg, snowOv := project.SnowInputs()
 	snowMode := snowZone
 	if snowOv && isKChoice(project.Snow.Mode) {
@@ -393,7 +376,7 @@ func applyIceManual() {
 func useSiteIce() { project.Ice = ClimateOverride{}; refreshClimateUI() }
 func isClimateCombo(id int) bool {
 	switch id {
-	case 634, 636, 637, 643, 654, 655, 701, 801, 206:
+	case 634, 636, 637, 643, 648, 654, 655, 701, 801, 206:
 		return true
 	}
 	return false
@@ -532,7 +515,9 @@ func buildSite() {
 	label("Абсолютная отметка, м", 709, 613, 401, 22)
 	edit(644, "", 709, 640, 195, 29)
 	button(646, "Проверить в Википедии", 913, 640, 196, 30)
-	create("STATIC", "", WS_CHILD|WS_VISIBLE, 22, 677, 1100, 43, 645)
+	create("STATIC", "", WS_CHILD|WS_VISIBLE, 22, 677, 790, 43, 645)
+	label("Тип местности для ветра", 830, 664, 288, 22)
+	combo(648, []string{"Не выбран", "А — открытая", "В — городская", "С — плотная застройка"}, 830, 688, 288)
 	create("STATIC", "", WS_CHILD|WS_VISIBLE, 22, 726, 1085, 22, 625)
 	create("STATIC", "", WS_CHILD|WS_VISIBLE, 22, 751, 1085, 20, 627)
 	footerSite()

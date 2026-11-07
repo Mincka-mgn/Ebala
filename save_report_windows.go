@@ -83,10 +83,9 @@ func reportSaved(path string) {
 	}
 }
 func saveAndNotify(path string, write func(string) error) {
-	saved, e := writeWithLockFallback(path, write)
-	if e != nil {
-		message("Не удалось сохранить файл:\n"+e.Error(), true)
+	if e := write(path); e != nil {
+		message("Не удалось сохранить файл:\n"+e.Error()+"\nПроверьте, не открыт ли отчёт в Word или Excel.", true)
 		return
 	}
-	reportSaved(saved)
+	reportSaved(path)
 }

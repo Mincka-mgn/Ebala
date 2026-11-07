@@ -27,7 +27,7 @@ func compositionEntered() {
 	compositionRefresh()
 }
 func compositionRefresh() {
-	groups := []string{"Собственный вес", "Временные нагрузки", "Снеговые нагрузки", "Гололёдные нагрузки", "Транспортные нагрузки", "Мостовые краны"}
+	groups := []string{"Собственный вес", "Временные нагрузки", "Снеговые нагрузки", "Ветровые нагрузки", "Гололёдные нагрузки", "Транспортные нагрузки", "Мостовые краны"}
 	rows := [][]string{}
 	reportCompositionIDs = nil
 	add := func(b SavedReportBlock, serial int, indent string) {
@@ -145,6 +145,19 @@ func compositionClick(row, sub int, double bool) bool {
 		editingWeightIndex = -1
 		editingTemporaryIndex = -1
 		switch b.Kind {
+		case "wind":
+			if b.WindCalc != nil {
+				windCurrentBlockID = blockID
+				c := *b.WindCalc
+				windDraft = c.Input
+				windUnit = "kpa"
+				if c.Input.DisplayUnit == "kgf" {
+					windUnit = "kgf"
+				}
+				windCurrentResult = &c
+				switchPage("wind")
+				windSetForm()
+			}
 		case "snow":
 			if b.Snow != nil {
 				snowCurrentBlockID = blockID

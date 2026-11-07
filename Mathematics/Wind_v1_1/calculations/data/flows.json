@@ -1,0 +1,268 @@
+{
+  "flows": [
+    {
+      "id": "basic_wall_no_resonance",
+      "case_id": "GENERAL_BASIC",
+      "steps": [
+        {
+          "id": "w0",
+          "formula": "11.1.lookup_w0",
+          "alternatives": [
+            "manual_w0",
+            "11.3"
+          ]
+        },
+        {
+          "id": "z_e",
+          "formula": "11.1.5.building_*",
+          "logic": "piecewise_by_h_d_z"
+        },
+        {
+          "id": "k",
+          "formula": "11.2.lookup_k",
+          "alternatives": [
+            "11.4"
+          ]
+        },
+        {
+          "id": "zeta",
+          "formula": "11.4.lookup_zeta",
+          "alternatives": [
+            "11.6"
+          ]
+        },
+        {
+          "id": "v_corr",
+          "formula": "11.6.lookup_v"
+        },
+        {
+          "id": "c_e",
+          "formula": "B.1.2.side_wall",
+          "reference": "В.2"
+        },
+        {
+          "id": "w_m",
+          "formula": "11.2"
+        },
+        {
+          "id": "f_lim",
+          "formula": "11.9a",
+          "conditional": "when modal frequency available"
+        },
+        {
+          "id": "w_g",
+          "formula": "11.5",
+          "condition": "f1>f_lim"
+        },
+        {
+          "id": "xi",
+          "formula": "11.1.xi_davenport_approx",
+          "requires": [
+            "Tg1",
+            "delta_damp"
+          ],
+          "condition": "f1<f_lim<f2",
+          "source_graph": "11.1",
+          "warnings": [
+            "Tg1 вне [0;0.30]",
+            "delta_damp вне [0.15;0.30]"
+          ]
+        },
+        {
+          "id": "w_g_dynamic",
+          "formula": "11.7",
+          "condition": "f1<f_lim<f2",
+          "requires_formula": "11.1.xi_davenport_approx",
+          "reference_graph": "11.1",
+          "note": "ξ вычисляется напрямую по δ и Tg1, без интерполяции между δ."
+        },
+        {
+          "id": "w",
+          "formula": "11.1"
+        },
+        {
+          "id": "design",
+          "formula": "11.4.gamma",
+          "expression": "w*gamma_f"
+        }
+      ]
+    },
+    {
+      "id": "peak_wall",
+      "case_id": "GENERAL_PEAK",
+      "steps": [
+        {
+          "id": "w0",
+          "formula": "11.1.lookup_w0"
+        },
+        {
+          "id": "z_e",
+          "formula": "11.1.5.building_*"
+        },
+        {
+          "id": "k",
+          "formula": "11.2.lookup_k"
+        },
+        {
+          "id": "zeta",
+          "formula": "11.4.lookup_zeta"
+        },
+        {
+          "id": "cp_peak",
+          "formula": "B.1.17.peak_plus / B.1.17.peak_minus"
+        },
+        {
+          "id": "nu_peak",
+          "formula": "11.8.lookup_nu_peak"
+        },
+        {
+          "id": "w_peak",
+          "formula": "11.10"
+        },
+        {
+          "id": "design",
+          "formula": "11.4.gamma",
+          "expression": "w_peak*gamma_f"
+        }
+      ]
+    },
+    {
+      "id": "cylinder",
+      "case_id": "B1_12_CYLINDER",
+      "steps": [
+        {
+          "id": "rough",
+          "formula": "B.1.16.roughness"
+        },
+        {
+          "id": "rel_rough",
+          "formula": "B.1.16.rel_rough"
+        },
+        {
+          "id": "re",
+          "formula": "B.1.11.sphere_re"
+        },
+        {
+          "id": "slender",
+          "formula": "B.1.15.k_lambda"
+        },
+        {
+          "id": "c_x_inf",
+          "formula": "B.1.12.cylinder_cx",
+          "note": "Нужно сначала получить c_x_inf из справочника В.17; порядок исполнения определяется зависимостями."
+        },
+        {
+          "id": "c_beta",
+          "formula": "B.1.12.cylinder_cp_beta"
+        },
+        {
+          "id": "c_e",
+          "formula": "B.1.12.cylinder_cp"
+        }
+      ]
+    },
+    {
+      "id": "appendix_m_mode_truncation",
+      "case_id": "M_MODAL",
+      "status": "SPECIFICATION_ONLY_NUMERICAL_SOLVER_REQUIRED",
+      "steps": [
+        {
+          "id": "spectral_normalization",
+          "formula": "M.13",
+          "requires": [
+            "lambda_f (M.14)"
+          ]
+        },
+        {
+          "id": "Delta2_k",
+          "formula": "M.11",
+          "requires": [
+            "f_spectral",
+            "f_k",
+            "gamma_k"
+          ]
+        },
+        {
+          "id": "v0_squared",
+          "formula": "M.20",
+          "requires": [
+            "S_v0",
+            "r_m"
+          ],
+          "note": "Безразмерный интеграл М.20, единица 1; НЕ квадрат скорости V0 (м²/с²)."
+        },
+        {
+          "id": "xi_s_squared",
+          "formula": "M.19",
+          "requires": [
+            "S_v0",
+            "Delta_k",
+            "r_m"
+          ],
+          "selection": "k=k1=s"
+        },
+        {
+          "id": "mode_frequency_convergence",
+          "formula": "M.18",
+          "requires": [
+            "xi_s_squared",
+            "epsilon_D",
+            "v0_squared"
+          ]
+        }
+      ],
+      "warning": "Формулы М.19 и М.20 требуют интегрирования; эта последовательность не реализует численный решатель."
+    },
+    {
+      "id": "sp375_tower_zone_two_scenarios",
+      "case_id": "SP375_TOWER_ZONAL_WIND",
+      "steps": [
+        {
+          "id": "lookup_x",
+          "formula": "SP375.A2.lookup_x_zone",
+          "reference": "SP375_A2_ZONE_X",
+          "requires": [
+            "sp375_a_zone"
+          ]
+        },
+        {
+          "id": "reduce_above",
+          "formula": "SP375.A1.w_loc",
+          "scenario": "reduce_above_belt_break",
+          "requires": [
+            "sp375_w_design",
+            "sp375_x_zone"
+          ]
+        },
+        {
+          "id": "reduce_below",
+          "formula": "SP375.A1.w_loc",
+          "scenario": "reduce_below_belt_break",
+          "requires": [
+            "sp375_w_design",
+            "sp375_x_zone"
+          ]
+        }
+      ],
+      "warning": "Результаты относятся к разным расчетным схемам; не применять x к обеим частям одновременно."
+    },
+    {
+      "id": "sp375_chimney_special_rules",
+      "case_id": "SP375_CHIMNEY_SPECIAL_WIND",
+      "steps": [
+        {
+          "id": "select_gamma",
+          "formula": "SP375.7.1.wind_gamma",
+          "source_rules": "data/special_sp375_rules.json"
+        },
+        {
+          "id": "vortex_fatigue_flag",
+          "rule": "SP375_CHIMNEY_VORTEX_FATIGUE",
+          "status": "CHECK_REQUIRED_SOLVER_NOT_IMPLEMENTED"
+        }
+      ],
+      "warning": "Для стальных труб и башен H>210 м значение γ_f требуется из задания на проектирование; не рассчитывать автоматически."
+    }
+  ],
+  "warning": "Шаги — спецификация для будущего движка, не существующая функция Ebala. Не запускать в порядке массива без анализа зависимостей."
+}

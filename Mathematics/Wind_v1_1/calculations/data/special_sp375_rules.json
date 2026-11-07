@@ -1,0 +1,83 @@
+{
+  "source": "СП 375.1325800.2023 (по предоставленному PDF), табл. 7.1, прим.3; п.6.2; приложение А",
+  "scope": "Дымовые и вентиляционные трубы, с исключениями СП375 п.1.2; НЕ общие здания по СП20.",
+  "rules": [
+    {
+      "id": "SP375_WIND_GAMMA_F",
+      "status": "NORMATIVE_SPECIAL_RULE",
+      "reference": "7.1, табл.7.1, печ. с.16–17",
+      "general_chimney": [
+        {
+          "H_min_inclusive": 0,
+          "H_max_exclusive": 150,
+          "value": 1.4
+        },
+        {
+          "H_min_inclusive": 150,
+          "H_max_inclusive": 300,
+          "value": 1.5
+        },
+        {
+          "H_min_exclusive": 300,
+          "value": 1.6
+        }
+      ],
+      "override_for_steel_tubes_and_towers": [
+        {
+          "H_min_inclusive": 0,
+          "H_max_inclusive": 100,
+          "value": 1.4
+        },
+        {
+          "H_min_exclusive": 100,
+          "H_max_inclusive": 210,
+          "value": 1.5
+        },
+        {
+          "H_min_exclusive": 210,
+          "value": null,
+          "action": "require_project_brief",
+          "note": "Коэффициент назначается по заданию на проектирование; не подставлять автоматически общий интервал."
+        }
+      ],
+      "precedence": [
+        "first determine applicability",
+        "steel tubes/towers use note 3",
+        "otherwise use general H intervals"
+      ],
+      "not_for_standard_building": true
+    },
+    {
+      "id": "SP375_CHIMNEY_VORTEX_FATIGUE",
+      "status": "NORMATIVE_CHECK_REQUIRED_NOT_NUMERIC_SOLVER",
+      "reference": "п. 6.2, печ. с.14",
+      "trigger": "cylindrical_pipe_or_taper_le_1.2_percent",
+      "required_checks": [
+        "резонансное вихревое возбуждение",
+        "накопление усталостных повреждений"
+      ],
+      "reference_methods": [
+        "СП43.13330 п.9.3",
+        "СП20.13330 п.11.3"
+      ],
+      "solver_status": "NOT_IMPLEMENTED",
+      "note": "Не путать требование выполнить поверку с готовым численным решателем; конструктивный расчёт усталости вне scope Ebala без отдельного задания."
+    },
+    {
+      "id": "SP375_ZONE_TWO_SCENARIOS",
+      "status": "NORMATIVE_SPECIAL_RULE",
+      "reference": "прил. А рис. А.1, формула (А.1)",
+      "applies_to": "решетчатые башни с переломом поясов; раскосы и распорки",
+      "scenarios": [
+        "reduce_above_belt_break",
+        "reduce_below_belt_break"
+      ],
+      "zone_x_reference": {
+        "dataset": "reference",
+        "file": "external/sp375_appendix_a_zonal_factor.json",
+        "dataset_id": "SP375_A2_ZONE_X"
+      },
+      "warning": "Нельзя уменьшать нагрузку на оба участка одновременно и выдавать один результат"
+    }
+  ]
+}

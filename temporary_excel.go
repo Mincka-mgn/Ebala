@@ -88,7 +88,7 @@ func exportTempExcel(r TempReport, path string) error {
 			regular = append(regular, s)
 		}
 	}
-	if len(regular)+len(transport)+len(cranes)+len(r.WeightRows)+len(r.WeightBlocks)+len(r.SiteLines)+len(r.Snows)+len(r.Ices)+len(r.CraneGroups) == 0 && r.Snow == nil && r.Ice == nil {
+	if len(regular)+len(transport)+len(cranes)+len(r.WeightRows)+len(r.WeightBlocks)+len(r.SiteLines)+len(r.Snows)+len(r.Ices)+len(r.Winds)+len(r.CraneGroups) == 0 && r.Snow == nil && r.Ice == nil {
 		return fmt.Errorf("Ведомость пуста")
 	}
 	var w strings.Builder
@@ -100,7 +100,7 @@ func exportTempExcel(r TempReport, path string) error {
 	// Final results are intentionally placed AFTER source, normative and
 	// formula worksheets. This worksheet is a navigation/summary view, not
 	// a second place to store Go-computed load values.
-	add("На этом листе приведены итоговые загружения и ссылки на расчётные листы. Исходные данные редактируются только на листах исходных данных; коэффициенты и нагрузки вычисляются формулами Excel.")
+	add("На этом листе представлены итоговые нормативные и расчётные нагрузки. Для ветровых зон приведены ссылки на формульные расчёты: их названия и исходные параметры перечислены в оглавлении «Исходные данные».")
 	if len(r.SiteLines) > 0 {
 		add("ХАРАКТЕРИСТИКИ МЕСТНОСТИ")
 		for _, line := range r.SiteLines {
@@ -145,6 +145,16 @@ func exportTempExcel(r TempReport, path string) error {
 			return err
 		}
 	}
+	windDetailed, windDetailedNames := windExpandReports(r.Winds, r.WindTitles)
+	for j, title := range windDetailedNames {
+		i := j + 1
+		src := fmt.Sprintf("'Ветер Исходные %d'!B21", i)
+		norm := fmt.Sprintf("'Ветер Расчёт %d'!B36", i)
+		design := fmt.Sprintf("'Ветер Расчёт %d'!B37", i)
+		f := fmt.Sprintf("IF(%s=\"кгс/м²\",%.12g,0.001)", src, kgfPerKN/1000)
+		add("Ветровая нагрузка, в выбранной единице", tempExcelLiteral(title), "="+norm+"*"+f, "="+design+"*"+f)
+	}
+	_ = windDetailed
 	if len(regular) > 0 {
 		add("Временные нагрузки (СП 20.13330.2016)")
 		add("№", "Наименование", "Нормативная в кгс", "Нормативная в кПа/кН", "γf", "Расчётная в кгс", "Расчётная в кПа/кН", "Основание")
@@ -239,7 +249,7 @@ func exportTempExcel(r TempReport, path string) error {
 	entries := map[string]string{
 		"[Content_Types].xml":        `<?xml version="1.0" encoding="UTF-8"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>`,
 		"_rels/.rels":                `<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>`,
-		"xl/workbook.xml":            `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Нагрузки" sheetId="1" r:id="rId1"/></sheets><calcPr calcMode="auto" fullCalcOnLoad="1" forceFullCalc="1"/></workbook>`,
+		"xl/workbook.xml":            `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Итоговые нагрузки" sheetId="1" r:id="rId1"/></sheets><calcPr calcMode="auto" fullCalcOnLoad="1" forceFullCalc="1"/></workbook>`,
 		"xl/_rels/workbook.xml.rels": `<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>`,
 		"xl/worksheets/sheet1.xml":   sheet,
 		"xl/styles.xml":              `<?xml version="1.0" encoding="UTF-8"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><fonts count="1"><font><sz val="11"/><name val="Arial"/></font></fonts><fills count="2"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill></fills><borders count="1"><border/></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0"/></cellStyles></styleSheet>`,
@@ -299,6 +309,12 @@ func exportTempExcel(r TempReport, path string) error {
 			return e
 		}
 	}
+	if err := windExcelAdd(entries, r.Winds, r.WindTitles); err != nil {
+		return err
+	}
 	snowExcelReorderSheets(entries)
+	if err := wind064PolishWorkbook(entries); err != nil {
+		return err
+	}
 	return packageZip(path, entries)
 }

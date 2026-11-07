@@ -29,7 +29,7 @@ func snowExcelSphereGeometry(s SnowCalc, input string) string {
 	add(10, "R, м (со знаком)", "=IF(ABS("+denom+")<1E-9,\"\",(B8^2+B9^2)/"+denom+")", "При линейном сопряжении R бесконечен и числом не задаётся")
 	add(11, "Xc, м", "=IF(B22=\"Да\",\"\",B5-B10*SIN(RADIANS(B6)))", "Координата центра по горизонтали; не существует для прямой")
 	add(12, "Yc, м", "=IF(B22=\"Да\",\"\",B2-B5*TAN(RADIANS(B6))-B10*COS(RADIANS(B6)))", "Координата центра по высоте; не существует для прямой")
-	add(13, "Cr1 по (Б.10)", "=2.55-EXP(0.8-14*B4/B3)", "Б.10: Cr1 = 2,55 − exp(0,8 − 14f/D)")
+	add(13, "Cr1 по (Б.10)", "=2.55-EXP(0.8-14*B23/B3)", "Для Б.15а в Cr1 берётся виртуальный подъём полной сферы fсферы, а не f конусно-сферического покрытия")
 	add(14, "r30, м", "=IF(B22=\"Да\",B5,IF(B11+ABS(B10)*0.5<=0,B5,B11+ABS(B10)*0.5))", "При линейном сопряжении или r30≤0 берётся r, как в ядре Go")
 	add(15, "μ₂ на сопряжении", "=B30", "Значение сферического коэффициента у конуса")
 	add(16, "μ₂,max", "=MAX(B30:B150)", "Максимум коэффициента Б.10 из 121 сечения")
@@ -39,6 +39,7 @@ func snowExcelSphereGeometry(s SnowCalc, input string) string {
 	add(20, "Отметка стенки, м", "=B2-B4", "H − f")
 	add(21, "Высота конуса, м", "=B5*TAN(RADIANS(B6))", "hконуса = r·tg α₂; определяется только на расчётном листе")
 	add(22, "Линейное сопряжение", "=IF(ABS("+denom+")<1E-9,\"Да\",\"Нет\")", "Предельный случай: сферическая часть является прямой линией")
+	add(23, "fсферы, м", "=B3/2*TAN(RADIANS(B7/2))", "Высота полной сферической кровли при том же диаметре D и краевом угле α₁")
 	add(24, "Формулы ниже вычисляются в Excel по радиусу и углу местной касательной, без подстановки готового μ из Go.")
 	add(25, "Радиус от центра, м", "μ₂ сферы без sin β", "|α₁(z)|, град", "Основание")
 	for i := 0; i <= 120; i++ {
@@ -65,19 +66,27 @@ func snowExcelSpherePolar(s SnowCalc, c SnowCase, index int, geometry, input, co
 	add(1, fmt.Sprintf("На этом листе вычисляются пространственные коэффициенты μ и нагрузки для варианта %d Б.15а. Радиусы и углы вычисляются из исходных данных, а не берутся из Go.", index+1))
 	add(2, "Sg, кПа", "="+src+"B3", "ce", "="+k+"B19", "ct", "="+k+"B21", "γf", "="+src+"B4")
 	add(3, "β, град", "От края, м", "Радиус z, м", "Зона", "μ по формулам Excel", "Sн=μ×ce×ct×Sg", "Sр=γf×Sн", "", "", "|α(z)|, град", "Отметка кровли, м", "μ₂ сферы / sinβ", "μ₂ конуса / sinβ", "Нормативная формула")
-	// Reserve one-degree sampling when users edit the beta step in Excel.
-	// The number of rows must not depend solely on the Go-rendered grid.
+	// The hidden B.15a worksheet covers all 360° with a minimum 5°
+	// sampling when the original input step is coarser; export again if a
+	// finer step is needed. No client-facing B.15a results in this stage.
 	betaRows := 181
+	if index > 0 {
+		betaRows = 73
+	}
 	if s.BetaStep > 0 {
-		need := int(math.Ceil(180/s.BetaStep)) + 1
+		angleRange := 180.0
+		if index > 0 {
+			angleRange = 360
+		}
+		need := int(math.Ceil(angleRange/s.BetaStep)) + 1
 		if need > betaRows {
 			betaRows = need
 		}
 	}
 	// A finite worksheet grid has a fixed maximum. Further refinement requires
 	// regenerating a workbook, not modifying the mathematical coefficients.
-	if betaRows > 361 {
-		betaRows = 361
+	if betaRows > 721 {
+		betaRows = 721
 	}
 	for j := 0; j < betaRows; j++ {
 		for ri := 0; ri < 26; ri++ {
@@ -87,7 +96,11 @@ func snowExcelSpherePolar(s SnowCalc, c SnowCase, index int, geometry, input, co
 			zz := fmt.Sprintf("D%d", row)
 			angle := fmt.Sprintf("J%d", row)
 			h := fmt.Sprintf("K%d", row)
-			bformula := fmt.Sprintf("=IF(AND(%s$B$33>0,%d<=ROUNDUP(180/%s$B$33,0)),MIN(180,%d*%s$B$33),\"\")", src, j, src, j, src)
+			angleRange := 180
+			if index > 0 {
+				angleRange = 360
+			}
+			bformula := fmt.Sprintf("=IF(AND(%s$B$33>0,%d<=ROUNDUP(%d/%s$B$33,0)),MIN(%d,%d*%s$B$33),\"\")", src, j, angleRange, src, angleRange, j, src)
 			radius := ""
 			if ri == 25 {
 				radius = "=IF(" + beta + "=\"\",\"\"," + g + "$B$5)"
@@ -95,16 +108,19 @@ func snowExcelSpherePolar(s SnowCalc, c SnowCase, index int, geometry, input, co
 				radius = fmt.Sprintf("=IF(%s=\"\",\"\",%s$B$3/2*%d/24)", beta, g, ri)
 			}
 			wrap := func(form string) string { return "=IF(" + beta + "=\"\",\"\"," + strings.TrimPrefix(form, "=") + ")" }
-			sym := fmt.Sprintf("IF(%s>180,360-%s,%s)", beta, beta, beta)
+			sym := beta
 			var zone, mu, meaning string
 			if index == 0 {
 				zone = ""
 				mu = fmt.Sprintf("=IF(%s<0,0,IF(%s<=30,1,IF(%s>=60,0,(60-%s)/30)))", h, angle, angle, angle)
 				meaning = "Таблица Б.3: μ₁ по касательной"
 			} else {
-				zone = fmt.Sprintf("=IF(%s>=%s$B$5,IF(%s<60,1,IF(%s>120,6,2)),IF(%s<60,3,IF(%s>120,5,4)))", z, g, sym, sym, sym, sym)
+				right := fmt.Sprintf("AND(%s>30,%s<150)", sym, sym)
+				left := fmt.Sprintf("AND(%s>210,%s<330)", sym, sym)
+				zone = fmt.Sprintf("=IF(%s>=%s$B$5,IF(%s,1,IF(%s,6,2)),IF(%s,3,IF(%s,5,4)))", z, g, right, left, right, left)
 				sine := fmt.Sprintf("SIN(RADIANS(%s))", sym)
-				mu = fmt.Sprintf("=IF(%s<0,0,IF(%s=1,L%d*%s,IF(%s=2,0.5*%s$B$16,IF(OR(%s=3,%s=4),M%d*%s,IF(%s=5,%s$B$18,IF(%s=6,0.5*L%d*%s,0))))))", h, zz, row, sine, zz, g, zz, zz, row, sine, zz, g, zz, row, sine)
+				absSine := fmt.Sprintf("ABS(%s)", sine)
+				mu = fmt.Sprintf("=IF(%s<0,0,IF(%s=1,L%d*%s,IF(%s=2,0.5*L%d,IF(%s=3,M%d*%s,IF(%s=4,M%d*%s,IF(%s=5,%s$B$18,IF(%s=6,0.5*L%d*%s,0)))))))", h, zz, row, sine, zz, row, zz, row, sine, zz, row, absSine, zz, g, zz, row, absSine)
 				meaning = "Б.12(б): зоны 1–6, (Б.10), (Б.12), (Б.13)"
 			}
 			local := fmt.Sprintf("=IF(OR(%s$B$22=\"Да\",%s<=%s$B$5),%s$B$6,ABS(DEGREES(ASIN(MAX(-1,MIN(1,(%s-%s$B$11)/ABS(%s$B$10)))))))", g, z, g, g, z, g, g)
@@ -137,13 +153,13 @@ func snowExcelFormulaGuide(s SnowCalc) string {
 	}
 	if s.Shape == "sphere_cone" {
 		add(8, "Сопряжение", "R = (dx²+dh²)/(2·(dh cos α₂ − dx sin α₂))", "dx=D/2−r; dh=f−r·tg α₂; R — подписанный радиус сферы", "Геометрия принятой модели")
-		add(9, "Зона 1", "μ₂ = Cr1·(z/r30)²·sin β (до α₁=30°)", "За 30°: линейная интерполяция до 45° и 60°", "Б.10, Б.12(б)")
-		add(10, "Зона 2", "μ = 0,5·μ₂,max (при β=90°)", "μ₂,max — максимум по сферической части", "Б.12(б)")
+		add(9, "Зона 1", "μ₂ = Cr1·(z/r30)²·sin β (до α₁=30°)", "Cr1 вычисляется через fсферы = (D/2)·tg(α₁/2); за 30° линейная интерполяция", "Б.10, Б.12(б)")
+		add(10, "Зона 2", "μ₂(z)=0,5·μ₂(z,90°)", "Половина всей радиальной эпюры Б.10 при β=90°, а не постоянное μmax", "Б.12(б), согласованная трактовка")
 		add(11, "Зоны 3 и 4", "μ₂ = Cr2·(z/r)·sin β", "Cr2=2,15·(α₂π/180)^(1/3) при 7°<α₂≤30°; Cr2=1,7·30/α₂ при 30°<α₂<60°", "Б.12, Б.13")
 		add(12, "Зона 5 при 7°<a≤15°", "μ₂ = 0,8·μ₁(α₂)", "a=α₂ по умолчанию; при галочке a=α₁ у стенки", "Б.12(б), интерпретация")
 		add(13, "Зона 5 при 15°<a≤30°", "μ₂ = 0,5·μ₂(z=r)", "a=α₂ или α₁; остальные ветви μ₂=0", "Б.12(б), интерпретация")
-		add(14, "Зона 6", "μ₂ = 0,5·Cr1·(z/r30)²·sin β (до α₁=30°)", "За 30° используется Б.10 с интерполяцией; множитель 0,5 сохраняется", "Б.10, Б.12(б)")
-		add(15, "Угловые границы", "β = 60° и β = 120°", "β отсчитывается от правого радиуса в принятой сетке", "Рисунок Б.15а")
+		add(14, "Зона 6", "μ₂ = 0,5·μ₂,Б.10(z,β), отрицательный sinβ берётся по модулю", "Согласованная положительная ордината при β=270°", "Б.10, Б.12(б), альтернативная трактовка")
+		add(15, "Угловые границы", "β = 30°, 150°, 210°, 330°", "β=0° вниз, 90° вправо, 180° вверх, 270° влево; один отсчёт для всех зон", "Рисунок Б.15а")
 	} else {
 		add(8, "Общий коэффициент для скатов", "μ=1 при α≤30°; μ=(60°−α)/30° при 30°<α<60°; μ=0 при α≥60°", "Для иных схем см. лист каждого варианта; при частичной нагрузке учитывается собственная форма", "Приложение Б")
 	}

@@ -137,7 +137,7 @@ func snowWordAppend(s SnowCalc, imageCount *int, rel *strings.Builder, entries m
 		geo = append(geo, []string{"Уклон конуса α, °", decimalInput(s.Angle, 3)}, []string{"Подъём кровли f, м", decimalInput(s.Rise, 3)})
 	}
 	if s.Shape == "sphere_cone" {
-		geo = append(geo, []string{"Подъём кровли f от стенки до конька, м", decimalInput(s.H, 3)}, []string{"Радиус конуса r, м", decimalInput(s.SkylightWidth, 3)}, []string{"Уклон конуса α, °", decimalInput(s.Angle, 3)}, []string{"Подъём конуса r·tan α, м", decimalInput(s.SkylightWidth*math.Tan(s.Angle*math.Pi/180), 3)}, []string{"Угол касательной α₁, °", decimalInput(sphereConeTangentAngle(s), 3)}, []string{"Шаг β, °", decimalInput(s.BetaStep, 3)}, []string{"Отметка сопряжения со стенкой H−f, м", decimalInput(s.RoofHeight-s.H, 3)})
+		geo = append(geo, []string{"Подъём кровли f от стенки до конька, м", decimalInput(s.H, 3)}, []string{"Радиус конуса r, м", decimalInput(s.SkylightWidth, 3)}, []string{"Уклон конуса α, °", decimalInput(s.Angle, 3)}, []string{"Подъём конуса r·tan α, м", decimalInput(s.SkylightWidth*math.Tan(s.Angle*math.Pi/180), 3)}, []string{"Угол касательной α₁, °", decimalInput(sphereConeTangentAngle(s), 3)}, []string{"Условный подъём полной сферы fсферы = (D/2)·tg(α₁/2), м", decimalInput((s.Span/2)*math.Tan(sphereConeTangentAngle(s)*math.Pi/360), 3)}, []string{"Шаг β, °", decimalInput(s.BetaStep, 3)}, []string{"Отметка сопряжения со стенкой H−f, м", decimalInput(s.RoofHeight-s.H, 3)})
 	}
 	if s.Shape == "dome" {
 		geo = append(geo, []string{"Подъём сферического купола f, м", decimalInput(s.Rise, 3)}, []string{"f/D", decimalInput(s.Rise/s.Span, 4)})

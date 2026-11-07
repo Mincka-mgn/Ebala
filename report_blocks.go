@@ -11,6 +11,8 @@ func savedGroup(b SavedReportBlock) string {
 		return "Собственный вес"
 	case "snow":
 		return "Снеговые нагрузки"
+	case "wind":
+		return "Ветровые нагрузки"
 	case "ice":
 		return "Гололёдные нагрузки"
 	case "crane_set", "crane_placement":
@@ -330,6 +332,11 @@ func (p Project) selectedReport() TempReport {
 			} else if b.Weight != nil {
 				r.WeightRows = append(r.WeightRows, *b.Weight)
 			}
+		case "wind":
+			if b.WindCalc != nil {
+				r.Winds = append(r.Winds, *b.WindCalc)
+				r.WindTitles = append(r.WindTitles, b.Title)
+			}
 		case "snow":
 			if b.Snow != nil {
 				r.SnowTitles = append(r.SnowTitles, b.Title)
@@ -360,4 +367,21 @@ func (p *Project) unsuppressTemporary(key string) {
 		}
 	}
 	p.SuppressedSelections = filtered
+}
+
+// Wind calculations are independent editable report blocks, one per loading.
+func (p *Project) putWindCalc(id int, c WindCalculation) int {
+	b := SavedReportBlock{Kind: "wind", Title: "Ветровая нагрузка", WindCalc: &c}
+	if id > 0 {
+		for _, old := range p.SavedBlocks {
+			if old.ID == id && old.Kind == "wind" {
+				b.Title = old.Title
+				break
+			}
+		}
+		if p.updateBlock(id, b) {
+			return id
+		}
+	}
+	return p.addBlock(b)
 }

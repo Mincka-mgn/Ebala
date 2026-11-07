@@ -1,0 +1,1313 @@
+{
+  "rules": [
+    "Обозначения из рисунков — по каждому случаю в cases.json, поскольку b,d,h используются неоднозначно.",
+    "w0 из таблицы 11.1 в кПа переводить в Па (×1000).",
+    "Углы на рисунках в градусах, внутренняя тригонометрия использует радианы."
+  ],
+  "symbols": [
+    {
+      "id": "wind_region",
+      "name_ru": "Ветровой район",
+      "symbol_on_scheme_or_formula": "район",
+      "unit": "—",
+      "normative_reference": "11.1.4",
+      "meaning": "Район по карте 2 приложения Е",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "terrain",
+      "name_ru": "Тип местности",
+      "symbol_on_scheme_or_formula": "A/B/C",
+      "unit": "—",
+      "normative_reference": "11.1.6",
+      "meaning": "Выбирается отдельно для каждого направления",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "w0",
+      "name_ru": "Нормативное ветровое давление",
+      "symbol_on_scheme_or_formula": "w₀",
+      "unit": "Па",
+      "normative_reference": "11.1.4",
+      "meaning": "Из таблицы 11.1 в кПа или по формуле 11.3; всегда привести к Па",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "v50",
+      "name_ru": "Скорость ветра с осреднением 10 мин и повторяемостью 50 лет",
+      "symbol_on_scheme_or_formula": "v₅₀",
+      "unit": "м/с",
+      "normative_reference": "11.1.4",
+      "meaning": "Для местности А, высоты 10 м",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "z",
+      "name_ru": "Текущая высота над землёй",
+      "symbol_on_scheme_or_formula": "z",
+      "unit": "м",
+      "normative_reference": "11.1.5",
+      "meaning": "Может зависеть от зоны и элемента",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "z_e",
+      "name_ru": "Эквивалентная высота",
+      "symbol_on_scheme_or_formula": "zₑ",
+      "unit": "м",
+      "normative_reference": "11.1.5",
+      "meaning": "Вычисляется по геометрии либо задана для специальных сооружений",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "z_eq",
+      "name_ru": "Эквивалентная высота для динамики",
+      "symbol_on_scheme_or_formula": "zэк",
+      "unit": "м",
+      "normative_reference": "11.1.8",
+      "meaning": "0,8h для зданий, для горизонтальных элементов z",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "h",
+      "name_ru": "Высота здания/сооружения",
+      "symbol_on_scheme_or_formula": "h",
+      "unit": "м",
+      "normative_reference": "11.1.5",
+      "meaning": "От поверхности земли",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "d",
+      "name_ru": "Поперечный размер здания или диаметр",
+      "symbol_on_scheme_or_formula": "d",
+      "unit": "м",
+      "normative_reference": "11.1.5, В.1.11, 11.3.2",
+      "meaning": "Смысл зависит от схемы: для здания поперечный плановый размер, для цилиндра диаметр",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "l",
+      "name_ru": "Продольный размер сооружения",
+      "symbol_on_scheme_or_formula": "l",
+      "unit": "м",
+      "normative_reference": "В.1.13–В.1.15",
+      "meaning": "В некоторых схемах размер вдоль ветра",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "b",
+      "name_ru": "Ширина или расстояние между фермами",
+      "symbol_on_scheme_or_formula": "b",
+      "unit": "м",
+      "normative_reference": "В.1.1–В.1.15",
+      "meaning": "Уточняется на выбранном рисунке",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "a",
+      "name_ru": "Геометрический размер a",
+      "symbol_on_scheme_or_formula": "a",
+      "unit": "м",
+      "normative_reference": "рис. 11.2, В.7, В.10",
+      "meaning": "Не является универсальным по всем схемам",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "h1",
+      "name_ru": "Высота h₁",
+      "symbol_on_scheme_or_formula": "h₁",
+      "unit": "м",
+      "normative_reference": "рис. В.7–В.9",
+      "meaning": "Высота для здания с фонарями/переменным покрытием",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "h2",
+      "name_ru": "Высота h₂",
+      "symbol_on_scheme_or_formula": "h₂",
+      "unit": "м",
+      "normative_reference": "рис. В.7–В.8",
+      "meaning": "Высота меньшей части",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "f_rise",
+      "name_ru": "Стрела подъёма свода/купола",
+      "symbol_on_scheme_or_formula": "f",
+      "unit": "м",
+      "normative_reference": "рис. В.5–В.6",
+      "meaning": "Геометрическая стрела подъёма свода/купола. На рис. В.5–В.6 подписана f; программный идентификатор f_rise, не путать с f_spectral (Гц) в приложении М.",
+      "role": "input",
+      "diagram_refs": [],
+      "scope": "APPENDIX_V_GEOMETRY"
+    },
+    {
+      "id": "alpha_roof",
+      "name_ru": "Уклон кровли",
+      "symbol_on_scheme_or_formula": "α",
+      "unit": "град",
+      "normative_reference": "В.1.2, табл. В.3",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "beta_wind",
+      "name_ru": "Направление ветра/угол к элементу",
+      "symbol_on_scheme_or_formula": "β",
+      "unit": "град",
+      "normative_reference": "рис. В.3, В.18",
+      "meaning": "Для В.18 угол между осью элемента и скоростью ветра",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "beta_cyl",
+      "name_ru": "Полярный угол на цилиндре",
+      "symbol_on_scheme_or_formula": "β",
+      "unit": "град",
+      "normative_reference": "рис. В.16",
+      "meaning": "Измеряется от наветренной образующей",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "mu_permeability",
+      "name_ru": "Проницаемость ограждения",
+      "symbol_on_scheme_or_formula": "μ",
+      "unit": "%",
+      "normative_reference": "В.1.9",
+      "meaning": "Сумма площадей проёмов / площадь ограждения ×100",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "k",
+      "name_ru": "Высотный коэффициент",
+      "symbol_on_scheme_or_formula": "k(zₑ)",
+      "unit": "1",
+      "normative_reference": "11.1.6",
+      "meaning": "По 11.2 либо 11.4",
+      "role": "lookup",
+      "diagram_refs": []
+    },
+    {
+      "id": "alpha_terrain",
+      "name_ru": "Показатель степенной зависимости",
+      "symbol_on_scheme_or_formula": "α",
+      "unit": "1",
+      "normative_reference": "табл. 11.3",
+      "meaning": "Параметр типа местности",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "k10",
+      "name_ru": "Высотный коэффициент на 10 м",
+      "symbol_on_scheme_or_formula": "k₁₀",
+      "unit": "1",
+      "normative_reference": "табл. 11.3",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "zeta",
+      "name_ru": "Коэффициент пульсации давления",
+      "symbol_on_scheme_or_formula": "ζ(zₑ)",
+      "unit": "1",
+      "normative_reference": "11.1.8",
+      "meaning": "По табл. 11.4 либо 11.6",
+      "role": "lookup",
+      "diagram_refs": []
+    },
+    {
+      "id": "zeta10",
+      "name_ru": "Коэффициент пульсации на 10 м",
+      "symbol_on_scheme_or_formula": "ζ₁₀",
+      "unit": "1",
+      "normative_reference": "табл. 11.3",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "v_corr",
+      "name_ru": "Коэффициент пространственной корреляции",
+      "symbol_on_scheme_or_formula": "ν",
+      "unit": "1",
+      "normative_reference": "11.1.11",
+      "meaning": "Не путать с скоростью v",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "rho",
+      "name_ru": "Размер расчётной поверхности",
+      "symbol_on_scheme_or_formula": "ρ",
+      "unit": "м",
+      "normative_reference": "табл. 11.7",
+      "meaning": "Аргумент таблицы 11.6",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "chi",
+      "name_ru": "Размер расчётной поверхности",
+      "symbol_on_scheme_or_formula": "χ",
+      "unit": "м",
+      "normative_reference": "табл. 11.7",
+      "meaning": "Аргумент таблицы 11.6",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "c_e",
+      "name_ru": "Аэродинамический коэффициент внешнего давления",
+      "symbol_on_scheme_or_formula": "cₑ",
+      "unit": "1",
+      "normative_reference": "11.1.7, прил. В",
+      "meaning": "Знак плюс давление, минус отсос",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "c_i",
+      "name_ru": "Аэродинамический коэффициент внутреннего давления",
+      "symbol_on_scheme_or_formula": "cᵢ",
+      "unit": "1",
+      "normative_reference": "11.1.7, В.1.9",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "c_p",
+      "name_ru": "Коэффициент суммарного давления",
+      "symbol_on_scheme_or_formula": "cₚ",
+      "unit": "1",
+      "normative_reference": "11.1.7",
+      "meaning": "Алгебраическая сумма cₑ и cᵢ с согласованием знаков",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "c_f",
+      "name_ru": "Аэродинамический коэффициент трения",
+      "symbol_on_scheme_or_formula": "c_f",
+      "unit": "1",
+      "normative_reference": "11.1.7",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "c_x",
+      "name_ru": "Коэффициент лобового сопротивления",
+      "symbol_on_scheme_or_formula": "cₓ",
+      "unit": "1",
+      "normative_reference": "11.1.7, В.1.11–В.1.14",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "c_x_inf",
+      "name_ru": "Коэффициент сопротивления бесконечного цилиндра/призмы",
+      "symbol_on_scheme_or_formula": "cₓ,∞",
+      "unit": "1",
+      "normative_reference": "рис. В.17/В.19",
+      "meaning": "Зависит от Re и Δ/d либо геометрии",
+      "role": "lookup",
+      "diagram_refs": []
+    },
+    {
+      "id": "c_y",
+      "name_ru": "Коэффициент поперечной силы",
+      "symbol_on_scheme_or_formula": "c_y",
+      "unit": "1",
+      "normative_reference": "11.1.7, В.2.2",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "c_Mz",
+      "name_ru": "Коэффициент крутящего момента",
+      "symbol_on_scheme_or_formula": "c_Mz",
+      "unit": "1",
+      "normative_reference": "11.1.7",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "c_peak",
+      "name_ru": "Пиковый аэродинамический коэффициент",
+      "symbol_on_scheme_or_formula": "cₚ,+ / cₚ,−",
+      "unit": "1",
+      "normative_reference": "11.2, В.1.17",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "nu_peak",
+      "name_ru": "Коэффициент корреляции пиковой нагрузки",
+      "symbol_on_scheme_or_formula": "ν₊ / ν₋",
+      "unit": "1",
+      "normative_reference": "11.2, табл. 11.8",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "A_loaded",
+      "name_ru": "Расчётная площадь ограждения",
+      "symbol_on_scheme_or_formula": "A",
+      "unit": "м²",
+      "normative_reference": "11.2",
+      "meaning": "Площадь, с которой собирается нагрузка",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "gamma_f",
+      "name_ru": "Коэффициент надёжности по ветру",
+      "symbol_on_scheme_or_formula": "γ_f",
+      "unit": "1",
+      "normative_reference": "11.4",
+      "meaning": "1,4 для основной и пиковой; 1,0 для резонансной",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "w_m",
+      "name_ru": "Средняя нормативная составляющая ветра",
+      "symbol_on_scheme_or_formula": "w_m",
+      "unit": "Па",
+      "normative_reference": "11.1.3",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "w_g",
+      "name_ru": "Пульсационная нормативная составляющая ветра",
+      "symbol_on_scheme_or_formula": "w_g",
+      "unit": "Па",
+      "normative_reference": "11.1.8",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "w",
+      "name_ru": "Основная нормативная нагрузка",
+      "symbol_on_scheme_or_formula": "w",
+      "unit": "Па",
+      "normative_reference": "11.1.2",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "w_peak",
+      "name_ru": "Пиковая нормативная нагрузка",
+      "symbol_on_scheme_or_formula": "w₊/w₋",
+      "unit": "Па",
+      "normative_reference": "11.2",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "Re",
+      "name_ru": "Число Рейнольдса",
+      "symbol_on_scheme_or_formula": "Re",
+      "unit": "1",
+      "normative_reference": "В.1.11",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "delta_rough",
+      "name_ru": "Абсолютная шероховатость поверхности",
+      "symbol_on_scheme_or_formula": "Δ",
+      "unit": "м",
+      "normative_reference": "В.1.16, табл. В.11",
+      "meaning": "Для ребристого цилиндра высота ребра",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "rel_rough",
+      "name_ru": "Относительная шероховатость",
+      "symbol_on_scheme_or_formula": "Δ/d",
+      "unit": "1",
+      "normative_reference": "В.1.11–В.1.12",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "k_lambda",
+      "name_ru": "Коэффициент относительного удлинения",
+      "symbol_on_scheme_or_formula": "k_λ",
+      "unit": "1",
+      "normative_reference": "В.1.15, рис. В.23",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "lambda_e",
+      "name_ru": "Относительное удлинение",
+      "symbol_on_scheme_or_formula": "λₑ",
+      "unit": "1",
+      "normative_reference": "В.1.15, табл. В.10",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "phi_solidity",
+      "name_ru": "Степень заполнения решётки",
+      "symbol_on_scheme_or_formula": "φ",
+      "unit": "1",
+      "normative_reference": "В.1.14",
+      "meaning": "ΣAᵢ / A_k",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "eta_shadow",
+      "name_ru": "Коэффициент затенения ферм",
+      "symbol_on_scheme_or_formula": "η",
+      "unit": "1",
+      "normative_reference": "В.1.14, табл. В.8",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "St",
+      "name_ru": "Число Струхаля",
+      "symbol_on_scheme_or_formula": "St",
+      "unit": "1",
+      "normative_reference": "11.3.2",
+      "meaning": "0,2 круг; 0,11 острые кромки",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "f1",
+      "name_ru": "Первая собственная частота",
+      "symbol_on_scheme_or_formula": "f₁",
+      "unit": "Гц",
+      "normative_reference": "11.1.8",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "f2",
+      "name_ru": "Вторая собственная частота",
+      "symbol_on_scheme_or_formula": "f₂",
+      "unit": "Гц",
+      "normative_reference": "11.1.8",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "f_i",
+      "name_ru": "Частота i-й собственной формы",
+      "symbol_on_scheme_or_formula": "fᵢ",
+      "unit": "Гц",
+      "normative_reference": "11.3.2",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "f_lim",
+      "name_ru": "Предельная частота",
+      "symbol_on_scheme_or_formula": "f_lim",
+      "unit": "Гц",
+      "normative_reference": "11.1.10",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "delta_damp",
+      "name_ru": "Суммарный логарифмический декремент",
+      "symbol_on_scheme_or_formula": "δ",
+      "unit": "1",
+      "normative_reference": "11.1.8–11.1.10",
+      "meaning": "Не путать с Δ/d",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "Tg1",
+      "name_ru": "Безразмерный период",
+      "symbol_on_scheme_or_formula": "T_{g,1}",
+      "unit": "1",
+      "normative_reference": "11.1.8",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "xi",
+      "name_ru": "Коэффициент динамичности",
+      "symbol_on_scheme_or_formula": "ξ",
+      "unit": "1",
+      "normative_reference": "рис. 11.1",
+      "meaning": "По рисунку 11.1; для автоматизации принята и проверена по контрольным точкам инженерная аналитическая формула 11.1.xi_davenport_approx (не нормативная формула СП).",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "V_cr",
+      "name_ru": "Критическая скорость ветра",
+      "symbol_on_scheme_or_formula": "V_{cr,i}",
+      "unit": "м/с",
+      "normative_reference": "11.3.2",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "V_max",
+      "name_ru": "Максимальная скорость на высоте zэк",
+      "symbol_on_scheme_or_formula": "V_max",
+      "unit": "м/с",
+      "normative_reference": "11.3.3",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "k_v",
+      "name_ru": "Коэффициент захвата частоты",
+      "symbol_on_scheme_or_formula": "k_v",
+      "unit": "1",
+      "normative_reference": "11.3.2",
+      "meaning": "От 0,9 до 1,1, наихудший вариант",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "delta_s",
+      "name_ru": "Логарифмический декремент конструкционного демпфирования",
+      "symbol_on_scheme_or_formula": "δ_s",
+      "unit": "1",
+      "normative_reference": "В.2.1",
+      "meaning": "0,05 сталь; 0,1 железобетон",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "phi_mode",
+      "name_ru": "Форма собственных колебаний",
+      "symbol_on_scheme_or_formula": "φᵢ(z)",
+      "unit": "1",
+      "normative_reference": "В.2.1",
+      "meaning": "Нормировать max |φᵢ(z)|=1",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "z_g",
+      "name_ru": "Отметка нижнего края сферы над землёй",
+      "symbol_on_scheme_or_formula": "z_g",
+      "unit": "м",
+      "normative_reference": "рис. В.13",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "a_e",
+      "name_ru": "Эксцентриситет равнодействующей",
+      "symbol_on_scheme_or_formula": "e",
+      "unit": "м",
+      "normative_reference": "рис. В.2",
+      "meaning": "Для щита ±0,25b",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "c_beta",
+      "name_ru": "Угловое давление на цилиндр",
+      "symbol_on_scheme_or_formula": "c_β",
+      "unit": "1",
+      "normative_reference": "рис. В.16",
+      "meaning": "Параметры по табл. В.5",
+      "role": "lookup",
+      "diagram_refs": []
+    },
+    {
+      "id": "b_over_d",
+      "name_ru": "Соотношение размеров цилиндра/призмы",
+      "symbol_on_scheme_or_formula": "b/d",
+      "unit": "1",
+      "normative_reference": "В.2.2",
+      "meaning": "Зависит от направления ветра",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "S_surface",
+      "name_ru": "Расчётная поверхность",
+      "symbol_on_scheme_or_formula": "S",
+      "unit": "м²",
+      "normative_reference": "11.1.11",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "sigma_Q",
+      "name_ru": "Стандарт усилия",
+      "symbol_on_scheme_or_formula": "σ_Q",
+      "unit": "Н",
+      "normative_reference": "прил. М",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "sigma_u",
+      "name_ru": "Стандарт перемещений",
+      "symbol_on_scheme_or_formula": "σ_u",
+      "unit": "м",
+      "normative_reference": "прил. М",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "zone",
+      "name_ru": "Номер участка схемы",
+      "symbol_on_scheme_or_formula": "A/B/C/D/E/F/G/H/I/J/K/L/M",
+      "unit": "—",
+      "normative_reference": "приложение В",
+      "meaning": "Отдельное пространство имён для каждой схемы",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "roof_zone",
+      "name_ru": "Участок кровли",
+      "symbol_on_scheme_or_formula": "F/G/H/I/J",
+      "unit": "—",
+      "normative_reference": "рис. В.4",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "wall_zone",
+      "name_ru": "Участок отдельно стоящей стены",
+      "symbol_on_scheme_or_formula": "A/B/C/D",
+      "unit": "—",
+      "normative_reference": "рис. В.1",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "wind_direction",
+      "name_ru": "Расчётное направление ветра",
+      "symbol_on_scheme_or_formula": "V; 0°/90°",
+      "unit": "град",
+      "normative_reference": "рис. В.3–В.4",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "canopy_scheme",
+      "name_ru": "Тип навеса",
+      "symbol_on_scheme_or_formula": "I/II/III/IV",
+      "unit": "—",
+      "normative_reference": "рис. В.12",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "surface_kind",
+      "name_ru": "Тип поверхности",
+      "symbol_on_scheme_or_formula": "материал",
+      "unit": "—",
+      "normative_reference": "табл. В.11",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "building_function",
+      "name_ru": "Назначение здания",
+      "symbol_on_scheme_or_formula": "функция",
+      "unit": "—",
+      "normative_reference": "В.3",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "A_openings",
+      "name_ru": "Площадь проёмов",
+      "symbol_on_scheme_or_formula": "A_проёмов",
+      "unit": "м²",
+      "normative_reference": "В.1.9",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "A_walls",
+      "name_ru": "Полная площадь ограждений",
+      "symbol_on_scheme_or_formula": "A_ограждения",
+      "unit": "м²",
+      "normative_reference": "В.1.9",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "A_i",
+      "name_ru": "Площадь проекции i-го элемента",
+      "symbol_on_scheme_or_formula": "A_i",
+      "unit": "м²",
+      "normative_reference": "В.1.14",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "A_k",
+      "name_ru": "Площадь контура фермы",
+      "symbol_on_scheme_or_formula": "A_k",
+      "unit": "м²",
+      "normative_reference": "В.1.14",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "lambda_lantern",
+      "name_ru": "Относительный размер фонаря",
+      "symbol_on_scheme_or_formula": "λ",
+      "unit": "1",
+      "normative_reference": "В.1.5",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "section_position",
+      "name_ru": "Положение сечения по куполу",
+      "symbol_on_scheme_or_formula": "сечение",
+      "unit": "м",
+      "normative_reference": "рис. В.6а",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "c_aerodynamic",
+      "name_ru": "Принятый аэродинамический коэффициент",
+      "symbol_on_scheme_or_formula": "c",
+      "unit": "1",
+      "normative_reference": "11.1.3",
+      "meaning": "Контекстный вход: c_e, c_i, c_f или c_x",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "w_m_design",
+      "name_ru": "Расчётная средняя составляющая",
+      "symbol_on_scheme_or_formula": "w_m,расч",
+      "unit": "Па",
+      "normative_reference": "В.2.3",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "w_g_design",
+      "name_ru": "Расчётная пульсационная составляющая",
+      "symbol_on_scheme_or_formula": "w_g,расч",
+      "unit": "Па",
+      "normative_reference": "В.2.3",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "load_sign",
+      "name_ru": "Знак давления",
+      "symbol_on_scheme_or_formula": "+/−",
+      "unit": "—",
+      "normative_reference": "11.2",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "load_case",
+      "name_ru": "Вариант нагружения",
+      "symbol_on_scheme_or_formula": "случай",
+      "unit": "—",
+      "normative_reference": "приложение В",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "wind_case",
+      "name_ru": "Вариант направления ветра",
+      "symbol_on_scheme_or_formula": "вариант",
+      "unit": "—",
+      "normative_reference": "рис. В.11",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "phi_k",
+      "name_ru": "Собственная форма k",
+      "symbol_on_scheme_or_formula": "φ_k(x)",
+      "unit": "1",
+      "normative_reference": "приложение М",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "f_k",
+      "name_ru": "Собственная частота k",
+      "symbol_on_scheme_or_formula": "f_k",
+      "unit": "Гц",
+      "normative_reference": "приложение М",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "L",
+      "name_ru": "Линейный оператор усилий",
+      "symbol_on_scheme_or_formula": "L",
+      "unit": "—",
+      "normative_reference": "М.3.2",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "V0",
+      "name_ru": "Базовая скорость для спектральной модели",
+      "symbol_on_scheme_or_formula": "V₀",
+      "unit": "м/с",
+      "normative_reference": "М.5",
+      "meaning": "V₀=0,84·v₅₀, скорость ветра на высоте 10 м; используется в (М.14) и (М.16), не подменяет v₀² из (М.20). V₀ в м/с, его квадрат в м²/с²; не отождествлять с безразмерным v₀².",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "gamma_g",
+      "name_ru": "Коэффициент обеспеченности пульсаций",
+      "symbol_on_scheme_or_formula": "γ_g",
+      "unit": "1",
+      "normative_reference": "М.2",
+      "meaning": "3,0",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "epsilon_D",
+      "name_ru": "Точность динамического расчёта",
+      "symbol_on_scheme_or_formula": "ε_D",
+      "unit": "1",
+      "normative_reference": "М.7",
+      "meaning": "<=0,01",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "a_max",
+      "name_ru": "Предельное ускорение этажа",
+      "symbol_on_scheme_or_formula": "a_c,max",
+      "unit": "м/с²",
+      "normative_reference": "В.3",
+      "meaning": "",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "L_x",
+      "name_ru": "Продольный масштаб турбулентности",
+      "symbol_on_scheme_or_formula": "L_x",
+      "unit": "м",
+      "normative_reference": "М.5",
+      "meaning": "Равен 1200 м в М.14",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "lambda_f",
+      "name_ru": "Безразмерная спектральная частота",
+      "symbol_on_scheme_or_formula": "λ",
+      "unit": "1",
+      "normative_reference": "М.5",
+      "meaning": "λ=fL_x/V0",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "S_v0",
+      "name_ru": "Нормированная спектральная плотность",
+      "symbol_on_scheme_or_formula": "S_v,0(f)",
+      "unit": "с",
+      "normative_reference": "М.5",
+      "meaning": "Формула М.13. Размерность с = Гц^-1; интеграл спектральной плотности по частоте безразмерен.",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "r_v",
+      "name_ru": "Корреляция пульсаций скорости",
+      "symbol_on_scheme_or_formula": "r_v",
+      "unit": "1",
+      "normative_reference": "М.6",
+      "meaning": "Корреляция по двум точкам",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "T_v",
+      "name_ru": "Период корреляции пульсаций",
+      "symbol_on_scheme_or_formula": "T_v",
+      "unit": "с",
+      "normative_reference": "М.6",
+      "meaning": "T_v=Δl_v/V0",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "Delta_l_v",
+      "name_ru": "Приведённое расстояние для корреляции",
+      "symbol_on_scheme_or_formula": "Δl_v",
+      "unit": "м",
+      "normative_reference": "М.6",
+      "meaning": "",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "Delta_x_i",
+      "name_ru": "Разности координат точек",
+      "symbol_on_scheme_or_formula": "Δx_i",
+      "unit": "м",
+      "normative_reference": "М.6",
+      "meaning": "Модули соответствующих проекций",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "b_i",
+      "name_ru": "Эмпирические множители корреляции",
+      "symbol_on_scheme_or_formula": "b_i",
+      "unit": "1",
+      "normative_reference": "М.6",
+      "meaning": "b1=20,b2=b3=8",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "G_k_k1",
+      "name_ru": "Обобщённое динамическое воздействие",
+      "symbol_on_scheme_or_formula": "G_{kk1}",
+      "unit": "Н²/м²",
+      "normative_reference": "М.4",
+      "meaning": "Численное двойное интегрирование по поверхности",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "D_u",
+      "name_ru": "Дисперсия перемещений",
+      "symbol_on_scheme_or_formula": "D_u",
+      "unit": "м²",
+      "normative_reference": "М.3",
+      "meaning": "",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "D_Q",
+      "name_ru": "Дисперсия усилий",
+      "symbol_on_scheme_or_formula": "D_Q",
+      "unit": "Н²",
+      "normative_reference": "М.3",
+      "meaning": "",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "sigma0",
+      "name_ru": "Стандарт скорости/спектра",
+      "symbol_on_scheme_or_formula": "σ₀",
+      "unit": "м/с",
+      "normative_reference": "М.4",
+      "meaning": "",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "S_p0",
+      "name_ru": "Спектральная плотность пульсаций",
+      "symbol_on_scheme_or_formula": "S_p,0",
+      "unit": "—",
+      "normative_reference": "М.4",
+      "meaning": "",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "Delta_k",
+      "name_ru": "Частотная функция динамики",
+      "symbol_on_scheme_or_formula": "Δ_k(f)",
+      "unit": "1",
+      "normative_reference": "М.4",
+      "meaning": "Не путать с Δ шероховатости",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "gamma_k",
+      "name_ru": "Демпфирование k-й формы",
+      "symbol_on_scheme_or_formula": "γ_k",
+      "unit": "1",
+      "normative_reference": "М.4",
+      "meaning": "Параметр затухания k-й формы; в (М.11) входит линейно, как γ_k, не γ_k².",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "r_m",
+      "name_ru": "Общая корреляция по сооружению",
+      "symbol_on_scheme_or_formula": "r_m(f)",
+      "unit": "1",
+      "normative_reference": "М.7",
+      "meaning": "",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "T_vm",
+      "name_ru": "Осреднённый по сооружению период корреляции",
+      "symbol_on_scheme_or_formula": "T_v,m",
+      "unit": "с",
+      "normative_reference": "М.7",
+      "meaning": "",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "v0_squared",
+      "name_ru": "Безразмерная интегральная величина v₀² (квазистатический член)",
+      "symbol_on_scheme_or_formula": "v₀²",
+      "unit": "1",
+      "normative_reference": "М.7",
+      "meaning": "Безразмерный интеграл по (М.20): ∫ S_v,0(f)·r_m(f) df. Размерности: S_v,0(f) = с, r_m(f) = 1, df = Гц (с^-1), итог = 1. Используется в М.18 и не равен V₀² (м²/с²).",
+      "role": "derived",
+      "diagram_refs": [],
+      "scope": "APPENDIX_M_SPECTRAL"
+    },
+    {
+      "id": "xi_s_squared",
+      "name_ru": "Квадрат коэффициента динамичности формы",
+      "symbol_on_scheme_or_formula": "ξ_s²",
+      "unit": "1",
+      "normative_reference": "М.7",
+      "meaning": "Для критерия (М.18) берётся ξ²_ss, получаемое по (М.19) при k=k₁=s.",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "Q_p",
+      "name_ru": "Расчётное усилие от пульсаций",
+      "symbol_on_scheme_or_formula": "Q_p",
+      "unit": "Н",
+      "normative_reference": "М.2",
+      "meaning": "",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "u_p",
+      "name_ru": "Расчётное перемещение от пульсаций",
+      "symbol_on_scheme_or_formula": "u_p",
+      "unit": "м",
+      "normative_reference": "М.2",
+      "meaning": "",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "F_i_z",
+      "name_ru": "Погонная сила вихревого возбуждения",
+      "symbol_on_scheme_or_formula": "F_i(z)",
+      "unit": "Н/м",
+      "normative_reference": "В.2.1",
+      "meaning": "",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "c_y_cr",
+      "name_ru": "Коэффициент поперечной силы при резонансе",
+      "symbol_on_scheme_or_formula": "c_y,cr",
+      "unit": "1",
+      "normative_reference": "В.2.2",
+      "meaning": "",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "z_zone",
+      "name_ru": "Высота границы ветровой зоны",
+      "symbol_on_scheme_or_formula": "z",
+      "unit": "м",
+      "normative_reference": "11.1.5",
+      "meaning": "",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "f_spectral",
+      "name_ru": "Текущая частота спектрального интегрирования",
+      "symbol_on_scheme_or_formula": "f",
+      "unit": "Гц",
+      "normative_reference": "приложение М, (М.10)–(М.21)",
+      "meaning": "Независимая частотная переменная спектральных функций и интегралов. В СП обозначена f; в базе применяется уникальный идентификатор f_spectral. Не путать со стрелой подъёма f_rise (м) или с собственной частотой f_k (Гц).",
+      "role": "integration_variable",
+      "scope": "APPENDIX_M_SPECTRAL",
+      "diagram_refs": []
+    },
+    {
+      "id": "sp375_a_zone",
+      "name_ru": "Длина участка зонального действия ветра",
+      "symbol_on_scheme_or_formula": "a",
+      "unit": "м",
+      "normative_reference": "СП375, рис. А.2",
+      "meaning": "Длина участка относительно перелома поясов решетчатой башни",
+      "role": "input",
+      "diagram_refs": [
+        "СП375.А.2"
+      ]
+    },
+    {
+      "id": "sp375_x_zone",
+      "name_ru": "Коэффициент снижения ветровой нагрузки",
+      "symbol_on_scheme_or_formula": "x",
+      "unit": "1",
+      "normative_reference": "СП375, рис. А.2",
+      "meaning": "По длине участка a; применение только для раскосов/распорок и двух случаев приложения А",
+      "role": "derived",
+      "diagram_refs": [
+        "СП375.А.1",
+        "СП375.А.2"
+      ]
+    },
+    {
+      "id": "sp375_w_loc",
+      "name_ru": "Местная зонально уменьшенная расчётная ветровая нагрузка",
+      "symbol_on_scheme_or_formula": "w_loc",
+      "unit": "в единицах w",
+      "normative_reference": "СП375, (А.1)",
+      "meaning": "Результат применения x к участку нагрузки, в тех же единицах что и w_design",
+      "role": "derived",
+      "diagram_refs": [
+        "СП375.А.1"
+      ],
+      "unit_rule": "sp375_w_loc has same physical unit as sp375_w_design (e.g. kPa or kN/m; do not presume Pa)"
+    },
+    {
+      "id": "structure_kind",
+      "name_ru": "Тип сооружения",
+      "symbol_on_scheme_or_formula": "—",
+      "unit": "—",
+      "normative_reference": "СП375, 1.1, 7.1",
+      "meaning": "Дымовая труба, поддерживающая башня и т.д.; определяет применимость специальных коэффициентов",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "structure_material",
+      "name_ru": "Материал несущего ствола/башни",
+      "symbol_on_scheme_or_formula": "—",
+      "unit": "—",
+      "normative_reference": "СП375, табл. 7.1 и прим. 3",
+      "meaning": "Важен для выбора специальных коэффициентов надежности",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "sp375_gamma_f",
+      "name_ru": "Специальный коэффициент надёжности по ветровой нагрузке для трубы/башни",
+      "symbol_on_scheme_or_formula": "γ_f",
+      "unit": "1",
+      "normative_reference": "СП375, табл. 7.1 и прим.3",
+      "meaning": "Не подменять общим коэффициентом СП20; зависит от высоты, материала и типа конструкции",
+      "role": "derived",
+      "diagram_refs": []
+    },
+    {
+      "id": "sp375_H",
+      "name_ru": "Высота дымовой трубы или башни для определения γf",
+      "symbol_on_scheme_or_formula": "H",
+      "unit": "м",
+      "normative_reference": "СП375 7.1, таблица 7.1",
+      "meaning": "Высота специального сооружения; не смешивать с h условной высоты другого расчетного случая",
+      "role": "input",
+      "diagram_refs": []
+    },
+    {
+      "id": "sp375_w_design",
+      "name_ru": "Расчётная ветровая нагрузка до зонального уменьшения",
+      "symbol_on_scheme_or_formula": "w",
+      "unit": "в единицах w",
+      "normative_reference": "СП375 приложение А, формула А.1",
+      "meaning": "По расчетной схеме башни; в формуле А.1 множится на x (единица сохраняется)",
+      "role": "input",
+      "diagram_refs": [
+        "СП375.А.1"
+      ],
+      "unit_rule": "sp375_w_loc has same physical unit as sp375_w_design (e.g. kPa or kN/m; do not presume Pa)"
+    }
+  ]
+}

@@ -94,7 +94,8 @@ func snowWordReservoirRows(s SnowCalc, c SnowCase) [][]string {
 			}
 			appendRow(decimalInput(r, 3), label, nearest.Mu)
 		}
-		// In the spatial drift schemes sin(beta)≤0, hence all these samples are zero.
+		// On some axisymmetric variants the rear half is zero; B.15a
+		// has its own nonzero zones 5/6, so this shortcut is conditional.
 		lastZero := true
 		for _, p := range subset {
 			if p.Beta >= 195 && p.Beta <= 360 && math.Abs(p.Mu) > 1e-8 {

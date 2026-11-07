@@ -49,7 +49,7 @@ func exportTempWord(r TempReport, path string) error {
 			regular = append(regular, s)
 		}
 	}
-	if len(regular)+len(transport)+len(cranes)+len(r.WeightRows)+len(r.SiteLines)+len(r.Snows)+len(r.Ices)+len(r.CraneGroups) == 0 && r.Snow == nil && r.Ice == nil {
+	if len(regular)+len(transport)+len(cranes)+len(r.WeightRows)+len(r.SiteLines)+len(r.Snows)+len(r.Ices)+len(r.Winds)+len(r.CraneGroups) == 0 && r.Snow == nil && r.Ice == nil {
 		return fmt.Errorf("Ведомость пуста")
 	}
 	var b strings.Builder
@@ -65,6 +65,12 @@ func exportTempWord(r TempReport, path string) error {
 		}
 		if r.Ice != nil && r.Snow == nil && len(regular)+len(transport)+len(cranes) == 0 {
 			return "РАСЧЁТ ГОЛОЛЁДНЫХ НАГРУЗОК"
+		}
+		if len(r.Winds) > 0 {
+			if r.Snow == nil && r.Ice == nil && len(r.Snows)+len(r.Ices)+len(regular)+len(transport)+len(cranes)+len(r.CraneGroups) == 0 {
+				return "РАСЧЁТ ВЕТРОВЫХ НАГРУЗОК"
+			}
+			return "ОБЩАЯ ВЕДОМОСТЬ НАГРУЗОК"
 		}
 		return "ВРЕМЕННЫЕ И ТРАНСПОРТНЫЕ НАГРУЗКИ"
 	}()))
@@ -131,6 +137,17 @@ func exportTempWord(r TempReport, path string) error {
 			}
 			b.WriteString(section)
 		}
+	}
+	for i, wind := range r.Winds {
+		title := fmt.Sprintf("Ветровая нагрузка %d", i+1)
+		if i < len(r.WindTitles) {
+			title = r.WindTitles[i]
+		}
+		section, err := windWordGroup(wind, title, &imageCount, &rel, entries)
+		if err != nil {
+			return err
+		}
+		b.WriteString(section)
 	}
 	if len(regular) > 0 {
 		b.WriteString(pBold("Временные нагрузки (СП 20.13330.2016)"))
@@ -226,7 +243,7 @@ func exportTempWord(r TempReport, path string) error {
 			}
 		}
 	}
-	doc := `<?xml version="1.0" encoding="UTF-8"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>` + b.String() + `<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="720" w:right="720" w:bottom="720" w:left="720"/></w:sectPr></w:body></w:document>`
+	doc := `<?xml version="1.0" encoding="UTF-8"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"><w:body>` + b.String() + `<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="720" w:right="720" w:bottom="720" w:left="720"/></w:sectPr></w:body></w:document>`
 	entries["[Content_Types].xml"] = `<?xml version="1.0" encoding="UTF-8"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="png" ContentType="image/png"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>`
 	entries["_rels/.rels"] = `<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`
 	entries["word/document.xml"] = doc
