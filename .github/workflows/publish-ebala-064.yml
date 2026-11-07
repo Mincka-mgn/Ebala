@@ -1,0 +1,60 @@
+name: Publish Ebala 0.64 beta and retire 0.55 executable
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publish-ebala-064.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    name: Publish checked 0.64 and remove old Windows download
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify the two prepared beta files exist
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in Ebala_0.64_Windows.zip Ebala_0.64_Sources.zip; do
+            gh release view v0.64-beta.1 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -Fxq "$name" || { echo "Missing $name"; exit 1; }
+          done
+          echo "Both beta archives found."
+      - name: Publish Ebala 0.64 beta
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release edit v0.64-beta.1 --repo "$GITHUB_REPOSITORY" --draft=false
+          test "$(gh release view v0.64-beta.1 --repo "$GITHUB_REPOSITORY" --json isDraft --jq '.isDraft')" = false
+          echo "Ebala 0.64 Beta published."
+      - name: Remove Ebala 0.55 compiled Windows ZIP from older release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view v0.55-beta.1 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -Fxq 'Ebala_0.55.zip'; then
+            gh release delete-asset v0.55-beta.1 Ebala_0.55.zip --repo "$GITHUB_REPOSITORY" --yes
+          fi
+          if gh release view v0.55-beta.1 --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -Fxq 'Ebala_0.55.zip'; then
+            echo 'Old Windows executable asset is still present!'
+            exit 1
+          fi
+          echo 'Old 0.55 Windows release asset removed. Source archive remains.'
+      - name: Mark previous beta as superseded
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release edit v0.55-beta.1 --repo "$GITHUB_REPOSITORY" \
+            --title 'Ebala 0.55 Beta (устарела)' \
+            --notes 'Версия 0.55 заменена версией 0.64 Beta. Готовая Windows-сборка 0.55 больше не распространяется через Releases. Архив исходников сохранён для истории. Актуальная программа: https://github.com/Mincka-mgn/Ebala/releases/tag/v0.64-beta.1'
+          echo 'Old release notes updated.'
